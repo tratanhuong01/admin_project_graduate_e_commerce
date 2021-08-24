@@ -1,0 +1,369 @@
+textarea:focus,
+input:focus,
+button:focus {
+  outline: none;
+}
+* {
+  font-size: 14px;
+}
+@media (min-width: 600px) {
+  * {
+    font-size: 16px;
+  }
+}
+
+.post p {
+  width: 100%;
+  line-height: 1.8em !important;
+}
+.post img {
+  margin: 1em auto;
+  object-fit: cover;
+}
+.post {
+  font-family: sans-serif !important;
+}
+.post ul li {
+  list-style-type: disc;
+}
+.dark .post span {
+  color: white !important;
+}
+.dark\:text-black {
+  color: black;
+}
+.post span {
+  background: transparent !important;
+  line-height: 12px;
+}
+.post p {
+  background: transparent !important;
+}
+.post div {
+  background: transparent !important;
+}
+.detail__product__left {
+  max-height: 300px;
+}
+.detail__product__left__image {
+  height: 300px;
+}
+#second {
+  transition: all 2s ease-in-out;
+}
+.bg-organce {
+  background-color: #f36438;
+}
+.bg-organce-second {
+  background-color: #f57953;
+}
+.header__top span {
+  font-size: 15px !important;
+}
+.header__top p {
+  font-size: 15px !important;
+}
+.bg-organce-third {
+  background-color: #f08d6f;
+}
+.hover\:bg-organce:hover {
+  background-color: #f36438;
+}
+.hover\:bg-organce-important:hover {
+  background-color: #f36438 !important;
+}
+.hover\:border-organce:hover {
+  border-color: #f36438;
+}
+.border-orangce {
+  border-color: #f36438;
+}
+.border-organce {
+  border-color: #f36438;
+}
+.text-organce {
+  color: #f36438;
+}
+.hover\:text-organce:hover {
+  color: #f36438;
+}
+.product:hover .items-product {
+  display: flex;
+}
+.color {
+  display: none;
+}
+.image-color:hover > .color {
+  display: block;
+}
+#main {
+  background-image: none;
+}
+.item__news__detail {
+  width: 100%;
+}
+
+.element__show {
+  display: none;
+}
+[contenteditable][placeholder]:empty:before {
+  content: attr(placeholder);
+  position: absolute;
+  color: gray;
+  background-color: transparent;
+}
+.z-second {
+  z-index: 9999999999999;
+}
+.z-main {
+  z-index: 99999999999999;
+}
+.category__index__left {
+  z-index: 9999999999999999;
+}
+.text-green {
+  color: #2dc258;
+}
+.bg-green {
+  background-color: #2dc258;
+}
+.border-green {
+  border-color: #2dc258;
+}
+.product__search {
+  width: 46% !important;
+}
+
+@media (max-width: 768px) {
+  .view__detail__product__scrollbar {
+    display: none;
+  }
+  .list__product__left {
+    z-index: 9999584395435854835 !important;
+  }
+}
+@media (min-width: 1280px) {
+  .item__new {
+    width: calc(100% / 3 - 8px) !important;
+  }
+  .item__news__detail {
+    width: 100%;
+  }
+}
+.data__hover:hover .hover__show {
+  display: flex;
+}
+.hover__show {
+  display: none;
+}
+.slider__index__main {
+  height: 300px;
+  max-height: 300px;
+}
+@media (max-width: 700px) {
+  .stop__animation {
+    animation: none !important;
+  }
+}
+@media (min-width: 700px) {
+  .item__news__detail {
+    width: 46% !important;
+  }
+  .item__child__news__item {
+    width: 50%;
+  }
+  .element__hover:hover .element__show {
+    display: flex;
+  }
+}
+@media (min-width: 768px) {
+  .product__search {
+    width: 31% !important;
+  }
+  .category__index__left {
+    z-index: 10;
+  }
+  #main {
+    background-image: url(".././images/banner_1.jpg");
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+  }
+  #header {
+    background-color: transparent !important;
+  }
+  body {
+    overflow: auto;
+  }
+  .product__main {
+    width: 30.5% !important;
+  }
+  .item__category__dashboard {
+    width: calc(50% - 24px);
+  }
+  .item__category:hover .data__category {
+    display: flex !important;
+  }
+  .data__category {
+    max-height: 384px;
+    display: none !important;
+  }
+  .category__index__left {
+    display: flex !important;
+  }
+  .toggel__hover__cart_show:hover > .modal__cart__added {
+    display: block;
+  }
+  .slider__index__main {
+    height: 600px;
+    max-height: 600px;
+  }
+}
+@media (min-width: 1024px) {
+  .product__search {
+    width: 23% !important;
+  }
+  .detail__product__left {
+    max-height: 580px !important;
+  }
+  .detail__product__left__image {
+    height: 580px !important;
+  }
+  .item__news__detail {
+    width: 100% !important;
+  }
+  .index__right {
+    width: calc(100% - 240px);
+  }
+  .item__category__dashboard {
+    width: calc(25% - 28px) !important;
+  }
+  .item__child__news__item {
+    width: 29%;
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.index__right {
+  width: calc(100% - 115px);
+}
+.max-h-148 {
+  max-height: 600px;
+}
+.news__view {
+  display: none;
+}
+.w-30\% {
+  width: 30%;
+}
+.news__left:hover > .news__view {
+  display: block;
+}
+.news__left:hover > .news_bntPlay {
+  display: none;
+}
+.w-31\.5\% {
+  width: 31%;
+}
+.w-46\% {
+  width: 46%;
+}
+.w-47\% {
+  width: 47%;
+}
+.w-47\.5\% {
+  width: 47.5%;
+}
+.w-48\% {
+  width: 48%;
+}
+.w-48\.5\% {
+  width: 48.5%;
+}
+.w-49\% {
+  width: 49%;
+}
+.w-99\% {
+  width: 99%;
+}
+.w-98\% {
+  width: 98%;
+}
+.w-97\% {
+  width: 97%;
+}
+
+.w-96\% {
+  width: 96%;
+}
+.w-95\% {
+  width: 95%;
+}
+.modal__cart__added {
+  display: none;
+}
+
+.h-120 {
+  height: 480px;
+}
+.h-85vh {
+  height: 85vh;
+}
+.scrollbar-css::-webkit-scrollbar {
+  width: 8.5px;
+}
+.scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+}
+.scrollbar-css:hover::-webkit-scrollbar-thumb {
+  background: #f36438;
+  border-radius: 5px;
+}
+.shadow-lg-red {
+  box-shadow: 0 0 5px 0 red;
+}
+
+.shadow-lg-organce {
+  box-shadow: 0 0 5px 0 #f36438;
+}
+
+.shadow-xl-organce {
+  box-shadow: 0 0 15px 0 #f36438;
+}
+
+.instgram {
+  background: "#f09433";
+  background: -moz-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+}

@@ -1,0 +1,853 @@
+{
+  "customer": {
+    "filter": [
+      {
+        "name": "Xác minh",
+        "data": [
+          {
+            "id": 0,
+            "name": "Chưa xác minh",
+            "type": 0
+          },
+          {
+            "id": 1,
+            "name": "Đang xác minh",
+            "type": 1
+          },
+          {
+            "id": 0,
+            "name": "Đã xác minh",
+            "type": 2
+          }
+        ]
+      },
+      {
+        "name": "Trạng thái",
+        "data": [
+          {
+            "id": 0,
+            "name": "Khóa",
+            "type": 0
+          },
+          {
+            "id": 1,
+            "name": "Tạm khóa",
+            "type": 1
+          },
+          {
+            "id": 0,
+            "name": "Bình thường",
+            "type": 2
+          }
+        ]
+      },
+      {
+        "name": "Giới tính",
+        "data": [
+          {
+            "id": 0,
+            "name": "Nam",
+            "type": "Nam"
+          },
+          {
+            "id": 1,
+            "name": "Nữ",
+            "type": "Nữ"
+          },
+          {
+            "id": 0,
+            "name": "Khác",
+            "type": "Khác"
+          }
+        ]
+      },
+      {
+        "name": "Độ tuổi",
+        "data": [
+          {
+            "id": 0,
+            "name": "Từ 18 -> 25 tuổi"
+          },
+          {
+            "id": 1,
+            "name": "Từ 26 -> 35 tuổi"
+          },
+          {
+            "id": 2,
+            "name": "Từ 36 -> 45 tuổi"
+          },
+          {
+            "id": 3,
+            "name": "Từ 36 -> 45 tuổi"
+          },
+          {
+            "id": 4,
+            "name": "Từ 36 -> 45 tuổi"
+          }
+        ]
+      }
+    ],
+    "sorter": [
+      {
+        "name": "Id",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      },
+      {
+        "name": "Độ tuổi",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      }
+    ],
+    "filterAndSorter": true,
+    "search": true,
+    "download": true,
+    "add": false,
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Họ"
+      },
+      {
+        "id": 3,
+        "name": "Tên"
+      },
+      {
+        "id": 4,
+        "name": "Email"
+      },
+      {
+        "id": 5,
+        "name": "Số điện thoại"
+      },
+      {
+        "id": 6,
+        "name": "Ngày sinh"
+      },
+      {
+        "id": 7,
+        "name": "Giới tính"
+      },
+      {
+        "id": 8,
+        "name": "Sử dụng"
+      },
+      {
+        "id": 9,
+        "name": "Xác minh"
+      },
+      {
+        "id": 10,
+        "name": "Đơn hàng"
+      }
+    ],
+    "modal": true
+  },
+  "manufacture": {
+    "filter": [
+      {
+        "name": "Trạng thái",
+        "data": [
+          {
+            "id": 0,
+            "name": "Đang hợp tác",
+            "type": 0
+          },
+          {
+            "id": 1,
+            "name": "Hủy hợp tác",
+            "type": 1
+          }
+        ]
+      }
+    ],
+    "sorter": [
+      {
+        "name": "Id",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      },
+      {
+        "name": "Số hóa đơn",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      }
+    ],
+    "filterAndSorter": true,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Tên nhà cung cấp"
+      },
+      {
+        "id": 3,
+        "name": "Email"
+      },
+      {
+        "id": 4,
+        "name": "Số điện thoại"
+      },
+      {
+        "id": 5,
+        "name": "Tổng số đơn hàng"
+      },
+      {
+        "id": 6,
+        "name": "Tổng tiền"
+      }
+    ],
+    "modal": true
+  },
+  "bill": {
+    "filter": [
+      {
+        "name": "Tình trạng",
+        "data": [
+          {
+            "id": 0,
+            "name": "Chưa duyệt",
+            "type": 0
+          },
+          {
+            "id": 1,
+            "name": "Đang xét duyệt",
+            "type": 1
+          },
+          {
+            "id": 2,
+            "name": "Đã duyệt",
+            "type": 2
+          },
+          {
+            "id": 3,
+            "name": "Đã hủy",
+            "type": 2
+          }
+        ]
+      },
+      {
+        "name": "Trạng thái",
+        "data": [
+          {
+            "id": 0,
+            "name": "Đang chuyển đến nơi giao hàng",
+            "type": 0
+          },
+          {
+            "id": 1,
+            "name": "Đang vận chuyển",
+            "type": 1
+          },
+          {
+            "id": 0,
+            "name": "Thành công",
+            "type": 2
+          }
+        ]
+      },
+      {
+        "name": "Phương thưc thanh toán",
+        "data": [
+          {
+            "id": 0,
+            "name": "Thanh toán khi nhận hàng",
+            "type": "Nam"
+          },
+          {
+            "id": 1,
+            "name": "Thanh toán ATM",
+            "type": "Nữ"
+          }
+        ]
+      },
+      {
+        "name": "Độ tuổi",
+        "data": [
+          {
+            "id": 0,
+            "name": "Từ 18 -> 25 tuổi"
+          },
+          {
+            "id": 1,
+            "name": "Từ 26 -> 35 tuổi"
+          },
+          {
+            "id": 2,
+            "name": "Từ 36 -> 45 tuổi"
+          },
+          {
+            "id": 3,
+            "name": "Từ 36 -> 45 tuổi"
+          },
+          {
+            "id": 4,
+            "name": "Từ 36 -> 45 tuổi"
+          }
+        ]
+      }
+    ],
+    "sorter": [
+      {
+        "name": "Id",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      },
+      {
+        "name": "Tổng tiền",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      },
+      {
+        "name": "Độ tuổi",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      }
+    ],
+    "filterAndSorter": true,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "ID"
+      },
+      {
+        "id": 1,
+        "name": "Họ tên"
+      },
+      {
+        "id": 2,
+        "name": "Tổng sản phẩm"
+      },
+      {
+        "id": 3,
+        "name": "Tổng tiền"
+      },
+      {
+        "id": 4,
+        "name": "Phí vận chuyển"
+      },
+      {
+        "id": 5,
+        "name": "Địa chỉ"
+      },
+      {
+        "id": 6,
+        "name": "Phương thức thanh toán"
+      },
+      {
+        "id": 7,
+        "name": "Tình trạng"
+      },
+      {
+        "id": 8,
+        "name": "Trạng thái"
+      },
+      {
+        "id": 9,
+        "name": "Thời gian"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": true
+  },
+  "news": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "modal": false
+  },
+  "contact": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": []
+  },
+  "config": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": []
+  },
+  "sale": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": []
+  },
+  "color": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Mã màu"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": false,
+    "form": {
+      "title": "Màu sắc",
+      "data": [
+        {
+          "label": "ID",
+          "data": {
+            "placeHolder": "Nhập id",
+            "name": "id",
+            "disabled": true
+          },
+          "type": "input"
+        },
+        {
+          "label": "Mã màu",
+          "data": {
+            "placeHolder": "Nhập id",
+            "name": "code",
+            "disabled": true
+          },
+          "type": "text"
+        },
+        {
+          "label": "Xem mẫu",
+          "data": {
+            "className": "w-12 h-12 rounded-full"
+          },
+          "type": "live"
+        }
+      ],
+      "type": "div",
+      "table": "color"
+    }
+  },
+  "brand": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Thương hiệu"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": false
+  },
+  "size": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Kích thước"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": false
+  },
+  "lineProduct": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Nhóm sản phẩm"
+      },
+      {
+        "id": 2,
+        "name": "Tên sản phẩm"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": false
+  },
+  "groupProduct": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Tên nhóm sản phẩm"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": false
+  },
+  "categoryProduct": {
+    "filter": [],
+    "sort": [],
+    "filterAndSorter": false,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Tên danh mục sản phẩm"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "modal": false
+  },
+  "product": {
+    "filter": [
+      {
+        "name": "Tình trạng",
+        "data": [
+          {
+            "id": 0,
+            "name": "Hết hàn",
+            "type": 0
+          },
+          {
+            "id": 1,
+            "name": "Còn hàng",
+            "type": 1
+          }
+        ]
+      }
+    ],
+    "sorter": [
+      {
+        "name": "Sản phẩm bán chạy",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      },
+      {
+        "name": "Giá nhập vào",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      },
+      {
+        "name": "Giá bán ra",
+        "data": [
+          {
+            "id": 0,
+            "name": "Tăng dần",
+            "type": "ASC"
+          },
+          {
+            "id": 0,
+            "name": "Giảm dần",
+            "type": "DESC"
+          }
+        ]
+      }
+    ],
+    "filterAndSorter": true,
+    "search": [],
+    "download": [],
+    "add": [],
+    "edit": [],
+    "delete": [],
+    "table": [
+      {
+        "name": ""
+      },
+      {
+        "id": 0,
+        "name": "STT"
+      },
+      {
+        "id": 1,
+        "name": "ID"
+      },
+      {
+        "id": 2,
+        "name": "Hình ảnh"
+      },
+      {
+        "id": 3,
+        "name": "Nhóm sản phẩm"
+      },
+      {
+        "id": 4,
+        "name": "Tên sản phẩm"
+      },
+      {
+        "id": 5,
+        "name": "Màu sắc"
+      },
+      {
+        "id": 6,
+        "name": "Thương hiệu"
+      },
+      {
+        "id": 7,
+        "name": "Kích thước"
+      },
+      {
+        "id": 8,
+        "name": "Giá nhập vào"
+      },
+      {
+        "id": 9,
+        "name": "Giá bán ra"
+      },
+      {
+        "id": 10,
+        "name": "Nhà cung cấp"
+      },
+      {
+        "id": 11,
+        "name": "Tình trạng"
+      },
+
+      {
+        "id": 12,
+        "name": "Đã bán"
+      }
+    ],
+    "modal": true
+  }
+}
