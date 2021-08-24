@@ -123,53 +123,171 @@
     "search": true,
     "download": true,
     "add": false,
+    "nameTable": "user",
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
-        "name": "STT"
+        "name": "STT",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Họ"
+        "name": "Họ",
+        "level": 1,
+        "columnLevel1": "firstName",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 3,
-        "name": "Tên"
+        "name": "Tên",
+        "level": 1,
+        "columnLevel1": "lastName",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 4,
-        "name": "Email"
+        "name": "Email",
+        "level": 1,
+        "columnLevel1": "email",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 5,
-        "name": "Số điện thoại"
+        "name": "Số điện thoại",
+        "level": 1,
+        "columnLevel1": "phone",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 6,
-        "name": "Ngày sinh"
+        "name": "Ngày sinh",
+        "level": 1,
+        "columnLevel1": "birthday",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 7,
-        "name": "Giới tính"
+        "name": "Giới tính",
+        "level": 1,
+        "columnLevel1": "sex",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 8,
-        "name": "Sử dụng"
+        "name": "Xác minh email",
+        "level": 1,
+        "columnLevel1": "isVerifyEmail",
+        "columnLevel2": null,
+        "condition": {
+          "main": [
+            {
+              "type": 2,
+              "name": "Đã xác minh",
+              "bgColor": "bg-green-500"
+            },
+            {
+              "type": 1,
+              "name": "Đang xác minh",
+              "bgColor": "bg-yellow-500"
+            },
+            {
+              "type": 0,
+              "name": "Chưa xác minh",
+              "bgColor": "bg-red-500"
+            }
+          ],
+          "type": 0
+        }
       },
       {
         "id": 9,
-        "name": "Xác minh"
+        "name": "Xác minh số điện thoại",
+        "level": 1,
+        "columnLevel1": "isVerifyPhone",
+        "columnLevel2": null,
+        "condition": {
+          "main": [
+            {
+              "type": 2,
+              "name": "Đã xác minh",
+              "bgColor": "bg-green-500"
+            },
+            {
+              "type": 1,
+              "name": "Đang xác minh",
+              "bgColor": "bg-yellow-500"
+            },
+            {
+              "type": 0,
+              "name": "Chưa xác minh",
+              "bgColor": "bg-red-500"
+            }
+          ],
+          "type": 0
+        }
       },
       {
         "id": 10,
-        "name": "Đơn hàng"
+        "name": "Sử dụng",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
+      },
+      {
+        "id": 11,
+        "name": "Đơn hàng",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
     "modal": true
@@ -230,10 +348,8 @@
     "add": [],
     "edit": [],
     "delete": [],
+    "nameTable": "user",
     "table": [
-      {
-        "name": ""
-      },
       {
         "id": 0,
         "name": "STT"
@@ -406,52 +522,117 @@
     "add": [],
     "edit": [],
     "delete": [],
+    "nameTable": "bill",
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 1,
-        "name": "Họ tên"
+        "name": "Họ tên",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Tổng sản phẩm"
+        "name": "Tổng sản phẩm",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 3,
-        "name": "Tổng tiền"
+        "name": "Tổng tiền",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 4,
-        "name": "Phí vận chuyển"
+        "name": "Phí vận chuyển",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 5,
-        "name": "Địa chỉ"
+        "name": "Địa chỉ",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 6,
-        "name": "Phương thức thanh toán"
+        "name": "Phương thức thanh toán",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 7,
-        "name": "Tình trạng"
+        "name": "Tình trạng",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 8,
-        "name": "Trạng thái"
+        "name": "Trạng thái",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 9,
-        "name": "Thời gian"
-      },
-      {
-        "name": ""
+        "name": "Thời gian",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
     "modal": true
@@ -465,6 +646,7 @@
     "add": [],
     "edit": [],
     "delete": [],
+    "nameTable": "news",
     "modal": false
   },
   "contact": {
@@ -475,7 +657,8 @@
     "download": [],
     "add": [],
     "edit": [],
-    "delete": []
+    "delete": [],
+    "nameTable": "contact"
   },
   "config": {
     "filter": [],
@@ -495,7 +678,8 @@
     "download": [],
     "add": [],
     "edit": [],
-    "delete": []
+    "delete": [],
+    "nameTable": "sale"
   },
   "color": {
     "filter": [],
@@ -508,24 +692,44 @@
     "delete": [],
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Mã màu"
+        "name": "Mã màu",
+        "level": 1,
+        "columnLevel1": "code",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
-        "name": ""
+        "id": 3,
+        "name": "Mô tả",
+        "level": 1,
+        "columnLevel1": "description",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
+    "nameTable": "color",
     "modal": false,
     "form": {
       "title": "Màu sắc",
@@ -569,29 +773,38 @@
     "add": [],
     "edit": [],
     "delete": [],
+    "nameTable": "brand",
     "table": [
-      {
-        "name": ""
-      },
       {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Thương hiệu"
-      },
-      {
-        "name": ""
+        "name": "Thương hiệu",
+        "level": 1,
+        "columnLevel1": "nameBrand",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
     "modal": false
   },
-  "size": {
+  "memory": {
     "filter": [],
     "sort": [],
     "filterAndSorter": false,
@@ -602,25 +815,34 @@
     "delete": [],
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Kích thước"
-      },
-      {
-        "name": ""
+        "name": "Kích thước",
+        "level": 1,
+        "columnLevel1": "nameMemory",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
-    "modal": false
+    "modal": false,
+    "nameTable": "memorie"
   },
   "lineProduct": {
     "filter": [],
@@ -633,28 +855,44 @@
     "delete": [],
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Nhóm sản phẩm"
+        "name": "Nhóm sản phẩm",
+        "level": 2,
+        "columnLevel1": "groupProduct",
+        "columnLevel2": "nameGroupProduct",
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Tên sản phẩm"
-      },
-      {
-        "name": ""
+        "name": "Tên sản phẩm",
+        "level": 1,
+        "columnLevel1": "nameLineProduct",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
+    "nameTable": "lineProduct",
     "modal": false
   },
   "groupProduct": {
@@ -668,25 +906,34 @@
     "delete": [],
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Tên nhóm sản phẩm"
-      },
-      {
-        "name": ""
+        "name": "Tên danh mục sản phẩm",
+        "level": 1,
+        "columnLevel1": "nameGroupProduct",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
-    "modal": false
+    "modal": false,
+    "nameTable": "groupProduct"
   },
   "categoryProduct": {
     "filter": [],
@@ -699,25 +946,34 @@
     "delete": [],
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "id",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Tên danh mục sản phẩm"
-      },
-      {
-        "name": ""
+        "name": "Tên danh mục sản phẩm",
+        "level": 1,
+        "columnLevel1": "nameCategoryProduct",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
-    "modal": false
+    "modal": false,
+    "nameTable": "categoryProduct"
   },
   "product": {
     "filter": [
@@ -792,62 +1048,156 @@
     "delete": [],
     "table": [
       {
-        "name": ""
-      },
-      {
         "id": 0,
         "name": "STT"
       },
       {
         "id": 1,
-        "name": "ID"
+        "name": "ID",
+        "level": 1,
+        "columnLevel1": "idProduct",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 2,
-        "name": "Hình ảnh"
+        "name": "Hình ảnh",
+        "level": 2,
+        "columnLevel1": "image",
+        "columnLevel2": "src",
+        "condition": {
+          "main": [],
+          "type": 1
+        }
       },
       {
         "id": 3,
-        "name": "Nhóm sản phẩm"
+        "name": "Nhóm sản phẩm",
+        "level": 1,
+        "columnLevel1": "nameGroupProduct",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 4,
-        "name": "Tên sản phẩm"
+        "name": "Tên sản phẩm",
+        "level": 1,
+        "columnLevel1": "nameLineProduct",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 5,
-        "name": "Màu sắc"
+        "name": "Màu sắc",
+        "level": 2,
+        "columnLevel1": "color",
+        "columnLevel2": "description",
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 6,
-        "name": "Thương hiệu"
+        "name": "Thương hiệu",
+        "level": 2,
+        "columnLevel1": "brand",
+        "columnLevel2": "nameBrand",
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 7,
-        "name": "Kích thước"
+        "name": "Kích thước",
+        "level": 2,
+        "columnLevel1": "memory",
+        "columnLevel2": "nameMemory",
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 8,
-        "name": "Giá nhập vào"
+        "name": "Giá nhập vào",
+        "level": 1,
+        "columnLevel1": "priceInput",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
       {
         "id": 9,
-        "name": "Giá bán ra"
-      },
-      {
-        "id": 10,
-        "name": "Nhà cung cấp"
-      },
-      {
-        "id": 11,
-        "name": "Tình trạng"
+        "name": "Giá bán ra",
+        "level": 1,
+        "columnLevel1": "priceOutput",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       },
 
       {
         "id": 12,
-        "name": "Đã bán"
+        "name": "Khuyến mãi",
+        "level": 1,
+        "columnLevel1": "sale",
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
+      },
+      {
+        "id": 13,
+        "name": "Nhà cung cấp",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
+      },
+      {
+        "id": 14,
+        "name": "Tình trạng",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
+      },
+
+      {
+        "id": 15,
+        "name": "Đã bán",
+        "level": 1,
+        "columnLevel1": null,
+        "columnLevel2": null,
+        "condition": {
+          "main": [],
+          "type": -1
+        }
       }
     ],
-    "modal": true
+    "modal": true,
+    "nameTable": "product"
   }
 }

@@ -113,7 +113,7 @@ function Category(props) {
         {
           id: 1,
           name: "Kích thước",
-          type: "size",
+          type: "memory",
         },
         {
           id: 2,

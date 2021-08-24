@@ -12,7 +12,7 @@ function IndexRight(props) {
   const { category } = states;
   //
   return (
-    <div className="h-screen index__right">
+    <div className="w-4/5 h-screen ">
       <HeaderTop />
       {category.data}
     </div>

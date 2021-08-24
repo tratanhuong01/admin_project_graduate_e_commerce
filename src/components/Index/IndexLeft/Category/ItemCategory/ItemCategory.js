@@ -21,13 +21,15 @@ function ItemCategory(props) {
               icon: show.status ? "bx bx-chevron-right" : "bx bx-chevron-down",
               status: !show.status,
             });
-          item.child.length === 0 &&
+          if (item.child.length === 0) {
+            dispatch(categoryActions.resetCategory());
             dispatch(
               categoryActions.handleCategory({
                 type: item.type,
                 label: item.label,
               })
             );
+          }
         }}
         className={`w-full border-solid cursor-pointer flex pl-5 h-12 my-1 items-center 
         rounded-lg relative  font-semibold ${
@@ -48,14 +50,15 @@ function ItemCategory(props) {
             item.child.map((dt, index) => {
               return (
                 <div
-                  onClick={() =>
+                  onClick={() => {
+                    dispatch(categoryActions.resetCategory());
                     dispatch(
                       categoryActions.handleCategory({
                         type: dt.type,
                         label: dt.label,
                       })
-                    )
-                  }
+                    );
+                  }}
                   className="w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 
                   font-semibold"
                   key={index}
