@@ -7,6 +7,8 @@ const initialState = {
   data: <Dashboard />,
   loading: true,
   list: null,
+  length: 0,
+  index: 0,
 };
 
 const myReducer = (state = initialState, action) => {
@@ -25,6 +27,12 @@ const myReducer = (state = initialState, action) => {
       state.loading = true;
       return { ...state };
     case Types.LOAD_LIST_CATEGORY:
+      state.length = action.length;
+      state.list = action.list;
+      state.index = 0;
+      return { ...state };
+    case Types.LOAD_PAGINATION:
+      state.index = action.index;
       state.list = action.list;
       return { ...state };
     default:

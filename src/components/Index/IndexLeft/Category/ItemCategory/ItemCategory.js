@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import * as categorysAction from "../../../../..//actions/category/index";
 function ItemCategory(props) {
   //
-  const [show, setShow] = useState({
-    icon: "bx bx-chevron-right",
-    status: false,
-  });
-  const { id, item, setCategoryCurrent } = props;
+  const location = useLocation();
+  const { item, setCategoryCurrent, match } = props;
   const history = useHistory();
   const dispatch = useDispatch();
+  const [show, setShow] = useState({
+    icon: "bx bx-chevron-right",
+    status:
+      item.child.findIndex((dt) => dt.to === location.pathname) !== -1
+        ? true
+        : false,
+  });
+  useEffect(() => {}, [match]);
   //
   return (
     <>
@@ -29,7 +34,7 @@ function ItemCategory(props) {
         }}
         className={`w-full border-solid cursor-pointer flex pl-5 h-12 my-1 items-center 
         rounded-lg relative  font-semibold ${
-          item.id === id
+          item.to === location.pathname
             ? "border-l-4 border-gray-200 bg-gray-200 text-gray-800"
             : "border-white text-gray-800 hover:bg-gray-200"
         }`}
@@ -50,12 +55,16 @@ function ItemCategory(props) {
                     dispatch(categorysAction.resetCategory());
                     history.push(dt.to);
                   }}
-                  className="w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 
-                  font-semibold"
+                  className={`w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 
+                  font-semibold`}
                   key={index}
                 >
                   <span
-                    className={`bx bx-radio-circle text-xm flex mx-5`}
+                    className={`${
+                      show && dt.to === location.pathname
+                        ? "bx bx-radio-circle-marked text-organce"
+                        : "bx bx-radio-circle"
+                    }  text-2xl flex mx-5`}
                   ></span>
                   <span className="flex">{dt.name}</span>
                 </div>

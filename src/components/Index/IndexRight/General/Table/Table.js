@@ -1,11 +1,9 @@
 import React from "react";
-// import RowTable from "../RowTable/RowTable";
+import RowTable from "../RowTable/RowTable";
 import Title from "../Title/Title";
-import ItemStatus from "./ItemStatus/ItemStatus";
-
 function Table(props) {
   //
-  const { title, list } = props;
+  const { title, list, category } = props;
   const logData = (data, indexList) => {
     return (
       <tr key={indexList}>
@@ -13,13 +11,17 @@ function Table(props) {
           if (item.name === "STT")
             return (
               <td key={index} className="p-2">
-                {indexList + 1}
+                {category.index === 0
+                  ? indexList + 1
+                  : indexList + 1 + category.index * 10}
               </td>
             );
-          else if (item.condition.type === 0) {
+          else
             return (
-              <td key={index} className="p-2">
-                <ItemStatus
+              <td className="p-2" key={index}>
+                <RowTable
+                  type={item.condition.type}
+                  condition={item.condition.main}
                   typeData={
                     item.level === 1
                       ? data[item.columnLevel1] === null
@@ -29,38 +31,7 @@ function Table(props) {
                       ? "<Trống>"
                       : data[item.columnLevel1][item.columnLevel2]
                   }
-                  condition={item.condition.main}
                 />
-              </td>
-            );
-          } else if (item.condition.type === 1) {
-            return (
-              <td key={index} className="p-2">
-                <img
-                  src={
-                    item.level === 1
-                      ? data[item.columnLevel1] === null
-                        ? "<Trống>"
-                        : data[item.columnLevel1]
-                      : data[item.columnLevel1] === null
-                      ? "<Trống>"
-                      : data[item.columnLevel1][item.columnLevel2]
-                  }
-                  alt=""
-                  className="w-28 h-32 object-contain"
-                />
-              </td>
-            );
-          } else
-            return (
-              <td key={index} className="p-2">
-                {item.level === 1
-                  ? data[item.columnLevel1] === null
-                    ? "<Trống>"
-                    : data[item.columnLevel1]
-                  : data[item.columnLevel1] === null
-                  ? "<Trống>"
-                  : data[item.columnLevel1][item.columnLevel2]}
               </td>
             );
         })}

@@ -4,6 +4,10 @@ import * as Config from "../constants/Config";
 import BrandScreen from "../screens/brands/BrandScreen";
 import ColorScreen from "../screens/colors/ColorScreen";
 import MemoryScreen from "../screens/memories/MemoryScreen";
+import CategoryProductScreen from "../screens/products/CategoryProductScreen/CategoryProductScreen";
+import GroupProductScreen from "../screens/products/GroupProductScreen/GroupProductScreen";
+import LineProductScreen from "../screens/products/LineProductScreen/LineProductScreen";
+import ProductListScreen from "../screens/products/ProductListScreen/ProductListScreen";
 import UserScreen from "../screens/users/UserScreen";
 
 const routes = [
@@ -35,6 +39,30 @@ const routes = [
     to: `${Config.USER}`,
     exact: true,
     main: () => <UserScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.LIST_PRODUCT}`,
+    exact: true,
+    main: () => <ProductListScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.LINE_PRODUCT}`,
+    exact: true,
+    main: () => <LineProductScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.GROUP_PRODUCT}`,
+    exact: true,
+    main: () => <GroupProductScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.CATEGORY_PRODUCT}`,
+    exact: true,
+    main: () => <CategoryProductScreen />,
     once: false,
   },
 ];
