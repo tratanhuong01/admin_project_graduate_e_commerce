@@ -1,0 +1,83 @@
+{
+  "filter": [],
+  "sort": [],
+  "filterAndSorter": false,
+  "search": [],
+  "download": [],
+  "add": [],
+  "edit": [],
+  "delete": [],
+  "table": [
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "ID",
+      "level": 1,
+      "columnLevel1": "id",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 2,
+      "name": "Mã màu",
+      "level": 1,
+      "columnLevel1": "code",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 3,
+      "name": "Mô tả",
+      "level": 1,
+      "columnLevel1": "description",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    }
+  ],
+  "nameTable": "color",
+  "modal": false,
+  "form": {
+    "title": "Màu sắc",
+    "data": [
+      {
+        "label": "ID",
+        "data": {
+          "placeHolder": "Nhập id",
+          "name": "id",
+          "disabled": true
+        },
+        "type": "input"
+      },
+      {
+        "label": "Mã màu",
+        "data": {
+          "placeHolder": "Nhập id",
+          "name": "code",
+          "disabled": true
+        },
+        "type": "text"
+      },
+      {
+        "label": "Xem mẫu",
+        "data": {
+          "className": "w-12 h-12 rounded-full"
+        },
+        "type": "live"
+      }
+    ],
+    "type": "div",
+    "table": "color"
+  }
+}

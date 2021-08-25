@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import * as categoryActions from "../../../../../actions/category/index";
-
+import { useHistory } from "react-router-dom";
+import * as categorysAction from "../../../../..//actions/category/index";
 function ItemCategory(props) {
   //
   const [show, setShow] = useState({
@@ -9,6 +9,7 @@ function ItemCategory(props) {
     status: false,
   });
   const { id, item, setCategoryCurrent } = props;
+  const history = useHistory();
   const dispatch = useDispatch();
   //
   return (
@@ -22,13 +23,8 @@ function ItemCategory(props) {
               status: !show.status,
             });
           if (item.child.length === 0) {
-            dispatch(categoryActions.resetCategory());
-            dispatch(
-              categoryActions.handleCategory({
-                type: item.type,
-                label: item.label,
-              })
-            );
+            dispatch(categorysAction.resetCategory());
+            history.push(item.to);
           }
         }}
         className={`w-full border-solid cursor-pointer flex pl-5 h-12 my-1 items-center 
@@ -51,13 +47,8 @@ function ItemCategory(props) {
               return (
                 <div
                   onClick={() => {
-                    dispatch(categoryActions.resetCategory());
-                    dispatch(
-                      categoryActions.handleCategory({
-                        type: dt.type,
-                        label: dt.label,
-                      })
-                    );
+                    dispatch(categorysAction.resetCategory());
+                    history.push(dt.to);
                   }}
                   className="w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 
                   font-semibold"

@@ -1,20 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 import HeaderTop from "../../../../components/Index/IndexRight/HeaderTop/HeaderTop";
+import category from "../../../../routes/category";
 
 function IndexRight(props) {
   //
-  const states = useSelector((state) => {
-    return {
-      category: state.category,
-    };
-  });
-  const { category } = states;
   //
   return (
     <div className="w-4/5 h-screen ">
       <HeaderTop />
-      {category.data}
+      <Switch>
+        {category.map((route, index) => {
+          return (
+            <Route
+              key={index}
+              path={route.to}
+              exact={route.exact}
+              component={route.main}
+            />
+          );
+        })}
+      </Switch>
     </div>
   );
 }

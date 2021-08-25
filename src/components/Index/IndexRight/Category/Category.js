@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Control from "../General/Control/Control";
 import Pagination from "../General/Pagination/Pagination";
 import Table from "../General/Table/Table";
-import loading from "../../../../config/loading";
 import Date from "../General/Date/Date";
 import ButtonAddCustom from "../General/ButtonAddCustom/ButtonAddCustom";
 import FileDown from "../General/FileDown/FileDown";
 import FormNotModal from "../General/FormNotModal/FormNotModal";
-import api from "../../../../Utils/api";
 import { useDispatch, useSelector } from "react-redux";
 import * as categorysAction from "../../../../actions/category/index";
 
@@ -18,13 +16,10 @@ function Category(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     //
-    dispatch(
-      categorysAction.loadListCategoryRequest(
-        `${loading[data.type].nameTable}s`
-      )
-    );
+    dispatch(categorysAction.resetCategory());
+    dispatch(categorysAction.loadListCategoryRequest(`${data.nameTable}s`));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, []);
   //
   return (
     category.list && (
@@ -37,22 +32,16 @@ function Category(props) {
             <p className="text-2xl font-bold flex items-center">{data.label}</p>
           </div>
           <div className="w-auto flex items-center justify-end">
-            {loading[data.type].filterAndSorter && <Date />}
+            {data.filterAndSorter && <Date />}
             <FileDown />
-            {loading[data.type].modal ? <ButtonAddCustom /> : ""}
+            {data.modal ? <ButtonAddCustom /> : ""}
           </div>
         </div>
-        {loading[data.type].filterAndSorter && (
-          <Control type={data.type} data={loading[data.type]} />
-        )}
+        {data.filterAndSorter && <Control type={data.type} data={data} />}
         <div className="w-full  py-3">
-          {loading[data.type].modal ? (
+          {data.modal ? (
             <>
-              <Table
-                type={data.type}
-                title={loading[data.type].table}
-                list={category.list}
-              />
+              <Table type={data.type} title={data.table} list={category.list} />
               <Pagination type={data.type} />
             </>
           ) : (
@@ -84,7 +73,7 @@ function Category(props) {
                   </div>
                   <Table
                     type={data.type}
-                    title={loading[data.type].table}
+                    title={data.table}
                     list={category.list}
                   />
                   <Pagination type={data.type} />

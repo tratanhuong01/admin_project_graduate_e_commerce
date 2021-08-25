@@ -1,0 +1,40 @@
+{
+  "filter": [],
+  "sort": [],
+  "filterAndSorter": false,
+  "search": [],
+  "download": [],
+  "add": [],
+  "edit": [],
+  "delete": [],
+  "nameTable": "brand",
+  "table": [
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "ID",
+      "level": 1,
+      "columnLevel1": "id",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 2,
+      "name": "Thương hiệu",
+      "level": 1,
+      "columnLevel1": "nameBrand",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    }
+  ],
+  "modal": false
+}

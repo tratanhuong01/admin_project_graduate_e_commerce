@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import routes from "./routes";
+import main from "./routes/main";
 
 function App(props) {
   const showAllLinks = (routes) => {
@@ -22,7 +22,7 @@ function App(props) {
 
   return (
     <Router>
-      <Switch>{showAllLinks(routes)}</Switch>
+      <Switch>{showAllLinks(main)}</Switch>
     </Router>
   );
 }

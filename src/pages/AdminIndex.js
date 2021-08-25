@@ -3,9 +3,12 @@ import MainIndex from "../containers/Index/MainIndex/MainIndex";
 import Modal from "../containers/Modal";
 
 function AdminIndex(props) {
+  //
+  const { match } = props;
+  //
   return (
     <>
-      <MainIndex />
+      <MainIndex match={match} />
       <Modal />
     </>
   );

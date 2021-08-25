@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ItemCategory from "./ItemCategory/ItemCategory";
-
+import * as Config from "../../../../constants/Config";
 function Category(props) {
   const category = [
     {
@@ -9,6 +9,7 @@ function Category(props) {
       icon: "bx bx-home-circle",
       type: "dashboard",
       child: [],
+      to: Config.DASHBOARD,
     },
     {
       id: 2,
@@ -20,12 +21,14 @@ function Category(props) {
           name: "Khách hàng",
           type: "customer",
           label: "Quản lí khách hàng",
+          to: Config.USER,
         },
         {
           id: 1,
           name: "Nhà cung cấp",
           type: "manufacture",
           label: "Quản lí nhà cung cấp",
+          to: "",
         },
       ],
     },
@@ -36,6 +39,7 @@ function Category(props) {
       type: "bill",
       label: "Quản lí đơn hàng",
       child: [],
+      to: Config.BILL,
     },
     {
       id: 4,
@@ -47,24 +51,28 @@ function Category(props) {
           name: "Danh sách sản phẩm",
           label: "Quản lí sản phẩm",
           type: "product",
+          to: Config.LIST_PRODUCT,
         },
         {
           id: 1,
           name: "Danh mục sản phẩm",
           label: "Quản lí danh mục sản phẩm",
           type: "categoryProduct",
+          to: Config.CATEGORY_PRODUCT,
         },
         {
           id: 2,
           name: "Nhóm sản phẩm",
           label: "Quản lí nhóm sản phẩm",
           type: "groupProduct",
+          to: Config.GROUP_PRODUCT,
         },
         {
           id: 3,
           name: "Dòng sản phẩm",
           label: "Quản lí dòng sản phẩm",
           type: "lineProduct",
+          to: Config.LINE_PRODUCT,
         },
       ],
     },
@@ -109,16 +117,19 @@ function Category(props) {
           id: 0,
           name: "Màu sắc",
           type: "color",
+          to: Config.COLOR,
         },
         {
           id: 1,
           name: "Kích thước",
           type: "memory",
+          to: Config.MEMORY,
         },
         {
           id: 2,
           name: "Thương hiệu",
           type: "brand",
+          to: Config.BRAND,
         },
       ],
     },
@@ -137,6 +148,7 @@ function Category(props) {
       child: [],
     },
   ];
+  const { match } = props;
   const [categoryCurrent, setCategoryCurrent] = useState(0);
   const showCategorys = category.map((item, index) => {
     return (
@@ -145,9 +157,11 @@ function Category(props) {
         key={index}
         id={categoryCurrent}
         setCategoryCurrent={setCategoryCurrent}
+        match={match}
       />
     );
   });
+
   return (
     <div className="w-full">
       <ul className="w-full py-1 px-3">{showCategorys}</ul>
