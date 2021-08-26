@@ -4,7 +4,38 @@
   "filterAndSorter": false,
   "search": [],
   "download": [],
-  "add": [],
+  "add": {
+    "title": "Màu sắc",
+    "data": [
+      {
+        "label": "ID",
+        "data": {
+          "placeHolder": "Nhập id",
+          "name": "id",
+          "disabled": false
+        },
+        "type": "input"
+      },
+      {
+        "label": "Mã màu",
+        "data": {
+          "placeHolder": "Nhập id",
+          "name": "code",
+          "disabled": true
+        },
+        "type": "text"
+      },
+      {
+        "label": "Xem mẫu",
+        "data": {
+          "className": "w-12 h-12 rounded-full"
+        },
+        "type": "live"
+      }
+    ],
+    "type": "div",
+    "table": "color"
+  },
   "edit": [],
   "delete": [],
   "nameTable": "brand",

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import HeaderTop from "../../../../components/Index/IndexRight/HeaderTop/HeaderTop";
 import category from "../../../../routes/category";
 
 function IndexRight(props) {
   //
+  useEffect(() => {}, []);
   //
   return (
     <div className="w-4/5 h-screen ">

@@ -9,9 +9,11 @@ const initialState = {
   list: null,
   length: 0,
   index: 0,
+  choose: [],
 };
 
 const myReducer = (state = initialState, action) => {
+  let index = -1;
   switch (action.type) {
     case Types.HANDLE_DASHBOARD:
       state.data = <Dashboard />;
@@ -34,6 +36,17 @@ const myReducer = (state = initialState, action) => {
     case Types.LOAD_PAGINATION:
       state.index = action.index;
       state.list = action.list;
+      return { ...state };
+    case Types.ADD_ITEM_CHOOSE:
+      state.choose = [...state.choose, action.item];
+      return { ...state };
+    case Types.REMOVE_ITEM_CHOOSE:
+      index = state.choose.findIndex((item) => item.id === action.item.id);
+      let items = [...state.choose];
+      if (index !== -1) {
+        items.splice(index, 1);
+        state.choose = items;
+      }
       return { ...state };
     default:
       return state;

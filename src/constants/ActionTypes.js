@@ -14,3 +14,10 @@ export const RESET_CATEGORY = "RESET_CATEGORY";
 //
 export const LOAD_PAGINATION = "LOAD_PAGINATION";
 //
+export const OPEN_FORM_ADD = "OPEN_FORM_ADD";
+//
+export const OPEN_FORM_EDIT = "OPEN_FORM_EDIT";
+//
+export const ADD_ITEM_CHOOSE = "ADD_ITEM_CHOOSE";
+//
+export const REMOVE_ITEM_CHOOSE = "REMOVE_ITEM_CHOOSE";

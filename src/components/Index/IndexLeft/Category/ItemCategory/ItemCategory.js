@@ -28,7 +28,8 @@ function ItemCategory(props) {
               status: !show.status,
             });
           if (item.child.length === 0) {
-            dispatch(categorysAction.resetCategory());
+            if (location.pathname !== item.to)
+              dispatch(categorysAction.resetCategory());
             history.push(item.to);
           }
         }}
@@ -52,7 +53,8 @@ function ItemCategory(props) {
               return (
                 <div
                   onClick={() => {
-                    dispatch(categorysAction.resetCategory());
+                    if (location.pathname !== dt.to)
+                      dispatch(categorysAction.resetCategory());
                     history.push(dt.to);
                   }}
                   className={`w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 

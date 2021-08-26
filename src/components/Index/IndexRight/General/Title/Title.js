@@ -7,6 +7,12 @@ function Title(props) {
   return (
     <tr>
       {title.map((item, index) => {
+        if (item.name === "CBX")
+          return (
+            <th className="p-2" key={index}>
+              <input type="checkbox" className="transform scale-125" />;
+            </th>
+          );
         return (
           <th className="p-2" key={index}>
             {item.name}

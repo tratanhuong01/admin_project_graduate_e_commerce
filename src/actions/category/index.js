@@ -49,3 +49,17 @@ export const loadPagination = (list, index) => {
     index,
   };
 };
+
+export const addItemChoose = (item) => {
+  return {
+    type: Types.ADD_ITEM_CHOOSE,
+    item,
+  };
+};
+
+export const removeItemChoose = (item) => {
+  return {
+    type: Types.REMOVE_ITEM_CHOOSE,
+    item,
+  };
+};

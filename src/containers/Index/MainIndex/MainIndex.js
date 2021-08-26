@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import IndexLeft from "./IndexLeft/IndexLeft";
 import IndexRight from "./IndexRight/IndexRight";
 

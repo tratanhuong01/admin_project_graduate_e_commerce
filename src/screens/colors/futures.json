@@ -9,6 +9,10 @@
   "delete": [],
   "table": [
     {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
       "id": 0,
       "name": "STT"
     },
@@ -47,37 +51,5 @@
     }
   ],
   "nameTable": "color",
-  "modal": false,
-  "form": {
-    "title": "Màu sắc",
-    "data": [
-      {
-        "label": "ID",
-        "data": {
-          "placeHolder": "Nhập id",
-          "name": "id",
-          "disabled": true
-        },
-        "type": "input"
-      },
-      {
-        "label": "Mã màu",
-        "data": {
-          "placeHolder": "Nhập id",
-          "name": "code",
-          "disabled": true
-        },
-        "type": "text"
-      },
-      {
-        "label": "Xem mẫu",
-        "data": {
-          "className": "w-12 h-12 rounded-full"
-        },
-        "type": "live"
-      }
-    ],
-    "type": "div",
-    "table": "color"
-  }
+  "modal": false
 }
