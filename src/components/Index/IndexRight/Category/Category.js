@@ -39,7 +39,7 @@ function Category(props) {
         <div className="w-auto flex items-center justify-end">
           {data.filterAndSorter && <Date />}
           <FileDown />
-          {data.modal ? <ButtonAddCustom /> : ""}
+          {data.modal ? <ButtonAddCustom table={data.nameTable} /> : ""}
         </div>
       </div>
       {data.filterAndSorter && <Control type={data.type} data={data} />}

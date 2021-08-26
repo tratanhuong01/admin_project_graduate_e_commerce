@@ -9,6 +9,11 @@ function NotModalTop(props) {
   //
   return (
     <div className="w-full flex justify-end">
+      <input
+        className="w-1/2 mr-4 p-2.5 rounded-3xl 
+        bg-white border-solid border-gray-200 border-2"
+        placeholder="Tìm kiếm"
+      />
       <button
         onClick={() => dispatch(formsAction.openFormAdd(table))}
         className="px-7 py-2.5 font-semibold text-white bg-organce mx-2 

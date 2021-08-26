@@ -19,8 +19,10 @@ function BrandForm(props) {
   });
   const onSubmit = () => {};
   useEffect(() => {
+    //
     setValue("id", dataProps ? dataProps.id : "");
     setValue("nameBrand", dataProps ? dataProps.nameBrand : "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   //
   return (

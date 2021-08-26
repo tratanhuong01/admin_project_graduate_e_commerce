@@ -121,7 +121,7 @@ function Category(props) {
         },
         {
           id: 1,
-          name: "Kích thước",
+          name: "Bộ nhớ",
           type: "memory",
           to: Config.MEMORY,
         },

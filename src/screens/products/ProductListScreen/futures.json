@@ -71,6 +71,10 @@
   "delete": [],
   "table": [
     {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
       "id": 0,
       "name": "STT"
     },

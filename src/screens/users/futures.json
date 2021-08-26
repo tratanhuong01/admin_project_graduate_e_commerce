@@ -125,6 +125,10 @@
   "nameTable": "user",
   "table": [
     {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
       "id": 0,
       "name": "STT",
       "level": 1,

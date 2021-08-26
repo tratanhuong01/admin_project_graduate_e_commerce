@@ -22,10 +22,12 @@ function ColorForm(props) {
   const onSubmit = (data) => {};
   const [show, setShow] = useState(false);
   useEffect(() => {
+    //
     setColor(dataProps ? dataProps.code : "");
     setValue("id", dataProps ? dataProps.id : "");
     setValue("code", dataProps ? dataProps.code : "");
     setValue("description", dataProps ? dataProps.description : "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   //
   return (
@@ -61,8 +63,8 @@ function ColorForm(props) {
                 onChangeComplete={(color) => {
                   setShow(false);
                   setColor(color.hex.toUpperCase());
-                  setValue("id", color.hex.toUpperCase());
-                  setValue("code", color.hex.toUpperCase().replace("#", ""));
+                  setValue("id", color.hex.toUpperCase().replace("#", ""));
+                  setValue("code", color.hex.toUpperCase());
                 }}
               />
             )}

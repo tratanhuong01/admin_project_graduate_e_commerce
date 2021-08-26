@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 function Table(props) {
   //
   const { title, list, category } = props;
-  console.log(category);
   const dispatch = useDispatch();
   const logData = (data, indexList) => {
     const check = () => {
