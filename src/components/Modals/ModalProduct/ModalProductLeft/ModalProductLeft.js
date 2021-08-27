@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as productsAction from "../../../../actions/products/index";
 
 function ModalProductLeft(props) {
@@ -10,11 +10,11 @@ function ModalProductLeft(props) {
       icon: "bx bx-info-circle ",
     },
     {
-      name: "Giá / Khuyến mãi",
+      name: "Sản phẩm",
       icon: "bx bx-money ",
     },
     {
-      name: "Hình ảnh",
+      name: "Hình ảnh khác",
       icon: "bx bx-image-add ",
     },
     {
@@ -29,10 +29,9 @@ function ModalProductLeft(props) {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {}, [products.index]);
-  console.log(products.index);
   //
   return (
-    <div className="w-1/4 text-gray-700">
+    <div className="w-1/4 text-gray-700 fixed">
       {list.map((item, index) => {
         return (
           <div

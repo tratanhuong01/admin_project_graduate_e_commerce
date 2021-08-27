@@ -7,8 +7,8 @@ function ModalProductRight(props) {
   const products = useSelector((state) => state.products);
   //
   return (
-    <div className="w-3/4 mx-2 h-full flex relative">
-      <div className="w-full">{products.data}</div>
+    <div className="w-3/4 mx-2 relative left-1/4 ">
+      {products.data}
       <ProductRightFooter />
     </div>
   );

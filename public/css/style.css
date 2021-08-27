@@ -11,7 +11,9 @@ button:focus {
     font-size: 16px;
   }
 }
-
+body {
+  overflow: hidden !important;
+}
 .post p {
   width: 100%;
   line-height: 1.8em !important;
@@ -325,7 +327,7 @@ button:focus {
   border-radius: 5px;
 }
 .scrollbar-css:hover::-webkit-scrollbar-thumb {
-  background: #f36438;
+  background: gray;
   border-radius: 5px;
 }
 .shadow-lg-red {
