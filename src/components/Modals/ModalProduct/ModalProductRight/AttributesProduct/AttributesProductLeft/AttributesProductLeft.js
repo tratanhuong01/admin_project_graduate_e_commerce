@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import api from "../../../../../../Utils/api";
+import * as productsAction from "../../../../../../actions/products/index";
 
 function AttributesProductLeft(props) {
   //
   const [groups, setGroups] = useState([]);
-  const { current, setCurrent, setInfoAttribute } = props;
+  const dispatch = useDispatch();
+  const { current, setCurrent } = props;
   useEffect(() => {
     //
     let unmounted = false;
@@ -17,7 +20,7 @@ function AttributesProductLeft(props) {
       result.data.forEach((group) => {
         data[group.id] = { id: group.id, list: [] };
       });
-      setInfoAttribute(data);
+      dispatch(productsAction.loadInfoAttributeData(data));
     }
     fetch();
     return () => {

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import AttributesProductLeft from "./AttributesProductLeft/AttributesProductLeft";
 import AttributesProductRight from "./AttributesProductRight/AttributesProductRight";
 
 function AttributesProduct(props) {
   //
   const [current, setCurrent] = useState(0);
-  const [infoAttribute, setInfoAttribute] = useState(null);
+  const products = useSelector((state) => state.products);
   //
   return (
     <div
@@ -19,13 +20,11 @@ function AttributesProduct(props) {
         <AttributesProductLeft
           current={current}
           setCurrent={setCurrent}
-          infoAttribute={infoAttribute}
-          setInfoAttribute={setInfoAttribute}
+          infoAttribute={products.infoAttribute}
         />
         <AttributesProductRight
           current={current}
-          infoAttribute={infoAttribute}
-          setInfoAttribute={setInfoAttribute}
+          infoAttribute={products.infoAttribute}
         />
       </div>
     </div>

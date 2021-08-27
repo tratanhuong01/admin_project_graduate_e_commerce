@@ -36,7 +36,7 @@ function InputField(props) {
           }
           onChange={(e) => {
             onChange(e.target.value);
-            Field.onChange(e);
+            if (typeof Field === "function") Field.onChange(e);
           }}
           placeholder={placeHolder}
           disabled={disabled}

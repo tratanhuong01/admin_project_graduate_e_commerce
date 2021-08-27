@@ -3,15 +3,15 @@ import AttributesProduct from "../components/Modals/ModalProduct/ModalProductRig
 import DescriptionsProduct from "../components/Modals/ModalProduct/ModalProductRight/DescriptionsProduct/DescriptionsProduct";
 import ImagesProduct from "../components/Modals/ModalProduct/ModalProductRight/ImagesProduct/ImagesProduct";
 import InfoSimple from "../components/Modals/ModalProduct/ModalProductRight/InfoSimple/InfoSimple";
-import PriceAndSale from "../components/Modals/ModalProduct/ModalProductRight/PriceAndSale/PriceAndSale";
+import MainInfoProduct from "../components/Modals/ModalProduct/ModalProductRight/MainInfoProduct/MainInfoProduct";
 import * as Types from "../constants/ActionTypes";
 
 const initialState = {
   data: <InfoSimple />,
   infoSimple: null,
-  priceSale: null,
+  infoAttribute: null,
+  products: null,
   images: null,
-  attributes: null,
   descriptions: null,
   loading: true,
   index: 0,
@@ -26,7 +26,7 @@ const myReducer = (state = initialState, action) => {
           state.data = <InfoSimple />;
           break;
         case 1:
-          state.data = <PriceAndSale />;
+          state.data = <MainInfoProduct />;
           break;
         case 2:
           state.data = <ImagesProduct />;
@@ -40,8 +40,10 @@ const myReducer = (state = initialState, action) => {
         default:
           break;
       }
-
       state.loading = false;
+      return { ...state };
+    case Types.LOAD_INFO_ATTRIBUTE_DATA:
+      state.infoAttribute = action.data;
       return { ...state };
     default:
       return state;

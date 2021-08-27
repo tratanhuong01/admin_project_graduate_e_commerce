@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import api from "../../../../../../../Utils/api";
 import InputField from "../../../../../../InputField/InputField";
-
+import * as productsAction from "../../../../../../../actions/products/index";
 function ContentByGroupAttribute(props) {
   //
   const [attributes, setAttributes] = useState([]);
-  const { data, setInfoAttribute, infoAttribute } = props;
+  const dispatch = useDispatch();
+  const { data, infoAttribute } = props;
   useEffect(() => {
     //
     let unmounted = false;
@@ -21,6 +23,7 @@ function ContentByGroupAttribute(props) {
     //
   }, [data]);
   useEffect(() => {}, [infoAttribute]);
+  console.log(infoAttribute);
   //
   return infoAttribute && data ? (
     <div className="w-full">
@@ -29,11 +32,12 @@ function ContentByGroupAttribute(props) {
           let clone = { ...infoAttribute };
           let list = clone[data.id].list;
           let index = list.findIndex(
-            (item) => item.id === JSON.parse(event.target.value).id
+            (item) => item.data.id === JSON.parse(event.target.value).id
           );
-          if (index === -1) list.push(JSON.parse(event.target.value));
+          if (index === -1)
+            list.push({ data: JSON.parse(event.target.value), value: "" });
           clone[data.id].list = list;
-          setInfoAttribute(clone);
+          dispatch(productsAction.loadInfoAttributeData(clone));
         }}
         className="w-full p-2 rounded-lg border-2 border-solid border-gray-300"
       >
@@ -52,15 +56,17 @@ function ContentByGroupAttribute(props) {
               key={index}
               className="py-1 px-2 mt-2 rounded-xl text-sm font-semibold text-blue-600 bg-blue-200 mr-3"
             >
-              {item.nameAttribute}
+              {item.data.nameAttribute}
               <i
                 onClick={() => {
                   let clone = { ...infoAttribute };
                   let list = clone[data.id].list;
-                  let index = list.findIndex((dt) => dt.id === item.id);
+                  let index = list.findIndex(
+                    (dt) => dt.data.id === item.data.id
+                  );
                   if (index !== -1) list.splice(index, 1);
                   clone[data.id].list = list;
-                  setInfoAttribute(clone);
+                  dispatch(productsAction.loadInfoAttributeData(clone));
                 }}
                 className="bx bx-x transform translate-y-0.5 translate-x-0.5 ml-1 
               cursor-pointer"
@@ -77,11 +83,18 @@ function ContentByGroupAttribute(props) {
               register={() => ""}
               className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
               showError={null}
-              placeHolder={`Nhập ${item.nameAttribute}`}
+              placeHolder={`Nhập ${item.data.nameAttribute}`}
               name={"id"}
-              label={item.nameAttribute}
+              label={item.data.nameAttribute}
               type="text"
-              onChange={() => ""}
+              onChange={(value) => {
+                let clone = { ...infoAttribute };
+                let list = clone[data.id].list;
+                let index = list.findIndex((dt) => dt.data.id === item.data.id);
+                if (index !== -1) list[index].value = value;
+                clone[data.id].list = list;
+                dispatch(productsAction.loadInfoAttributeData(clone));
+              }}
               disabled={false}
             />
           );

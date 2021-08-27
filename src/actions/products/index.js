@@ -6,3 +6,10 @@ export const loadCategoryProductByIndex = (index) => {
     index,
   };
 };
+
+export const loadInfoAttributeData = (data) => {
+  return {
+    type: Types.LOAD_INFO_ATTRIBUTE_DATA,
+    data,
+  };
+};
