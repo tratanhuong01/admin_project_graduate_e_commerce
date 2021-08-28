@@ -21,12 +21,14 @@ function SelectCustom(props) {
   }, [list]);
   //
   return (
-    <div className="w-full relative mt-2">
-      <label
-        className={`${"text-gray-800 z-50 dark:text-white"} text-xm px-1 flex font-semibold`}
-      >
-        {label}
-      </label>
+    <div className={`w-full relative ${label !== "" && "mt-2"}`}>
+      {label !== "" && (
+        <label
+          className={`${"text-gray-800 z-50 dark:text-white"} text-xm px-1 flex font-semibold`}
+        >
+          {label}
+        </label>
+      )}
       <div
         onClick={() => {
           if (!disabled) {

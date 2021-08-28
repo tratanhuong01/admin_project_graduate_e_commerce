@@ -23,7 +23,6 @@ function ContentByGroupAttribute(props) {
     //
   }, [data]);
   useEffect(() => {}, [infoAttribute]);
-  console.log(infoAttribute);
   //
   return infoAttribute && data ? (
     <div className="w-full">
@@ -60,12 +59,9 @@ function ContentByGroupAttribute(props) {
               <i
                 onClick={() => {
                   let clone = { ...infoAttribute };
-                  let list = clone[data.id].list;
-                  let index = list.findIndex(
-                    (dt) => dt.data.id === item.data.id
+                  clone[data.id].list = clone[data.id].list.filter(
+                    (dt) => dt.data.id !== item.data.id
                   );
-                  if (index !== -1) list.splice(index, 1);
-                  clone[data.id].list = list;
                   dispatch(productsAction.loadInfoAttributeData(clone));
                 }}
                 className="bx bx-x transform translate-y-0.5 translate-x-0.5 ml-1 

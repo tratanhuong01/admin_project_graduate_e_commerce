@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import api from "../../../../../Utils/api";
+import InputField from "../../../../InputField/InputField";
 // import { yupResolver } from "@hookform/resolvers/yup";
 import SelectCustom from "../../../../SelectCustom/SelectCustom";
+import * as productsAction from "../../../../../actions/products/index";
+import DateInfoSimple from "./DateInfoSimple/DateInfoSimple";
+
 function InfoSimple(props) {
   const {
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     // resolver: yupResolver(ValidForm),
@@ -14,14 +19,23 @@ function InfoSimple(props) {
   });
   const [categoryProduct, setCategoryProduct] = useState([]);
   const [groupProduct, setGroupProduct] = useState([]);
-  const [lineProduct, setLineProduct] = useState([]);
+  const [brand, setBrand] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api("categoryProductsAll", "GET", null);
-      if (unmounted) return;
-      setCategoryProduct(result.data);
+      const result1 = await api("categoryProductsAll", "GET", null);
+      const result2 = await api("brandsAll", "GET", null);
+      Promise.all([result1, result2])
+        .then((res) => {
+          if (unmounted) return;
+          setCategoryProduct(res[0].data);
+          setBrand(res[1].data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     fetch();
     return () => {
@@ -39,6 +53,7 @@ function InfoSimple(props) {
       }}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
+        <DateInfoSimple register={() => ""} errors={errors} />
         <SelectCustom
           list={categoryProduct}
           className={
@@ -50,7 +65,6 @@ function InfoSimple(props) {
           table={"danh mục sản phẩm"}
           setData={(item) => {
             setGroupProduct([]);
-            setLineProduct([]);
             let unmounted = false;
             async function fetch() {
               const result = await api(
@@ -59,7 +73,7 @@ function InfoSimple(props) {
                 null
               );
               if (unmounted) return;
-              // setCategoryProduct(item);
+              dispatch(productsAction.loadSimpleInfoProductData(item, 0));
               setGroupProduct(result.data);
             }
             fetch();
@@ -78,57 +92,35 @@ function InfoSimple(props) {
           label={"Nhóm sản phẩm"}
           table={"nhóm sản phẩm"}
           setData={(item) => {
-            let unmounted = false;
-            async function fetch() {
-              const result = await api(
-                `getLineProductsByGroup/${item.id}`,
-                "GET",
-                null
-              );
-              if (unmounted) return;
-              // setGroupProduct(item);
-              setLineProduct(result.data);
-            }
-            fetch();
-            return () => {
-              unmounted = true;
-            };
+            dispatch(productsAction.loadSimpleInfoProductData(item, 1));
           }}
           disabled={groupProduct.length === 0 ? true : false}
         />
-        <SelectCustom
-          list={lineProduct}
-          className={
-            "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
+        <InputField
+          register={() => ""}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["id"]}
+          placeHolder={"Nhập tên sản phẩm"}
+          name={"id"}
+          label={"Tên sản phẩm"}
+          type="text"
+          onChange={(item) =>
+            dispatch(productsAction.loadSimpleInfoProductData(item, 2))
           }
-          attribute={"nameLineProduct"}
-          placeHolder={"Nhập nội dung"}
-          label={"Dòng sản phẩm"}
-          table={"dòng sản phẩm"}
-          setData={() => ""}
-          disabled={lineProduct.length === 0 ? true : false}
+          disabled={false}
         />
         <SelectCustom
-          list={[]}
+          list={brand}
           className={
             "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
           }
-          attribute={"nameGroupProduct"}
+          attribute={"nameBrand"}
           placeHolder={"Nhập nội dung"}
           label={"Thương hiệu sản phẩm"}
           table={"thương hiệu sản phẩm"}
-          setData={(item) => setLineProduct(item)}
-        />
-        <SelectCustom
-          list={[]}
-          className={
-            "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
+          setData={(item) =>
+            dispatch(productsAction.loadSimpleInfoProductData(item, 3))
           }
-          attribute={"status"}
-          placeHolder={"Nhập nội dung"}
-          label={"Tình trạng"}
-          table={"tình trạng"}
-          setData={() => ""}
         />
       </form>
     </div>
