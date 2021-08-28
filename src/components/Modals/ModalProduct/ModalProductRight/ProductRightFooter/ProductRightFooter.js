@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../../../../actions/modals/index";
+import * as productsAction from "../../../../../actions/products/index";
+
 function ProductRightFooter(props) {
   //
   const dispatch = useDispatch();
@@ -16,7 +18,14 @@ function ProductRightFooter(props) {
         {"Hủy"}
       </button>
       <button
-        type="submit"
+        onClick={() => {
+          if (products.index === 4) alert("Adding . Please wait....");
+          else
+            dispatch(
+              productsAction.loadCategoryProductByIndex(products.index + 1)
+            );
+        }}
+        type={"button"}
         className=" py-2.5 px-5 rounded-lg bg-organce font-semibold text-xm text-white"
       >
         {products.index === 4 ? "Lưu sản phẩm" : "Tiếp tục"}

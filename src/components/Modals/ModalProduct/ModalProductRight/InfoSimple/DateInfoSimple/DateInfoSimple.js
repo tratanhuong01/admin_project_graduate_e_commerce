@@ -14,9 +14,9 @@ function DateInfoSimple(props) {
         <InputField
           register={register}
           className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-          showError={errors["id"]}
+          showError={errors["dateInput"]}
           placeHolder={""}
-          name={"timeInput"}
+          name={"dateInput"}
           label={"Ngày nhập vào"}
           type="date"
           onChange={(item) =>
@@ -29,9 +29,9 @@ function DateInfoSimple(props) {
         <InputField
           register={register}
           className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-          showError={errors["id"]}
+          showError={errors["dateOutput"]}
           placeHolder={""}
-          name={"timeOutput"}
+          name={"dateOutput"}
           label={"Ngày bán ra"}
           type="date"
           onChange={(item) =>

@@ -39,20 +39,7 @@ function ColorMemoryRam(props) {
     <>
       <div className="w-full flex my-1 font-semibold">
         <div className="w-1/2 p-1 mr-3">Màu sắc</div>
-        <div className="w-1/2 p-1 flex items-center">
-          Bộ nhớ
-          <input
-            type="checkbox"
-            onChange={(event) => {
-              dispatch(
-                productsAction.changeToProductIsMultiRam(event.target.checked)
-              );
-            }}
-            className="ml-6 mr-3"
-            checked={products.infoMain.type}
-          />
-          Nhiều ram
-        </div>
+        <div className="w-1/2 p-1 flex items-center">Bộ nhớ</div>
       </div>
       <div className="w-full flex">
         <ScrollContainer className="w-1/2 mr-3 max-w-1/2 overflow-x-auto flex p-1 border-2 border-solid border-gray-200 shadow-lg">
@@ -92,8 +79,9 @@ function ColorMemoryRam(props) {
               placeHolder={"Nhập ram"}
               label={""}
               table={"ram"}
-              setData={(item) => ""}
-              disabled={!products.infoMain.type}
+              setData={(item) => {
+                dispatch(productsAction.loadInfoMainProductData(item, 2));
+              }}
             />
           </div>
           <div className="w-1/2">
@@ -107,13 +95,13 @@ function ColorMemoryRam(props) {
               label={""}
               table={"rom"}
               setData={(item) => {
-                const pos = products.infoMain.romOrRam.findIndex(
-                  (dt) => dt.rom.id === item.id || dt.ram.id === item.id
+                const pos = products.infoMain.roms.findIndex(
+                  (dt) => dt.id === item.id
                 );
                 if (pos === -1) {
                   dispatch(
                     productsAction.loadInfoMainProductData(
-                      [...products.infoMain.romOrRam, { rom: item, ram: null }],
+                      [...products.infoMain.roms, item],
                       1
                     )
                   );
@@ -138,11 +126,24 @@ function ColorMemoryRam(props) {
                 ></div>
                 <span
                   onClick={() => {
-                    let clone = [...products.infoMain.colors].filter(
-                      (item) => item.id !== color.id
+                    dispatch(
+                      productsAction.removeInfoMainProduct(color, "color")
                     );
-                    dispatch(productsAction.loadInfoMainProductData(clone, 0));
-                    dispatch(productsAction.removeInfoMainProduct(color));
+                    if (
+                      products.infoMain.index > products.infoMain.lists.length
+                    ) {
+                      dispatch(
+                        productsAction.loadInfoMainProductByIndex(
+                          products.infoMain.lists.length - 1
+                        )
+                      );
+                    }
+                    if (
+                      products.infoMain.colors.length === 0 &&
+                      products.infoMain.roms.length === 0
+                    )
+                      return;
+                    dispatch(productsAction.loadInfoMainProductDataFull());
                   }}
                   className="w-4 h-4 bg-white rounded-full flex items-center justify-center absolute -top-1.5 -right-1.5"
                 >
@@ -153,12 +154,35 @@ function ColorMemoryRam(props) {
           })}
         </ScrollContainer>
         <ScrollContainer className="w-1/2 max-w-1/2 overflow-x-auto flex p-1 border-2  border-solid border-gray-200 shadow-lg">
-          <div
-            className="px-2 h-10 rounded-lg font-semibold mr-1.5 flex-shrink-0 flex items-center 
-            justify-center border-2 border-solid border-gray-200 cursor-pointer text-xs"
-          >
-            32GB
-          </div>
+          {products.infoMain.roms.map((rom, index) => {
+            return (
+              <div
+                onClick={() => {
+                  dispatch(productsAction.removeInfoMainProduct(rom, "rom"));
+                  if (
+                    products.infoMain.index > products.infoMain.lists.length
+                  ) {
+                    dispatch(
+                      productsAction.loadInfoMainProductByIndex(
+                        products.infoMain.lists.length - 1
+                      )
+                    );
+                  }
+                  if (
+                    products.infoMain.colors.length === 0 &&
+                    products.infoMain.roms.length === 0
+                  )
+                    return;
+                  dispatch(productsAction.loadInfoMainProductDataFull());
+                }}
+                key={index}
+                className="px-2 h-10 rounded-lg font-semibold mr-1.5 flex-shrink-0 flex items-center 
+                justify-center border-2 border-solid border-gray-200 cursor-pointer text-xs"
+              >
+                {rom.id}
+              </div>
+            );
+          })}
         </ScrollContainer>
       </div>
     </>

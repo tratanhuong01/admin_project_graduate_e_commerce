@@ -11,11 +11,16 @@ function SelectCustom(props) {
     table,
     label,
     disabled,
+    dataProps,
   } = props;
   const [listCurrent, setListCurrent] = useState(list);
   const [value, setValue] = useState("");
   const [show, setShow] = useState(false);
-  const [content, setContent] = useState({ [attribute]: `Chọn ${table}` });
+  const [content, setContent] = useState(
+    dataProps
+      ? { [attribute]: `${dataProps}` }
+      : { [attribute]: `Chọn ${table}` }
+  );
   useEffect(() => {
     setListCurrent(list);
   }, [list]);

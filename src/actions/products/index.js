@@ -29,11 +29,11 @@ export const loadInfoMainProductByIndex = (index) => {
   };
 };
 
-export const loadInfoImageMainProduct = (file, itemList) => {
+export const loadInfoImageMainProduct = (file, data) => {
   return {
     type: Types.LOAD_INFO_IMAGE_MAIN_PRODUCT,
     file,
-    itemList,
+    data,
   };
 };
 
@@ -51,10 +51,11 @@ export const loadInfoMainProductData = (data, index) => {
   };
 };
 
-export const removeInfoMainProduct = (data) => {
+export const removeInfoMainProduct = (data, name) => {
   return {
     type: Types.REMOVE_INFO_MAIN_PRODUCT,
     data,
+    name,
   };
 };
 
@@ -62,5 +63,20 @@ export const changeToProductIsMultiRam = (bool) => {
   return {
     type: Types.CHANGE_TO_PRODUCT_IS_MULTI_RAM,
     bool,
+  };
+};
+
+export const loadInfoMainPriceAmountSale = (data, index) => {
+  return {
+    type: Types.LOAD_INFO_MAIN_PRICE_AMOUNT_SALE,
+    data,
+    index,
+  };
+};
+
+export const loadInfoMainImageOther = (list) => {
+  return {
+    type: Types.LOAD_INFO_MAIN_IMAGE_OTHER,
+    list,
   };
 };

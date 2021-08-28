@@ -20,13 +20,26 @@ const initialState = {
   infoAttribute: null,
   infoMain: {
     colors: [],
-    romOrRam: [],
-    images: [],
-    lists: [],
+    roms: [],
+    ram: null,
+    images: {},
+    lists: [
+      {
+        id: -1,
+        nameProduct: null,
+        priceInput: 0,
+        priceOutput: 0,
+        sale: 0,
+        amount: 0,
+        color: { id: null },
+        rom: { id: null },
+        ram: { id: null },
+      },
+    ],
     index: 1,
     type: false,
   },
-  images: null,
+  images: [],
   descriptions: null,
   loading: true,
   index: 0,
@@ -41,6 +54,7 @@ const myReducer = (state = initialState, action) => {
           state.data = <InfoSimple />;
           break;
         case 1:
+          state.infoMain.lists[0].nameProduct = state.infoSimple.nameProduct;
           state.data = <MainInfoProduct />;
           break;
         case 2:
@@ -90,47 +104,55 @@ const myReducer = (state = initialState, action) => {
           state.infoMain.colors = action.data;
           break;
         case 1:
-          state.infoMain.romOrRam = action.data;
+          state.infoMain.roms = action.data;
+          break;
+        case 2:
+          state.infoMain.ram = action.data;
           break;
         default:
           break;
       }
       return { ...state };
     case Types.LOAD_INFO_MAIN_PRODUCT_DATA_FULL:
-      if (
-        state.infoMain.colors.length > 0 &&
-        state.infoMain.romOrRam.length > 0
-      ) {
+      if (state.infoMain.lists.length > 0)
+        if (state.infoMain.lists[0].id === -1) state.infoMain.lists = [];
+      if (state.infoMain.colors.length > 0 && state.infoMain.roms.length > 0) {
         state.infoMain.colors.forEach((color) => {
-          state.infoMain.romOrRam.forEach((itemRomOrRam) => {
-            const index = state.infoMain.lists.findIndex(
-              (item) =>
-                item.color.id === color.id &&
-                item.romOrRam.rom.id === itemRomOrRam.rom.id
-            );
+          state.infoMain.roms.forEach((rom) => {
+            let index = state.infoMain.lists.findIndex((item) => {
+              if (item.color.id && item.rom.id)
+                return item.color.id === color.id && item.rom.id === rom.id;
+              else return item.color.id === color.id || item.rom.id === rom.id;
+            });
             if (index === -1)
               state.infoMain.lists = [
                 ...state.infoMain.lists,
                 {
                   id: uuidv4(),
-                  nameProduct: `${state.infoSimple.nameProduct} ${
-                    itemRomOrRam.ram === null ? "" : itemRomOrRam.ram.id + "/"
-                  } ${
-                    itemRomOrRam.rom === null ? "" : itemRomOrRam.rom.id
+                  nameProduct: `${state.infoSimple.nameProduct}  ${
+                    rom.id
                   } màu ${color.description.toLowerCase()}`,
-                  imageDemo: null,
                   priceInput: 0,
                   priceOutput: 0,
                   sale: 0,
-                  colors: color,
-                  romOrRam: itemRomOrRam,
+                  amount: 0,
+                  color: color,
+                  rom: rom,
+                  ram: state.infoMain.ram,
                 },
               ];
+            else {
+              state.infoMain.lists[index].nameProduct = `${
+                state.infoSimple.nameProduct
+              }  ${rom.id} màu ${color.description.toLowerCase()}`;
+              state.infoMain.lists[index].rom = rom;
+              state.infoMain.lists[index].color = color;
+            }
           });
         });
       } else if (
         state.infoMain.colors.length > 0 &&
-        state.infoMain.romOrRam.length <= 0
+        state.infoMain.roms.length <= 0
       ) {
         state.infoMain.colors.forEach((color) => {
           const index = state.infoMain.lists.findIndex(
@@ -144,24 +166,28 @@ const myReducer = (state = initialState, action) => {
                 nameProduct: `${
                   state.infoSimple.nameProduct
                 } màu ${color.description.toLowerCase()}`,
-                imageDemo: null,
+                amount: 0,
                 priceInput: 0,
                 priceOutput: 0,
                 sale: 0,
                 color: color,
-                romOrRam: null,
+                rom: { id: null },
+                ram: state.infoMain.ram,
               },
             ];
+          else {
+            state.infoMain.lists[index].nameProduct = `${
+              state.infoSimple.nameProduct
+            }  màu ${color.description.toLowerCase()}`;
+          }
         });
       } else if (
         state.infoMain.colors.length <= 0 &&
-        state.infoMain.romOrRam.length > 0
+        state.infoMain.roms.length > 0
       ) {
-        state.infoMain.romOrRam.forEach((itemRomOrRam) => {
+        state.infoMain.roms.forEach((rom) => {
           const index = state.infoMain.lists.findIndex(
-            (item) =>
-              item.romOrRam.rom.id === itemRomOrRam.rom.id ||
-              item.romOrRam.ram.id === itemRomOrRam.ram.id
+            (item) => item.rom.id === rom.id
           );
 
           if (index === -1)
@@ -169,23 +195,27 @@ const myReducer = (state = initialState, action) => {
               ...state.infoMain.lists,
               {
                 id: uuidv4(),
-                nameProduct: `${state.infoSimple.nameProduct} ${
-                  itemRomOrRam.ram === null ? "" : itemRomOrRam.ram.id + "/"
-                } ${itemRomOrRam.rom === null ? "" : itemRomOrRam.rom.id}`,
-                imageDemo: null,
+                nameProduct: `${state.infoSimple.nameProduct} ${rom.id}`,
+                amount: 0,
                 priceInput: 0,
                 priceOutput: 0,
                 sale: 0,
-                color: null,
-                romOrRam: itemRomOrRam,
+                color: { id: "" },
+                rom: rom,
+                ram: state.infoMain.ram,
               },
             ];
+          else {
+            state.infoMain.lists[
+              index
+            ].nameProduct = `${state.infoSimple.nameProduct} ${rom.id} `;
+          }
         });
       } else {
         state.infoMain.lists.push({
           id: "",
           nameProduct: `${state.infoSimple.nameProduct}`,
-          imageDemo: null,
+          amount: 0,
           priceInput: 0,
           priceOutput: 0,
           sale: 0,
@@ -196,19 +226,68 @@ const myReducer = (state = initialState, action) => {
       state.infoMain.index = action.index;
       return { ...state };
     case Types.LOAD_INFO_IMAGE_MAIN_PRODUCT:
-      console.log(state.infoMain.lists);
-      const index = state.infoMain.lists.findIndex(
-        (item) => item.id === action.itemList.id
-      );
-      if (index !== -1) state.infoMain.lists[index].imageDemo = action.file;
+      if (state.infoMain.colors.length > 0) {
+        state.infoMain.images = {
+          ...state.infoMain.images,
+          [action.data.id]: action.file,
+        };
+      } else
+        state.infoMain.images = {
+          ...state.infoMain.images,
+          [-1]: action.file,
+        };
+      console.log(state.infoMain.images);
       return { ...state };
     case Types.REMOVE_INFO_MAIN_PRODUCT:
       state.infoMain.lists = state.infoMain.lists.filter(
-        (item) => action.data.id !== item.color.id
+        (item) => action.data.id !== item[action.name]["id"]
       );
+      state.infoMain[`${action.name}s`] = state.infoMain[
+        `${action.name}s`
+      ].filter((item) => action.data.id !== item.id);
+
+      if (
+        state.infoMain.colors.length === 0 &&
+        state.infoMain.roms.length === 0
+      ) {
+        state.infoMain.lists.push({
+          id: -1,
+          nameProduct: null,
+          amount: 0,
+          priceInput: 0,
+          priceOutput: 0,
+          sale: 0,
+          color: { id: null },
+          rom: { id: null },
+          ram: state.infoMain.ram,
+        });
+      }
       return { ...state };
     case Types.CHANGE_TO_PRODUCT_IS_MULTI_RAM:
       state.infoMain.type = action.bool;
+      return { ...state };
+    case Types.LOAD_INFO_MAIN_PRICE_AMOUNT_SALE:
+      switch (action.index) {
+        case 0:
+          state.infoMain.lists[state.infoMain.index - 1].priceInput =
+            action.data;
+          break;
+        case 1:
+          state.infoMain.lists[state.infoMain.index - 1].priceOutput =
+            action.data;
+          break;
+        case 2:
+          state.infoMain.lists[state.infoMain.index - 1].amount = action.data;
+          break;
+        case 3:
+          state.infoMain.lists[state.infoMain.index - 1].sale = action.data;
+          break;
+        default:
+          break;
+      }
+      return { ...state };
+    case Types.LOAD_INFO_MAIN_IMAGE_OTHER:
+      state.images = action.list;
       return { ...state };
     default:
       return state;

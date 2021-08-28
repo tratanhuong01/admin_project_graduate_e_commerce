@@ -17,7 +17,11 @@ function ContentMainProduct(props) {
             <div className="font-semibold text-xm my-3">
               {products.infoMain.lists[products.infoMain.index - 1].nameProduct}
             </div>
-            {products.infoMain.lists[products.infoMain.index - 1].imageDemo ? (
+            {products.infoMain.images[
+              products.infoMain.colors.length > 0
+                ? products.infoMain.lists[products.infoMain.index - 1].color.id
+                : -1
+            ] ? (
               <>
                 <input
                   type="file"
@@ -28,6 +32,7 @@ function ContentMainProduct(props) {
                       productsAction.loadInfoImageMainProduct(
                         event.target.files[0],
                         products.infoMain.lists[products.infoMain.index - 1]
+                          .color
                       )
                     );
                   }}
@@ -35,8 +40,12 @@ function ContentMainProduct(props) {
                 <label htmlFor="file" className="w-11/12 h-72 mx-auto relative">
                   <img
                     src={URL.createObjectURL(
-                      products.infoMain.lists[products.infoMain.index - 1]
-                        .imageDemo
+                      products.infoMain.images[
+                        products.infoMain.colors.length > 0
+                          ? products.infoMain.lists[products.infoMain.index - 1]
+                              .color.id
+                          : -1
+                      ]
                     )}
                     alt=""
                     className="w-full object-contain h-72"
@@ -53,6 +62,7 @@ function ContentMainProduct(props) {
                       productsAction.loadInfoImageMainProduct(
                         event.target.files[0],
                         products.infoMain.lists[products.infoMain.index - 1]
+                          .color
                       )
                     );
                   }}
@@ -76,7 +86,9 @@ function ContentMainProduct(props) {
               name={"priceInput"}
               label={"Giá nhập vào"}
               type="text"
-              onChange={() => ""}
+              onChange={(value) =>
+                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 0))
+              }
               disabled={false}
             />
             <InputField
@@ -87,7 +99,9 @@ function ContentMainProduct(props) {
               name={"priceOutput"}
               label={"Giá nhập ra"}
               type="text"
-              onChange={() => ""}
+              onChange={(value) =>
+                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 1))
+              }
               disabled={false}
             />
             <InputField
@@ -98,7 +112,9 @@ function ContentMainProduct(props) {
               name={"amount"}
               label={"Số lượng"}
               type="number"
-              onChange={() => ""}
+              onChange={(value) =>
+                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 2))
+              }
               disabled={false}
             />
             <InputField
@@ -109,7 +125,9 @@ function ContentMainProduct(props) {
               name={"sale"}
               label={"Khuyến mãi"}
               type="number"
-              onChange={() => ""}
+              onChange={(value) =>
+                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 3))
+              }
               disabled={false}
             />
           </div>
