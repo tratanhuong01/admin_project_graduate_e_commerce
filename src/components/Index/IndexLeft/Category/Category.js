@@ -74,6 +74,27 @@ function Category(props) {
           type: "lineProduct",
           to: Config.LINE_PRODUCT,
         },
+        {
+          id: 5,
+          name: "Nhóm thuộc tính",
+          label: "Quản lí nhóm thuộc tính",
+          type: "groupAttribute",
+          to: Config.GROUP_ATTRIBUTE,
+        },
+        {
+          id: 5,
+          name: "Thuộc tính",
+          label: "Quản lí thuộc tính",
+          type: "attribute",
+          to: Config.ATTRIBUTE,
+        },
+        {
+          id: 6,
+          name: "Giá trị thuộc tính",
+          label: "Quản lí giá trị thuộc tính",
+          type: "valueAttribute",
+          to: Config.VALUE_ATTRIBUTE,
+        },
       ],
     },
     {

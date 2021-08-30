@@ -1,14 +1,19 @@
+import AttributeForm from "../components/Form/AttributeForm/AttributeForm";
 import BrandForm from "../components/Form/BrandForm/BrandForm";
 import CategoryProductForm from "../components/Form/CategoryProductForm/CategoryProductForm";
 import ColorForm from "../components/Form/ColorForm/ColorForm";
+import GroupAttributeForm from "../components/Form/GroupAttributeForm/GroupAttributeForm";
 import GroupProductForm from "../components/Form/GroupProductForm/GroupProductForm";
 import LineProductForm from "../components/Form/LineProductForm/LineProductForm";
 import MemoryForm from "../components/Form/MemoryForm/MemoryForm";
+import ValueAttributeForm from "../components/Form/ValueAttributeForm/ValueAttributeForm";
 import * as Types from "../constants/ActionTypes";
 
 const initialState = {
   data: null,
   loading: false,
+  list: [],
+  length: 0,
   type: 0,
 };
 
@@ -38,6 +43,18 @@ const myReducer = (state = initialState, action) => {
           break;
         case "groupProduct":
           state.data = <GroupProductForm dataProps={null} />;
+          state.type = 0;
+          break;
+        case "groupAttribute":
+          state.data = <GroupAttributeForm dataProps={action.data} />;
+          state.type = 0;
+          break;
+        case "attribute":
+          state.data = <AttributeForm dataProps={action.data} />;
+          state.type = 0;
+          break;
+        case "valueAttribute":
+          state.data = <ValueAttributeForm dataProps={action.data} />;
           state.type = 0;
           break;
         default:
@@ -70,6 +87,18 @@ const myReducer = (state = initialState, action) => {
           break;
         case "groupProduct":
           state.data = <GroupProductForm dataProps={action.data} />;
+          state.type = 1;
+          break;
+        case "groupAttribute":
+          state.data = <GroupAttributeForm dataProps={action.data} />;
+          state.type = 1;
+          break;
+        case "attribute":
+          state.data = <AttributeForm dataProps={action.data} />;
+          state.type = 1;
+          break;
+        case "valueAttribute":
+          state.data = <ValueAttributeForm dataProps={action.data} />;
           state.type = 1;
           break;
         default:

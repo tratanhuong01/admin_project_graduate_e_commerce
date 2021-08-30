@@ -13,3 +13,6 @@ export const CATEGORY_PRODUCT = `${PAGE_ADMIN}/san-pham/danh-muc-san-pham`;
 export const COLOR = `${PAGE_ADMIN}/danh-muc/mau-sac`;
 export const BRAND = `${PAGE_ADMIN}/danh-muc/thuong-hieu`;
 export const MEMORY = `${PAGE_ADMIN}/danh-muc/bo-nho`;
+export const ATTRIBUTE = `${PAGE_ADMIN}/san-pham/thuoc-tinh`;
+export const VALUE_ATTRIBUTE = `${PAGE_ADMIN}/san-pham/gia-tri-thuoc-tinh`;
+export const GROUP_ATTRIBUTE = `${PAGE_ADMIN}/san-pham/nhom-thuoc-tinh`;

@@ -1,0 +1,55 @@
+{
+  "filter": [],
+  "sort": [],
+  "filterAndSorter": false,
+  "search": [],
+  "download": [],
+  "add": [],
+  "edit": [],
+  "delete": [],
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "ID",
+      "level": 1,
+      "columnLevel1": "id",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 2,
+      "name": "Tên thuộc tính",
+      "level": 2,
+      "columnLevel1": "valueAttribute",
+      "columnLevel2": "nameAttribute",
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 3,
+      "name": "Giá trị thuộc tính",
+      "level": 1,
+      "columnLevel1": "value",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    }
+  ],
+  "modal": false,
+  "nameTable": "valueAttribute"
+}
