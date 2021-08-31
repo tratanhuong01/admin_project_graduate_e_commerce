@@ -29,20 +29,20 @@
     },
     {
       "id": 2,
-      "name": "Tên thuộc tính",
+      "name": "Tên nhóm sản phẩm",
       "level": 2,
-      "columnLevel1": "valueAttribute",
-      "columnLevel2": "nameAttribute",
+      "columnLevel1": "groupProductFilter",
+      "columnLevel2": "nameGroupProduct",
       "condition": {
         "main": [],
         "type": -1
       }
     },
     {
-      "id": 3,
-      "name": "Giá trị thuộc tính",
+      "id": 2,
+      "name": "Tên bộ lọc sản phẩm",
       "level": 1,
-      "columnLevel1": "value",
+      "columnLevel1": "nameGroupFilterProduct",
       "columnLevel2": null,
       "condition": {
         "main": [],
@@ -51,5 +51,5 @@
     }
   ],
   "modal": false,
-  "nameTable": "valueAttribute"
+  "nameTable": "groupFilterProduct"
 }

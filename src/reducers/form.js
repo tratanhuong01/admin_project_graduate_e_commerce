@@ -6,7 +6,7 @@ import GroupAttributeForm from "../components/Form/GroupAttributeForm/GroupAttri
 import GroupProductForm from "../components/Form/GroupProductForm/GroupProductForm";
 import LineProductForm from "../components/Form/LineProductForm/LineProductForm";
 import MemoryForm from "../components/Form/MemoryForm/MemoryForm";
-import ValueAttributeForm from "../components/Form/ValueAttributeForm/ValueAttributeForm";
+import GroupFilterProductForm from "../components/Form/GroupFilterProductForm/GroupFilterProductForm";
 import * as Types from "../constants/ActionTypes";
 
 const initialState = {
@@ -53,8 +53,8 @@ const myReducer = (state = initialState, action) => {
           state.data = <AttributeForm dataProps={action.data} />;
           state.type = 0;
           break;
-        case "valueAttribute":
-          state.data = <ValueAttributeForm dataProps={action.data} />;
+        case "groupFilterProduct":
+          state.data = <GroupFilterProductForm dataProps={action.data} />;
           state.type = 0;
           break;
         default:
@@ -97,8 +97,8 @@ const myReducer = (state = initialState, action) => {
           state.data = <AttributeForm dataProps={action.data} />;
           state.type = 1;
           break;
-        case "valueAttribute":
-          state.data = <ValueAttributeForm dataProps={action.data} />;
+        case "groupFilterProduct":
+          state.data = <GroupFilterProductForm dataProps={action.data} />;
           state.type = 1;
           break;
         default:

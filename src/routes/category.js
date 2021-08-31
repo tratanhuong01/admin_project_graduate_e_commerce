@@ -11,7 +11,7 @@ import GroupProductScreen from "../screens/products/GroupProductScreen/GroupProd
 import LineProductScreen from "../screens/products/LineProductScreen/LineProductScreen";
 import ProductListScreen from "../screens/products/ProductListScreen/ProductListScreen";
 import UserScreen from "../screens/users/UserScreen";
-import ValueAttributeScreen from "../screens/valueAttribute/ValueAttributeScreen";
+import GroupFilterProductScreen from "../screens/groupFilterProduct/GroupFilterProductScreen";
 
 const routes = [
   {
@@ -75,9 +75,9 @@ const routes = [
     once: false,
   },
   {
-    to: `${Config.VALUE_ATTRIBUTE}`,
+    to: `${Config.GROUP_FILTER_PRODUCT}`,
     exact: true,
-    main: () => <ValueAttributeScreen />,
+    main: () => <GroupFilterProductScreen />,
     once: false,
   },
   {

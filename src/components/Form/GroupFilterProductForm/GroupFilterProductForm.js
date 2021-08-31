@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
-import SelectCustom from "../../SelectCustom/SelectCustom";
 import api from "../../../Utils/api";
-function ValueAttributeForm(props) {
+import SelectCustom from "../../SelectCustom/SelectCustom";
+// import * as categorysAction from "../../../actions/category/index";
+// import { useDispatch } from "react-redux";
+function GroupFilterProductForm(props) {
   //
   const { dataProps } = props;
   const {
@@ -19,22 +21,29 @@ function ValueAttributeForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
-  const [attributes, setAttributes] = useState([]);
+  // const dispatch = useDispatch();
+  const onSubmit = async (data) => {
+    await api("groupFilterProducts", "POST", data);
+    setValue("id", "");
+    setValue("nameGroupFilterProduct", "");
+  };
+  const [groupProducts, setGroupProducts] = useState([]);
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");
-    setValue("valueAttribute", dataProps ? dataProps.valueAttribute : "");
-    setValue("value", dataProps ? dataProps.value : "");
+    setValue(
+      "nameGroupFilterProduct",
+      dataProps ? dataProps.nameGroupFilterProduct : ""
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api("attributesAll", "GET", null);
+      const result = await api("groupProductsAll", "GET", null);
       if (unmounted) return;
-      setAttributes(result.data);
+      setGroupProducts(result.data);
     }
     fetch();
     return () => {
@@ -59,24 +68,24 @@ function ValueAttributeForm(props) {
           disabled={false}
         />
         <SelectCustom
-          list={attributes}
+          list={groupProducts}
           className={
             "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
           }
-          attribute={"nameAttribute"}
-          placeHolder={"Nhập tên thuộc tính"}
-          label={"Tên thuộc tính"}
-          table={"tên thuộc tính"}
-          dataProps={null}
-          setData={(item) => {}}
+          showError={errors["groupProductFilter"]}
+          attribute={"nameGroupProduct"}
+          placeHolder={"Nhập nội dung"}
+          label={"Nhóm sản phẩm"}
+          table={"nhóm sản phẩm"}
+          setData={(item) => setValue("groupProductFilter", item)}
         />
         <InputField
           register={register}
           className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-          showError={errors["value"]}
-          placeHolder={"Nhập giá trị thuộc tính"}
-          name={"value"}
-          label={"Tên giá trị thuộc tính"}
+          showError={errors["nameGroupFilterProduct"]}
+          placeHolder={"Nhập tên nhóm bộ lọc sản phẩm"}
+          name={"nameGroupFilterProduct"}
+          label={"Tên nhóm bộ lọc sản phẩm"}
           type="text"
           onChange={() => ""}
           disabled={false}
@@ -87,4 +96,4 @@ function ValueAttributeForm(props) {
   );
 }
 
-export default ValueAttributeForm;
+export default GroupFilterProductForm;
