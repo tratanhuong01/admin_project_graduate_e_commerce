@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { EditorState } from "draft-js";
+import React from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useDispatch, useSelector } from "react-redux";
+import * as productsAction from "../../../../../actions/products/index";
 
 function DescriptionProduct(props) {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const add = async () => {};
+  //
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  //
   return (
     <div
       className="w-11/12 mx-auto overflow-y-auto scrollbar-css"
@@ -18,15 +21,11 @@ function DescriptionProduct(props) {
         wrapperClassName="wrapper-class"
         editorClassName="editor-class"
         toolbarClassName="toolbar-class"
-        editorState={editorState}
-        onEditorStateChange={(editorState) => setEditorState(editorState)}
+        editorState={products.descriptions}
+        onEditorStateChange={(editorState) =>
+          dispatch(productsAction.loadDescriptionProduct(editorState))
+        }
       />
-      <button
-        onClick={() => add()}
-        className="w-full px-10 py-3 rounded-full bg-green-500 text-white font-bold my-2"
-      >
-        Thêm
-      </button>
     </div>
   );
 }

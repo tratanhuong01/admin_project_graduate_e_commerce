@@ -80,3 +80,66 @@ export const loadInfoMainImageOther = (list) => {
     list,
   };
 };
+
+export const loadFeaturesProduct = (data) => {
+  return {
+    type: Types.LOAD_FEATURE_PRODUCT,
+    data,
+  };
+};
+
+export const addFeaturesProductRequest = (data) => {
+  return (dispatch) => {
+    const { choose, item } = data;
+    const list = data.list.filter((dt) => dt.id !== item.id);
+    dispatch(
+      addFeaturesProduct({
+        choose: [...choose, item],
+        listCurrent: list,
+        list,
+      })
+    );
+  };
+};
+
+export const addFeaturesProduct = (data) => {
+  return {
+    type: Types.ADD_FEATURE_PRODUCT,
+    data,
+  };
+};
+
+export const removeFeaturesProductRequest = (data) => {
+  return (dispatch) => {
+    const { list, item } = data;
+    const choose = data.choose.filter((dt) => dt.id !== item.id);
+    dispatch(
+      removeFeaturesProduct({
+        choose,
+        listCurrent: [...list, item],
+        list: [...list, item],
+      })
+    );
+  };
+};
+
+export const removeFeaturesProduct = (data) => {
+  return {
+    type: Types.REMOVE_FEATURE_PRODUCT,
+    data,
+  };
+};
+
+export const loadFeaturesProductCurrent = (listCurrent) => {
+  return {
+    type: Types.LOAD_FEATURE_PRODUCT_CURRENT,
+    listCurrent,
+  };
+};
+
+export const loadDescriptionProduct = (data) => {
+  return {
+    type: Types.LOAD_DESCRIPTION_PRODUCT,
+    data,
+  };
+};

@@ -1,3 +1,4 @@
+import React from "react";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
 import * as Types from "../constants/ActionTypes";
 

@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import api from "../../../../../../Utils/api";
-
+import * as productsAction from "../../../../../../actions/products/index";
 function OptionFeatureProduct(props) {
   //
-  const { name, table } = props;
-  const [data, setData] = useState([]);
-  const [dataCurrent, setDataCurrent] = useState([]);
+  const dispatch = useDispatch();
+  const { name, table, products } = props;
   const [value, setValue] = useState("");
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(`${table}`, "GET", null);
+      const result = await api(
+        `${table}/${products.infoSimple.groupProduct.slugGroupProduct}`,
+        "GET",
+        null
+      );
       if (unmounted) return;
-      setData(result.data);
-      setDataCurrent(result.data);
+      dispatch(
+        productsAction.loadFeaturesProduct({
+          choose: [],
+          listCurrent: result.data,
+          list: result.data,
+        })
+      );
     }
     fetch();
     return () => {
       unmounted = true;
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {}, [products]);
   //
   return (
     <div className="w-1/2 p-2.5 border border-solid border-gray-200">
@@ -31,23 +41,36 @@ function OptionFeatureProduct(props) {
         placeholder="Nhập nội dung..."
         onChange={(event) => {
           setValue(event.target.value);
-          const result = data.filter(
+          const result = products.features.list.filter(
             (item) =>
               item[name]
                 .toLowerCase()
                 .indexOf(event.target.value.toLowerCase()) !== -1
           );
-          setDataCurrent(result);
+          dispatch(productsAction.loadFeaturesProductCurrent(result));
         }}
         value={value}
       />
       <div
         className="w-full overflow-y-auto scrollbar-css"
-        style={{ maxHeight: 300 }}
+        id="featuresLeft"
+        style={{ maxHeight: 465 }}
       >
-        {dataCurrent.map((item, index) => {
+        {products.features.listCurrent.map((item, index) => {
           return (
-            <div className="w-full p-2.5 hover:bg-gray-100" key={index}>
+            <div
+              onClick={() => {
+                setValue("");
+                dispatch(
+                  productsAction.addFeaturesProductRequest({
+                    ...products.features,
+                    item,
+                  })
+                );
+              }}
+              className="w-full p-2.5 hover:bg-gray-200 font-semibold cursor-pointer"
+              key={index}
+            >
               {item[name]}
             </div>
           );

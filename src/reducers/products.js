@@ -11,6 +11,7 @@ import FeatureProduct from "../components/Modals/ModalProduct/ModalProductRight/
 const initialState = {
   data: <InfoSimple />,
   infoSimple: {
+    lineProduct: null,
     categoryProduct: null,
     groupProduct: null,
     nameProduct: null,
@@ -39,6 +40,11 @@ const initialState = {
     ],
     index: 1,
     type: false,
+  },
+  features: {
+    list: [],
+    listCurrent: [],
+    choose: [],
   },
   images: [],
   descriptions: null,
@@ -292,6 +298,21 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.LOAD_INFO_MAIN_IMAGE_OTHER:
       state.images = action.list;
+      return { ...state };
+    case Types.LOAD_FEATURE_PRODUCT:
+      state.features = action.data;
+      return { ...state };
+    case Types.REMOVE_FEATURE_PRODUCT:
+      state.features = action.data;
+      return { ...state };
+    case Types.ADD_FEATURE_PRODUCT:
+      state.features = action.data;
+      return { ...state };
+    case Types.LOAD_FEATURE_PRODUCT_CURRENT:
+      state.features.listCurrent = action.listCurrent;
+      return { ...state };
+    case Types.LOAD_DESCRIPTION_PRODUCT:
+      state.descriptions = action.data;
       return { ...state };
     default:
       return state;

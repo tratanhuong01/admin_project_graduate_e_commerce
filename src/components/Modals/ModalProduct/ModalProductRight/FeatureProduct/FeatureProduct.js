@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import api from "../../../../../Utils/api";
+import ChooseFeatureProduct from "./ChooseFeatureProduct/ChooseFeatureProduct";
 import OptionFeatureProduct from "./OptionFeatureProduct/OptionFeatureProduct";
 
 function FeatureProduct(props) {
   //
   const products = useSelector((state) => state.products);
-
   //
   return (
     <div
@@ -18,9 +17,11 @@ function FeatureProduct(props) {
     >
       <div className="w-full flex">
         <OptionFeatureProduct
+          products={products}
           name="nameFunctionProduct"
-          table="functionProductsAll"
+          table="functionProductsBySlug"
         />
+        <ChooseFeatureProduct products={products} name="nameFunctionProduct" />
       </div>
     </div>
   );
