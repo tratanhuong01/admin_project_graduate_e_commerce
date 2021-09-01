@@ -15,11 +15,13 @@ function GroupProductForm(props) {
     formState: { errors },
     setValue,
   } = useForm({
-    mode: "onChange",
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
+  const onSubmit = async (data) => {
+    console.log(data);
+    await api("groupProducts", "POST", data);
+  };
   const [list, setList] = useState([]);
   useEffect(() => {
     //
@@ -64,6 +66,17 @@ function GroupProductForm(props) {
           type="text"
           disabled={false}
         />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["slugGroupProduct"]}
+          placeHolder={"Nhập slug nhóm sản phẩm"}
+          name={"slugGroupProduct"}
+          label={"Slug nhóm sản phẩm"}
+          onChange={() => ""}
+          type="text"
+          disabled={false}
+        />
         <SelectCustom
           list={list}
           className={
@@ -73,7 +86,7 @@ function GroupProductForm(props) {
           placeHolder={"Nhập nội dung"}
           label={"Danh mục sản phẩm"}
           table={"danh mục sản phẩm"}
-          setData={() => ""}
+          setData={(item) => setValue("categoryGroupProduct", item)}
         />
         <Button propsGet={dataProps} />
       </form>

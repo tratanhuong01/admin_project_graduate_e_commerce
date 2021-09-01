@@ -6,6 +6,7 @@ import InfoSimple from "../components/Modals/ModalProduct/ModalProductRight/Info
 import MainInfoProduct from "../components/Modals/ModalProduct/ModalProductRight/MainInfoProduct/MainInfoProduct";
 import * as Types from "../constants/ActionTypes";
 import { v4 as uuidv4 } from "uuid";
+import FeatureProduct from "../components/Modals/ModalProduct/ModalProductRight/FeatureProduct/FeatureProduct";
 
 const initialState = {
   data: <InfoSimple />,
@@ -64,6 +65,9 @@ const myReducer = (state = initialState, action) => {
           state.data = <AttributesProduct />;
           break;
         case 4:
+          state.data = <FeatureProduct />;
+          break;
+        case 5:
           state.data = <DescriptionsProduct />;
           break;
         default:

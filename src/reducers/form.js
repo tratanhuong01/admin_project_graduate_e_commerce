@@ -8,6 +8,7 @@ import LineProductForm from "../components/Form/LineProductForm/LineProductForm"
 import MemoryForm from "../components/Form/MemoryForm/MemoryForm";
 import GroupFilterProductForm from "../components/Form/GroupFilterProductForm/GroupFilterProductForm";
 import * as Types from "../constants/ActionTypes";
+import FunctionProductForm from "../components/Form/FunctionProductForm/FunctionProductForm";
 
 const initialState = {
   data: null,
@@ -57,6 +58,10 @@ const myReducer = (state = initialState, action) => {
           state.data = <GroupFilterProductForm dataProps={action.data} />;
           state.type = 0;
           break;
+        case "functionProduct":
+          state.data = <FunctionProductForm dataProps={action.data} />;
+          state.type = 0;
+          break;
         default:
           break;
       }
@@ -99,6 +104,10 @@ const myReducer = (state = initialState, action) => {
           break;
         case "groupFilterProduct":
           state.data = <GroupFilterProductForm dataProps={action.data} />;
+          state.type = 1;
+          break;
+        case "functionProduct":
+          state.data = <FunctionProductForm dataProps={action.data} />;
           state.type = 1;
           break;
         default:

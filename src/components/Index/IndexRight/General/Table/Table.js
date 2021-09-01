@@ -47,10 +47,12 @@ function Table(props) {
                   condition={item.condition.main}
                   typeData={
                     item.level === 1
-                      ? data[item.columnLevel1] === null
+                      ? data[item.columnLevel1] === null ||
+                        typeof data[item.columnLevel1] === "undefined"
                         ? "<Trống>"
                         : data[item.columnLevel1]
-                      : data[item.columnLevel1] === null
+                      : data[item.columnLevel1] === null ||
+                        typeof data[item.columnLevel1] === "undefined"
                       ? "<Trống>"
                       : data[item.columnLevel1][item.columnLevel2]
                   }

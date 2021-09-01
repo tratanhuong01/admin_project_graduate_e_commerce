@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function SelectCustom(props) {
   //
+
   const {
     className,
     list,
@@ -12,6 +13,7 @@ function SelectCustom(props) {
     label,
     disabled,
     dataProps,
+    concat,
   } = props;
   const [listCurrent, setListCurrent] = useState(list);
   const [value, setValue] = useState("");
@@ -49,7 +51,7 @@ function SelectCustom(props) {
         }`}
       >
         <i className="bx bx-chevron-down absolute top-1.5 right-3 text-3xl"></i>
-        <span>{content[attribute]}</span>
+        <span>{concat ? `${content[attribute]}` : content[attribute]}</span>
       </div>
       {show && (
         <div className="w-full bg-white absolute top-full left-0 right-0 z-50">
@@ -89,7 +91,11 @@ function SelectCustom(props) {
                     key={index}
                     className={`w-full p-2 border-b-2 border-solid relative hover:bg-gray-200`}
                   >
-                    {item[attribute]}
+                    {concat
+                      ? `${item[attribute]} / ${
+                          item[concat.data1][concat.data2]
+                        }`
+                      : item[attribute]}
                   </div>
                 );
               })
@@ -104,5 +110,4 @@ function SelectCustom(props) {
     </div>
   );
 }
-
 export default SelectCustom;

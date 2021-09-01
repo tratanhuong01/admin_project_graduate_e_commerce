@@ -5,6 +5,7 @@ const schema = Yup.object().shape({
   nameGroupProduct: Yup.string().required(
     "Tên nhóm sản phẩm không được trống !!"
   ),
+  slugGroupProduct: Yup.string().required("Slug không được trống !"),
   categoryGroupProduct: Yup.object().required(
     "Danh mục không được để trống !!"
   ),

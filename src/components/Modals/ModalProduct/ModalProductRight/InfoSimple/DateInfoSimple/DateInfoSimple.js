@@ -20,7 +20,7 @@ function DateInfoSimple(props) {
           label={"Ngày nhập vào"}
           type="date"
           onChange={(item) =>
-            dispatch(productsAction.loadCategoryProductByIndex(item, 4))
+            dispatch(productsAction.loadSimpleInfoProductData(item, 4))
           }
           disabled={false}
         />
@@ -35,7 +35,7 @@ function DateInfoSimple(props) {
           label={"Ngày bán ra"}
           type="date"
           onChange={(item) =>
-            dispatch(productsAction.loadCategoryProductByIndex(item, 4))
+            dispatch(productsAction.loadSimpleInfoProductData(item, 5))
           }
           disabled={false}
         />

@@ -75,6 +75,13 @@ function Category(props) {
           to: Config.LINE_PRODUCT,
         },
         {
+          id: 7,
+          name: "Chức năng sản phẩm",
+          label: "Quản lí chức năng sản phẩm",
+          type: "functionProduct",
+          to: Config.FUNCTION_PRODUCT,
+        },
+        {
           id: 5,
           name: "Nhóm thuộc tính",
           label: "Quản lí nhóm thuộc tính",

@@ -22,6 +22,10 @@ function ModalProductLeft(props) {
       icon: "bx bx-at ",
     },
     {
+      name: "Tính năng",
+      icon: "bx bxl-foursquare",
+    },
+    {
       name: "Mô tả",
       icon: "bx bx-detail ",
     },

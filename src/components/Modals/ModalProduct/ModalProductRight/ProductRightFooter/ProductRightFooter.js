@@ -19,8 +19,9 @@ function ProductRightFooter(props) {
       </button>
       <button
         onClick={() => {
-          if (products.index === 4) alert("Adding . Please wait....");
-          else
+          if (products.index === 5) {
+            console.log(products);
+          } else
             dispatch(
               productsAction.loadCategoryProductByIndex(products.index + 1)
             );
@@ -28,7 +29,7 @@ function ProductRightFooter(props) {
         type={"button"}
         className=" py-2.5 px-5 rounded-lg bg-organce font-semibold text-xm text-white"
       >
-        {products.index === 4 ? "Lưu sản phẩm" : "Tiếp tục"}
+        {products.index === 5 ? "Lưu sản phẩm" : "Tiếp tục"}
       </button>
     </div>
   );

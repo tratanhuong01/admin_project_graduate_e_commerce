@@ -16,3 +16,4 @@ export const MEMORY = `${PAGE_ADMIN}/danh-muc/bo-nho`;
 export const ATTRIBUTE = `${PAGE_ADMIN}/san-pham/thuoc-tinh`;
 export const GROUP_FILTER_PRODUCT = `${PAGE_ADMIN}/san-pham/nhom-bo-loc-san-pham`;
 export const GROUP_ATTRIBUTE = `${PAGE_ADMIN}/san-pham/nhom-thuoc-tinh`;
+export const FUNCTION_PRODUCT = `${PAGE_ADMIN}/san-pham/chuc-nang-san-pham`;

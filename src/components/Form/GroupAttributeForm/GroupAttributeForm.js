@@ -22,8 +22,12 @@ function GroupAttributeForm(props) {
     //
     setValue("id", dataProps ? dataProps.id : "");
     setValue(
-      "nameGroupAttribute",
-      dataProps ? dataProps.nameGroupAttribute : ""
+      "nameFunctionProduct",
+      dataProps ? dataProps.nameFunctionProduct : ""
+    );
+    setValue(
+      "typeFunctionProduct",
+      dataProps ? dataProps.typeFunctionProduct : ""
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);

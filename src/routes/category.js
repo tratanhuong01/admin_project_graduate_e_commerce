@@ -12,6 +12,7 @@ import LineProductScreen from "../screens/products/LineProductScreen/LineProduct
 import ProductListScreen from "../screens/products/ProductListScreen/ProductListScreen";
 import UserScreen from "../screens/users/UserScreen";
 import GroupFilterProductScreen from "../screens/groupFilterProduct/GroupFilterProductScreen";
+import FunctionProductScreen from "../screens/functionProduct/FunctionProductScreen";
 
 const routes = [
   {
@@ -84,6 +85,12 @@ const routes = [
     to: `${Config.GROUP_ATTRIBUTE}`,
     exact: true,
     main: () => <GroupAttributeScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.FUNCTION_PRODUCT}`,
+    exact: true,
+    main: () => <FunctionProductScreen />,
     once: false,
   },
 ];

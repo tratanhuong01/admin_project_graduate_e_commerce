@@ -1,0 +1,66 @@
+{
+  "filter": [],
+  "sort": [],
+  "filterAndSorter": false,
+  "search": [],
+  "download": [],
+  "add": [],
+  "edit": [],
+  "delete": [],
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "ID",
+      "level": 1,
+      "columnLevel1": "id",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 2,
+      "name": "Nhóm bộ lọc sản phẩm",
+      "level": 2,
+      "columnLevel1": "groupFilterFunctionProduct",
+      "columnLevel2": "nameGroupFilterProduct",
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 2,
+      "name": "Tên chức năng sản phẩm",
+      "level": 1,
+      "columnLevel1": "nameFunctionProduct",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 3,
+      "name": "Loại chức năng sản phẩm",
+      "level": 1,
+      "columnLevel1": "typeFunctionProduct",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    }
+  ],
+  "modal": false,
+  "nameTable": "functionProduct"
+}
