@@ -16,58 +16,29 @@ function ProductRightFooter(props) {
       convertToRaw(data.descriptions.getCurrentContent())
     );
     if (data.lineProduct) {
+      console.log(data);
     } else {
       const lineProduct = await api("lineProducts", "POST", {
         id: "",
         nameLineProduct: data.infoSimple.nameProduct,
         groupProduct: data.infoSimple.groupProduct,
       });
+      const listImage = await addImageMain();
       let id = 1000000000;
       const getId = await api("getIdBestNew", "GET", null);
       if (getId.data === null || getId.data === "") {
       } else {
         id = Number(getId.data.id.replace("SP", ""));
       }
-      let listImage = [];
       let listPromise = [];
       let listIdProduct = [];
       let listPromisePrice = [];
-      if (data.infoMain.colors.length > 0) {
-        data.infoMain.colors.forEach(async (color, index) => {
-          let image = await api("images", "POST", {
-            id: "",
-            alt: "",
-            src: data.infoMain[index],
-            type: 0,
-          });
-          listImage.push(image.data);
-        });
-      } else {
-        let image = await api("images", "POST", {
-          id: "",
-          alt: "",
-          src: data.infoMain[-1],
-          type: 0,
-        });
-        listImage.push(image.data);
-      }
-      data.infoMain.lists.forEach(async (list, index) => {
-        id++;
-        listPromise.push(
-          await api("products", "POST", {
-            id: `SP${id}`,
-            describeProduct: null,
-            isShow: 1,
-            slug: list.nameProduct,
-            brandProduct: data.infoSimple.brand,
-            colorProduct: list.color,
-            imageProduct: listImage[index][list.color.id],
-            lineProduct: lineProduct.data,
-            memoryProduct: list.memory,
-            userProduct: null,
-            ramProduct: list.ram,
-          })
+      for (let index = 0; index < data.infoMain.lists.length; index++) {
+        const list = data.infoMain.lists[index];
+        const pos = listImage.findIndex((item) =>
+          item.color && list.color ? item.color.id === list.color.id : false
         );
+        id++;
         listIdProduct.push({
           id: `SP${id}`,
           priceInput: list.priceInput,
@@ -78,7 +49,24 @@ function ProductRightFooter(props) {
           amountOutput: list.amountOutput,
           sale: list.sale,
         });
-      });
+        console.log(list);
+        listPromise.push(
+          await api("products", "POST", {
+            id: `SP${id}`,
+            describeProduct: data.descriptions,
+            isShow: 1,
+            slug: list.nameProduct,
+            brandProduct: data.infoSimple.brand,
+            colorProduct: list.color.id === null ? null : list.color,
+            imageProduct:
+              pos !== -1 ? listImage[pos].image : listImage[0].image,
+            lineProduct: lineProduct.data,
+            memoryProduct: list.rom.id === null ? null : list.rom,
+            userProduct: null,
+            ramProduct: list.ram,
+          })
+        );
+      }
       listIdProduct.forEach(async (item) => {
         listPromisePrice.push(
           await api("productInputs", "POST", {
@@ -127,6 +115,88 @@ function ProductRightFooter(props) {
         .catch((errors) => {
           // react on errors.
         });
+      await addImageOther(lineProduct);
+      await addProductAttribute(lineProduct);
+      await addFunctionProduct(lineProduct);
+    }
+  };
+  const addImageMain = async () => {
+    let listImage = [];
+    if (products.infoMain.colors.length > 0) {
+      for (let index = 0; index < products.infoMain.colors.length; index++) {
+        const color = products.infoMain.colors[index];
+        const formData = new FormData();
+        formData.append("multipartFile", products.infoMain.images[color.id]);
+        formData.append("id", "1000");
+        formData.append("publicId", "E-Commerce/Products/");
+        const result = await api("updateImageSingle", "POST", formData, null);
+        const image = await api("images", "POST", {
+          id: "",
+          alt: "",
+          src: result.url,
+          type: 0,
+        });
+        listImage.push({ color: color, image: image.data });
+      }
+    } else {
+      const formData = new FormData();
+      formData.append("multipartFile", products.infoMain.images[-1]);
+      formData.append("id", "1000");
+      formData.append("publicId", "E-Commerce/Products/");
+      const result = await api("updateImageSingle", "POST", formData, null);
+      let image = await api("images", "POST", {
+        id: "",
+        alt: "",
+        src: result.data.url,
+        type: 0,
+      });
+      listImage.push(listImage.push({ color: null, image: image.data }));
+    }
+    return listImage;
+  };
+  const addImageOther = async (lineProduct) => {
+    for (let index = 0; index < products.images.length; index++) {
+      const image = products.images[index];
+      const formData = new FormData();
+      formData.append("multipartFile", image);
+      formData.append("id", index);
+      formData.append("publicId", "E-Commerce/Products/");
+      const result = await api("updateImageSingle", "POST", formData, null);
+      await api("imageOthers", "POST", {
+        id: 1,
+        lineProductImage: lineProduct,
+        src: result.url,
+        type: 1,
+      });
+    }
+  };
+  const addProductAttribute = async (lineProduct) => {
+    for (const property in products.infoAttribute) {
+      if (products.infoAttribute[property].list.length > 0) {
+        for (
+          let index = 0;
+          index < products.infoAttribute[property].list.length;
+          index++
+        ) {
+          const element = products.infoAttribute[property].list[index];
+          await api("attributeProducts", "POST", {
+            id: -1,
+            lineProductAttribute: lineProduct,
+            attributeProduct: element.data,
+            valueAttributeProduct: element.value,
+          });
+        }
+      }
+    }
+  };
+  const addFunctionProduct = async (lineProduct) => {
+    for (let index = 0; index < products.features.length; index++) {
+      const feature = products.features[index];
+      await api("detailFunctionProducts", "POST", {
+        id: -1,
+        lineProductFunctionProduct: lineProduct,
+        functionProductDetail: feature,
+      });
     }
   };
   //
