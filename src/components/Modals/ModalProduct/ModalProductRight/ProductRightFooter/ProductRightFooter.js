@@ -43,13 +43,12 @@ function ProductRightFooter(props) {
           id: `SP${id}`,
           priceInput: list.priceInput,
           priceOutput: list.priceOutput,
-          dateInput: data.infoSimple.dateInput,
-          dateOutput: data.infoSimple.dateOutput,
-          amountInput: list.amountInput,
-          amountOutput: list.amountOutput,
+          dateInput: `2021-09-03 07:17:27`,
+          dateOutput: `2021-09-23 07:17:27`,
+          amountInput: list.amountInput ? list.amountInput : 0,
+          amountOutput: list.amountOutput ? list.amountOutput : 0,
           sale: list.sale,
         });
-        console.log(list);
         listPromise.push(
           await api("products", "POST", {
             id: `SP${id}`,
@@ -63,7 +62,7 @@ function ProductRightFooter(props) {
             lineProduct: lineProduct.data,
             memoryProduct: list.rom.id === null ? null : list.rom,
             userProduct: null,
-            ramProduct: list.ram,
+            ramProduct: null,
           })
         );
       }
@@ -74,7 +73,7 @@ function ProductRightFooter(props) {
               id: null,
               amount: item.amountInput,
               priceInput: Number(item.priceInput),
-              timeInput: "2021-08-08 18:30:30",
+              timeInput: item.dateInput,
               productInputs: null,
             },
             id: item.id,
@@ -86,7 +85,7 @@ function ProductRightFooter(props) {
               id: null,
               amount: item.amountOutput,
               priceOutput: Number(item.priceOutput),
-              timeOutput: "2021-08-08 18:30:30",
+              timeOutput: item.dateOutput,
               productOutputs: null,
             },
             id: item.id,
@@ -98,8 +97,8 @@ function ProductRightFooter(props) {
               id: null,
               productSale: null,
               percent: item.sale,
-              timeStart: "08-12-2021 15:19:09",
-              timeEnd: "08-09-2021 15:19:09",
+              timeStart: "09-01-2021 15:19:09",
+              timeEnd: "09-09-2021 15:19:09",
             },
             id: item.id,
           })
@@ -115,9 +114,10 @@ function ProductRightFooter(props) {
         .catch((errors) => {
           // react on errors.
         });
-      await addImageOther(lineProduct);
-      await addProductAttribute(lineProduct);
-      await addFunctionProduct(lineProduct);
+      await addImageOther(lineProduct.data);
+      await addProductAttribute(lineProduct.data);
+      await addFunctionProduct(lineProduct.data);
+      dispatch(modalsAction.closeModal());
     }
   };
   const addImageMain = async () => {
@@ -133,7 +133,7 @@ function ProductRightFooter(props) {
         const image = await api("images", "POST", {
           id: "",
           alt: "",
-          src: result.url,
+          src: result.data.url,
           type: 0,
         });
         listImage.push({ color: color, image: image.data });
@@ -165,7 +165,7 @@ function ProductRightFooter(props) {
       await api("imageOthers", "POST", {
         id: 1,
         lineProductImage: lineProduct,
-        src: result.url,
+        src: result.data.url,
         type: 1,
       });
     }
@@ -190,8 +190,8 @@ function ProductRightFooter(props) {
     }
   };
   const addFunctionProduct = async (lineProduct) => {
-    for (let index = 0; index < products.features.length; index++) {
-      const feature = products.features[index];
+    for (let index = 0; index < products.features.choose.length; index++) {
+      const feature = products.features.choose[index];
       await api("detailFunctionProducts", "POST", {
         id: -1,
         lineProductFunctionProduct: lineProduct,

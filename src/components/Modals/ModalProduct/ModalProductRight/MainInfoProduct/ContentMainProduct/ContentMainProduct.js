@@ -104,19 +104,42 @@ function ContentMainProduct(props) {
               }
               disabled={false}
             />
-            <InputField
-              register={register}
-              className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-              showError={errors["id"]}
-              placeHolder={"Số lượng"}
-              name={"amount"}
-              label={"Số lượng"}
-              type="number"
-              onChange={(value) =>
-                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 2))
-              }
-              disabled={false}
-            />
+            <div className="w-full flex">
+              <div className="w-1/2 pr-5">
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["amountInput"]}
+                  placeHolder={"Số lượng bán ra"}
+                  name={"amountInput"}
+                  label={"Số lượng nhập vào"}
+                  type="number"
+                  onChange={(value) =>
+                    dispatch(
+                      productsAction.loadInfoMainPriceAmountSale(value, 2)
+                    )
+                  }
+                  disabled={false}
+                />
+              </div>
+              <div className="w-1/2 ">
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["amountOutput"]}
+                  placeHolder={"Số lượng bán ra"}
+                  name={"amountOutput"}
+                  label={"Số lượng bán ra"}
+                  type="number"
+                  onChange={(value) =>
+                    dispatch(
+                      productsAction.loadInfoMainPriceAmountSale(value, 4)
+                    )
+                  }
+                  disabled={false}
+                />
+              </div>
+            </div>
             <InputField
               register={register}
               className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"

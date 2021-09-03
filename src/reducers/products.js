@@ -32,10 +32,11 @@ const initialState = {
         priceInput: 0,
         priceOutput: 0,
         sale: 0,
-        amount: 0,
+        amountInput: 0,
+        amountOutput: 0,
         color: { id: null },
         rom: { id: null },
-        ram: { id: null },
+        ram: null,
       },
     ],
     index: 1,
@@ -145,7 +146,8 @@ const myReducer = (state = initialState, action) => {
                   priceInput: 0,
                   priceOutput: 0,
                   sale: 0,
-                  amount: 0,
+                  amountInput: 0,
+                  amountOutput: 0,
                   color: color,
                   rom: rom,
                   ram: state.infoMain.ram,
@@ -176,7 +178,8 @@ const myReducer = (state = initialState, action) => {
                 nameProduct: `${
                   state.infoSimple.nameProduct
                 } màu ${color.description.toLowerCase()}`,
-                amount: 0,
+                amountInput: 0,
+                amountOutput: 0,
                 priceInput: 0,
                 priceOutput: 0,
                 sale: 0,
@@ -206,9 +209,8 @@ const myReducer = (state = initialState, action) => {
               {
                 id: uuidv4(),
                 nameProduct: `${state.infoSimple.nameProduct} ${rom.id}`,
-                amount: 0,
-                priceInput: 0,
-                priceOutput: 0,
+                amountInput: 0,
+                amountOutput: 0,
                 sale: 0,
                 color: { id: "" },
                 rom: rom,
@@ -225,7 +227,8 @@ const myReducer = (state = initialState, action) => {
         state.infoMain.lists.push({
           id: "",
           nameProduct: `${state.infoSimple.nameProduct}`,
-          amount: 0,
+          amountInput: 0,
+          amountOutput: 0,
           priceInput: 0,
           priceOutput: 0,
           sale: 0,
@@ -236,17 +239,16 @@ const myReducer = (state = initialState, action) => {
       state.infoMain.index = action.index;
       return { ...state };
     case Types.LOAD_INFO_IMAGE_MAIN_PRODUCT:
-      if (state.infoMain.colors.length > 0) {
+      if (state.infoMain.colors.length > 0)
         state.infoMain.images = {
           ...state.infoMain.images,
           [action.data.id]: action.file,
         };
-      } else
+      else
         state.infoMain.images = {
           ...state.infoMain.images,
           [-1]: action.file,
         };
-      console.log(state.infoMain.images);
       return { ...state };
     case Types.REMOVE_INFO_MAIN_PRODUCT:
       state.infoMain.lists = state.infoMain.lists.filter(
@@ -287,10 +289,15 @@ const myReducer = (state = initialState, action) => {
             action.data;
           break;
         case 2:
-          state.infoMain.lists[state.infoMain.index - 1].amount = action.data;
+          state.infoMain.lists[state.infoMain.index - 1].amountInput =
+            action.data;
           break;
         case 3:
           state.infoMain.lists[state.infoMain.index - 1].sale = action.data;
+          break;
+        case 4:
+          state.infoMain.lists[state.infoMain.index - 1].amountOutput =
+            action.data;
           break;
         default:
           break;
