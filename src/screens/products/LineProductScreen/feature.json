@@ -1,0 +1,21 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": -1,
+      "name": "STT"
+    },
+    {
+      "id": 2,
+      "name": "Nhóm sản phẩm"
+    },
+    {
+      "id": 2,
+      "name": "Tên sản phẩm"
+    }
+  ],
+  "nameTable": "lineProduct"
+}

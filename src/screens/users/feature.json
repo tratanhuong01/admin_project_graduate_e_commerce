@@ -1,0 +1,172 @@
+{
+  "filter": [
+    {
+      "name": "Xác minh",
+      "data": [
+        {
+          "id": 0,
+          "name": "Chưa xác minh",
+          "type": 0
+        },
+        {
+          "id": 1,
+          "name": "Đang xác minh",
+          "type": 1
+        },
+        {
+          "id": 0,
+          "name": "Đã xác minh",
+          "type": 2
+        }
+      ]
+    },
+    {
+      "name": "Trạng thái",
+      "data": [
+        {
+          "id": 0,
+          "name": "Khóa",
+          "type": 0
+        },
+        {
+          "id": 1,
+          "name": "Tạm khóa",
+          "type": 1
+        },
+        {
+          "id": 0,
+          "name": "Bình thường",
+          "type": 2
+        }
+      ]
+    },
+    {
+      "name": "Giới tính",
+      "data": [
+        {
+          "id": 0,
+          "name": "Nam",
+          "type": "Nam"
+        },
+        {
+          "id": 1,
+          "name": "Nữ",
+          "type": "Nữ"
+        },
+        {
+          "id": 0,
+          "name": "Khác",
+          "type": "Khác"
+        }
+      ]
+    },
+    {
+      "name": "Độ tuổi",
+      "data": [
+        {
+          "id": 0,
+          "name": "Từ 18 -> 25 tuổi"
+        },
+        {
+          "id": 1,
+          "name": "Từ 26 -> 35 tuổi"
+        },
+        {
+          "id": 2,
+          "name": "Từ 36 -> 45 tuổi"
+        },
+        {
+          "id": 3,
+          "name": "Từ 36 -> 45 tuổi"
+        },
+        {
+          "id": 4,
+          "name": "Từ 36 -> 45 tuổi"
+        }
+      ]
+    }
+  ],
+  "sorter": [
+    {
+      "name": "Id",
+      "data": [
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "type": "ASC"
+        },
+        {
+          "id": 0,
+          "name": "Giảm dần",
+          "type": "DESC"
+        }
+      ]
+    },
+    {
+      "name": "Độ tuổi",
+      "data": [
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "type": "ASC"
+        },
+        {
+          "id": 0,
+          "name": "Giảm dần",
+          "type": "DESC"
+        }
+      ]
+    }
+  ],
+  "nameTable": "user",
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 1,
+      "name": "STT"
+    },
+    {
+      "id": 2,
+      "name": "Họ"
+    },
+    {
+      "id": 3,
+      "name": "Tên"
+    },
+    {
+      "id": 4,
+      "name": "Email"
+    },
+    {
+      "id": 5,
+      "name": "Số điện thoại"
+    },
+    {
+      "id": 6,
+      "name": "Ngày sinh"
+    },
+    {
+      "id": 7,
+      "name": "Giới tính"
+    },
+    {
+      "id": 8,
+      "name": "Xác minh email"
+    },
+    {
+      "id": 9,
+      "name": "Xác minh số điện thoại"
+    },
+    {
+      "id": 10,
+      "name": "Sử dụng"
+    },
+    {
+      "id": 11,
+      "name": "Đơn hàng"
+    }
+  ]
+}

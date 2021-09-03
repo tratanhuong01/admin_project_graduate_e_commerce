@@ -1,0 +1,17 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "Tên nhóm thuộc tính"
+    }
+  ],
+  "nameTable": "groupAttribute"
+}

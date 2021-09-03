@@ -1,0 +1,22 @@
+{
+  "label": "Quản lí thương hiệu sản phẩm",
+  "nameTable": "brand",
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "Thương hiệu"
+    },
+    {
+      "id": 2,
+      "name": "Hình ảnh"
+    }
+  ]
+}

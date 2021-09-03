@@ -1,0 +1,29 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "Nhóm sản phẩm"
+    },
+    {
+      "id": 2,
+      "name": "Nhóm bộ lọc sản phẩm"
+    },
+    {
+      "id": 3,
+      "name": "Tên chức năng sản phẩm"
+    },
+    {
+      "id": 4,
+      "name": "Loại chức năng sản phẩm"
+    }
+  ],
+  "nameTable": "functionProduct"
+}

@@ -62,7 +62,7 @@ function ProductRightFooter(props) {
             lineProduct: lineProduct.data,
             memoryProduct: list.rom.id === null ? null : list.rom,
             userProduct: null,
-            ramProduct: null,
+            ramProduct: list.ram && list.ram.id ? list.ram : null,
           })
         );
       }

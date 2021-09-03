@@ -1,0 +1,35 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 2,
+      "name": "Mã màu",
+      "level": 1,
+      "columnLevel1": "code",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    },
+    {
+      "id": 3,
+      "name": "Mô tả",
+      "level": 1,
+      "columnLevel1": "description",
+      "columnLevel2": null,
+      "condition": {
+        "main": [],
+        "type": -1
+      }
+    }
+  ],
+  "nameTable": "color"
+}
