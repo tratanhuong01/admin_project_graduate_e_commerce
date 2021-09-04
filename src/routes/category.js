@@ -1,18 +1,20 @@
 import React from "react";
 import Dashboard from "../components/Index/IndexRight/Category/Dashboard/Dashboard";
 import * as Config from "../constants/Config";
-import AttributeScreen from "../screens/attribute/AttributeScreen";
-import BrandScreen from "../screens/brands/BrandScreen";
-import ColorScreen from "../screens/colors/ColorScreen";
-import GroupAttributeScreen from "../screens/groupAttribute/GroupAttributeScreen";
-import MemoryScreen from "../screens/memories/MemoryScreen";
-import CategoryProductScreen from "../screens/products/CategoryProductScreen/CategoryProductScreen";
-import GroupProductScreen from "../screens/products/GroupProductScreen/GroupProductScreen";
-import LineProductScreen from "../screens/products/LineProductScreen/LineProductScreen";
-import ProductListScreen from "../screens/products/ProductListScreen/ProductListScreen";
-import UserScreen from "../screens/users/UserScreen";
-import GroupFilterProductScreen from "../screens/groupFilterProduct/GroupFilterProductScreen";
-import FunctionProductScreen from "../screens/functionProduct/FunctionProductScreen";
+import AttributeScreen from "../screens/AttributeScreen/AttributeScreen";
+import BrandScreen from "../screens/BrandScreen/BrandScreen";
+import ColorScreen from "../screens/ColorScreen/ColorScreen";
+import GroupAttributeScreen from "../screens/GroupAttributeScreen/GroupAttributeScreen";
+import MemoryScreen from "../screens/MemoryScreen/MemoryScreen";
+import CategoryProductScreen from "../screens/Product/CategoryProductScreen/CategoryProductScreen";
+import GroupProductScreen from "../screens/Product/GroupProductScreen/GroupProductScreen";
+import LineProductScreen from "../screens/Product/LineProductScreen/LineProductScreen";
+import ProductListScreen from "../screens/Product/ProductListScreen/ProductListScreen";
+import UserScreen from "../screens/UserScreen/UserScreen";
+import GroupFilterProductScreen from "../screens/GroupFilterProductScreen/GroupFilterProductScreen";
+import FunctionProductScreen from "../screens/FunctionProductScreen/FunctionProductScreen";
+import OrderScreen from "../screens/OrderScreen/OrderScreen";
+import NewsScreen from "../screens/NewsScreen/NewsScreen";
 
 const routes = [
   {
@@ -34,7 +36,13 @@ const routes = [
     once: false,
   },
   {
-    to: `${Config.MEMORY}`,
+    to: `${Config.MEMORY_INSIDE}`,
+    exact: true,
+    main: () => <MemoryScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.MEMORY_OUTSIDE}`,
     exact: true,
     main: () => <MemoryScreen />,
     once: false,
@@ -91,6 +99,18 @@ const routes = [
     to: `${Config.FUNCTION_PRODUCT}`,
     exact: true,
     main: () => <FunctionProductScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.BILL}`,
+    exact: true,
+    main: () => <OrderScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.NEWS_LIST}`,
+    exact: true,
+    main: () => <NewsScreen />,
     once: false,
   },
 ];

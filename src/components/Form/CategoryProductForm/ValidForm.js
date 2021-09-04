@@ -5,5 +5,8 @@ const schema = Yup.object().shape({
   nameCategoryProduct: Yup.string().required(
     "Tên danh mục không được trống !!"
   ),
+  slugCategoryProduct: Yup.string().required(
+    "Đường dẫn danh mục không được trống !!"
+  ),
 });
 export default schema;

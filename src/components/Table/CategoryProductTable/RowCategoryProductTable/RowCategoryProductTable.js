@@ -13,6 +13,7 @@ function RowCategoryProductTable(props) {
         {category.index === 0 ? index + 1 : index + 1 + category.index * 10}
       </td>
       <td className="p-2">{item.nameCategoryProduct}</td>
+      <td className="p-2">{item.slugCategoryProduct}</td>
     </tr>
   );
 }

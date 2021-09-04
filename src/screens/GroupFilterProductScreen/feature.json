@@ -1,0 +1,22 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+
+    {
+      "id": 1,
+      "name": "Tên nhóm sản phẩm"
+    },
+    {
+      "id": 2,
+      "name": "Tên bộ lọc sản phẩm"
+    }
+  ],
+  "nameTable": "groupFilterProduct"
+}

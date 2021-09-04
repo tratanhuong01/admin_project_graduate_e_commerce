@@ -54,17 +54,6 @@ function LineProductForm(props) {
           onChange={() => ""}
           disabled={false}
         />
-        <InputField
-          register={register}
-          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-          showError={errors["nameLineProduct"]}
-          placeHolder={"Nhập tên sản phẩm"}
-          name={"nameLineProduct"}
-          label={"Tên sản phẩm"}
-          onChange={() => ""}
-          type="text"
-          disabled={false}
-        />
         <SelectCustom
           list={list}
           className={
@@ -75,6 +64,17 @@ function LineProductForm(props) {
           label={"Nhóm sản phẩm"}
           table={"nhóm sản phẩm"}
           setData={() => ""}
+        />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["nameLineProduct"]}
+          placeHolder={"Nhập tên sản phẩm"}
+          name={"nameLineProduct"}
+          label={"Tên sản phẩm"}
+          onChange={() => ""}
+          type="text"
+          disabled={false}
         />
         <Button propsGet={dataProps} />
       </form>

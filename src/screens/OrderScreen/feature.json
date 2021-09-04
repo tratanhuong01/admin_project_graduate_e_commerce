@@ -1,0 +1,93 @@
+{
+  "filter": [
+    {
+      "name": "Tình trạng đơn hàng",
+      "data": [
+        {
+          "id": 0,
+          "name": "Đã hủy",
+          "type": 0
+        },
+        {
+          "id": 1,
+          "name": "Đang giao",
+          "type": 1
+        },
+        {
+          "id": 2,
+          "name": "Đang xử lí",
+          "type": 2
+        },
+        {
+          "id": 3,
+          "name": "Đã giao",
+          "type": 3
+        }
+      ]
+    }
+  ],
+  "sorter": [
+    {
+      "name": "Id",
+      "data": [
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "type": "ASC"
+        },
+        {
+          "id": 0,
+          "name": "Giảm dần",
+          "type": "DESC"
+        }
+      ]
+    }
+  ],
+  "condition": null,
+  "nameTable": "bill",
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 1,
+      "name": "STT"
+    },
+    {
+      "id": 2,
+      "name": "Mã đơn hàng"
+    },
+    {
+      "id": 3,
+      "name": "Tính trạng"
+    },
+    {
+      "id": 4,
+      "name": "Địa chỉ"
+    },
+    {
+      "id": 5,
+      "name": "Số điện thoại"
+    },
+    {
+      "id": 6,
+      "name": "Tổng tiền"
+    },
+    {
+      "id": 7,
+      "name": "Thời gian tạo đơn"
+    },
+    {
+      "id": 8,
+      "name": "thời gian hoàn thành"
+    },
+    {
+      "id": 9,
+      "name": "Ghi chú"
+    },
+    {
+      "id": 10
+    }
+  ]
+}

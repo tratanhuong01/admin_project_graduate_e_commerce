@@ -12,7 +12,8 @@ function RowGroupFilterProductTable(props) {
       <td className="p-2">
         {category.index === 0 ? index + 1 : index + 1 + category.index * 10}
       </td>
-      <td className="p-2">{item.nameGroupAttribute}</td>
+      <td className="p-2">{item.groupProductFilter.nameGroupProduct}</td>
+      <td className="p-2">{item.nameGroupFilterProduct}</td>
     </tr>
   );
 }

@@ -1,0 +1,25 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "Tên danh mục sản phẩm"
+    },
+    {
+      "id": 2,
+      "name": "Tên nhóm sản phẩm"
+    },
+    {
+      "id": 3,
+      "name": "Đường dẫn nhóm thuộc tính"
+    }
+  ],
+  "nameTable": "groupProduct"
+}

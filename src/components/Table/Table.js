@@ -7,7 +7,7 @@ function Table(props) {
   //
   return (
     <>
-      <div className="w-full wrapper-content-right overflow-x-auto max-w-full p-3">
+      <div className="w-full scrollbar-css overflow-x-auto overflow-y-hidden max-w-full p-3">
         <table className="w-full bg-white">
           <tbody>{props.children}</tbody>
         </table>

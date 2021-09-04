@@ -14,8 +14,8 @@
     },
     {
       "id": 2,
-      "name": "Tên nhóm sản phẩm"
+      "name": "Đường dẫn danh mục sản phẩm"
     }
   ],
-  "nameTable": "groupProduct"
+  "nameTable": "categoryProduct"
 }

@@ -13,6 +13,7 @@ function UserTable(props) {
         category.list.map((item, index) => {
           return (
             <RowUserTable
+              feature={feature}
               item={item}
               key={index}
               category={category}

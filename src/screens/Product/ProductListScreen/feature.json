@@ -94,33 +94,54 @@
     },
     {
       "id": 7,
-      "name": "Kích thước"
+      "name": "Ram"
     },
     {
       "id": 8,
-      "name": "Giá nhập vào"
+      "name": "Rom"
     },
     {
       "id": 9,
+      "name": "Giá nhập vào"
+    },
+    {
+      "id": 10,
       "name": "Giá bán ra"
     },
     {
-      "id": 12,
+      "id": 11,
       "name": "Khuyến mãi"
     },
     {
-      "id": 13,
+      "id": 12,
       "name": "Nhà cung cấp"
     },
     {
-      "id": 14,
+      "id": 13,
       "name": "Tình trạng"
     },
 
     {
-      "id": 15,
+      "id": 14,
       "name": "Đã bán"
+    },
+    {
+      "id": 15
     }
   ],
+  "condition": {
+    "status": [
+      {
+        "type": 0,
+        "bgColor": "bg-red-500",
+        "name": "Hết hàng"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-green-600",
+        "name": "Còn hàng"
+      }
+    ]
+  },
   "nameTable": "product"
 }

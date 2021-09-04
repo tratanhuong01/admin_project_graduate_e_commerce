@@ -118,6 +118,61 @@
       ]
     }
   ],
+  "condition": {
+    "sex": [
+      {
+        "type": "Nam",
+        "bgColor": "bg-green-600",
+        "name": "Nam"
+      },
+      {
+        "type": "Nữ",
+        "bgColor": "bg-pink-500",
+        "name": "Nữ"
+      },
+      {
+        "type": "Nam",
+        "bgColor": "bg-organce",
+        "name": "Khác"
+      }
+    ],
+    "isVerifyEmail": [
+      {
+        "type": 0,
+        "bgColor": "bg-red-500",
+        "name": "Chưa xác minh"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-green-600",
+        "name": "Đã xác minh"
+      }
+    ],
+    "isVerifyPhone": [
+      {
+        "type": 0,
+        "bgColor": "bg-red-500",
+        "name": "Chưa xác minh"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-green-600",
+        "name": "Đã xác minh"
+      }
+    ],
+    "sold": [
+      {
+        "type": 0,
+        "bgColor": "bg-red-500",
+        "name": "Chưa mua hàng"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-green-600",
+        "name": "Đã mua hàng"
+      }
+    ]
+  },
   "nameTable": "user",
   "table": [
     {
@@ -167,6 +222,10 @@
     {
       "id": 11,
       "name": "Đơn hàng"
+    },
+    {
+      "id": 12,
+      "name": "Thời gian đăng kí"
     }
   ]
 }

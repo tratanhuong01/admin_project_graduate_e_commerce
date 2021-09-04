@@ -11,7 +11,7 @@ function RowTable(props) {
       case 0:
         return <ContentColor condition={condition} typeData={typeData} />;
       case 1:
-        return <RowImage typeData={typeData} />;
+        return <RowImage width="" height="" src={typeData} />;
       default:
         return <ContentText typeData={typeData} />;
     }

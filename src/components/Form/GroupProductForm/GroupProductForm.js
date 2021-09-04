@@ -55,6 +55,17 @@ function GroupProductForm(props) {
           onChange={() => ""}
           disabled={false}
         />
+        <SelectCustom
+          list={list}
+          className={
+            "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
+          }
+          attribute={"nameCategoryProduct"}
+          placeHolder={"Nhập nội dung"}
+          label={"Danh mục sản phẩm"}
+          table={"danh mục sản phẩm"}
+          setData={(item) => setValue("categoryGroupProduct", item)}
+        />
         <InputField
           register={register}
           className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
@@ -76,17 +87,6 @@ function GroupProductForm(props) {
           onChange={() => ""}
           type="text"
           disabled={false}
-        />
-        <SelectCustom
-          list={list}
-          className={
-            "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
-          }
-          attribute={"nameCategoryProduct"}
-          placeHolder={"Nhập nội dung"}
-          label={"Danh mục sản phẩm"}
-          table={"danh mục sản phẩm"}
-          setData={(item) => setValue("categoryGroupProduct", item)}
         />
         <Button propsGet={dataProps} />
       </form>

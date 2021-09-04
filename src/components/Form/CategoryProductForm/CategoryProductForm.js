@@ -54,6 +54,17 @@ function CategoryProductForm(props) {
           type="text"
           disabled={false}
         />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["slugCategoryProduct"]}
+          placeHolder={"Nhập đường dẫn danh mục sản phẩm"}
+          name={"slugCategoryProduct"}
+          label={"Đường dẫn danh mục sản phẩm"}
+          onChange={() => ""}
+          type="text"
+          disabled={false}
+        />
         <Button propsGet={dataProps} />
       </form>
     </div>

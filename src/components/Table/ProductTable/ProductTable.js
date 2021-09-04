@@ -15,6 +15,7 @@ function ProductTable(props) {
             <RowProductTable
               item={item}
               key={index}
+              feature={feature}
               category={category}
               index={index}
             />

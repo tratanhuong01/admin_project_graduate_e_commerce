@@ -149,15 +149,21 @@ function Category(props) {
         },
         {
           id: 1,
-          name: "Bộ nhớ",
+          name: "Bộ nhớ trong",
           type: "memory",
-          to: Config.MEMORY,
+          to: Config.MEMORY_INSIDE,
         },
         {
           id: 2,
           name: "Thương hiệu",
           type: "brand",
           to: Config.BRAND,
+        },
+        {
+          id: 2,
+          name: "Bộ nhớ ngoài",
+          type: "rom",
+          to: Config.MEMORY_OUTSIDE,
         },
       ],
     },
@@ -167,6 +173,7 @@ function Category(props) {
       icon: "bx bx-pen",
       type: "news",
       child: [],
+      to: Config.NEWS_LIST,
     },
     {
       id: 9,

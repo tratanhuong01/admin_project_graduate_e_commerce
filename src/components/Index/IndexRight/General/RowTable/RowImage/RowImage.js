@@ -3,12 +3,18 @@ import Zoom from "react-medium-image-zoom";
 
 function RowImage(props) {
   //
-  const { typeData } = props;
+  const { src, alt, width, height } = props;
   //
   return (
-    <Zoom>
-      <img src={typeData} alt="" className="w-28 h-32 object-contain" />
-    </Zoom>
+    <div className={`${width} ${height}`}>
+      <Zoom>
+        <img
+          src={src}
+          alt={alt}
+          className={`${width} ${height} object-contain mx-auto`}
+        />
+      </Zoom>
+    </div>
   );
 }
 

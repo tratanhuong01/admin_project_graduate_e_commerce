@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
-import RowGroupAttributeTable from "../GroupAttributeTable/RowGroupAttributeTable/RowGroupAttributeTable";
+import RowGroupFilterProductTable from "./RowGroupFilterProductTable/RowGroupFilterProductTable";
 
 function GroupFilterProductTable(props) {
   //
@@ -12,7 +12,7 @@ function GroupFilterProductTable(props) {
       {category.list &&
         category.list.map((item, index) => {
           return (
-            <RowGroupAttributeTable
+            <RowGroupFilterProductTable
               item={item}
               key={index}
               category={category}
