@@ -62,7 +62,7 @@ function FunctionProductForm(props) {
           label={"ID"}
           type="text"
           onChange={() => ""}
-          disabled={false}
+          disabled={true}
         />
         <SelectCustom
           list={groupFilterProduct}

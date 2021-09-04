@@ -24,13 +24,12 @@ function GroupFilterProductForm(props) {
   // const dispatch = useDispatch();
   const onSubmit = async (data) => {
     await api("groupFilterProducts", "POST", data);
-    setValue("id", "");
     setValue("nameGroupFilterProduct", "");
   };
   const [groupProducts, setGroupProducts] = useState([]);
   useEffect(() => {
     //
-    setValue("id", dataProps ? dataProps.id : "");
+    setValue("id", dataProps ? dataProps.id : null);
     setValue(
       "nameGroupFilterProduct",
       dataProps ? dataProps.nameGroupFilterProduct : ""
@@ -65,7 +64,7 @@ function GroupFilterProductForm(props) {
           label={"ID"}
           type="text"
           onChange={() => ""}
-          disabled={false}
+          disabled={true}
         />
         <SelectCustom
           list={groupProducts}
