@@ -18,8 +18,8 @@ function ColorForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const [color, setColor] = useState("");
   const onSubmit = (data) => {};
+  const [color, setColor] = useState("");
   const [show, setShow] = useState(false);
   useEffect(() => {
     //

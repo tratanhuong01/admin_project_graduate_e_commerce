@@ -14,6 +14,7 @@ const initialState = {
     lineProduct: null,
     categoryProduct: null,
     groupProduct: null,
+    typeAdd: true,
     nameProduct: null,
     brand: null,
     dateInput: null,
@@ -42,11 +43,7 @@ const initialState = {
     index: 1,
     type: false,
   },
-  features: {
-    list: [],
-    listCurrent: [],
-    choose: [],
-  },
+  features: null,
   images: [],
   descriptions: null,
   loading: true,
@@ -104,6 +101,9 @@ const myReducer = (state = initialState, action) => {
           break;
         case 5:
           state.infoSimple.dateOutput = action.data;
+          break;
+        case 6:
+          state.infoSimple.lineProduct = action.data;
           break;
         default:
           break;
@@ -320,6 +320,9 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.LOAD_DESCRIPTION_PRODUCT:
       state.descriptions = action.data;
+      return { ...state };
+    case Types.LOAD_SWITCH_ADD_PRODUCT:
+      state.infoSimple.typeAdd = action.data;
       return { ...state };
     default:
       return state;

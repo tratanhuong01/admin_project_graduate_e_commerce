@@ -5,8 +5,8 @@ import AttributesProductRight from "./AttributesProductRight/AttributesProductRi
 
 function AttributesProduct(props) {
   //
-  const [current, setCurrent] = useState(0);
   const products = useSelector((state) => state.products);
+  const [current, setCurrent] = useState(0);
   //
   return (
     <div

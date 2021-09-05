@@ -3,11 +3,19 @@ import { useDispatch } from "react-redux";
 import api from "../../../../../../../Utils/api";
 import InputField from "../../../../../../InputField/InputField";
 import * as productsAction from "../../../../../../../actions/products/index";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 function ContentByGroupAttribute(props) {
   //
+  const { data, infoAttribute } = props;
+  const { handleSubmit, setValue, register } = useForm({
+    mode: "onChange",
+    shouldUnregister: false,
+  });
+  const onSubmit = (data) => {};
   const [attributes, setAttributes] = useState([]);
   const dispatch = useDispatch();
-  const { data, infoAttribute } = props;
   useEffect(() => {
     //
     let unmounted = false;
@@ -22,7 +30,12 @@ function ContentByGroupAttribute(props) {
     };
     //
   }, [data]);
-  useEffect(() => {}, [infoAttribute]);
+  useEffect(() => {
+    if (infoAttribute)
+      infoAttribute[data.id].list.forEach((item) => {
+        setValue(`${item.data.id}`, item.value);
+      });
+  }, [infoAttribute]);
   //
   return infoAttribute && data ? (
     <div className="w-full">
@@ -71,16 +84,16 @@ function ContentByGroupAttribute(props) {
           );
         })}
       </div>
-      <div className="w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         {infoAttribute[data.id].list.map((item, index) => {
           return (
             <InputField
               key={index}
-              register={() => ""}
+              register={register}
               className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
               showError={null}
               placeHolder={`Nhập ${item.data.nameAttribute}`}
-              name={"id"}
+              name={`${item.data.id}`}
               label={item.data.nameAttribute}
               type="text"
               onChange={(value) => {
@@ -95,7 +108,7 @@ function ContentByGroupAttribute(props) {
             />
           );
         })}
-      </div>
+      </form>
     </div>
   ) : (
     ""

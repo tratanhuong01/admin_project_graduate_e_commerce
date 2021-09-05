@@ -143,3 +143,10 @@ export const loadDescriptionProduct = (data) => {
     data,
   };
 };
+
+export const loadSwitchAddProduct = (data) => {
+  return {
+    type: Types.LOAD_SWITCH_ADD_PRODUCT,
+    data,
+  };
+};

@@ -75,7 +75,7 @@ function ColorMemoryRam(props) {
               className={
                 "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mb-2 relative"
               }
-              attribute={"id"}
+              attribute={"nameRam"}
               placeHolder={"Nhập ram"}
               label={""}
               table={"ram"}
@@ -90,7 +90,7 @@ function ColorMemoryRam(props) {
               className={
                 "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mb-2 relative"
               }
-              attribute={"id"}
+              attribute={"nameMemory"}
               placeHolder={"Nhập rom"}
               label={""}
               table={"rom"}

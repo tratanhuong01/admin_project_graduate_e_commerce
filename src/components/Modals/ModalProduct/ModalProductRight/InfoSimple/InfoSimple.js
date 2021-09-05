@@ -21,6 +21,7 @@ function InfoSimple(props) {
   });
   const [categoryProduct, setCategoryProduct] = useState([]);
   const [groupProduct, setGroupProduct] = useState([]);
+  const [lineProduct, setLineProduct] = useState([]);
   const [brand, setBrand] = useState([]);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -109,7 +110,22 @@ function InfoSimple(props) {
               : null
           }
           setData={(item) => {
-            dispatch(productsAction.loadSimpleInfoProductData(item, 1));
+            setLineProduct([]);
+            let unmounted = false;
+            async function fetch() {
+              const result = await api(
+                `getLineProductsByGroup/${item.id}`,
+                "GET",
+                null
+              );
+              if (unmounted) return;
+              dispatch(productsAction.loadSimpleInfoProductData(item, 1));
+              setLineProduct(result.data);
+            }
+            fetch();
+            return () => {
+              unmounted = true;
+            };
           }}
           disabled={
             groupProduct.length === 0 && !products.infoSimple.groupProduct
@@ -117,19 +133,71 @@ function InfoSimple(props) {
               : false
           }
         />
-        <InputField
-          register={register}
-          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-          showError={errors["nameLineProduct"]}
-          placeHolder={"Nhập tên sản phẩm"}
-          name={"nameLineProduct"}
-          label={"Tên sản phẩm"}
-          type="text"
-          onChange={(item) =>
-            dispatch(productsAction.loadSimpleInfoProductData(item, 2))
-          }
-          disabled={false}
-        />
+        <div className="w-full my-2 flex p-3">
+          <div className="w-1/2 flex items-center">
+            <input
+              type="radio"
+              name="check"
+              onChange={(e) =>
+                dispatch(productsAction.loadSwitchAddProduct(e.target.checked))
+              }
+              className="transform scale-150 mr-3"
+              checked={products.infoSimple.typeAdd ? true : false}
+            />
+            Thêm sản phẩm mới
+          </div>
+          <div className="w-1/2 flex items-center">
+            <input
+              onChange={(e) =>
+                dispatch(productsAction.loadSwitchAddProduct(!e.target.checked))
+              }
+              type="radio"
+              name="check"
+              className="transform scale-150 mr-3"
+              checked={products.infoSimple.typeAdd ? false : true}
+            />
+            Sản phẩm có sẳn
+          </div>
+        </div>
+        {!products.infoSimple.typeAdd ? (
+          <SelectCustom
+            list={[]}
+            className={
+              "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
+            }
+            attribute={"nameLineProduct"}
+            dataProps={
+              products.infoSimple.lineProduct
+                ? products.infoSimple.lineProduct.nameLineProduct
+                : null
+            }
+            placeHolder={"Chọn nội dung"}
+            label={"Dòng sản phẩm"}
+            table={"Dòng sản phẩm"}
+            setData={(item) =>
+              dispatch(productsAction.loadSimpleInfoProductData(item, 6))
+            }
+            disabled={
+              lineProduct.length === 0 && !products.infoSimple.lineProduct
+                ? true
+                : false
+            }
+          />
+        ) : (
+          <InputField
+            register={register}
+            className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+            showError={errors["nameLineProduct"]}
+            placeHolder={"Nhập tên sản phẩm"}
+            name={"nameLineProduct"}
+            label={"Tên sản phẩm"}
+            type="text"
+            onChange={(item) =>
+              dispatch(productsAction.loadSimpleInfoProductData(item, 2))
+            }
+            disabled={false}
+          />
+        )}
         <SelectCustom
           list={brand}
           className={

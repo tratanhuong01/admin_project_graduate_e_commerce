@@ -7,7 +7,7 @@ function AttributesProductLeft(props) {
   //
   const [groups, setGroups] = useState([]);
   const dispatch = useDispatch();
-  const { current, setCurrent } = props;
+  const { current, setCurrent, infoAttribute } = props;
   useEffect(() => {
     //
     let unmounted = false;
@@ -15,12 +15,14 @@ function AttributesProductLeft(props) {
       const result = await api("groupAttributesAll", "GET", null);
       if (unmounted) return;
       setGroups(result.data);
-      setCurrent({ index: 0, data: result.data[0] });
-      const data = Object();
-      result.data.forEach((group) => {
-        data[group.id] = { id: group.id, list: [] };
-      });
-      dispatch(productsAction.loadInfoAttributeData(data));
+      if (!infoAttribute) {
+        setCurrent({ index: 0, data: result.data[0] });
+        const data = Object();
+        result.data.forEach((group) => {
+          data[group.id] = { id: group.id, list: [] };
+        });
+        dispatch(productsAction.loadInfoAttributeData(data));
+      }
     }
     fetch();
     return () => {

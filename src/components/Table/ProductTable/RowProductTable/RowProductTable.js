@@ -26,10 +26,10 @@ function RowProductTable(props) {
         ></div>
       </td>
       <td className="p-2">{item.brand ? item.brand.nameBrand : "< Trống >"}</td>
+      <td className="p-2">{item.ram ? item.ram.nameRam : "< Trống >"}</td>
       <td className="p-2">
         {item.memory ? item.memory.nameMemory : "< Trống >"}
       </td>
-      <td className="p-2">{item.rom ? item.rom.nameRom : "< Trống >"}</td>
       <td className="p-2 font-bold">{`${new Intl.NumberFormat().format(
         item.priceInput
       )} đ`}</td>

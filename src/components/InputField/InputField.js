@@ -13,7 +13,8 @@ function InputField(props) {
     onChange,
     disabled,
   } = props;
-  const Field = register(name);
+
+  const Field = register(name, { required: true });
   //
   return (
     <>

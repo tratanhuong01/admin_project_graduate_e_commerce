@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InputField from "../../InputField/InputField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import SelectCustom from "../../SelectCustom/SelectCustom";
+import api from "../../../Utils/api";
 function AttributeForm(props) {
   //
   const { dataProps } = props;
@@ -18,11 +19,25 @@ function AttributeForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
+  const [groupAttributes, setGroupAttributes] = useState([]);
+  const onSubmit = async (data) => {
+    await api("attributes", "POST", data);
+  };
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");
     setValue("groupAttribute", dataProps ? dataProps.groupAttribute : "");
+    setValue("nameAttribute", dataProps ? dataProps.nameAttribute : "");
+    let unmounted = false;
+    async function fetch() {
+      const result = await api("groupAttributesAll", "GET", null);
+      if (unmounted) return;
+      setGroupAttributes(result.data);
+    }
+    fetch();
+    return () => {
+      unmounted = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   //
@@ -39,10 +54,10 @@ function AttributeForm(props) {
           label={"ID"}
           type="text"
           onChange={() => ""}
-          disabled={false}
+          disabled={true}
         />
         <SelectCustom
-          list={[]}
+          list={groupAttributes}
           className={
             "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
           }
@@ -50,8 +65,10 @@ function AttributeForm(props) {
           placeHolder={"Nhập nhóm thuộc tính"}
           label={"Nhóm thuộc tính"}
           table={"nhóm thuộc tính"}
-          dataProps={null}
-          setData={(item) => {}}
+          dataProps={dataProps}
+          setData={(item) => {
+            setValue("groupAttribute", item);
+          }}
         />
         <InputField
           register={register}
