@@ -10,7 +10,7 @@ function DateInfoSimple(props) {
   //
   return (
     <div className="w-full flex">
-      <div className="w-1/2 mr-3">
+      <div className="w-1/2 pr-5">
         <InputField
           register={register}
           className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"

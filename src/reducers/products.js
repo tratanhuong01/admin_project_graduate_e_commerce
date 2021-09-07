@@ -140,9 +140,9 @@ const myReducer = (state = initialState, action) => {
                 ...state.infoMain.lists,
                 {
                   id: uuidv4(),
-                  nameProduct: `${state.infoSimple.nameProduct}  ${
-                    rom.id
-                  } màu ${color.description.toLowerCase()}`,
+                  nameProduct: `${state.infoSimple.nameProduct} ${
+                    state.infoMain.ram ? state.infoMain.ram.nameRam : ""
+                  } ${rom.nameMemory} màu ${color.description.toLowerCase()}`,
                   priceInput: 0,
                   priceOutput: 0,
                   sale: 0,
@@ -156,7 +156,9 @@ const myReducer = (state = initialState, action) => {
             else {
               state.infoMain.lists[index].nameProduct = `${
                 state.infoSimple.nameProduct
-              }  ${rom.id} màu ${color.description.toLowerCase()}`;
+              } ${state.infoMain.ram ? state.infoMain.ram.nameRam : ""} ${
+                rom.nameMemory
+              } màu ${color.description.toLowerCase()}`;
               state.infoMain.lists[index].rom = rom;
               state.infoMain.lists[index].color = color;
             }
@@ -208,7 +210,9 @@ const myReducer = (state = initialState, action) => {
               ...state.infoMain.lists,
               {
                 id: uuidv4(),
-                nameProduct: `${state.infoSimple.nameProduct} ${rom.id}`,
+                nameProduct: `${state.infoSimple.nameProduct} ${
+                  state.infoMain.ram ? state.infoMain.ram.nameRam : ""
+                } ${rom.nameMemory}`,
                 amountInput: 0,
                 amountOutput: 0,
                 sale: 0,
@@ -218,9 +222,11 @@ const myReducer = (state = initialState, action) => {
               },
             ];
           else {
-            state.infoMain.lists[
-              index
-            ].nameProduct = `${state.infoSimple.nameProduct} ${rom.id} `;
+            state.infoMain.lists[index].nameProduct = `${
+              state.infoSimple.nameProduct
+            } ${state.infoMain.ram ? state.infoMain.ram.nameRam : ""} ${
+              rom.nameMemory
+            }`;
           }
         });
       } else {

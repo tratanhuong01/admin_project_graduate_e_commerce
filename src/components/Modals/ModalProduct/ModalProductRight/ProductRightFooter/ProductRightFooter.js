@@ -6,10 +6,17 @@ import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import axios from "axios";
 import api from "../../../../../Utils/api";
+import * as StringUtils from "../../../../../Utils/StringUtils";
 function ProductRightFooter(props) {
   //
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+  const convertStringToSlug = (string) => {
+    return string
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]+/g, "");
+  };
   const addProduct = async () => {
     let data = products;
     data.descriptions = draftToHtml(
@@ -54,7 +61,9 @@ function ProductRightFooter(props) {
             id: `SP${id}`,
             describeProduct: data.descriptions,
             isShow: 1,
-            slug: list.nameProduct,
+            slug: `${convertStringToSlug(
+              StringUtils.removeVietnameseTones(`${list.nameProduct}`)
+            )}`,
             brandProduct: data.infoSimple.brand,
             colorProduct: list.color.id === null ? null : list.color,
             imageProduct:

@@ -20,10 +20,14 @@ function RowProductTable(props) {
       <td className="p-2">{item.nameGroupProduct}</td>
       <td className="p-2">{item.nameLineProduct}</td>
       <td className="p-2 text-center">
-        <div
-          className="w-10 h-10 rounded-full mx-auto"
-          style={{ backgroundColor: item.color.code }}
-        ></div>
+        {item.color ? (
+          <div
+            className="w-10 h-10 rounded-full mx-auto"
+            style={{ backgroundColor: item.color.code }}
+          ></div>
+        ) : (
+          "< Trống >"
+        )}
       </td>
       <td className="p-2">{item.brand ? item.brand.nameBrand : "< Trống >"}</td>
       <td className="p-2">{item.ram ? item.ram.nameRam : "< Trống >"}</td>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputField from "../../../../../InputField/InputField";
 import * as productsAction from "../../../../../../actions/products/index";
+import DateInfoSimple from "../../InfoSimple/DateInfoSimple/DateInfoSimple";
 function ContentMainProduct(props) {
   //
   const { register, errors } = props;
@@ -78,32 +79,43 @@ function ContentMainProduct(props) {
             )}
           </div>
           <div className="w-1/2">
-            <InputField
-              register={register}
-              className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-              showError={errors["id"]}
-              placeHolder={"Nhập giá nhập vào"}
-              name={"priceInput"}
-              label={"Giá nhập vào"}
-              type="text"
-              onChange={(value) =>
-                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 0))
-              }
-              disabled={false}
-            />
-            <InputField
-              register={register}
-              className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-              showError={errors["id"]}
-              placeHolder={"Nhập giá bán ra"}
-              name={"priceOutput"}
-              label={"Giá nhập ra"}
-              type="text"
-              onChange={(value) =>
-                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 1))
-              }
-              disabled={false}
-            />
+            <div className="w-full flex">
+              <div className="w-1/2 pr-5">
+                {" "}
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["id"]}
+                  placeHolder={"Nhập giá nhập vào"}
+                  name={"priceInput"}
+                  label={"Giá nhập vào"}
+                  type="text"
+                  onChange={(value) =>
+                    dispatch(
+                      productsAction.loadInfoMainPriceAmountSale(value, 0)
+                    )
+                  }
+                  disabled={false}
+                />
+              </div>
+              <div className="w-1/2">
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["id"]}
+                  placeHolder={"Nhập giá bán ra"}
+                  name={"priceOutput"}
+                  label={"Giá nhập ra"}
+                  type="text"
+                  onChange={(value) =>
+                    dispatch(
+                      productsAction.loadInfoMainPriceAmountSale(value, 1)
+                    )
+                  }
+                  disabled={false}
+                />
+              </div>
+            </div>
             <div className="w-full flex">
               <div className="w-1/2 pr-5">
                 <InputField
@@ -140,6 +152,7 @@ function ContentMainProduct(props) {
                 />
               </div>
             </div>
+            <DateInfoSimple register={register} errors={errors} />
             <InputField
               register={register}
               className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"

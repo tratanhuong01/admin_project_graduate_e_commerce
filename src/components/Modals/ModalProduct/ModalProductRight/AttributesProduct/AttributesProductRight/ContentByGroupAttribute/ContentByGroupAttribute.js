@@ -4,7 +4,6 @@ import api from "../../../../../../../Utils/api";
 import InputField from "../../../../../../InputField/InputField";
 import * as productsAction from "../../../../../../../actions/products/index";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 function ContentByGroupAttribute(props) {
   //
@@ -31,10 +30,12 @@ function ContentByGroupAttribute(props) {
     //
   }, [data]);
   useEffect(() => {
+    //
     if (infoAttribute)
       infoAttribute[data.id].list.forEach((item) => {
         setValue(`${item.data.id}`, item.value);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [infoAttribute]);
   //
   return infoAttribute && data ? (
