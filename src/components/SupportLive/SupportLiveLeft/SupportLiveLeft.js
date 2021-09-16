@@ -2,6 +2,9 @@ import React from "react";
 import ItemUserChatLeft from "./ItemUserChatLeft/ItemUserChatLeft";
 
 function SupportLiveLeft(props) {
+  //
+  const { messages, setIndex, index } = props;
+  //
   return (
     <div className="w-1/3 h-full">
       <div className="w-full mb-4 relative">
@@ -17,21 +20,17 @@ function SupportLiveLeft(props) {
         className=" overflow-y-auto scrollbar-css shadow-lg border-2 border-solid border-gray-100"
         style={{ height: "calc(100% - 64px)", maxHeight: "calc(100% - 64px)" }}
       >
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
-        <ItemUserChatLeft />
+        {messages.map((message, pos) => {
+          return (
+            <ItemUserChatLeft
+              message={message}
+              key={pos}
+              setIndex={setIndex}
+              index={pos}
+              indexCurrent={index}
+            />
+          );
+        })}
       </div>
     </div>
   );
