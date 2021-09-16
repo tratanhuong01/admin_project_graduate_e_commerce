@@ -36,7 +36,7 @@ function ItemCategory(props) {
         className={`w-full border-solid cursor-pointer flex pl-5 h-12 my-1 items-center 
         rounded-lg relative  font-semibold ${
           item.to === location.pathname
-            ? "border-l-4 border-gray-200 bg-gray-200 text-gray-800"
+            ? "border-l-4 border-gray-200 bg-gray-200 text-blue-600"
             : "border-white text-gray-800 hover:bg-gray-200"
         }`}
       >

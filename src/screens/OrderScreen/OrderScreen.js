@@ -11,7 +11,10 @@ import feature from "./feature";
 
 function OrderScreen(props) {
   //
-  const category = useHaveModal(feature.nameTable);
+  const category = useHaveModal(feature.nameTable, {
+    limit: `/admin/?offset=0&limit=10`,
+    full: `/admin/`,
+  });
   //
   return (
     <>

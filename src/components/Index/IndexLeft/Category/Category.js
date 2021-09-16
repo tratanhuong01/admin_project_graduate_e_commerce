@@ -182,6 +182,14 @@ function Category(props) {
       type: "contact",
       child: [],
     },
+    {
+      id: 10,
+      name: "Hổ trợ trực tuyến",
+      icon: "bx bxs-chat",
+      type: "support",
+      child: [],
+      to: Config.SUPPORT_LIVE,
+    },
   ];
   const { match } = props;
   const [categoryCurrent, setCategoryCurrent] = useState(0);

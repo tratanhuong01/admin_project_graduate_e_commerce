@@ -17,6 +17,7 @@ function OrderTable(props) {
               key={index}
               category={category}
               index={index}
+              feature={feature}
             />
           );
         })}

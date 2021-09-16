@@ -2,6 +2,7 @@ import React from "react";
 import Dashboard from "../components/Index/IndexRight/Category/Dashboard/Dashboard";
 import * as Types from "../constants/ActionTypes";
 import Category from "../components/Index/IndexRight/Category/Category";
+import SupportLiveScreen from "../screens/SupportLiveScreen/SupportLiveScreen";
 
 const initialState = {
   data: <Dashboard />,
@@ -24,8 +25,17 @@ const myReducer = (state = initialState, action) => {
       state.data = null;
       return { ...state };
     case Types.HANDLE_CATEGORY:
-      if (action.data.type === "dashboard") state.data = <Dashboard />;
-      else state.data = <Category data={action.data} />;
+      switch (action.data.type) {
+        case "dashboard":
+          state.data = <Dashboard />;
+          break;
+        case "support":
+          state.data = <SupportLiveScreen />;
+          break;
+        default:
+          state.data = <Category data={action.data} />;
+          break;
+      }
       state.loading = true;
       return { ...state };
     case Types.LOAD_LIST_CATEGORY:

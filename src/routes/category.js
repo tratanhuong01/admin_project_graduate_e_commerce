@@ -15,6 +15,7 @@ import GroupFilterProductScreen from "../screens/GroupFilterProductScreen/GroupF
 import FunctionProductScreen from "../screens/FunctionProductScreen/FunctionProductScreen";
 import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import NewsScreen from "../screens/NewsScreen/NewsScreen";
+import SupportLiveScreen from "../screens/SupportLiveScreen/SupportLiveScreen";
 
 const routes = [
   {
@@ -111,6 +112,12 @@ const routes = [
     to: `${Config.NEWS_LIST}`,
     exact: true,
     main: () => <NewsScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.SUPPORT_LIVE}`,
+    exact: true,
+    main: () => <SupportLiveScreen />,
     once: false,
   },
 ];

@@ -6,20 +6,25 @@
         {
           "id": 0,
           "name": "Đã hủy",
-          "type": 0
+          "type": -1
         },
         {
           "id": 1,
-          "name": "Đang giao",
-          "type": 1
+          "name": "Chưa xử lí",
+          "type": 0
         },
         {
           "id": 2,
-          "name": "Đang xử lí",
-          "type": 2
+          "name": "Chờ lấy hàng",
+          "type": 1
         },
         {
           "id": 3,
+          "name": "Đang giao",
+          "type": 2
+        },
+        {
+          "id": 4,
           "name": "Đã giao",
           "type": 3
         }
@@ -43,7 +48,40 @@
       ]
     }
   ],
-  "condition": null,
+  "condition": {
+    "status": [
+      {
+        "id": 0,
+        "name": "Đã hủy",
+        "bgColor": "bg-gray-600",
+        "type": -1
+      },
+      {
+        "id": 1,
+        "name": "Chưa xử lí",
+        "bgColor": "bg-red-600",
+        "type": 0
+      },
+      {
+        "id": 2,
+        "name": "Chờ lấy hàng",
+        "bgColor": "bg-yellow-600",
+        "type": 1
+      },
+      {
+        "id": 3,
+        "name": "Đang giao",
+        "bgColor": "bg-yellow-600",
+        "type": 2
+      },
+      {
+        "id": 4,
+        "bgColor": "bg-green-600",
+        "name": "Đã giao",
+        "type": 3
+      }
+    ]
+  },
   "nameTable": "bill",
   "table": [
     {
@@ -80,7 +118,15 @@
     },
     {
       "id": 8,
-      "name": "thời gian hoàn thành"
+      "name": "Thời gian hoàn thành"
+    },
+    {
+      "id": 9,
+      "name": "Phí chuyển tiền"
+    },
+    {
+      "id": 9,
+      "name": "Giảm giá"
     },
     {
       "id": 9,

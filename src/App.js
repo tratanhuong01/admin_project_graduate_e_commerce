@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import main from "./routes/main";
-
+import "./index.css";
 function App(props) {
   const showAllLinks = (routes) => {
     let result = null;

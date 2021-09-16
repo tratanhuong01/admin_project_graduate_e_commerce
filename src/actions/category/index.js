@@ -16,10 +16,18 @@ export const loadListCategory = (list, length) => {
   };
 };
 
-export const loadListCategoryRequest = (data) => {
+export const loadListCategoryRequest = (data, params) => {
   return async (dispatch) => {
-    const result1 = await api(`${data}`, "GET", null);
-    const result2 = await api(`${data}All`, "GET", null);
+    const result1 = await api(
+      `${data}${params ? params.limit : ""}`,
+      "GET",
+      null
+    );
+    const result2 = await api(
+      `${data}All${params ? params.full : ""}`,
+      "GET",
+      null
+    );
     dispatch(loadListCategory(result1.data, result2.data.length));
   };
 };

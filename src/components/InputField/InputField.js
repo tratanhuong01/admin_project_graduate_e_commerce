@@ -31,8 +31,8 @@ function InputField(props) {
             className +
             ` dark:bg-dark-third dark:text-white ${
               showError
-                ? " text-red-500 border-red-500"
-                : " border-gray-300 dark:border-dark-third "
+                ? " text-red-500 border-red-500 "
+                : " border-gray-300 dark:border-dark-third focus:border-blue-500"
             }`
           }
           onChange={(e) => {
