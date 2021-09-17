@@ -23,7 +23,9 @@ function ItemUserChatLeft(props) {
         <div className="flex flex-col pl-5">
           <p className="font-semibold mb-1">{message.groupChat.fullName}</p>
           <p className="text-blue-500 font-semibold text-sm">
-            {message.messagesList[message.messagesList.length - 1].content}
+            {message.messagesList[
+              message.messagesList.length - 1
+            ].content.substring(0, 40) + "..."}
           </p>
         </div>
         <span className="text-sm text-gray-600 absolute top-2 font-semibold font-sans right-2">

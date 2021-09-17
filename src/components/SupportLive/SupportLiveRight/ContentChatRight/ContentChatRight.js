@@ -1,19 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect } from "react";
 import ItemChat from "./ItemChat/ItemChat";
 
-function ContentChatRight(props) {
+function ContentChatRight(props, refData) {
   //
-  const { message } = props;
-  const ref = useRef(null);
+  const { message, scrollBottomContent } = props;
   useEffect(() => {
-    if (ref.current) {
-      ref.current.scrollTop = ref.current.scrollHeight;
-    }
-  }, [ref]);
+    scrollBottomContent();
+  }, [scrollBottomContent]);
   //
   return (
     <div
-      ref={ref}
+      ref={refData}
       className="w-full flex-1 flex items-start py-5 flex-col overflow-y-auto 
     scrollbar-css"
     >
@@ -26,4 +23,4 @@ function ContentChatRight(props) {
   );
 }
 
-export default ContentChatRight;
+export default forwardRef(ContentChatRight);

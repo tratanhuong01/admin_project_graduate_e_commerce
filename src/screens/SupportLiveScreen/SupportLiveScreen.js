@@ -7,11 +7,12 @@ function SupportLiveScreen(props) {
   //
   const [messages, setMessagesData] = useState([]);
   const [index, setIndex] = useState(0);
+  const [send, setSend] = useState(false);
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(`messages/${"3000000000"}`, "GET", {
+      const result = await api(`messages/${"3000000001"}`, "GET", {
         "Access-Control-Allow-Origin": "*",
       });
       if (unmounted) return;
@@ -22,7 +23,7 @@ function SupportLiveScreen(props) {
       unmounted = true;
     };
     //
-  }, []);
+  }, [send]);
   //
   return (
     messages.length > 0 && (
@@ -35,7 +36,11 @@ function SupportLiveScreen(props) {
           setIndex={setIndex}
           index={index}
         />
-        <SupportLiveRight message={messages[index]} />
+        <SupportLiveRight
+          message={messages[index]}
+          send={send}
+          setSend={setSend}
+        />
       </div>
     )
   );
