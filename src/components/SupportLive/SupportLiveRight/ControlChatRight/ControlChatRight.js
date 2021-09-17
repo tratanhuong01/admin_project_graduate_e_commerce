@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import api from "../../../../Utils/api";
 
 function ControlChatRight(props) {
   //
   const { send, setSend, message, scrollBottomContent } = props;
   const [content, setContent] = useState("");
+  const socket = useSelector((state) => state.socket);
   const sendMessage = async () => {
     await api(`messages`, "POST", {
       id: null,
@@ -36,6 +38,7 @@ function ControlChatRight(props) {
     setSend(!send);
     setContent("");
     scrollBottomContent();
+    socket.emit("chatMessage", message.groupChat.id);
   };
   //
   return (

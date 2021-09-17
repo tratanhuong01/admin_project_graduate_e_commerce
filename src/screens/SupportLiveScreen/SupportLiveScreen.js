@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import SupportLiveLeft from "../../components/SupportLive/SupportLiveLeft/SupportLiveLeft";
 import SupportLiveRight from "../../components/SupportLive/SupportLiveRight/SupportLiveRight";
 import api from "../../Utils/api";
@@ -8,11 +9,12 @@ function SupportLiveScreen(props) {
   const [messages, setMessagesData] = useState([]);
   const [index, setIndex] = useState(0);
   const [send, setSend] = useState(false);
+  const socket = useSelector((state) => state.socket);
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(`messages/${"3000000001"}`, "GET", {
+      const result = await api(`messages/${"3000000000"}`, "GET", {
         "Access-Control-Allow-Origin": "*",
       });
       if (unmounted) return;
@@ -24,6 +26,26 @@ function SupportLiveScreen(props) {
     };
     //
   }, [send]);
+  useEffect(() => {
+    //
+    let unmounted = false;
+    socket.on(`receiveMessage.${"3000000000"}`, (data) => {
+      console.log("revice");
+      async function fetch() {
+        const result = await api(`messages/${"3000000000"}`, "GET", {
+          "Access-Control-Allow-Origin": "*",
+        });
+        if (unmounted) return;
+        setMessagesData(result.data);
+      }
+      fetch();
+    });
+    return () => {
+      socket.disconnect();
+      unmounted = true;
+    };
+    //
+  }, [socket]);
   //
   return (
     messages.length > 0 && (
