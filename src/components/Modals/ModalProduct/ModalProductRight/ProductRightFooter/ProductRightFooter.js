@@ -55,6 +55,7 @@ function ProductRightFooter(props) {
           amountInput: list.amountInput ? list.amountInput : 0,
           amountOutput: list.amountOutput ? list.amountOutput : 0,
           sale: list.sale,
+          typeInfoProduct: list.typeInfoProduct,
         });
         listPromise.push(
           await api("products", "POST", {
@@ -77,39 +78,17 @@ function ProductRightFooter(props) {
       }
       listIdProduct.forEach(async (item) => {
         listPromisePrice.push(
-          await api("productInputs", "POST", {
-            productInput: {
-              id: null,
-              amount: item.amountInput,
-              priceInput: Number(item.priceInput),
-              timeInput: item.dateInput,
-              productInputs: null,
-            },
-            id: item.id,
-          })
-        );
-        listPromisePrice.push(
-          await api("productOutputs", "POST", {
-            productOutput: {
-              id: null,
-              amount: item.amountOutput,
-              priceOutput: Number(item.priceOutput),
-              timeOutput: item.dateOutput,
-              productOutputs: null,
-            },
-            id: item.id,
-          })
-        );
-        listPromisePrice.push(
-          await api("sales", "POST", {
-            sale: {
-              id: null,
-              productSale: null,
-              percent: item.sale,
-              timeStart: "09-01-2021 15:19:09",
-              timeEnd: "09-09-2021 15:19:09",
-            },
-            id: item.id,
+          await api(`infoProducts?idProduct=${item.id}`, "POST", {
+            id: null,
+            infoProduct: null,
+            priceInput: item.priceInput,
+            priceOutput: item.priceOutput,
+            sale: item.sale,
+            itemCurrent: item.amountInput,
+            itemSold: 0,
+            typeInfoProduct: item.typeInfoProduct ? item.typeInfoProduct : 0,
+            review: 50,
+            timeInput: "09-18-2021 05:53:06",
           })
         );
       });

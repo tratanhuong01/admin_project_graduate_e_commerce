@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as formsAction from "../../../../../../actions/form/index";
+import * as categorysAction from "../../../../../../actions/category/index";
+
 function NotModalTop(props) {
   //
-  const { category, table } = props;
+  const { table } = props;
+  const category = useSelector((state) => state.category);
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {}, [category.choose]);
@@ -17,8 +20,15 @@ function NotModalTop(props) {
         spellCheck={false}
         onChange={(event) => {
           setKeyword(event.target.value);
-          if (event.target.value.length <= 0) {
-          } else {
+          if (event.target.value.length <= 0)
+            dispatch(categorysAction.loadListCategoryRequest(table + "s"));
+          else {
+            dispatch(
+              categorysAction.searchCategoryRequest({
+                keyword,
+                table: table + "s",
+              })
+            );
           }
         }}
         value={keyword}
@@ -42,6 +52,11 @@ function NotModalTop(props) {
         </button>
       )}
       <button
+        onClick={() =>
+          dispatch(
+            categorysAction.deleteCategoryRequest(category.choose, table + "s")
+          )
+        }
         className="px-7 py-2.5 font-semibold text-white bg-organce mx-2 
                 rounded-full"
       >

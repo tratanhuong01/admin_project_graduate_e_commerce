@@ -7,6 +7,22 @@ export const handleCategory = (data) => {
     data,
   };
 };
+export const searchCategoryRequest = (data) => {
+  return async (dispatch) => {
+    const { table, keyword } = data;
+    const result1 = await api(
+      `${table}All/search/?keyword=${keyword}`,
+      "GET",
+      null
+    );
+    const result2 = await api(
+      `${table}/search/?keyword=${keyword}&offset=${0}&limit=${10}`,
+      "GET",
+      null
+    );
+    dispatch(loadListCategory(result2.data, result1.data.length));
+  };
+};
 
 export const loadListCategory = (list, length) => {
   return {
@@ -69,5 +85,34 @@ export const removeItemChoose = (item) => {
   return {
     type: Types.REMOVE_ITEM_CHOOSE,
     item,
+  };
+};
+
+export const removeItemChooseAll = () => {
+  return {
+    type: Types.REMOVE_ITEM_CHOOSE_ALL,
+  };
+};
+
+export const addItemChooseAll = () => {
+  return {
+    type: Types.ADD_ITEM_CHOOSE_ALL,
+  };
+};
+
+export const deleteCategoryRequest = (list, table) => {
+  return async (dispatch) => {
+    for (let index = 0; index < list.length; index++) {
+      const element = list[index];
+      await api(`${table}`, "DELETE", element);
+    }
+    dispatch(loadListCategoryRequest(table));
+  };
+};
+
+export const addCategoryRequest = (obj, table) => {
+  return async (dispatch) => {
+    await api(`${table}`, "POST", obj);
+    dispatch(loadListCategoryRequest(table));
   };
 };

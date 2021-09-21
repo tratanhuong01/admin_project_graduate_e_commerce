@@ -23,6 +23,7 @@ const myReducer = (state = initialState, action) => {
     case Types.RESET_CATEGORY:
       state.list = null;
       state.data = null;
+      state.choose = [];
       return { ...state };
     case Types.HANDLE_CATEGORY:
       switch (action.data.type) {
@@ -57,6 +58,12 @@ const myReducer = (state = initialState, action) => {
         items.splice(index, 1);
         state.choose = items;
       }
+      return { ...state };
+    case Types.REMOVE_ITEM_CHOOSE_ALL:
+      state.choose = [];
+      return { ...state };
+    case Types.ADD_ITEM_CHOOSE_ALL:
+      state.choose = state.list;
       return { ...state };
     default:
       return state;

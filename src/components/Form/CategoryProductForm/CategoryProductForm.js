@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
+import * as categorysAction from "../../../actions/category/index";
+import { useDispatch } from "react-redux";
 function CategoryProductForm(props) {
   //
   const { dataProps } = props;
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -17,7 +20,24 @@ function CategoryProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
+  const onSubmit = async (data) => {
+    dispatch(
+      categorysAction.addCategoryRequest(
+        {
+          id: data.id,
+          nameCategoryProduct: data.nameCategoryProduct,
+          slugCategoryProduct: data.slugCategoryProduct,
+          icon: data.icon,
+          typeCategoryProduct: 0,
+        },
+        "categoryProducts"
+      )
+    );
+    setValue("id", "");
+    setValue("nameCategoryProduct", "");
+    setValue("slugCategoryProduct", "");
+    setValue("icon", "");
+  };
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");
@@ -25,6 +45,11 @@ function CategoryProductForm(props) {
       "nameCategoryProduct",
       dataProps ? dataProps.nameCategoryProduct : ""
     );
+    setValue(
+      "slugCategoryProduct",
+      dataProps ? dataProps.slugCategoryProduct : ""
+    );
+    setValue("icon", dataProps ? dataProps.icon : "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   //
@@ -61,6 +86,17 @@ function CategoryProductForm(props) {
           placeHolder={"Nhập đường dẫn danh mục sản phẩm"}
           name={"slugCategoryProduct"}
           label={"Đường dẫn danh mục sản phẩm"}
+          onChange={() => ""}
+          type="text"
+          disabled={false}
+        />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["icon"]}
+          placeHolder={"Nhập icon danh mục sản phẩm"}
+          name={"icon"}
+          label={"Icon danh mục sản phẩm"}
           onChange={() => ""}
           type="text"
           disabled={false}

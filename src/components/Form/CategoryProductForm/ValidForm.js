@@ -8,5 +8,6 @@ const schema = Yup.object().shape({
   slugCategoryProduct: Yup.string().required(
     "Đường dẫn danh mục không được trống !!"
   ),
+  icon: Yup.string().required("Icon không được trống !!"),
 });
 export default schema;
