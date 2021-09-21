@@ -1,6 +1,9 @@
 import React from "react";
 
-function ItemNewUserRegister(props) {
+function ItemNewBest(props) {
+  //
+  const { content, item, attribute } = props;
+  //
   return (
     <li className="w-full px-2.5 pb-2.5 flex">
       <div className="relative mr-3">
@@ -8,7 +11,7 @@ function ItemNewUserRegister(props) {
       </div>
       <div className="ml-3 pt-0.5">
         <img
-          src="http://res.cloudinary.com/tratahuong01/image/upload/v1622792457/Avatar/ohr7yxb89srga7aoggdr.jpg"
+          src={attribute(item)}
           className="w-10 h-10 rounded-full mx-auto object-cover"
           alt=""
         />
@@ -16,12 +19,12 @@ function ItemNewUserRegister(props) {
       </div>
       <div className="pl-3">
         <p className="text-gray-600 pb-0.5 font-bold break-all whitespace-nowrap">
-          Phương Thảo
+          {content(item)}
         </p>
-        <p className="text-sm text-gray-600">2021-06-04 14:34:55</p>
+        <p className="text-sm text-gray-600">{item.timeCreated}</p>
       </div>
     </li>
   );
 }
 
-export default ItemNewUserRegister;
+export default ItemNewBest;

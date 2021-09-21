@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as formsAction from "../../../../../../actions/form/index";
 function NotModalTop(props) {
   //
   const { category, table } = props;
+  const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {}, [category.choose]);
   //
@@ -12,7 +13,15 @@ function NotModalTop(props) {
       <input
         className="w-1/2 mr-4 p-2.5 rounded-3xl 
         bg-white border-solid border-gray-200 border-2"
-        placeholder="Tìm kiếm"
+        placeholder="Nhập ID hoặc tên danh mục"
+        spellCheck={false}
+        onChange={(event) => {
+          setKeyword(event.target.value);
+          if (event.target.value.length <= 0) {
+          } else {
+          }
+        }}
+        value={keyword}
       />
       <button
         onClick={() => dispatch(formsAction.openFormAdd(table))}

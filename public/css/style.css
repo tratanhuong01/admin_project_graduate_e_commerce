@@ -238,7 +238,7 @@ body {
     width: calc(100% - 240px);
   }
   .item__category__dashboard {
-    width: calc(25% - 28px) !important;
+    width: calc(20% - 12px) !important;
   }
   .item__child__news__item {
     width: 29%;
