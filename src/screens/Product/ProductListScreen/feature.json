@@ -1,62 +1,191 @@
 {
   "filter": [
     {
-      "name": "Tình trạng",
+      "id": "USER_FILTER_1",
+      "name": "Xác minh",
       "data": [
         {
           "id": 0,
-          "name": "Hết hàn",
+          "idFilter": "USER_FILTER_1",
+          "nameFilter": "Xác minh",
+          "name": "Chưa xác minh",
           "type": 0
         },
         {
           "id": 1,
-          "name": "Còn hàng",
+          "idFilter": "USER_FILTER_1",
+          "nameFilter": "Xác minh",
+          "name": "Đang xác minh",
           "type": 1
+        },
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_1",
+          "nameFilter": "Xác minh",
+          "name": "Đã xác minh",
+          "type": 2
+        }
+      ]
+    },
+    {
+      "id": "USER_FILTER_2",
+      "name": "Đăng kí tài khoản",
+      "data": [
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_2",
+          "nameFilter": "Đăng kí tài khoản",
+          "name": "Chưa Đăng kí",
+          "type": 0
+        },
+        {
+          "id": 1,
+          "idFilter": "USER_FILTER_2",
+          "nameFilter": "Đăng kí tài khoản",
+          "name": "Đã đăng kí",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "id": "USER_FILTER_3",
+      "name": "Trạng thái",
+      "data": [
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_3",
+          "nameFilter": "Trạng thái",
+          "name": "Khóa",
+          "type": 0
+        },
+        {
+          "id": 1,
+          "idFilter": "USER_FILTER_3",
+          "nameFilter": "Trạng thái",
+          "name": "Tạm khóa",
+          "type": 1
+        },
+        {
+          "id": 2,
+          "idFilter": "USER_FILTER_3",
+          "nameFilter": "Trạng thái",
+          "name": "Bình thường",
+          "type": 2
+        }
+      ]
+    },
+    {
+      "id": "USER_FILTER_4",
+      "name": "Giới tính",
+      "data": [
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_4",
+          "nameFilter": "Giới tính",
+          "name": "Nam",
+          "type": "Nam"
+        },
+        {
+          "id": 1,
+          "idFilter": "USER_FILTER_4",
+          "nameFilter": "Giới tính",
+          "name": "Nữ",
+          "type": "Nữ"
+        },
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_4",
+          "nameFilter": "Giới tính",
+          "name": "Khác",
+          "type": "Khác"
+        }
+      ]
+    },
+    {
+      "id": "USER_FILTER_5",
+      "name": "Độ tuổi",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Nhỏ hơn 18 tuổi"
+        },
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Từ 18 -> 25 tuổi"
+        },
+        {
+          "id": 1,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Từ 26 -> 35 tuổi"
+        },
+        {
+          "id": 2,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Từ 36 -> 45 tuổi"
+        },
+        {
+          "id": 3,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Từ 45 -> 60 tuổi"
+        },
+        {
+          "id": 4,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Từ 60 -> 80 tuổi"
+        },
+        {
+          "id": 5,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Hơn 80 tuổi"
         }
       ]
     }
   ],
   "sorter": [
     {
-      "name": "Sản phẩm bán chạy",
+      "id": "USER_SORTER_1",
+      "name": "Độ tuổi",
       "data": [
         {
           "id": 0,
           "name": "Tăng dần",
+          "idFilter": "USER_SORTER_1",
+          "nameFilter": "Độ tuổi",
           "type": "ASC"
         },
         {
-          "id": 0,
+          "id": 1,
+          "idFilter": "USER_SORTER_1",
+          "nameFilter": "Độ tuổi",
           "name": "Giảm dần",
           "type": "DESC"
         }
       ]
     },
     {
-      "name": "Giá nhập vào",
+      "id": "USER_SORTER_2",
+      "name": "Số đơn hàng",
       "data": [
         {
           "id": 0,
+          "idFilter": "USER_SORTER_2",
+          "nameFilter": "Số đơn hàng",
           "name": "Tăng dần",
           "type": "ASC"
         },
         {
-          "id": 0,
-          "name": "Giảm dần",
-          "type": "DESC"
-        }
-      ]
-    },
-    {
-      "name": "Giá bán ra",
-      "data": [
-        {
-          "id": 0,
-          "name": "Tăng dần",
-          "type": "ASC"
-        },
-        {
-          "id": 0,
+          "id": 1,
+          "idFilter": "USER_SORTER_2",
+          "nameFilter": "Số đơn hàng",
           "name": "Giảm dần",
           "type": "DESC"
         }

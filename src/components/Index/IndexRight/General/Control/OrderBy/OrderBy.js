@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "../Search/Search";
-
+import * as filtersAction from "../../../../../../actions/filter/index";
 function OrderBy(props) {
   //
   const { orderBy } = props;
@@ -8,6 +9,8 @@ function OrderBy(props) {
   const [data, setData] = useState(orderBy[0]);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
+  const filters = useSelector((state) => state.filters);
+  const dispatch = useDispatch();
   const showDataLeft = orderBy.map((item, index) => {
     return (
       <div
@@ -27,6 +30,12 @@ function OrderBy(props) {
     return (
       <div
         onClick={() => {
+          dispatch(
+            filtersAction.addFilterCategoryRequest({
+              filters: filters.choose,
+              item,
+            })
+          );
           setName(item.name);
           setShowRight(false);
         }}
