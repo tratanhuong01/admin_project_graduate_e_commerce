@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
-import api from "../../../Utils/api";
+import * as categorysAction from "../../../actions/category/index";
 import SelectCustom from "../../SelectCustom/SelectCustom";
+import { useDispatch } from "react-redux";
+import * as productsApi from "../../../api/productsApi";
 function FunctionProductForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -19,8 +21,12 @@ function FunctionProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+  const dispatch = useDispatch();
   const onSubmit = async (data) => {
-    await api("functionProducts", "POST", data);
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    setValue("id", "");
+    setValue("nameFunctionProduct", "");
+    setValue("typeFunctionProduct", "");
   };
   const [groupFilterProduct, setGroupFilterProduct] = useState([]);
   useEffect(() => {
@@ -39,7 +45,7 @@ function FunctionProductForm(props) {
   useEffect(() => {
     let unmounted = false;
     async function fetch() {
-      const result = await api("groupFilterProductsAll", "GET", null);
+      const result = await productsApi.getGroupFilterProductsAll();
       if (unmounted) return;
       setGroupFilterProduct(result.data);
     }

@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
+import * as categorysAction from "../../../actions/category/index";
+import { useDispatch } from "react-redux";
 function GroupAttributeForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -17,17 +19,18 @@ function GroupAttributeForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    setValue("id", "");
+    setValue("nameGroupAttribute", "");
+  };
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");
     setValue(
-      "nameFunctionProduct",
-      dataProps ? dataProps.nameFunctionProduct : ""
-    );
-    setValue(
-      "typeFunctionProduct",
-      dataProps ? dataProps.typeFunctionProduct : ""
+      "nameGroupAttribute",
+      dataProps ? dataProps.nameGroupAttribute : ""
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);

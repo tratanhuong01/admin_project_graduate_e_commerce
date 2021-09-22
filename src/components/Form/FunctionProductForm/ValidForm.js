@@ -10,5 +10,6 @@ const schema = Yup.object().shape({
   typeFunctionProduct: Yup.number()
     .integer()
     .required("Loại chức năng sản phẩm không được trống !!"),
+  timeCreated: Yup.date(),
 });
 export default schema;

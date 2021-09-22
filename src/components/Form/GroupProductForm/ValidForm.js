@@ -9,5 +9,6 @@ const schema = Yup.object().shape({
   categoryGroupProduct: Yup.object().required(
     "Danh mục không được để trống !!"
   ),
+  timeCreated: Yup.date(),
 });
 export default schema;

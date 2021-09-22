@@ -1,18 +1,13 @@
 import React from "react";
 import ContentColor from "../../../Index/IndexRight/General/RowTable/ContentColor/ContentColor";
+import RowTableMain from "../../RowTableMain";
 
 function RowOrderTable(props) {
   //
-  const { category, item, index, feature } = props;
+  const { item, index, feature } = props;
   //
   return (
-    <tr>
-      <td className="p-2">
-        <input type="checkbox" className="transform scale-125" />;
-      </td>
-      <td className="p-2">
-        {category.index === 0 ? index + 1 : index + 1 + category.index * 10}
-      </td>
+    <RowTableMain item={item} index={index}>
       <td className="p-2">{item.id}</td>
       <td className="p-2">
         <ContentColor
@@ -34,7 +29,7 @@ function RowOrderTable(props) {
         {new Intl.NumberFormat().format(item.sale)} <u>đ</u>
       </td>
       <td className="p-2">{item.note}</td>
-    </tr>
+    </RowTableMain>
   );
 }
 

@@ -20,19 +20,9 @@ function CategoryProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+
   const onSubmit = async (data) => {
-    dispatch(
-      categorysAction.addCategoryRequest(
-        {
-          id: data.id,
-          nameCategoryProduct: data.nameCategoryProduct,
-          slugCategoryProduct: data.slugCategoryProduct,
-          icon: data.icon,
-          typeCategoryProduct: 0,
-        },
-        "categoryProducts"
-      )
-    );
+    dispatch(categorysAction.addCategoryRequest(data, "categoryProducts"));
     setValue("id", "");
     setValue("nameCategoryProduct", "");
     setValue("slugCategoryProduct", "");

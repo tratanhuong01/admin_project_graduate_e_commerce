@@ -1,19 +1,14 @@
 import React from "react";
 import ContentColor from "../../../Index/IndexRight/General/RowTable/ContentColor/ContentColor";
 import RowImage from "../../../Index/IndexRight/General/RowTable/RowImage/RowImage";
+import RowTableMain from "../../RowTableMain";
 
 function RowProductTable(props) {
   //
-  const { category, item, index, feature } = props;
+  const { item, index, feature } = props;
   //
   return (
-    <tr>
-      <td className="p-2">
-        <input type="checkbox" className="transform scale-125" />;
-      </td>
-      <td className="p-2">
-        {category.index === 0 ? index + 1 : index + 1 + category.index * 10}
-      </td>
+    <RowTableMain item={item} index={index}>
       <td className="p-2">
         <RowImage width={"w-20"} height={"h-28"} src={item.image.src} />
       </td>
@@ -61,7 +56,7 @@ function RowProductTable(props) {
           Sửa
         </button>
       </td>
-    </tr>
+    </RowTableMain>
   );
 }
 

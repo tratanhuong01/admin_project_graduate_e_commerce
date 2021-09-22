@@ -16,6 +16,7 @@ import FunctionProductScreen from "../screens/FunctionProductScreen/FunctionProd
 import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import NewsScreen from "../screens/NewsScreen/NewsScreen";
 import SupportLiveScreen from "../screens/SupportLiveScreen/SupportLiveScreen";
+import RamScreen from "../screens/RamScreen/RamScreen";
 
 const routes = [
   {
@@ -45,7 +46,7 @@ const routes = [
   {
     to: `${Config.MEMORY_OUTSIDE}`,
     exact: true,
-    main: () => <MemoryScreen />,
+    main: () => <RamScreen />,
     once: false,
   },
   {

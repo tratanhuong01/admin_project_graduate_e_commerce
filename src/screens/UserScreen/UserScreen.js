@@ -27,7 +27,7 @@ function UserScreen(props) {
           <div className="w-auto flex items-center justify-end">
             <Date />
             <FileDown />
-            <ButtonAddCustom table={feature.nameTable} />
+            {feature.add && <ButtonAddCustom table={feature.nameTable} />}
           </div>
         </div>
         <Control type={feature.type} data={feature} />

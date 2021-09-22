@@ -1,5 +1,6 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../Utils/api";
+import * as crudApi from "../../api/crudApi";
 
 export const handleCategory = (data) => {
   return {
@@ -7,6 +8,7 @@ export const handleCategory = (data) => {
     data,
   };
 };
+
 export const searchCategoryRequest = (data) => {
   return async (dispatch) => {
     const { table, keyword } = data;
@@ -106,13 +108,14 @@ export const deleteCategoryRequest = (list, table) => {
       const element = list[index];
       await api(`${table}`, "DELETE", element);
     }
+    dispatch(removeItemChooseAll());
     dispatch(loadListCategoryRequest(table));
   };
 };
 
-export const addCategoryRequest = (obj, table) => {
+export const addCategoryRequest = (obj, table, query) => {
   return async (dispatch) => {
-    await api(`${table}`, "POST", obj);
-    dispatch(loadListCategoryRequest(table));
+    await crudApi.addData(obj, table);
+    dispatch(loadListCategoryRequest(table, query));
   };
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
-import RowRamTable from "./RowRamTable/RowRamTable";
+import RowRamTable from "./RowRomTable/RowRamTable";
 
 function RamTable(props) {
   //

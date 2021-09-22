@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
-import api from "../../../Utils/api";
 import SelectCustom from "../../SelectCustom/SelectCustom";
-// import * as categorysAction from "../../../actions/category/index";
-// import { useDispatch } from "react-redux";
+import * as categorysAction from "../../../actions/category/index";
+import { useDispatch } from "react-redux";
+import * as productsApi from "../../../api/productsApi";
 function GroupFilterProductForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -21,9 +21,9 @@ function GroupFilterProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const onSubmit = async (data) => {
-    await api("groupFilterProducts", "POST", data);
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
     setValue("nameGroupFilterProduct", "");
   };
   const [groupProducts, setGroupProducts] = useState([]);
@@ -40,7 +40,7 @@ function GroupFilterProductForm(props) {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api("groupProductsAll", "GET", null);
+      const result = await productsApi.getGroupProductsAll();
       if (unmounted) return;
       setGroupProducts(result.data);
     }

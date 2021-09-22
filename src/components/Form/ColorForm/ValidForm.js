@@ -9,5 +9,6 @@ const schema = Yup.object().shape({
     .required("Mã màu không được trống !!")
     .max(7, "Mã màu phải có 6 kí tự !!"),
   description: Yup.string().required("Mô tả không được để trống !!"),
+  timeCreated: Yup.date(),
 });
 export default schema;

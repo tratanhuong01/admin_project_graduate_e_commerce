@@ -5,9 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import { SketchPicker } from "react-color";
+import * as categorysAction from "../../../actions/category/index";
+import { useDispatch } from "react-redux";
+
 function ColorForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -18,7 +21,14 @@ function ColorForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = (data) => {};
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    setColor("");
+    setValue("id", "");
+    setValue("code", "");
+    setValue("description", "");
+  };
   const [color, setColor] = useState("");
   const [show, setShow] = useState(false);
   useEffect(() => {

@@ -7,7 +7,7 @@ import ValidForm from "./ValidForm";
 import * as categorysAction from "../../../actions/category/index";
 import { useDispatch } from "react-redux";
 
-function MemoryForm(props) {
+function RamForm(props) {
   //
   const { dataProps, table } = props;
   const {
@@ -24,12 +24,12 @@ function MemoryForm(props) {
   const onSubmit = (data) => {
     dispatch(categorysAction.addCategoryRequest(data, table + "s"));
     setValue("id", "");
-    setValue("nameMemory", "");
+    setValue("nameRam", "");
   };
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");
-    setValue("nameMemory", dataProps ? dataProps.nameMemory : "");
+    setValue("nameRam", dataProps ? dataProps.nameRam : "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   //
@@ -51,9 +51,9 @@ function MemoryForm(props) {
         <InputField
           register={register}
           className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-          showError={errors["nameMemory"]}
+          showError={errors["nameRam"]}
           placeHolder={"Nhập tên bộ nhớ"}
-          name={"nameMemory"}
+          name={"nameRam"}
           label={"Bộ nhớ"}
           onChange={() => ""}
           type="text"
@@ -65,4 +65,4 @@ function MemoryForm(props) {
   );
 }
 
-export default MemoryForm;
+export default RamForm;

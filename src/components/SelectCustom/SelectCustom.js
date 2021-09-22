@@ -25,7 +25,7 @@ function SelectCustom(props) {
   );
   useEffect(() => {
     setListCurrent(list);
-  }, [list]);
+  }, [list, dataProps]);
   //
   return (
     <div className={`w-full relative ${label !== "" && "mt-2"}`}>

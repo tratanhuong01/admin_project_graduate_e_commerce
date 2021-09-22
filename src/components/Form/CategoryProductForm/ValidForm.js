@@ -9,5 +9,6 @@ const schema = Yup.object().shape({
     "Đường dẫn danh mục không được trống !!"
   ),
   icon: Yup.string().required("Icon không được trống !!"),
+  timeCreated: Yup.date(),
 });
 export default schema;

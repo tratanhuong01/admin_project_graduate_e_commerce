@@ -5,10 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import SelectCustom from "../../SelectCustom/SelectCustom";
-import api from "../../../Utils/api";
+import * as categorysAction from "../../../actions/category/index";
+import { useDispatch } from "react-redux";
+import * as productsApi from "../../../api/productsApi";
+
 function AttributeForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -19,20 +22,24 @@ function AttributeForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+  const dispatch = useDispatch();
   const [groupAttributes, setGroupAttributes] = useState([]);
   const onSubmit = async (data) => {
-    await api("attributes", "POST", data);
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    setValue("id", "");
+    setValue("groupAttribute", "");
+    setValue("nameAttribute", "");
   };
   useEffect(() => {
     //
-    setValue("id", dataProps ? dataProps.id : "");
-    setValue("groupAttribute", dataProps ? dataProps.groupAttribute : "");
-    setValue("nameAttribute", dataProps ? dataProps.nameAttribute : "");
     let unmounted = false;
     async function fetch() {
-      const result = await api("groupAttributesAll", "GET", null);
+      const result = await productsApi.getGroupAttributesAll();
       if (unmounted) return;
       setGroupAttributes(result.data);
+      setValue("id", dataProps ? dataProps.id : "");
+      setValue("groupAttribute", dataProps ? dataProps.groupAttribute : "");
+      setValue("nameAttribute", dataProps ? dataProps.nameAttribute : "");
     }
     fetch();
     return () => {

@@ -8,5 +8,6 @@ const schema = Yup.object().shape({
     "Tên nhóm bộ lọc sản phẩm không được trống !!"
   ),
   typeGroupFilterProduct: Yup.number().integer().default(0),
+  timeCreated: Yup.date(),
 });
 export default schema;

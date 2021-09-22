@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
+import { useDispatch } from "react-redux";
+import * as categorysAction from "../../../actions/category/index";
 function BrandForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -17,7 +19,12 @@ function BrandForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    setValue("id", "");
+    setValue("nameBrand", "");
+  };
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");

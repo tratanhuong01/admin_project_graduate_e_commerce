@@ -5,10 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import SelectCustom from "../../SelectCustom/SelectCustom";
-import api from "../../../Utils/api";
+import * as categorysAction from "../../../actions/category/index";
+import * as productsApi from "../../../api/productsApi";
+import { useDispatch } from "react-redux";
 function LineProductForm(props) {
   //
-  const { dataProps } = props;
+  const { dataProps, table } = props;
   const {
     register,
     handleSubmit,
@@ -19,13 +21,20 @@ function LineProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-  const onSubmit = () => {};
+  const dispatch = useDispatch();
   const [list, setList] = useState([]);
+  const onSubmit = (data) => {
+    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    setList([]);
+    setValue("id", "");
+    setValue("nameLineProduct", "");
+    setValue("groupProduct", null);
+  };
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api("groupProductsAll", "GET", null);
+      const result = await productsApi.getGroupProductsAll();
       if (unmounted) return;
       setList(result.data);
       setValue("id", dataProps ? dataProps.id : "");
@@ -63,7 +72,7 @@ function LineProductForm(props) {
           placeHolder={"Nhập nội dung"}
           label={"Nhóm sản phẩm"}
           table={"nhóm sản phẩm"}
-          setData={() => ""}
+          setData={(item) => setValue("groupProduct", item)}
         />
         <InputField
           register={register}

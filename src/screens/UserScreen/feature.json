@@ -1,6 +1,7 @@
 {
   "filter": [
     {
+      "id": 0,
       "name": "Xác minh",
       "data": [
         {
@@ -21,6 +22,23 @@
       ]
     },
     {
+      "id": 1,
+      "name": "Đăng kí tài khoản",
+      "data": [
+        {
+          "id": 0,
+          "name": "Chưa Đăng kí",
+          "type": 0
+        },
+        {
+          "id": 1,
+          "name": "Đã đăng kí",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
       "name": "Trạng thái",
       "data": [
         {
@@ -41,6 +59,7 @@
       ]
     },
     {
+      "id": 3,
       "name": "Giới tính",
       "data": [
         {
@@ -61,8 +80,13 @@
       ]
     },
     {
+      "id": 4,
       "name": "Độ tuổi",
       "data": [
+        {
+          "id": -1,
+          "name": "Nhỏ hơn 18 tuổi"
+        },
         {
           "id": 0,
           "name": "Từ 18 -> 25 tuổi"
@@ -77,11 +101,15 @@
         },
         {
           "id": 3,
-          "name": "Từ 36 -> 45 tuổi"
+          "name": "Từ 45 -> 60 tuổi"
         },
         {
           "id": 4,
-          "name": "Từ 36 -> 45 tuổi"
+          "name": "Từ 60 -> 80 tuổi"
+        },
+        {
+          "id": 5,
+          "name": "Hơn 80 tuổi"
         }
       ]
     }
@@ -104,6 +132,21 @@
     },
     {
       "name": "Độ tuổi",
+      "data": [
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "type": "ASC"
+        },
+        {
+          "id": 0,
+          "name": "Giảm dần",
+          "type": "DESC"
+        }
+      ]
+    },
+    {
+      "name": "Số đơn hàng",
       "data": [
         {
           "id": 0,
@@ -227,5 +270,6 @@
       "id": 12,
       "name": "Thời gian đăng kí"
     }
-  ]
+  ],
+  "add": false
 }

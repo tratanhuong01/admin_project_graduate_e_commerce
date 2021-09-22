@@ -5,5 +5,6 @@ const schema = Yup.object().shape({
   nameGroupAttribute: Yup.string().required(
     "Tên nhóm thuộc tính không được trống !!"
   ),
+  timeCreated: Yup.date(),
 });
 export default schema;
