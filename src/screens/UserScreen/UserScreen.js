@@ -30,7 +30,7 @@ function UserScreen(props) {
             {feature.add && <ButtonAddCustom table={feature.nameTable} />}
           </div>
         </div>
-        <Control type={feature.type} data={feature} />
+        <Control type={feature.type} data={feature} table={feature.nameTable} />
         <Table category={category} feature={feature}>
           <UserTable feature={feature} category={category} />
         </Table>

@@ -9,21 +9,32 @@
           "idFilter": "USER_FILTER_1",
           "nameFilter": "Xác minh",
           "name": "Chưa xác minh",
-          "type": 0
+          "type": 0,
+          "query": "verifyPhone=0&verifyEmail=0"
         },
         {
           "id": 1,
           "idFilter": "USER_FILTER_1",
           "nameFilter": "Xác minh",
-          "name": "Đang xác minh",
-          "type": 1
+          "name": "Số điện thọai",
+          "type": 1,
+          "query": "verifyPhone=0&verifyEmail=1"
         },
         {
-          "id": 0,
+          "id": 2,
+          "idFilter": "USER_FILTER_1",
+          "nameFilter": "Xác minh",
+          "name": "Email",
+          "type": 2,
+          "query": "verifyPhone=1&verifyEmail=0"
+        },
+        {
+          "id": 3,
           "idFilter": "USER_FILTER_1",
           "nameFilter": "Xác minh",
           "name": "Đã xác minh",
-          "type": 2
+          "type": 3,
+          "query": "verifyPhone=1&verifyEmail=1"
         }
       ]
     },
@@ -36,14 +47,16 @@
           "idFilter": "USER_FILTER_2",
           "nameFilter": "Đăng kí tài khoản",
           "name": "Chưa Đăng kí",
-          "type": 0
+          "type": 0,
+          "query": ""
         },
         {
           "id": 1,
           "idFilter": "USER_FILTER_2",
           "nameFilter": "Đăng kí tài khoản",
           "name": "Đã đăng kí",
-          "type": 1
+          "type": 1,
+          "query": ""
         }
       ]
     },
@@ -55,22 +68,25 @@
           "id": 0,
           "idFilter": "USER_FILTER_3",
           "nameFilter": "Trạng thái",
-          "name": "Khóa",
-          "type": 0
+          "name": "Khóa vĩnh viễn",
+          "type": 0,
+          "query": "status=2"
         },
         {
           "id": 1,
           "idFilter": "USER_FILTER_3",
           "nameFilter": "Trạng thái",
           "name": "Tạm khóa",
-          "type": 1
+          "type": 1,
+          "query": "status=1"
         },
         {
           "id": 2,
           "idFilter": "USER_FILTER_3",
           "nameFilter": "Trạng thái",
           "name": "Bình thường",
-          "type": 2
+          "type": 2,
+          "query": "status=0"
         }
       ]
     },
@@ -83,21 +99,24 @@
           "idFilter": "USER_FILTER_4",
           "nameFilter": "Giới tính",
           "name": "Nam",
-          "type": "Nam"
+          "type": "Nam",
+          "query": "sex=Nam"
         },
         {
           "id": 1,
           "idFilter": "USER_FILTER_4",
           "nameFilter": "Giới tính",
           "name": "Nữ",
-          "type": "Nữ"
+          "type": "Nữ",
+          "query": "sex=Nữ"
         },
         {
           "id": 0,
           "idFilter": "USER_FILTER_4",
           "nameFilter": "Giới tính",
           "name": "Khác",
-          "type": "Khác"
+          "type": "Khác",
+          "query": "sex=Khác"
         }
       ]
     },
@@ -109,43 +128,50 @@
           "id": -1,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Nhỏ hơn 18 tuổi"
+          "name": "Nhỏ hơn 18 tuổi",
+          "query": "ageFrom=0&ageTo=18"
         },
         {
           "id": 0,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Từ 18 -> 25 tuổi"
+          "name": "Từ 18 -> 25 tuổi",
+          "query": "ageFrom=18&ageTo=25"
         },
         {
           "id": 1,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Từ 26 -> 35 tuổi"
+          "name": "Từ 26 -> 35 tuổi",
+          "query": "ageFrom=26&ageTo=35"
         },
         {
           "id": 2,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Từ 36 -> 45 tuổi"
+          "name": "Từ 36 -> 45 tuổi",
+          "query": "ageFrom=36&ageTo=45"
         },
         {
           "id": 3,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Từ 45 -> 60 tuổi"
+          "name": "Từ 45 -> 60 tuổi",
+          "query": "ageFrom=45&ageTo=60"
         },
         {
           "id": 4,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Từ 60 -> 80 tuổi"
+          "name": "Từ 60 -> 80 tuổi",
+          "query": "ageFrom=60&ageTo=80"
         },
         {
           "id": 5,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
-          "name": "Hơn 80 tuổi"
+          "name": "Hơn 80 tuổi",
+          "query": "ageFrom=80&ageTo=100"
         }
       ]
     }
@@ -210,7 +236,7 @@
         "name": "Khác"
       }
     ],
-    "isVerifyEmail": [
+    "isVerify": [
       {
         "type": 0,
         "bgColor": "bg-red-500",
@@ -218,18 +244,16 @@
       },
       {
         "type": 1,
-        "bgColor": "bg-green-600",
-        "name": "Đã xác minh"
-      }
-    ],
-    "isVerifyPhone": [
-      {
-        "type": 0,
-        "bgColor": "bg-red-500",
-        "name": "Chưa xác minh"
+        "bgColor": "bg-yellow-600",
+        "name": "Chưa xác minh số điện thoại"
       },
       {
-        "type": 1,
+        "type": 2,
+        "bgColor": "bg-yellow-600",
+        "name": "Chưa xác minh email"
+      },
+      {
+        "type": 3,
         "bgColor": "bg-green-600",
         "name": "Đã xác minh"
       }
@@ -244,6 +268,23 @@
         "type": 1,
         "bgColor": "bg-green-600",
         "name": "Đã mua hàng"
+      }
+    ],
+    "status": [
+      {
+        "type": 0,
+        "bgColor": "bg-green-600",
+        "name": "Bình thường"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-pink-600",
+        "name": "Khóa tạm khóa"
+      },
+      {
+        "type": 2,
+        "bgColor": "bg-red-600",
+        "name": "Khóa vĩnh viễn"
       }
     ]
   },
@@ -283,11 +324,11 @@
     },
     {
       "id": 8,
-      "name": "Xác minh email"
+      "name": "Xác minh"
     },
     {
       "id": 9,
-      "name": "Xác minh số điện thoại"
+      "name": "Trạng thái"
     },
     {
       "id": 10,

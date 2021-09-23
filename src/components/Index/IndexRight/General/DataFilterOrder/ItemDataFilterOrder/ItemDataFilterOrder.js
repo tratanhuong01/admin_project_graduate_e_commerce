@@ -4,7 +4,7 @@ import * as filtersAction from "../../../../../../actions/filter/index";
 
 function ItemDataFilterOrder(props) {
   //
-  const { item } = props;
+  const { item, table } = props;
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
   //
@@ -15,6 +15,7 @@ function ItemDataFilterOrder(props) {
           filtersAction.removeFilterCategoryRequest({
             filters: filters.choose,
             item,
+            table,
           })
         )
       }

@@ -4,7 +4,7 @@ import * as filtersAction from "../../../../../../actions/filter/index";
 
 function Filter(props) {
   //
-  const { filter } = props;
+  const { filter, table } = props;
   const [name, setName] = useState(filter[0].data[0].name);
   const [data, setData] = useState(filter[0]);
   const [showLeft, setShowLeft] = useState(false);
@@ -34,6 +34,7 @@ function Filter(props) {
             filtersAction.addFilterCategoryRequest({
               filters: filters.choose,
               item,
+              table,
             })
           );
           setName(item.name);

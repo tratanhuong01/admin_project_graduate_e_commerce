@@ -5,6 +5,12 @@ import RowTableMain from "../../RowTableMain";
 function RowUserTable(props) {
   //
   const { item, index, feature } = props;
+  const isVerify = () => {
+    if (item.isVerifyPhone === 0 && item.isVerifyEmail === 0) return 0;
+    if (item.isVerifyPhone === 1 && item.isVerifyEmail === 0) return 1;
+    if (item.isVerifyPhone === 0 && item.isVerifyEmail === 1) return 2;
+    if (item.isVerifyPhone === 1 && item.isVerifyEmail === 1) return 3;
+  };
   //
   return (
     <RowTableMain item={item} index={index}>
@@ -18,14 +24,14 @@ function RowUserTable(props) {
       </td>
       <td className="p-2">
         <ContentColor
-          condition={feature.condition.isVerifyEmail}
-          typeData={item.isVerifyEmail}
+          condition={feature.condition.isVerify}
+          typeData={isVerify()}
         />
       </td>
       <td className="p-2">
         <ContentColor
-          condition={feature.condition.isVerifyPhone}
-          typeData={item.isVerifyPhone}
+          condition={feature.condition.status}
+          typeData={item.status}
         />
       </td>
       <td className="p-2">

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import * as categorysAction from "../../../../..//actions/category/index";
+import * as categorysAction from "../../../../../actions/category/index";
+import * as filtersAction from "../../../../../actions/filter/index";
 function ItemCategory(props) {
   //
   const location = useLocation();
@@ -28,8 +29,10 @@ function ItemCategory(props) {
               status: !show.status,
             });
           if (item.child.length === 0) {
-            if (location.pathname !== item.to)
+            if (location.pathname !== item.to) {
               dispatch(categorysAction.resetCategory());
+              dispatch(filtersAction.updateFilterCategory([]));
+            }
             history.push(item.to);
           }
         }}
@@ -53,8 +56,10 @@ function ItemCategory(props) {
               return (
                 <div
                   onClick={() => {
-                    if (location.pathname !== dt.to)
+                    if (location.pathname !== dt.to) {
                       dispatch(categorysAction.resetCategory());
+                      dispatch(filtersAction.updateFilterCategory([]));
+                    }
                     history.push(dt.to);
                   }}
                   className={`w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 
