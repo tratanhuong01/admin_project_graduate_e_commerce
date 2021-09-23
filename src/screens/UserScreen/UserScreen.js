@@ -31,7 +31,7 @@ function UserScreen(props) {
           </div>
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />
-        <Table category={category} feature={feature}>
+        <Table category={category} feature={feature} modal={true}>
           <UserTable feature={feature} category={category} />
         </Table>
       </Screen>

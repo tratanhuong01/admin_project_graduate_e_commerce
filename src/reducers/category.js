@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const myReducer = (state = initialState, action) => {
-  let index = -1;
+  let index = 0;
   switch (action.type) {
     case Types.HANDLE_DASHBOARD:
       state.data = <Dashboard />;
@@ -64,6 +64,9 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.ADD_ITEM_CHOOSE_ALL:
       state.choose = state.list;
+      return { ...state };
+    case Types.RESET_INDEX_CATEGORY:
+      state.index = 0;
       return { ...state };
     default:
       return state;

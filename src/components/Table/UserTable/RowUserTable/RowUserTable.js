@@ -35,10 +35,20 @@ function RowUserTable(props) {
         />
       </td>
       <td className="p-2">
-        <ContentColor condition={feature.condition.sold} typeData={1} />
+        <ContentColor
+          condition={feature.condition.sold}
+          typeData={!item.amountOrder ? 0 : 1}
+        />
       </td>
       <td className="p-2 font-semibold">
-        {new Intl.NumberFormat().format(123)} đơn hàng
+        {new Intl.NumberFormat().format(
+          !item.amountOrder ? 0 : item.amountOrder
+        )}{" "}
+        đơn hàng{" "}
+        {new Intl.NumberFormat().format(
+          !item.amountProduct ? 0 : item.amountProduct
+        )}{" "}
+        sản phẩm
       </td>
       <td className="p-2">{item.timeCreated}</td>
     </RowTableMain>

@@ -178,42 +178,36 @@
   ],
   "sorter": [
     {
-      "id": "USER_SORTER_1",
       "name": "Độ tuổi",
       "data": [
         {
           "id": 0,
           "name": "Tăng dần",
-          "idFilter": "USER_SORTER_1",
           "nameFilter": "Độ tuổi",
-          "type": "ASC"
+          "query": "ageSorter=ASC"
         },
         {
           "id": 1,
-          "idFilter": "USER_SORTER_1",
           "nameFilter": "Độ tuổi",
           "name": "Giảm dần",
-          "type": "DESC"
+          "query": "ageSorter=DESC"
         }
       ]
     },
     {
-      "id": "USER_SORTER_2",
-      "name": "Số đơn hàng",
+      "name": "Thời gian đăng kí",
       "data": [
         {
           "id": 0,
-          "idFilter": "USER_SORTER_2",
-          "nameFilter": "Số đơn hàng",
+          "nameFilter": "Thời gian đăng kí",
           "name": "Tăng dần",
-          "type": "ASC"
+          "query": "timeRegisterSorter=ASC"
         },
         {
           "id": 1,
-          "idFilter": "USER_SORTER_2",
-          "nameFilter": "Số đơn hàng",
+          "nameFilter": "Thời gian đăng kí",
           "name": "Giảm dần",
-          "type": "DESC"
+          "query": "timeRegisterSorter=DESC"
         }
       ]
     }

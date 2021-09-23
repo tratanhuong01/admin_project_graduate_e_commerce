@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as filtersAction from "../../../../../../actions/filter/index";
-
+// import * as categorysAction from "../../../../../../actions/category/index";
 function Filter(props) {
   //
   const { filter, table } = props;
@@ -11,6 +11,7 @@ function Filter(props) {
   const [showRight, setShowRight] = useState(false);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
+  // const category = useSelector((state) => state.category);
   const showDataLeft = filter.map((item, index) => {
     return (
       <div
@@ -35,6 +36,7 @@ function Filter(props) {
               filters: filters.choose,
               item,
               table,
+              index: 0,
             })
           );
           setName(item.name);

@@ -4,7 +4,7 @@ import Search from "../Search/Search";
 import * as filtersAction from "../../../../../../actions/filter/index";
 function OrderBy(props) {
   //
-  const { orderBy } = props;
+  const { orderBy, table } = props;
   const [name, setName] = useState(orderBy[0].data[0].name);
   const [data, setData] = useState(orderBy[0]);
   const [showLeft, setShowLeft] = useState(false);
@@ -31,9 +31,11 @@ function OrderBy(props) {
       <div
         onClick={() => {
           dispatch(
-            filtersAction.addFilterCategoryRequest({
+            filtersAction.addSorterCategoryRequest({
               filters: filters.choose,
+              table: table,
               item,
+              index: 0,
             })
           );
           setName(item.name);
@@ -79,7 +81,7 @@ function OrderBy(props) {
           </div>
         )}
       </div>
-      <Search />
+      <Search table={table} />
     </div>
   );
 }

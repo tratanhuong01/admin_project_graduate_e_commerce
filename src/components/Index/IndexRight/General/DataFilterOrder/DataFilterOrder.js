@@ -13,6 +13,11 @@ function DataFilterOrder(props) {
         filters.choose.map((item, index) => {
           return <ItemDataFilterOrder item={item} key={index} table={table} />;
         })}
+      {filters.sorter ? (
+        <ItemDataFilterOrder item={filters.sorter} table={table} type={true} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

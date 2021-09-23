@@ -1,6 +1,7 @@
 import * as Types from "../../constants/ActionTypes";
 import api from "../../Utils/api";
 import * as crudApi from "../../api/crudApi";
+import * as filterApi from "../../api/filterApi";
 
 export const handleCategory = (data) => {
   return {
@@ -68,6 +69,25 @@ export const loadPaginationRequest = (data) => {
   };
 };
 
+export const loadPaginationModalRequest = (data) => {
+  return async (dispatch) => {
+    const { table, filters, sorter, index, search } = data;
+    let stringQuery = "";
+    if (filters.length > 0)
+      filters.forEach((element) => {
+        stringQuery += "&" + element.query;
+      });
+    if (sorter) stringQuery += `&${sorter.query}`;
+    if (search) stringQuery += `&keyword=${search}`;
+    const result = await filterApi.filters(
+      table,
+      `?${table}Type=0${stringQuery}&offset=${index}&limit=10`
+    );
+    dispatch(loadPagination(result.data, data.index));
+    document.getElementById("contentRight").scrollTo(0, 0);
+  };
+};
+
 export const loadPagination = (list, index) => {
   return {
     type: Types.LOAD_PAGINATION,
@@ -117,5 +137,11 @@ export const addCategoryRequest = (obj, table, query) => {
   return async (dispatch) => {
     await crudApi.addData(obj, table);
     dispatch(loadListCategoryRequest(table, query));
+  };
+};
+
+export const resetIndexCategory = () => {
+  return {
+    type: Types.RESET_INDEX_CATEGORY,
   };
 };

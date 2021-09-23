@@ -3,7 +3,7 @@ import Pagination from "../Index/IndexRight/General/Pagination/Pagination";
 
 function Table(props) {
   //
-  const { feature, category } = props;
+  const { feature, category, modal } = props;
   //
   return (
     <>
@@ -13,6 +13,7 @@ function Table(props) {
         </table>
       </div>
       <Pagination
+        modal={modal}
         type={feature.type}
         category={category}
         table={feature.nameTable}
