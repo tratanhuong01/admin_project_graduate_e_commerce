@@ -1,193 +1,158 @@
 {
   "filter": [
     {
-      "id": "USER_FILTER_1",
-      "name": "Xác minh",
-      "data": [
-        {
-          "id": 0,
-          "idFilter": "USER_FILTER_1",
-          "nameFilter": "Xác minh",
-          "name": "Chưa xác minh",
-          "type": 0
-        },
-        {
-          "id": 1,
-          "idFilter": "USER_FILTER_1",
-          "nameFilter": "Xác minh",
-          "name": "Đang xác minh",
-          "type": 1
-        },
-        {
-          "id": 0,
-          "idFilter": "USER_FILTER_1",
-          "nameFilter": "Xác minh",
-          "name": "Đã xác minh",
-          "type": 2
-        }
-      ]
-    },
-    {
-      "id": "USER_FILTER_2",
-      "name": "Đăng kí tài khoản",
-      "data": [
-        {
-          "id": 0,
-          "idFilter": "USER_FILTER_2",
-          "nameFilter": "Đăng kí tài khoản",
-          "name": "Chưa Đăng kí",
-          "type": 0
-        },
-        {
-          "id": 1,
-          "idFilter": "USER_FILTER_2",
-          "nameFilter": "Đăng kí tài khoản",
-          "name": "Đã đăng kí",
-          "type": 1
-        }
-      ]
-    },
-    {
-      "id": "USER_FILTER_3",
+      "id": "ORDER_FILTER_1",
       "name": "Trạng thái",
       "data": [
         {
-          "id": 0,
-          "idFilter": "USER_FILTER_3",
-          "nameFilter": "Trạng thái",
-          "name": "Khóa",
-          "type": 0
-        },
-        {
-          "id": 1,
-          "idFilter": "USER_FILTER_3",
-          "nameFilter": "Trạng thái",
-          "name": "Tạm khóa",
-          "type": 1
-        },
-        {
-          "id": 2,
-          "idFilter": "USER_FILTER_3",
-          "nameFilter": "Trạng thái",
-          "name": "Bình thường",
-          "type": 2
-        }
-      ]
-    },
-    {
-      "id": "USER_FILTER_4",
-      "name": "Giới tính",
-      "data": [
-        {
-          "id": 0,
-          "idFilter": "USER_FILTER_4",
-          "nameFilter": "Giới tính",
-          "name": "Nam",
-          "type": "Nam"
-        },
-        {
-          "id": 1,
-          "idFilter": "USER_FILTER_4",
-          "nameFilter": "Giới tính",
-          "name": "Nữ",
-          "type": "Nữ"
-        },
-        {
-          "id": 0,
-          "idFilter": "USER_FILTER_4",
-          "nameFilter": "Giới tính",
-          "name": "Khác",
-          "type": "Khác"
-        }
-      ]
-    },
-    {
-      "id": "USER_FILTER_5",
-      "name": "Độ tuổi",
-      "data": [
-        {
           "id": -1,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Nhỏ hơn 18 tuổi"
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
         },
         {
           "id": 0,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Từ 18 -> 25 tuổi"
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Chưa xác nhận",
+          "type": 0,
+          "query": "status=0"
         },
         {
           "id": 1,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Từ 26 -> 35 tuổi"
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Đã xác nhận",
+          "type": 1,
+          "query": "status=1"
         },
         {
           "id": 2,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Từ 36 -> 45 tuổi"
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Chờ lấy hàng",
+          "type": 1,
+          "query": "status=1"
         },
         {
           "id": 3,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Từ 45 -> 60 tuổi"
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Đang giao",
+          "type": 2,
+          "query": "status=2"
+        },
+        {
+          "id": 3,
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Thành công",
+          "type": 3,
+          "query": "status=3"
         },
         {
           "id": 4,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Từ 60 -> 80 tuổi"
-        },
-        {
-          "id": 5,
-          "idFilter": "USER_FILTER_5",
-          "nameFilter": "Độ tuổi",
-          "name": "Hơn 80 tuổi"
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Đã hủy",
+          "type": -1,
+          "query": "status=-1"
         }
       ]
     }
   ],
   "sorter": [
     {
-      "id": "USER_SORTER_1",
-      "name": "Độ tuổi",
+      "name": "Thời gian tạo",
       "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Thời gian tạo",
+          "query": "true=true"
+        },
         {
           "id": 0,
           "name": "Tăng dần",
-          "idFilter": "USER_SORTER_1",
-          "nameFilter": "Độ tuổi",
-          "type": "ASC"
+          "nameFilter": "Thời gian tạo",
+          "query": "timeCreatedSorter=ASC"
         },
         {
           "id": 1,
-          "idFilter": "USER_SORTER_1",
-          "nameFilter": "Độ tuổi",
+          "nameFilter": "Thời gian tạo",
           "name": "Giảm dần",
-          "type": "DESC"
+          "query": "timeCreatedSorter=DESC"
         }
       ]
     },
     {
-      "id": "USER_SORTER_2",
-      "name": "Số đơn hàng",
+      "name": "Tổng tiền hóa đơn",
       "data": [
         {
+          "id": -1,
+          "nameFilter": "Tổng tiền hóa đơn",
+          "name": "Tất cả",
+          "query": "true=true"
+        },
+        {
           "id": 0,
-          "idFilter": "USER_SORTER_2",
-          "nameFilter": "Số đơn hàng",
+          "nameFilter": "Tổng tiền hóa đơn",
           "name": "Tăng dần",
-          "type": "ASC"
+          "query": "timeRegisterSorter=ASC"
         },
         {
           "id": 1,
-          "idFilter": "USER_SORTER_2",
-          "nameFilter": "Số đơn hàng",
+          "nameFilter": "Tổng tiền hóa đơn",
           "name": "Giảm dần",
-          "type": "DESC"
+          "query": "timeRegisterSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Thời gian hoàn thành",
+      "data": [
+        {
+          "id": -1,
+          "nameFilter": "Thời gian hoàn thành",
+          "name": "Tất cả",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "nameFilter": "Thời gian hoàn thành",
+          "name": "Tăng dần",
+          "query": "moneyOrderSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Thời gian hoàn thành",
+          "name": "Giảm dần",
+          "query": "moneyOrderSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Phí vận chuyển",
+      "data": [
+        {
+          "id": -1,
+          "nameFilter": "Phí vận chuyển",
+          "name": "Tất cả",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "nameFilter": "Phí vận chuyển",
+          "name": "Tăng dần",
+          "query": "feeDeliverySorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Phí vận chuyển",
+          "name": "Giảm dần",
+          "query": "feeDeliverySorter=DESC"
         }
       ]
     }
@@ -246,6 +211,10 @@
     },
     {
       "id": 4,
+      "name": "Họ tên"
+    },
+    {
+      "id": 4,
       "name": "Địa chỉ"
     },
     {
@@ -266,7 +235,7 @@
     },
     {
       "id": 9,
-      "name": "Phí chuyển tiền"
+      "name": "Phí vận chuyển"
     },
     {
       "id": 9,

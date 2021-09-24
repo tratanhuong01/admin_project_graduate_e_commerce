@@ -15,6 +15,7 @@ function RowOrderTable(props) {
           typeData={item.status}
         />
       </td>
+      <td className="p-2">{item.fullName}</td>
       <td className="p-2">{item.address}</td>
       <td className="p-2">{item.phone}</td>
       <td className="p-2">

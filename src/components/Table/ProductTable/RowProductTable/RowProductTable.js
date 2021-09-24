@@ -45,7 +45,7 @@ function RowProductTable(props) {
         <ContentColor condition={feature.condition.status} typeData={1} />
       </td>
       <td className="p-2">{`${new Intl.NumberFormat().format(
-        18364
+        item.itemSold
       )} sản phẩm`}</td>
 
       <td className="p-2 px-5">

@@ -11,7 +11,14 @@ import feature from "./feature";
 
 function ProductListScreen(props) {
   //
-  const category = useHaveModal(feature.nameTable);
+  const category = useHaveModal(
+    feature.nameTable + "Filters",
+    {
+      full: `?`,
+      limit: `?&limit=${10}&offset=${0}`,
+    },
+    true
+  );
   //
   return (
     <>
@@ -28,8 +35,8 @@ function ProductListScreen(props) {
             <ButtonAddCustom table={feature.nameTable} />
           </div>
         </div>
-        <Control type={feature.type} data={feature} />
-        <Table category={category} feature={feature}>
+        <Control type={feature.type} data={feature} table={feature.nameTable} />
+        <Table category={category} feature={feature} modal={true}>
           <ProductTable feature={feature} category={category} />
         </Table>
       </Screen>

@@ -5,6 +5,14 @@
       "name": "Xác minh",
       "data": [
         {
+          "id": -1,
+          "idFilter": "USER_FILTER_1",
+          "nameFilter": "Xác minh",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
+        {
           "id": 0,
           "idFilter": "USER_FILTER_1",
           "nameFilter": "Xác minh",
@@ -43,6 +51,14 @@
       "name": "Đăng kí tài khoản",
       "data": [
         {
+          "id": -1,
+          "idFilter": "USER_FILTER_2",
+          "nameFilter": "Đăng kí tài khoản",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
+        {
           "id": 0,
           "idFilter": "USER_FILTER_2",
           "nameFilter": "Đăng kí tài khoản",
@@ -64,6 +80,14 @@
       "id": "USER_FILTER_3",
       "name": "Trạng thái",
       "data": [
+        {
+          "id": -1,
+          "idFilter": "USER_FILTER_3",
+          "nameFilter": "Trạng thái",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
         {
           "id": 0,
           "idFilter": "USER_FILTER_3",
@@ -94,6 +118,14 @@
       "id": "USER_FILTER_4",
       "name": "Giới tính",
       "data": [
+        {
+          "id": -1,
+          "idFilter": "USER_FILTER_4",
+          "nameFilter": "Giới tính",
+          "name": "Tất cả",
+          "type": "Nam",
+          "query": "true=true"
+        },
         {
           "id": 0,
           "idFilter": "USER_FILTER_4",
@@ -126,6 +158,13 @@
       "data": [
         {
           "id": -1,
+          "idFilter": "USER_FILTER_5",
+          "nameFilter": "Độ tuổi",
+          "name": "Tất cả",
+          "query": "true=true"
+        },
+        {
+          "id": 6,
           "idFilter": "USER_FILTER_5",
           "nameFilter": "Độ tuổi",
           "name": "Nhỏ hơn 18 tuổi",
@@ -181,6 +220,12 @@
       "name": "Độ tuổi",
       "data": [
         {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Độ tuổi",
+          "query": "true=true"
+        },
+        {
           "id": 0,
           "name": "Tăng dần",
           "nameFilter": "Độ tuổi",
@@ -197,6 +242,12 @@
     {
       "name": "Thời gian đăng kí",
       "data": [
+        {
+          "id": -1,
+          "nameFilter": "Thời gian đăng kí",
+          "name": "Tất cả",
+          "query": "true=true"
+        },
         {
           "id": 0,
           "nameFilter": "Thời gian đăng kí",

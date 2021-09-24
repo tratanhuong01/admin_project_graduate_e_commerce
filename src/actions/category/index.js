@@ -35,7 +35,7 @@ export const loadListCategory = (list, length) => {
   };
 };
 
-export const loadListCategoryRequest = (data, params) => {
+export const loadListCategoryRequest = (data, params, status) => {
   return async (dispatch) => {
     const result1 = await api(
       `${data}${params ? params.limit : ""}`,
@@ -47,7 +47,12 @@ export const loadListCategoryRequest = (data, params) => {
       "GET",
       null
     );
-    dispatch(loadListCategory(result1.data, result2.data.length));
+    dispatch(
+      loadListCategory(
+        result1.data,
+        status ? result2.data : result2.data.length
+      )
+    );
   };
 };
 

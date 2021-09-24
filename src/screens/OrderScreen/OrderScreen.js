@@ -11,10 +11,14 @@ import feature from "./feature";
 
 function OrderScreen(props) {
   //
-  const category = useHaveModal(feature.nameTable, {
-    limit: `/admin/?offset=0&limit=10`,
-    full: `/admin/`,
-  });
+  const category = useHaveModal(
+    feature.nameTable + "Filters",
+    {
+      full: `?`,
+      limit: `?&limit=${10}&offset=${0}`,
+    },
+    true
+  );
   //
   return (
     <>
@@ -31,8 +35,8 @@ function OrderScreen(props) {
             <ButtonAddCustom table={feature.nameTable} />
           </div>
         </div>
-        <Control type={feature.type} data={feature} />
-        <Table category={category} feature={feature}>
+        <Control type={feature.type} data={feature} table={feature.nameTable} />
+        <Table category={category} feature={feature} modal={true}>
           <OrderTable feature={feature} category={category} />
         </Table>
       </Screen>

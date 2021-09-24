@@ -28,7 +28,7 @@ function Category(props) {
           name: "Nhà cung cấp",
           type: "manufacture",
           label: "Quản lí nhà cung cấp",
-          to: "",
+          to: Config.SUPPILER,
         },
       ],
     },

@@ -10,10 +10,14 @@ import feature from "./feature";
 import { useHaveModal } from "../../hooks/useHaveModal";
 function UserScreen(props) {
   //
-  const category = useHaveModal(feature.nameTable, {
-    full: `?type=${0}`,
-    limit: `?type=${0}&limit=${10}&offset=${0}`,
-  });
+  const category = useHaveModal(
+    feature.nameTable + "Filters",
+    {
+      full: `?userType=${0}`,
+      limit: `?userType=${0}&limit=${10}&offset=${0}`,
+    },
+    true
+  );
   //
   return (
     <>

@@ -4,6 +4,7 @@ export const REGEX_NUMBER_PHONE =
   /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/;
 
 export const USER = `${PAGE_ADMIN}/khach-hang`;
+export const SUPPILER = `${PAGE_ADMIN}/nha-cung-cap`;
 export const DASHBOARD = `${PAGE_ADMIN}/tong-quan`;
 export const BILL = `${PAGE_ADMIN}/don-hang`;
 export const LIST_PRODUCT = `${PAGE_ADMIN}/san-pham/danh-sach-san-pham`;
