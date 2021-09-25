@@ -99,6 +99,5 @@ export const queryFilter = async (filter) => {
       count++;
     });
   }
-  console.log(clone);
   return clone;
 };

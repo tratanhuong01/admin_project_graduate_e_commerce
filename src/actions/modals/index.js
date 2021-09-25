@@ -20,3 +20,10 @@ export const openModalEdit = (table, data) => {
     data,
   };
 };
+
+export const openModalUpdateStatusCategory = (data) => {
+  return {
+    type: Types.OPEN_MODAL_UPDATE_STATUS_CATEGORY,
+    data,
+  };
+};

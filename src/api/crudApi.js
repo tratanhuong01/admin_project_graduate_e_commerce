@@ -11,3 +11,15 @@ export const updateData = (item, table) => {
 export const deleteData = (item, table) => {
   return api(`${table}`, "DELETE", item, {});
 };
+
+export const updateCategory = (table, item, column) => {
+  return api(
+    `${table}/update/${column}/`,
+    "PUT",
+    {
+      id: item.id,
+      value: item.value,
+    },
+    {}
+  );
+};

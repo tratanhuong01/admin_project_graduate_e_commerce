@@ -1,5 +1,6 @@
 import React from "react";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
+import ModalUpdateStatusCategory from "../components/Modals/ModalUpdateStatusCategory/ModalUpdateStatusCategory";
 import * as Types from "../constants/ActionTypes";
 
 const initialState = {
@@ -30,6 +31,16 @@ const myReducer = (state = initialState, action) => {
         default:
           break;
       }
+      return { ...state };
+    case Types.OPEN_MODAL_UPDATE_STATUS_CATEGORY:
+      state.data = (
+        <ModalUpdateStatusCategory
+          data={action.data.data}
+          itemCurrent={action.data.itemCurrent}
+          table={action.data.table}
+          id={action.data.id}
+        />
+      );
       return { ...state };
     default:
       return state;

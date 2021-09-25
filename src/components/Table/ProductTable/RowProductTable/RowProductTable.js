@@ -41,6 +41,9 @@ function RowProductTable(props) {
         </span>
       </td>
       <td className="p-2 font-bold text-green-800">Electric Home</td>
+      <td className="p-2">{`${new Intl.NumberFormat().format(
+        item.itemCurrent
+      )} sản phẩm`}</td>
       <td className="p-2">
         <ContentColor condition={feature.condition.status} typeData={1} />
       </td>

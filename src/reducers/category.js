@@ -42,7 +42,6 @@ const myReducer = (state = initialState, action) => {
     case Types.LOAD_LIST_CATEGORY:
       state.length = action.length;
       state.list = action.list;
-      state.index = 0;
       return { ...state };
     case Types.LOAD_PAGINATION:
       state.index = action.index;
@@ -50,6 +49,7 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.ADD_ITEM_CHOOSE:
       state.choose = [...state.choose, action.item];
+      state.index = 0;
       return { ...state };
     case Types.REMOVE_ITEM_CHOOSE:
       index = state.choose.findIndex((item) => item.id === action.item.id);
@@ -58,9 +58,11 @@ const myReducer = (state = initialState, action) => {
         items.splice(index, 1);
         state.choose = items;
       }
+      state.index = 0;
       return { ...state };
     case Types.REMOVE_ITEM_CHOOSE_ALL:
       state.choose = [];
+      state.index = 0;
       return { ...state };
     case Types.ADD_ITEM_CHOOSE_ALL:
       state.choose = state.list;

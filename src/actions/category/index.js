@@ -2,7 +2,7 @@ import * as Types from "../../constants/ActionTypes";
 import api from "../../Utils/api";
 import * as crudApi from "../../api/crudApi";
 import * as filterApi from "../../api/filterApi";
-
+import * as modalsAction from "../modals/index";
 export const handleCategory = (data) => {
   return {
     type: Types.HANDLE_CATEGORY,
@@ -44,6 +44,40 @@ export const loadListCategoryRequest = (data, params, status) => {
     );
     const result2 = await api(
       `${data}All${params ? params.full : ""}`,
+      "GET",
+      null
+    );
+    dispatch(
+      loadListCategory(
+        result1.data,
+        status ? result2.data : result2.data.length
+      )
+    );
+  };
+};
+
+export const loadListCategoryConnectRequest = (
+  data,
+  params,
+  status,
+  filterData
+) => {
+  return async (dispatch) => {
+    const { filters, sorter, search } = filterData;
+    let stringQuery = "";
+    if (filters.length > 0)
+      filters.forEach((element) => {
+        stringQuery += "&" + element.query;
+      });
+    if (sorter) stringQuery += `&${sorter.query}`;
+    if (search) stringQuery += `&keyword=${search}`;
+    const result1 = await api(
+      `${data}${params ? params.limit : ""}${stringQuery}`,
+      "GET",
+      null
+    );
+    const result2 = await api(
+      `${data}All${params ? params.full : ""}${stringQuery}`,
       "GET",
       null
     );
@@ -148,5 +182,25 @@ export const addCategoryRequest = (obj, table, query) => {
 export const resetIndexCategory = () => {
   return {
     type: Types.RESET_INDEX_CATEGORY,
+  };
+};
+
+export const updateStatusCategoryRequest = (data) => {
+  return async (dispatch) => {
+    const { table, item, query, status, filterData } = data;
+    await crudApi.updateCategory(
+      table + "s",
+      { id: item.id, value: item.data },
+      item.column
+    );
+    dispatch(
+      loadListCategoryConnectRequest(
+        table + "Filters",
+        query,
+        status,
+        filterData
+      )
+    );
+    dispatch(modalsAction.closeModal());
   };
 };

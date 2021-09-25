@@ -371,6 +371,10 @@
       "name": "Nhà cung cấp"
     },
     {
+      "id": 14,
+      "name": "Số lượng còn lại"
+    },
+    {
       "id": 13,
       "name": "Tình trạng"
     },
