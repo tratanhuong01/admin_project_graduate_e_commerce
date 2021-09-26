@@ -1,13 +1,14 @@
 import React from "react";
-import ButtonAddCustom from "../../components/Index/IndexRight/General/ButtonAddCustom/ButtonAddCustom";
+import ButtonCustom from "../../components/Index/IndexRight/General/ButtonCustom/ButtonCustom";
 import Control from "../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../components/Index/IndexRight/General/FileDown/FileDown";
 import Table from "../../components/Table/Table";
-import UserTable from "../../components/Table/UserTable/UserTable";
 import Screen from "../Screen";
 import feature from "./feature";
 import { useHaveModal } from "../../hooks/useHaveModal";
+import TableMain from "../../components/Table/TableMain/TableMain";
+import RowUserTable from "../../components/Table/UserTable/RowUserTable/RowUserTable";
 function UserScreen(props) {
   //
   const category = useHaveModal(
@@ -31,12 +32,26 @@ function UserScreen(props) {
           <div className="w-auto flex items-center justify-end">
             <Date />
             <FileDown />
-            {feature.add && <ButtonAddCustom table={feature.nameTable} />}
+            {feature.add && <ButtonCustom table={feature.nameTable} />}
           </div>
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />
         <Table category={category} feature={feature} modal={true}>
-          <UserTable feature={feature} category={category} />
+          <TableMain feature={feature} category={category} numRow={13}>
+            {category.list
+              ? category.list.map((item, index) => {
+                  return (
+                    <RowUserTable
+                      item={item}
+                      key={index}
+                      category={category}
+                      index={index}
+                      feature={feature}
+                    />
+                  );
+                })
+              : ""}
+          </TableMain>
         </Table>
       </Screen>
     </>

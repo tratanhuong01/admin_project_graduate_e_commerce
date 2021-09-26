@@ -1,4 +1,5 @@
 import React from "react";
+import ModalNews from "../components/Modals/ModalNews/ModalNews";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
 import ModalUpdateStatusCategory from "../components/Modals/ModalUpdateStatusCategory/ModalUpdateStatusCategory";
 import * as Types from "../constants/ActionTypes";
@@ -19,6 +20,9 @@ const myReducer = (state = initialState, action) => {
         case "product":
           state.data = <ModalProduct data={null} />;
           break;
+        case "new":
+          state.data = <ModalNews data={null} />;
+          break;
         default:
           break;
       }
@@ -27,6 +31,9 @@ const myReducer = (state = initialState, action) => {
       switch (action.table) {
         case "product":
           state.data = <ModalProduct data={action.data} />;
+          break;
+        case "new":
+          state.data = <ModalNews data={action.data} />;
           break;
         default:
           break;

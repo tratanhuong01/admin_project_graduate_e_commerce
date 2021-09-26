@@ -1,7 +1,8 @@
 import React from "react";
 import NotModalTop from "../../components/Index/IndexRight/Category/NotModal/NotModalTop/NotModalTop";
-import BrandTable from "../../components/Table/BrandTable/BrandTable";
+import RowBrandTable from "../../components/Table/BrandTable/RowBrandTable/RowBrandTable";
 import Table from "../../components/Table/Table";
+import TableMain from "../../components/Table/TableMain/TableMain";
 import { useNotModal } from "../../hooks/useNotModal";
 import Screen from "../Screen";
 import feature from "./feature";
@@ -13,11 +14,9 @@ function BrandScreen(props) {
   return (
     <Screen>
       <div className="w-full flex py-2 relative">
-        <div className="mr-10 flex">
-          <p className="text-2xl font-bold flex items-center">
-            {feature.label}
-          </p>
-        </div>
+        <p className="text-2xl font-bold flex items-center ml-10">
+          {feature.label}
+        </p>
       </div>
       <div className="w-full py-3">
         <div className="w-full flex">
@@ -25,7 +24,19 @@ function BrandScreen(props) {
           <div className="w-3/5">
             <NotModalTop category={category} table={feature.nameTable} />
             <Table category={category} feature={feature}>
-              <BrandTable category={category} feature={feature} />
+              <TableMain category={category} feature={feature}>
+                {category.list &&
+                  category.list.map((item, index) => {
+                    return (
+                      <RowBrandTable
+                        item={item}
+                        key={index}
+                        category={category}
+                        index={index}
+                      />
+                    );
+                  })}
+              </TableMain>
             </Table>
           </div>
         </div>

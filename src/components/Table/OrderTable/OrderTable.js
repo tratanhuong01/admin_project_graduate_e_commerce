@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
+import NotResultTable from "../NotResultTable";
 import RowOrderTable from "./RowOrderTable/RowOrderTable";
 
 function OrderTable(props) {
@@ -10,17 +11,21 @@ function OrderTable(props) {
     <>
       <Title title={feature.table} />
       {category.list &&
-        category.list.map((item, index) => {
-          return (
-            <RowOrderTable
-              item={item}
-              key={index}
-              category={category}
-              index={index}
-              feature={feature}
-            />
-          );
-        })}
+        (category.list.length <= 0 ? (
+          <NotResultTable numRow={8} />
+        ) : (
+          category.list.map((item, index) => {
+            return (
+              <RowOrderTable
+                item={item}
+                key={index}
+                category={category}
+                index={index}
+                feature={feature}
+              />
+            );
+          })
+        ))}
     </>
   );
 }

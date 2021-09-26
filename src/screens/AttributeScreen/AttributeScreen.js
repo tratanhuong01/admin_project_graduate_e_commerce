@@ -5,6 +5,8 @@ import Table from "../../components/Table/Table";
 import Screen from "../Screen";
 import feature from "./feature";
 import { useNotModal } from "../../hooks/useNotModal";
+import TableMain from "../../components/Table/TableMain/TableMain";
+import RowAttributeTable from "../../components/Table/AttributeTable/RowAttributeTable/RowAttributeTable";
 function AttributeScreen(props) {
   //
   const { category, form } = useNotModal(feature.nameTable);
@@ -24,7 +26,19 @@ function AttributeScreen(props) {
           <div className="w-3/5">
             <NotModalTop category={category} table={feature.nameTable} />
             <Table category={category} feature={feature}>
-              <AttributeTable category={category} feature={feature} />
+              <TableMain category={category} feature={feature}>
+                {category.list &&
+                  category.list.map((item, index) => {
+                    return (
+                      <RowAttributeTable
+                        item={item}
+                        key={index}
+                        category={category}
+                        index={index}
+                      />
+                    );
+                  })}
+              </TableMain>
             </Table>
           </div>
         </div>

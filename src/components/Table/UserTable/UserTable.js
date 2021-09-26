@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
+import NotResultTable from "../NotResultTable";
 import RowUserTable from "./RowUserTable/RowUserTable";
 
 function UserTable(props) {
@@ -10,17 +11,21 @@ function UserTable(props) {
     <>
       <Title title={feature.table} />
       {category.list &&
-        category.list.map((item, index) => {
-          return (
-            <RowUserTable
-              feature={feature}
-              item={item}
-              key={index}
-              category={category}
-              index={index}
-            />
-          );
-        })}
+        (category.list.length > 0 ? (
+          category.list.map((item, index) => {
+            return (
+              <RowUserTable
+                feature={feature}
+                item={item}
+                key={index}
+                category={category}
+                index={index}
+              />
+            );
+          })
+        ) : (
+          <NotResultTable numRow={13} />
+        ))}
     </>
   );
 }

@@ -161,14 +161,28 @@ export const addItemChooseAll = () => {
   };
 };
 
-export const deleteCategoryRequest = (list, table) => {
+export const deleteCategoryRequest = (list, table, data) => {
   return async (dispatch) => {
     for (let index = 0; index < list.length; index++) {
       const element = list[index];
       await api(`${table}`, "DELETE", element);
     }
     dispatch(removeItemChooseAll());
-    dispatch(loadListCategoryRequest(table));
+    if (data) {
+      const { filters, sorter, search, status, params } = data;
+      dispatch(
+        loadListCategoryConnectRequest(
+          table.replace("s", "") + "Filters",
+          params,
+          status,
+          {
+            filters,
+            sorter,
+            search,
+          }
+        )
+      );
+    } else dispatch(loadListCategoryRequest(table));
   };
 };
 

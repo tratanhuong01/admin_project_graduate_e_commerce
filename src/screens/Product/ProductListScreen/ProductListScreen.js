@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonAddCustom from "../../../components/Index/IndexRight/General/ButtonAddCustom/ButtonAddCustom";
+import ButtonCustom from "../../../components/Index/IndexRight/General/ButtonCustom/ButtonCustom";
 import Control from "../../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../../components/Index/IndexRight/General/FileDown/FileDown";
@@ -32,7 +32,7 @@ function ProductListScreen(props) {
           <div className="w-auto flex items-center justify-end">
             <Date />
             <FileDown />
-            <ButtonAddCustom table={feature.nameTable} />
+            <ButtonCustom table={feature.nameTable} />
           </div>
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />

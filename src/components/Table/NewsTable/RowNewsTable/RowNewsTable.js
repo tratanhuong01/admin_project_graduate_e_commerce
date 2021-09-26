@@ -23,16 +23,8 @@ function RowNewsTable(props) {
         item.view
       )} lượt xem`}</td>
       <td className="p-2 font-semibold">{`${new Intl.NumberFormat().format(
-        4234
+        item.commentCount
       )} bình luận`}</td>
-      <td className="p-2 px-5">
-        <button
-          className="px-7 py-2 rounded-full text-sm font-semibold border-2 border-solid 
-        border-blue-500"
-        >
-          Sửa
-        </button>
-      </td>
     </RowTableMain>
   );
 }

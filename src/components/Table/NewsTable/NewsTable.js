@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
+import NotResultTable from "../NotResultTable";
 import RowNewsTable from "./RowNewsTable/RowNewsTable";
 
 function NewsTable(props) {
@@ -10,16 +11,21 @@ function NewsTable(props) {
     <>
       <Title title={feature.table} />
       {category.list &&
-        category.list.map((item, index) => {
-          return (
-            <RowNewsTable
-              item={item}
-              key={index}
-              category={category}
-              index={index}
-            />
-          );
-        })}
+        (category.list.length <= 0 ? (
+          <NotResultTable numRow={8} />
+        ) : (
+          category.list.map((item, index) => {
+            return (
+              <RowNewsTable
+                table={feature.nameTable}
+                item={item}
+                key={index}
+                category={category}
+                index={index}
+              />
+            );
+          })
+        ))}
     </>
   );
 }

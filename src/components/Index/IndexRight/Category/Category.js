@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Control from "../General/Control/Control";
 import Date from "../General/Date/Date";
-import ButtonAddCustom from "../General/ButtonAddCustom/ButtonAddCustom";
+import ButtonCustom from "../General/ButtonCustom/ButtonCustom";
 import FileDown from "../General/FileDown/FileDown";
 import { useDispatch, useSelector } from "react-redux";
 import * as categorysAction from "../../../../actions/category/index";
@@ -39,7 +39,7 @@ function Category(props) {
         <div className="w-auto flex items-center justify-end">
           {data.filterAndSorter && <Date />}
           <FileDown />
-          {data.modal ? <ButtonAddCustom table={data.nameTable} /> : ""}
+          {data.modal ? <ButtonCustom table={data.nameTable} /> : ""}
         </div>
       </div>
       {data.filterAndSorter && <Control type={data.type} data={data} />}

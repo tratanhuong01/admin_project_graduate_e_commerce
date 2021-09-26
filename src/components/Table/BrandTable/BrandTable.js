@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
+import NotResultTable from "../NotResultTable";
 import RowBrandTable from "./RowBrandTable/RowBrandTable";
 
 function BrandTable(props) {
@@ -10,16 +11,20 @@ function BrandTable(props) {
     <>
       <Title title={feature.table} />
       {category.list &&
-        category.list.map((item, index) => {
-          return (
-            <RowBrandTable
-              item={item}
-              key={index}
-              category={category}
-              index={index}
-            />
-          );
-        })}
+        (category.list.length <= 0 ? (
+          <NotResultTable numRow={4} />
+        ) : (
+          category.list.map((item, index) => {
+            return (
+              <RowBrandTable
+                item={item}
+                key={index}
+                category={category}
+                index={index}
+              />
+            );
+          })
+        ))}
     </>
   );
 }

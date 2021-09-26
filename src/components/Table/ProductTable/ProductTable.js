@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
 import LoadingTable from "../LoadingTable";
+import NotResultTable from "../NotResultTable";
 import RowProductTable from "./RowProductTable/RowProductTable";
 
 function ProductTable(props) {
@@ -17,17 +18,21 @@ function ProductTable(props) {
         type={true}
       >
         {category.list &&
-          category.list.map((item, index) => {
-            return (
-              <RowProductTable
-                item={item}
-                key={index}
-                feature={feature}
-                category={category}
-                index={index}
-              />
-            );
-          })}
+          (category.list.length <= 0 ? (
+            <NotResultTable numRow={15} />
+          ) : (
+            category.list.map((item, index) => {
+              return (
+                <RowProductTable
+                  item={item}
+                  key={index}
+                  feature={feature}
+                  category={category}
+                  index={index}
+                />
+              );
+            })
+          ))}
       </LoadingTable>
     </>
   );

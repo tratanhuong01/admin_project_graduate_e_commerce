@@ -27,3 +27,10 @@ export const openModalUpdateStatusCategory = (data) => {
     data,
   };
 };
+
+export const openModalNews = (newData) => {
+  return {
+    type: Types.OPEN_MODAL_NEWS,
+    newData,
+  };
+};

@@ -28,6 +28,9 @@ function Title(props) {
                     ? true
                     : false
                 }
+                disabled={
+                  category.list && (category.list.length === 0 ? true : false)
+                }
               />
             </th>
           );
