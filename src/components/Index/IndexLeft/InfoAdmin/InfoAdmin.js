@@ -16,7 +16,7 @@ function InfoAdmin(props) {
         <div className="hidden xl:flex items-center">
           <div className="flex flex-wrap items-center">
             <p className="font-bold">Trà Tấn Hưởng</p>
-            <p className="">Quản trị viên</p>
+            <p className="w-full">Quản trị viên</p>
           </div>
         </div>
       </div>

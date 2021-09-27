@@ -24,15 +24,7 @@
           "id": 1,
           "idFilter": "ORDER_FILTER_1",
           "nameFilter": "Trạng thái",
-          "name": "Đã xác nhận",
-          "type": 1,
-          "query": "status=1"
-        },
-        {
-          "id": 2,
-          "idFilter": "ORDER_FILTER_1",
-          "nameFilter": "Trạng thái",
-          "name": "Chờ lấy hàng",
+          "name": "Đã xác nhận-Chờ gửi hàng",
           "type": 1,
           "query": "status=1"
         },
@@ -59,6 +51,14 @@
           "name": "Đã hủy",
           "type": -1,
           "query": "status=-1"
+        },
+        {
+          "id": 5,
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Thất bại",
+          "type": -1,
+          "query": "status=4"
         }
       ]
     }
@@ -100,13 +100,13 @@
           "id": 0,
           "nameFilter": "Tổng tiền hóa đơn",
           "name": "Tăng dần",
-          "query": "timeRegisterSorter=ASC"
+          "query": "moneyOrderSorter=ASC"
         },
         {
           "id": 1,
           "nameFilter": "Tổng tiền hóa đơn",
           "name": "Giảm dần",
-          "query": "timeRegisterSorter=DESC"
+          "query": "moneyOrderSorter=DESC"
         }
       ]
     },
@@ -167,13 +167,13 @@
       },
       {
         "id": 1,
-        "name": "Chưa xử lí",
+        "name": "Chưa xác nhận",
         "bgColor": "bg-red-600",
         "type": 0
       },
       {
         "id": 2,
-        "name": "Chờ lấy hàng",
+        "name": "Đã xác nhận - Chờ gửi hàng",
         "bgColor": "bg-yellow-600",
         "type": 1
       },
@@ -186,8 +186,14 @@
       {
         "id": 4,
         "bgColor": "bg-green-600",
-        "name": "Đã giao",
+        "name": "Thành công",
         "type": 3
+      },
+      {
+        "id": 5,
+        "bgColor": "bg-green-600",
+        "name": "Thất bại",
+        "type": 4
       }
     ]
   },

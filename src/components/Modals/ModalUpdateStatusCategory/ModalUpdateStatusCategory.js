@@ -9,7 +9,7 @@ function ModalUpdateStatusCategory(props) {
   //
   return (
     <div
-      className="shadow-sm border border-solid border-gray-500 py-3 pl-1.5 pr-1.5 pt-0 bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg  sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3 transform 
+      className="shadow-sm border border-solid border-gray-500 p-3 bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg  sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3 transform 
       -translate-x-1/2 -translate-y-1/2 overflow-y-auto"
       style={{ maxHeight: 450 }}
     >
@@ -18,7 +18,7 @@ function ModalUpdateStatusCategory(props) {
         <CloseModal />
         <hr />
       </div>
-      <ul className="w-full p-2">
+      <ul className="w-full">
         {data.list &&
           data.list.map((item, index) => (
             <ItemUpdateStatusCategory

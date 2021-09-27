@@ -37,8 +37,9 @@ function InputField(props) {
             }`
           }
           onChange={(e) => {
-            if (file) onChange(e.target.files[0]);
-            else onChange(e.target.value);
+            if (file) {
+              if (e.target.files) onChange(e.target.files[0]);
+            } else onChange(e.target.value);
             if (typeof Field === "function") Field.onChange(e);
           }}
           placeholder={placeHolder}

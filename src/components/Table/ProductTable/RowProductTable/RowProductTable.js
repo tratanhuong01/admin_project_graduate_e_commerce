@@ -50,15 +50,6 @@ function RowProductTable(props) {
       <td className="p-2">{`${new Intl.NumberFormat().format(
         item.itemSold
       )} sản phẩm`}</td>
-
-      <td className="p-2 px-5">
-        <button
-          className="px-7 py-2 rounded-full text-sm font-semibold border-2 border-solid 
-        border-blue-500"
-        >
-          Sửa
-        </button>
-      </td>
     </RowTableMain>
   );
 }

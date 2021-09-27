@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InputField from "../../../InputField/InputField";
 import SelectCustom from "../../../SelectCustom/SelectCustom";
+import ModeAddFile from "./ModeAddFile/ModeAddFile";
 
 function TabInfoNews(props) {
   //
@@ -13,7 +14,7 @@ function TabInfoNews(props) {
       setValue("contentShort", data.describeSmall);
       setValue("categoryNews", data.categoryNews);
     }
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //
   return (
@@ -37,15 +38,10 @@ function TabInfoNews(props) {
           name="contentShort"
           onChange={() => ""}
         />
-        <InputField
+        <ModeAddFile
           register={register}
-          showError={errors["thumbnail"]}
-          type="file"
-          className="w-full p-3 rounded-full my-1 border-2 border-solid border-gray-200"
-          placeHolder="Ảnh thu nhỏ"
-          name="thumbnail"
-          onChange={(file) => setFileData(file)}
-          file={true}
+          errors={errors}
+          setFileData={setFileData}
         />
         <SelectCustom
           list={categoryNewsList}
@@ -69,7 +65,9 @@ function TabInfoNews(props) {
         <img
           src={
             fileData
-              ? URL.createObjectURL(fileData)
+              ? fileData.type
+                ? URL.createObjectURL(fileData.data)
+                : fileData.data
               : data
               ? data.thumbnail
               : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXYdHusTllj5ZOEIVaqE8x5jwsdipeHWKloVM1kM7CgSljst_YbtSj6ayC3hWwZBUhqhk&usqp=CAU"

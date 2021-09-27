@@ -31,7 +31,7 @@ function ItemCategory(props) {
           if (item.child.length === 0) {
             if (location.pathname !== item.to) {
               dispatch(categorysAction.resetCategory());
-              dispatch(filtersAction.updateFilterCategory([]));
+              dispatch(filtersAction.removeAllFilterSorterSearch());
             }
             history.push(item.to);
           }
@@ -39,8 +39,8 @@ function ItemCategory(props) {
         className={`w-full border-solid cursor-pointer flex pl-5 h-12 my-1 items-center 
         rounded-lg relative  font-semibold ${
           item.to === location.pathname
-            ? "border-l-4 border-gray-200 bg-gray-200 text-blue-600"
-            : "border-white text-gray-800 hover:bg-gray-200"
+            ? "border-l-4 border-organce bg-organce text-white"
+            : "border-white text-gray-800 hover:bg-organce hover:text-white"
         }`}
       >
         <span className={`${item.icon} text-xl mr-3 flex `}></span>
@@ -58,7 +58,7 @@ function ItemCategory(props) {
                   onClick={() => {
                     if (location.pathname !== dt.to) {
                       dispatch(categorysAction.resetCategory());
-                      dispatch(filtersAction.updateFilterCategory([]));
+                      dispatch(filtersAction.removeAllFilterSorterSearch());
                     }
                     history.push(dt.to);
                   }}

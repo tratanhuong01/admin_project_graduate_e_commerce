@@ -1,6 +1,5 @@
 import React from "react";
 import NotModalTop from "../../components/Index/IndexRight/Category/NotModal/NotModalTop/NotModalTop";
-import AttributeTable from "../../components/Table/AttributeTable/AttributeTable";
 import Table from "../../components/Table/Table";
 import Screen from "../Screen";
 import feature from "./feature";

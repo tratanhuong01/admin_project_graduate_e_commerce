@@ -1,5 +1,4 @@
 import React from "react";
-import ButtonCustom from "../../components/Index/IndexRight/General/ButtonCustom/ButtonCustom";
 import Control from "../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../components/Index/IndexRight/General/FileDown/FileDown";
@@ -9,6 +8,7 @@ import feature from "./feature";
 import { useHaveModal } from "../../hooks/useHaveModal";
 import TableMain from "../../components/Table/TableMain/TableMain";
 import RowUserTable from "../../components/Table/UserTable/RowUserTable/RowUserTable";
+import CrudCategoryModal from "../../components/CrudCategoryModal/CrudCategoryModal";
 function UserScreen(props) {
   //
   const category = useHaveModal(
@@ -32,7 +32,16 @@ function UserScreen(props) {
           <div className="w-auto flex items-center justify-end">
             <Date />
             <FileDown />
-            {feature.add && <ButtonCustom table={feature.nameTable} />}
+            <CrudCategoryModal
+              feature={feature}
+              params={{
+                full: `?userType=0`,
+                limit: `?userType=0&limit=${10}&offset=${0}`,
+              }}
+              add={false}
+              edit={false}
+              remove={true}
+            />
           </div>
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />

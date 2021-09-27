@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonCustom from "../../components/Index/IndexRight/General/ButtonCustom/ButtonCustom";
+import CrudCategoryModal from "../../components/CrudCategoryModal/CrudCategoryModal";
 import Control from "../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../components/Index/IndexRight/General/FileDown/FileDown";
@@ -32,41 +32,16 @@ function NewsScreen(props) {
           <div className="w-auto flex items-center justify-end">
             <Date />
             <FileDown />
-            <div className="absolute -right-2 flex">
-              {category.choose.length === 1 && (
-                <ButtonCustom
-                  table={feature.nameTable}
-                  bgColor="bg-organce"
-                  content={"Sửa"}
-                  type={1}
-                  icon="bx bx-edit"
-                  params={{
-                    full: `?`,
-                    limit: `?limit=${10}&offset=${0}`,
-                  }}
-                />
-              )}
-              {category.choose.length > 0 && (
-                <ButtonCustom
-                  table={feature.nameTable}
-                  bgColor="bg-red-500"
-                  content={"Xóa"}
-                  type={2}
-                  icon="bx bxs-trash"
-                  params={{
-                    full: `?`,
-                    limit: `?limit=${10}&offset=${0}`,
-                  }}
-                />
-              )}
-              <ButtonCustom
-                table={feature.nameTable}
-                bgColor="bg-blue-500"
-                content={"Thêm"}
-                type={0}
-                icon="bx bx-plus"
-              />
-            </div>
+            <CrudCategoryModal
+              feature={feature}
+              params={{
+                full: `?`,
+                limit: `?limit=${10}&offset=${0}`,
+              }}
+              add={true}
+              edit={true}
+              remove={true}
+            />
           </div>
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />

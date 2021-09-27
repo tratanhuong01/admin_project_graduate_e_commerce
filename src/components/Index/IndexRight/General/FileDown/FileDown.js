@@ -23,7 +23,7 @@ function FileDown(props) {
           </div>
         )}
       </div>
-      <button className="px-5 py-2 bg-blue-500 text-white font-bold rounded-lg">
+      <button className="px-5 py-2 bg-organce  text-white font-bold rounded-lg">
         <i className="bx bxs-download mr-3"></i>Tải xuống
       </button>
     </>

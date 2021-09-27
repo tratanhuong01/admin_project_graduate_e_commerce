@@ -12,7 +12,7 @@ function OrderTable(props) {
       <Title title={feature.table} />
       {category.list &&
         (category.list.length <= 0 ? (
-          <NotResultTable numRow={8} />
+          <NotResultTable numRow={12} />
         ) : (
           category.list.map((item, index) => {
             return (

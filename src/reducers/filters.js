@@ -15,7 +15,12 @@ const myReducer = (state = initialState, action) => {
       state.sorter = action.sorter;
       return { ...state };
     case Types.UPDATE_SEARCH_CATEGORY:
-      state.keyword = action.keyword;
+      state.search = action.keyword;
+      return { ...state };
+    case Types.REMOVE_ALL_FILTER_SORTER_SEARCH:
+      state.choose = [];
+      state.search = "";
+      state.sorter = null;
       return { ...state };
     default:
       return state;

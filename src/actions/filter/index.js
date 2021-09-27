@@ -157,3 +157,9 @@ export const updateSearchCategory = (keyword) => {
     keyword,
   };
 };
+
+export const removeAllFilterSorterSearch = () => {
+  return {
+    type: Types.REMOVE_ALL_FILTER_SORTER_SEARCH,
+  };
+};

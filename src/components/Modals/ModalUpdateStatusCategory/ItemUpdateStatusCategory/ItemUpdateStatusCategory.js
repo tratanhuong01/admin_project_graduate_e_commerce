@@ -8,13 +8,33 @@ function ItemUpdateStatusCategory(props) {
   const category = useSelector((state) => state.category);
   const filters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
+  const action = () => {
+    setValue(item.data);
+    dispatch(
+      categorysAction.updateStatusCategoryRequest({
+        table: table,
+        item: Object.assign(item, { column, id }),
+        query: {
+          full: `?userType=${0}`,
+          limit: `?userType=${0}&limit=${10}&offset=${category.index}`,
+        },
+        status: true,
+        filterData: {
+          filters: filters.choose,
+          sorter: filters.sorter,
+          search: filters.search,
+        },
+      })
+    );
+  };
   //
   return (
-    <li className="w-full flex p-2 my-2 cursor-pointer">
-      <div className="w-2/12">
-        <i
-          className={`${item.icon} text-3xl py-4 px-5 bg-gray-200 rounded-full`}
-        ></i>
+    <li
+      onClick={action}
+      className="w-full flex p-2 my-2 cursor-pointer hover:bg-gray-200"
+    >
+      <div className="w-20 h-20 hover:text-gray-100 hover:bg-gray-500 rounded-full flex items-center justify-center bg-gray-200">
+        <i className={`${item.icon} text-3xl`}></i>
       </div>
       <div className="w-9/12 pl-4 flex items-center flex-wrap">
         <p className="font-semibold text-xl dark:text-white w-full">
@@ -24,30 +44,12 @@ function ItemUpdateStatusCategory(props) {
           {item.description}
         </p>
       </div>
-      <div className="w-1/12 p-6">
+      <div className="w-1/12 p-6 cursor-pointer">
         <input
           type="radio"
           className="text-3xl h-4 transform scale-150"
           name="data"
-          onChange={() => {
-            setValue(item.data);
-            dispatch(
-              categorysAction.updateStatusCategoryRequest({
-                table: table,
-                item: Object.assign(item, { column, id }),
-                query: {
-                  full: `?userType=${0}`,
-                  limit: `?userType=${0}&limit=${10}&offset=${category.index}`,
-                },
-                status: true,
-                filterData: {
-                  filters: filters.choose,
-                  sorter: filters.sorter,
-                  search: filters.search,
-                },
-              })
-            );
-          }}
+          onChange={action}
           checked={value === item.data}
         />
       </div>

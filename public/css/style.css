@@ -6,6 +6,38 @@ button:focus {
 * {
   font-size: 14px;
 }
+#table__orders tr th {
+  color: #f36438;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  border: 1px solid #f36438;
+}
+#table__orders tr td {
+  border: 1px solid #f36438;
+}
+.orders__modal span {
+  color: #f36438;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+/* .orders__modal div {
+  color: #f36438;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+} */
+.orders__modal p {
+  color: #f36438;
+  font-weight: 700;
+  font-family: "Courier New", Courier, monospace;
+}
+#table__orders tr th {
+  padding: 8px 0px;
+  font-size: 14px !important;
+}
+#table__orders tr td {
+  padding: 8px 0px;
+  font-size: 14px !important;
+}
 @media (min-width: 600px) {
   * {
     font-size: 16px;

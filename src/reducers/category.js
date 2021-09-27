@@ -24,6 +24,7 @@ const myReducer = (state = initialState, action) => {
       state.list = null;
       state.data = null;
       state.choose = [];
+      state.index = 0;
       return { ...state };
     case Types.HANDLE_CATEGORY:
       switch (action.data.type) {

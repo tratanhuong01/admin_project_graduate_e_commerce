@@ -1,5 +1,6 @@
 import React from "react";
 import ModalNews from "../components/Modals/ModalNews/ModalNews";
+import ModalOrders from "../components/Modals/ModalOrders/ModalOrders";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
 import ModalUpdateStatusCategory from "../components/Modals/ModalUpdateStatusCategory/ModalUpdateStatusCategory";
 import * as Types from "../constants/ActionTypes";
@@ -34,6 +35,9 @@ const myReducer = (state = initialState, action) => {
           break;
         case "new":
           state.data = <ModalNews data={action.data} />;
+          break;
+        case "bill":
+          state.data = <ModalOrders data={action.data} />;
           break;
         default:
           break;

@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonCustom from "../../../components/Index/IndexRight/General/ButtonCustom/ButtonCustom";
+import CrudCategoryModal from "../../../components/CrudCategoryModal/CrudCategoryModal";
 import Control from "../../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../../components/Index/IndexRight/General/FileDown/FileDown";
@@ -32,7 +32,16 @@ function ProductListScreen(props) {
           <div className="w-auto flex items-center justify-end">
             <Date />
             <FileDown />
-            <ButtonCustom table={feature.nameTable} />
+            <CrudCategoryModal
+              feature={feature}
+              params={{
+                full: `?userType=0`,
+                limit: `?userType=0&limit=${10}&offset=${0}`,
+              }}
+              add={true}
+              edit={true}
+              remove={true}
+            />
           </div>
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />
