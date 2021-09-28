@@ -1,4 +1,5 @@
 import * as Types from "../../constants/ActionTypes";
+import api from "../../Utils/api";
 
 export const loadCategoryProductByIndex = (index) => {
   return {
@@ -144,9 +145,77 @@ export const loadDescriptionProduct = (data) => {
   };
 };
 
-export const loadSwitchAddProduct = (data) => {
+export const updateImageColorProductRequest = (mode, item, colors) => {
+  return (dispatch) => {
+    let clone = [...colors];
+    if (mode === -1) clone = [...colors, { color: item, image: null }];
+    else clone = clone.filter((dt) => dt.color.id !== item.id);
+    dispatch(updateImageColor(clone));
+  };
+};
+
+export const updateFileImageColorProductRequest = (file, item, colors) => {
+  return (dispatch) => {
+    let clone = [...colors];
+    const index = clone.findIndex((dt) => dt.color.id === item.id);
+    if (index !== -1) clone[index].image = file;
+    dispatch(updateImageColor(clone));
+  };
+};
+
+export const updateImageColor = (imageColor) => {
   return {
-    type: Types.LOAD_SWITCH_ADD_PRODUCT,
+    type: Types.UPDATE_IMAGE_COLOR_PRODUCT,
+    imageColor,
+  };
+};
+
+export const loadInfoEditLineProductRequest = (idLineProduct) => {
+  return async (dispatch) => {
+    const lineProduct = await api(`lineProducts/${idLineProduct}`, "GET", null);
+    let infoSimple = {
+      lineProduct: lineProduct.data,
+      categoryProduct: lineProduct.data.groupProduct.categoryGroupProduct,
+      groupProduct: lineProduct.data.groupProduct,
+      nameProduct: lineProduct.data.nameLineProduct,
+      brand: lineProduct.data.brandProduct,
+      dateInput: null,
+      dateOutput: null,
+      width: lineProduct.data.width,
+      height: lineProduct.data.height,
+      weight: lineProduct.data.weight,
+    };
+    let infoAttribute = null;
+    const groupAttributes = await api(`groupAttributesAll`, "GET", null);
+    groupAttributes.data.forEach(async (item) => {
+      const data = await api(`attributeProducts/${item.id}`, "GET", null);
+      infoAttribute[item.id] = {
+        id: item.id,
+        list: data.data,
+      };
+    });
+    const featureData = await api(
+      `grouFilterProducts/${idLineProduct}`,
+      "GET",
+      null
+    );
+    const images = await api(`imageOthers/${idLineProduct}`, "GET", null);
+    let imageColor = [];
+    dispatch(
+      loadInfoEditLineProduct({
+        infoSimple,
+        infoAttribute,
+        features: featureData.data,
+        images: images.data,
+        imageColor,
+      })
+    );
+  };
+};
+
+export const loadInfoEditLineProduct = (data) => {
+  return {
+    type: Types.LOAD_INFO_EDIT_LINE_PRODUCT_REQUEST,
     data,
   };
 };

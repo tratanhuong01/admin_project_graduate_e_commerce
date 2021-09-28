@@ -1,4 +1,322 @@
 {
+  "filter": [
+    {
+      "id": "PRODUCT_FILTER_1",
+      "name": "Loại sản phẩm",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_1",
+          "nameFilter": "Loại sản phẩm",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "idFilter": "PRODUCT_FILTER_1",
+          "nameFilter": "Loại sản phẩm",
+          "name": "Mới",
+          "type": 0,
+          "query": "typeProduct=0"
+        },
+        {
+          "id": 0,
+          "idFilter": "PRODUCT_FILTER_1",
+          "nameFilter": "Loại sản phẩm",
+          "name": "Cũ",
+          "type": 0,
+          "query": "typeProduct=1"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_-1",
+      "name": "Giá sản phẩm",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "Nhỏ hơn 200k",
+          "type": 0,
+          "query": "priceFrom=0&priceTo=200000"
+        },
+        {
+          "id": 1,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "200k - 500k",
+          "type": 0,
+          "query": "priceFrom=200000&priceTo=500000"
+        },
+        {
+          "id": 2,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "500k - 1.000k",
+          "type": 0,
+          "query": "priceFrom=500000&priceTo=1000000"
+        },
+        {
+          "id": 3,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "1.000k - 3.000k",
+          "type": 0,
+          "query": "priceFrom=1000000&priceTo=3000000"
+        },
+        {
+          "id": 4,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "3.000k - 10.000k",
+          "type": 0,
+          "query": "priceFrom=3000000&priceTo=10000000"
+        },
+        {
+          "id": 5,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "10.000k - 25.000k",
+          "type": 0,
+          "query": "priceFrom=10000000&priceTo=25000000"
+        },
+        {
+          "id": 6,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "25.000k - 50.000k",
+          "type": 0,
+          "query": "priceFrom=25000000&priceTo=50000000"
+        },
+        {
+          "id": 7,
+          "idFilter": "PRODUCT_FILTER_-1",
+          "nameFilter": "Giá sản phẩm",
+          "name": "Lớn hơn 50.000k",
+          "type": 0,
+          "query": "priceFrom=50000000&priceTo=300000000"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_CATEGORY",
+      "name": "Danh mục sản phẩm",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_CATEGORY",
+          "nameFilter": "Danh mục sản phẩm",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_GROUP",
+      "name": "Nhóm sản phẩm",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_GROUP",
+          "nameFilter": "Nhóm sản phẩm",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_BRAND",
+      "name": "Thương hiệu",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_BRAND",
+          "nameFilter": "Thương hiệu",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_MEMORY",
+      "name": "Bộ nhớ trong",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_MEMORY",
+          "nameFilter": "Bộ nhớ trong",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_RAM",
+      "name": "Bộ nhớ ngoài",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_RAM",
+          "nameFilter": "Bộ nhớ ngoài",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_COLOR",
+      "name": "Màu sắc",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_COLOR",
+          "nameFilter": "Màu sắc",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    },
+    {
+      "id": "PRODUCT_FILTER_7",
+      "name": "Tình trạng",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "PRODUCT_FILTER_7",
+          "nameFilter": "Tình trạng",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "idFilter": "PRODUCT_FILTER_7",
+          "nameFilter": "Tình trạng",
+          "name": "Còn hàng",
+          "type": -1,
+          "query": "status=0"
+        },
+        {
+          "id": 1,
+          "idFilter": "PRODUCT_FILTER_7",
+          "nameFilter": "Tình trạng",
+          "name": "Hết hàng",
+          "type": -1,
+          "query": "status=1"
+        }
+      ]
+    }
+  ],
+  "sorter": [
+    {
+      "name": "Giá nhập vào",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Giá nhập vào",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Giá nhập vào",
+          "query": "priceInputSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Giá nhập vào",
+          "name": "Giảm dần",
+          "query": "priceInputSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Giá bán ra",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Giá bán ra",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Giá bán ra",
+          "query": "priceOutputSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Giá bán ra",
+          "name": "Giảm dần",
+          "query": "priceOutputSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Sản phẩm đã bán",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Sản phẩm đã bán",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Sản phẩm đã bán",
+          "query": "productSoldSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Sản phẩm đã bán",
+          "name": "Giảm dần",
+          "query": "productSoldSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Khuyến mãi",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Khuyến mãi",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Khuyến mãi",
+          "query": "saleSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Khuyến mãi",
+          "name": "Giảm dần",
+          "query": "saleSorter=DESC"
+        }
+      ]
+    }
+  ],
   "table": [
     {
       "id": -1,
@@ -15,6 +333,22 @@
     {
       "id": 2,
       "name": "Tên sản phẩm"
+    },
+    {
+      "id": 3,
+      "name": "Thương hiệu"
+    },
+    {
+      "id": 4,
+      "name": "Rộng"
+    },
+    {
+      "id": 5,
+      "name": "Cao"
+    },
+    {
+      "id": 6,
+      "name": "Nặng"
     }
   ],
   "nameTable": "lineProduct"

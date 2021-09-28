@@ -1,5 +1,8 @@
 import React from "react";
-import NotModalTop from "../../../components/Index/IndexRight/Category/NotModal/NotModalTop/NotModalTop";
+import CrudCategoryModal from "../../../components/CrudCategoryModal/CrudCategoryModal";
+import Control from "../../../components/Index/IndexRight/General/Control/Control";
+import Date from "../../../components/Index/IndexRight/General/Date/Date";
+import FileDown from "../../../components/Index/IndexRight/General/FileDown/FileDown";
 import LineProductTable from "../../../components/Table/LineProductTable/LineProductTable";
 import Table from "../../../components/Table/Table";
 import { useNotModal } from "../../../hooks/useNotModal";
@@ -8,7 +11,7 @@ import feature from "./feature";
 
 function LineProductScreen(props) {
   //
-  const { category, form } = useNotModal(feature.nameTable);
+  const { category } = useNotModal(feature.nameTable);
   //
   return (
     <Screen>
@@ -18,18 +21,25 @@ function LineProductScreen(props) {
             {feature.label}
           </p>
         </div>
-      </div>
-      <div className="w-full py-3">
-        <div className="w-full flex">
-          <div className="w-2/5">{form.data}</div>
-          <div className="w-3/5">
-            <NotModalTop category={category} table={feature.nameTable} />
-            <Table category={category} feature={feature}>
-              <LineProductTable category={category} feature={feature} />
-            </Table>
-          </div>
+        <div className="w-auto flex items-center justify-end">
+          <Date />
+          <FileDown />
+          <CrudCategoryModal
+            feature={feature}
+            params={{
+              full: `?userType=0`,
+              limit: `?userType=0&limit=${10}&offset=${0}`,
+            }}
+            add={true}
+            edit={true}
+            remove={true}
+          />
         </div>
       </div>
+      <Control type={feature.type} data={feature} />
+      <Table category={category} feature={feature}>
+        <LineProductTable feature={feature} category={category} />
+      </Table>
     </Screen>
   );
 }

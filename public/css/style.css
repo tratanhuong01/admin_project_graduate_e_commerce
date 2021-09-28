@@ -6,6 +6,9 @@ button:focus {
 * {
   font-size: 14px;
 }
+#table__orders tr td {
+  font-size: 12px !important;
+}
 #table__orders tr th {
   color: #f36438;
   font-family: "Courier New", Courier, monospace;
@@ -14,6 +17,10 @@ button:focus {
 }
 #table__orders tr td {
   border: 1px solid #f36438;
+  font-family: "Courier New", Courier, monospace;
+}
+.orders__modal {
+  font-family: "Courier New", Courier, monospace;
 }
 .orders__modal span {
   color: #f36438;

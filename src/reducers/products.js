@@ -3,10 +3,11 @@ import AttributesProduct from "../components/Modals/ModalProduct/ModalProductRig
 import DescriptionsProduct from "../components/Modals/ModalProduct/ModalProductRight/DescriptionsProduct/DescriptionsProduct";
 import ImagesProduct from "../components/Modals/ModalProduct/ModalProductRight/ImagesProduct/ImagesProduct";
 import InfoSimple from "../components/Modals/ModalProduct/ModalProductRight/InfoSimple/InfoSimple";
-import MainInfoProduct from "../components/Modals/ModalProduct/ModalProductRight/MainInfoProduct/MainInfoProduct";
+// import MainInfoProduct from "../components/Modals/ModalProduct/ModalProductRight/MainInfoProduct/MainInfoProduct";
 import * as Types from "../constants/ActionTypes";
 import { v4 as uuidv4 } from "uuid";
 import FeatureProduct from "../components/Modals/ModalProduct/ModalProductRight/FeatureProduct/FeatureProduct";
+import ImageRespectiveProduct from "../components/Modals/ModalProduct/ImageRespectiveProduct/ImageRespectiveProduct";
 
 const initialState = {
   data: <InfoSimple />,
@@ -14,11 +15,13 @@ const initialState = {
     lineProduct: null,
     categoryProduct: null,
     groupProduct: null,
-    typeAdd: true,
     nameProduct: null,
     brand: null,
     dateInput: null,
     dateOutput: null,
+    width: null,
+    height: null,
+    weight: null,
   },
   infoAttribute: null,
   infoMain: {
@@ -47,6 +50,7 @@ const initialState = {
   images: [],
   descriptions: null,
   loading: true,
+  imageColor: [],
   index: 0,
 };
 
@@ -60,7 +64,7 @@ const myReducer = (state = initialState, action) => {
           break;
         case 1:
           state.infoMain.lists[0].nameProduct = state.infoSimple.nameProduct;
-          state.data = <MainInfoProduct />;
+          state.data = <ImageRespectiveProduct />;
           break;
         case 2:
           state.data = <ImagesProduct />;
@@ -104,6 +108,15 @@ const myReducer = (state = initialState, action) => {
           break;
         case 6:
           state.infoSimple.lineProduct = action.data;
+          break;
+        case 7:
+          state.infoSimple.width = action.data;
+          break;
+        case 8:
+          state.infoSimple.height = action.data;
+          break;
+        case 9:
+          state.infoSimple.weight = action.data;
           break;
         default:
           break;
@@ -327,8 +340,16 @@ const myReducer = (state = initialState, action) => {
     case Types.LOAD_DESCRIPTION_PRODUCT:
       state.descriptions = action.data;
       return { ...state };
-    case Types.LOAD_SWITCH_ADD_PRODUCT:
-      state.infoSimple.typeAdd = action.data;
+    case Types.UPDATE_IMAGE_COLOR_PRODUCT:
+      state.imageColor = action.imageColor;
+      return { ...state };
+    case Types.LOAD_INFO_EDIT_LINE_PRODUCT_REQUEST:
+      state.infoSimple = action.infoSimple;
+      state.infoAttribute = action.infoAttribute;
+      state.features = action.features;
+      state.images = action.images;
+      state.descriptions = action.descriptions;
+      state.imageColor = action.imageColor;
       return { ...state };
     default:
       return state;

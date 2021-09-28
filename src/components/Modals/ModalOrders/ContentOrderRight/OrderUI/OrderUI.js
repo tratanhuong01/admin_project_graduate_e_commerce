@@ -9,7 +9,7 @@ function OrderUI(props) {
       className="w-full items-start flex flex-1 overflow-y-auto scrollbar-css relative orders__modal"
       style={{ fontFamily: "monospace !important" }}
     >
-      <div className="w-11/12 mx-auto border-2 border-solid border-gray-100 p-3 text-organce">
+      <div className="w-full mx-auto border-2 border-solid border-gray-100 p-3 text-organce">
         <div className="w-full flex justify-between">
           <div className="w-1/2">
             <img
@@ -55,7 +55,7 @@ function OrderUI(props) {
                 return (
                   <tr key={index} className="p-2">
                     <td>{index + 1}</td>
-                    <td>{item.productFull.nameLineProduct}</td>
+                    <td className="">{item.productFull.nameLineProduct}</td>
                     <td>{item.billDetail.amount}</td>
                     <td>
                       {new Intl.NumberFormat().format(item.billDetail.price)}
@@ -91,6 +91,9 @@ function OrderUI(props) {
               <p className="mb-1 text-sm">Kí và ghi rõ họ tên</p>
               <div className="h-28"></div>
             </div>
+          </div>
+          <div className="w-full my-1 text-xs text-organce text-center font-semibold">
+            Cảm ơn bạn đã mua hàng tại HSmart
           </div>
         </div>
       </div>

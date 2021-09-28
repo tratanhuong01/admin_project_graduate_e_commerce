@@ -4,141 +4,96 @@ import * as modalsAction from "../../../../../actions/modals/index";
 import * as productsAction from "../../../../../actions/products/index";
 import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import axios from "axios";
 import api from "../../../../../Utils/api";
-import * as StringUtils from "../../../../../Utils/StringUtils";
+// import * as StringUtils from "../../../../../Utils/StringUtils";
 function ProductRightFooter(props) {
   //
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const convertStringToSlug = (string) => {
-    return string
-      .toLowerCase()
-      .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "");
-  };
+  // const convertStringToSlug = (string) => {
+  //   return string
+  //     .toLowerCase()
+  //     .replace(/ /g, "-")
+  //     .replace(/[^\w-]+/g, "");
+  // };
   const addProduct = async () => {
     let data = products;
     data.descriptions = draftToHtml(
       convertToRaw(data.descriptions.getCurrentContent())
     );
-    if (data.lineProduct) {
-      console.log(data);
-    } else {
-      const lineProduct = await api("lineProducts", "POST", {
-        id: "",
-        nameLineProduct: data.infoSimple.nameProduct,
-        groupProduct: data.infoSimple.groupProduct,
-      });
-      const listImage = await addImageMain();
-      let id = 1000000000;
-      const getId = await api("getIdBestNew", "GET", null);
-      if (getId.data === null || getId.data === "") {
-      } else {
-        id = Number(getId.data.id.replace("SP", ""));
-      }
-      let listPromise = [];
-      let listIdProduct = [];
-      let listPromisePrice = [];
+    const lineProduct = await api("lineProducts", "POST", {
+      id: null,
+      nameLineProduct: data.infoSimple.nameProduct,
+      groupProduct: data.infoSimple.groupProduct,
+      brandProduct: data.infoSimple.brand,
+      height: data.infoSimple.height,
+      width: data.infoSimple.width,
+      weight: data.infoSimple.weight,
+      timeCreated: "09-22-2021 10:02:50",
+    });
+    await addImageMain(lineProduct.data);
+    // let id = 1000000000;
+    // const getId = await api("getIdBestNew", "GET", null);
+    // if (getId.data === null || getId.data === "") {
+    // } else id = Number(getId.data.id.replace("SP", ""));
+    async function fetch() {
       for (let index = 0; index < data.infoMain.lists.length; index++) {
-        const list = data.infoMain.lists[index];
-        const pos = listImage.findIndex((item) =>
-          item.color && list.color ? item.color.id === list.color.id : false
-        );
-        id++;
-        listIdProduct.push({
-          id: `SP${id}`,
-          priceInput: list.priceInput,
-          priceOutput: list.priceOutput,
-          dateInput: `2021-09-03 07:17:27`,
-          dateOutput: `2021-09-23 07:17:27`,
-          amountInput: list.amountInput ? list.amountInput : 0,
-          amountOutput: list.amountOutput ? list.amountOutput : 0,
-          sale: list.sale,
-          typeInfoProduct: list.typeInfoProduct,
-        });
-        listPromise.push(
-          await api("products", "POST", {
-            id: `SP${id}`,
-            describeProduct: data.descriptions,
-            isShow: 1,
-            slug: `${convertStringToSlug(
-              StringUtils.removeVietnameseTones(`${list.nameProduct}`)
-            )}`,
-            brandProduct: data.infoSimple.brand,
-            colorProduct: list.color.id === null ? null : list.color,
-            imageProduct:
-              pos !== -1 ? listImage[pos].image : listImage[0].image,
-            lineProduct: lineProduct.data,
-            memoryProduct: list.rom.id === null ? null : list.rom,
-            userProduct: null,
-            ramProduct: list.ram && list.ram.id ? list.ram : null,
-          })
-        );
+        // const list = data.infoMain.lists[index];
+        // const pos = listImage.findIndex((item) =>
+        //   item.color && list.color ? item.color.id === list.color.id : false
+        // );
+        // id++;
+        // const product = await api("products", "POST", {
+        //   id: `SP${id}`,
+        //   describeProduct: data.descriptions,
+        //   isShow: 1,
+        //   slug: `${convertStringToSlug(
+        //     StringUtils.removeVietnameseTones(`${list.nameProduct}`)
+        //   )}`,
+        //   brandProduct: data.infoSimple.brand,
+        //   colorProduct: list.color.id === null ? null : list.color,
+        //   imageProduct: pos !== -1 ? listImage[pos].image : listImage[0].image,
+        //   lineProduct: lineProduct.data,
+        //   memoryProduct: list.rom.id === null ? null : list.rom,
+        //   userProduct: null,
+        //   ramProduct: list.ram && list.ram.id ? list.ram : null,
+        // });
+        // await api(`infoProducts`, "POST", {
+        //   id: null,
+        //   infoProduct: product.data,
+        //   priceInput: list.priceInput,
+        //   priceOutput: list.priceOutput,
+        //   sale: list.sale,
+        //   itemCurrent: list.amountInput ? list.amountInput : 0,
+        //   itemSold: 0,
+        //   typeInfoProduct: list.typeInfoProduct ? list.typeInfoProduct : 0,
+        //   review: 50,
+        //   timeInput: "09-18-2021 05:53:06",
+        // });
       }
-      listIdProduct.forEach(async (item) => {
-        listPromisePrice.push(
-          await api(`infoProducts?idProduct=${item.id}`, "POST", {
-            id: null,
-            infoProduct: null,
-            priceInput: item.priceInput,
-            priceOutput: item.priceOutput,
-            sale: item.sale,
-            itemCurrent: item.amountInput,
-            itemSold: 0,
-            typeInfoProduct: item.typeInfoProduct ? item.typeInfoProduct : 0,
-            review: 50,
-            timeInput: "09-18-2021 05:53:06",
-          })
-        );
-      });
-      axios
-        .all(listPromise)
-        .then(axios.spread((...responses) => {}))
-        .catch((errors) => {});
-      axios
-        .all(listPromisePrice)
-        .then(axios.spread((...responses) => {}))
-        .catch((errors) => {
-          // react on errors.
-        });
-      await addImageOther(lineProduct.data);
-      await addProductAttribute(lineProduct.data);
-      await addFunctionProduct(lineProduct.data);
-      dispatch(modalsAction.closeModal());
     }
+    fetch();
+    await addImageOther(lineProduct.data);
+    await addProductAttribute(lineProduct.data);
+    await addFunctionProduct(lineProduct.data);
+    dispatch(modalsAction.closeModal());
   };
-  const addImageMain = async () => {
+  const addImageMain = async (lineProduct) => {
     let listImage = [];
-    if (products.infoMain.colors.length > 0) {
-      for (let index = 0; index < products.infoMain.colors.length; index++) {
-        const color = products.infoMain.colors[index];
-        const formData = new FormData();
-        formData.append("multipartFile", products.infoMain.images[color.id]);
-        formData.append("id", "1000");
-        formData.append("publicId", "E-Commerce/Products/");
-        const result = await api("updateImageSingle", "POST", formData, null);
-        const image = await api("images", "POST", {
-          id: "",
-          alt: "",
-          src: result.data.url,
-          type: 0,
-        });
-        listImage.push({ color: color, image: image.data });
-      }
-    } else {
+    for (let index = 0; index < products.imageColor.length; index++) {
+      const item = products.imageColor[index];
       const formData = new FormData();
-      formData.append("multipartFile", products.infoMain.images[-1]);
-      formData.append("id", "1000");
+      formData.append("multipartFile", item.image);
+      formData.append("id", `${lineProduct.id}__${item.color.id}`);
       formData.append("publicId", "E-Commerce/Products/");
       const result = await api("updateImageSingle", "POST", formData, null);
-      let image = await api("images", "POST", {
+      const image = await api("images", "POST", {
         id: "",
         alt: "",
         src: result.data.url,
         type: 0,
       });
-      listImage.push(listImage.push({ color: null, image: image.data }));
+      listImage.push({ color: item, image: image.data });
     }
     return listImage;
   };
@@ -168,7 +123,7 @@ function ProductRightFooter(props) {
         ) {
           const element = products.infoAttribute[property].list[index];
           await api("attributeProducts", "POST", {
-            id: -1,
+            id: null,
             lineProductAttribute: lineProduct,
             attributeProduct: element.data,
             valueAttributeProduct: element.value,
@@ -181,7 +136,7 @@ function ProductRightFooter(props) {
     for (let index = 0; index < products.features.choose.length; index++) {
       const feature = products.features.choose[index];
       await api("detailFunctionProducts", "POST", {
-        id: -1,
+        id: null,
         lineProductFunctionProduct: lineProduct,
         functionProductDetail: feature,
       });

@@ -1,0 +1,291 @@
+{
+  "infoSimple": {
+    "lineProduct": null,
+    "categoryProduct": null,
+    "groupProduct": null,
+    "nameProduct": "1111111",
+    "brand": null
+  },
+  "infoAttribute": {
+    "BACKCAMERA": {
+      "id": "BACKCAMERA",
+      "list": [
+        {
+          "data": {
+            "id": 22,
+            "groupAttribute": {
+              "id": "BACKCAMERA",
+              "nameGroupAttribute": "Camera sau",
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameAttribute": "Quay phim",
+            "typeAttribute": 0,
+            "timeCreated": "09-22-2021 10:02:50"
+          },
+          "value": "đasadsadsadsa"
+        },
+        {
+          "data": {
+            "id": 25,
+            "groupAttribute": {
+              "id": "BACKCAMERA",
+              "nameGroupAttribute": "Camera sau",
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameAttribute": "Tính năng",
+            "typeAttribute": 0,
+            "timeCreated": "09-22-2021 10:02:50"
+          },
+          "value": "dsadsadsadsa"
+        }
+      ]
+    },
+    "BATTERYANDCHARGER": {
+      "id": "BATTERYANDCHARGER",
+      "list": [
+        {
+          "data": {
+            "id": 39,
+            "groupAttribute": {
+              "id": "BATTERYANDCHARGER",
+              "nameGroupAttribute": "Pin & Sạc",
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameAttribute": "Nguồn vào",
+            "typeAttribute": 0,
+            "timeCreated": "09-22-2021 10:02:50"
+          },
+          "value": "dsadsa"
+        },
+        {
+          "data": {
+            "id": 2,
+            "groupAttribute": {
+              "id": "BATTERYANDCHARGER",
+              "nameGroupAttribute": "Pin & Sạc",
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameAttribute": "Dung lượng pin",
+            "typeAttribute": 0,
+            "timeCreated": "09-22-2021 10:02:50"
+          },
+          "value": "dsadsads"
+        }
+      ]
+    },
+    "CONNECT": {
+      "id": "CONNECT",
+      "list": []
+    },
+    "CPUOS": {
+      "id": "CPUOS",
+      "list": []
+    },
+    "FRONTCAMERA": {
+      "id": "FRONTCAMERA",
+      "list": []
+    },
+    "GENERALINFORMATION": {
+      "id": "GENERALINFORMATION",
+      "list": []
+    },
+    "MEMORYSTORAGE": {
+      "id": "MEMORYSTORAGE",
+      "list": []
+    },
+    "SCREEN": {
+      "id": "SCREEN",
+      "list": []
+    },
+    "UTILITIES": {
+      "id": "UTILITIES",
+      "list": []
+    }
+  },
+  "features": {
+    "listCurrent": [
+      {
+        "id": 111,
+        "groupFilterFunctionProduct": {
+          "id": 1025,
+          "groupProductFilter": {
+            "id": "COMPUTERMAIN",
+            "categoryGroupProduct": {
+              "id": "COMPUTER",
+              "nameCategoryProduct": "Máy tính",
+              "slugCategoryProduct": "may-tinh",
+              "icon": "bx bx-laptop",
+              "typeCategoryProduct": 1,
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameGroupProduct": "Máy tính",
+            "timeCreated": "09-22-2021 10:02:50",
+            "slugGroupProduct": "may-tinh"
+          },
+          "nameGroupFilterProduct": "Kích thước màn hình",
+          "typeGroupFilterProduct": 0,
+          "timeCreated": "09-22-2021 10:02:50"
+        },
+        "nameFunctionProduct": "14 Inch",
+        "typeFunctionProduct": 0,
+        "timeCreated": "09-22-2021 10:02:50"
+      }
+    ],
+    "list": [
+      {
+        "id": 111,
+        "groupFilterFunctionProduct": {
+          "id": 1025,
+          "groupProductFilter": {
+            "id": "COMPUTERMAIN",
+            "categoryGroupProduct": {
+              "id": "COMPUTER",
+              "nameCategoryProduct": "Máy tính",
+              "slugCategoryProduct": "may-tinh",
+              "icon": "bx bx-laptop",
+              "typeCategoryProduct": 1,
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameGroupProduct": "Máy tính",
+            "timeCreated": "09-22-2021 10:02:50",
+            "slugGroupProduct": "may-tinh"
+          },
+          "nameGroupFilterProduct": "Kích thước màn hình",
+          "typeGroupFilterProduct": 0,
+          "timeCreated": "09-22-2021 10:02:50"
+        },
+        "nameFunctionProduct": "14 Inch",
+        "typeFunctionProduct": 0,
+        "timeCreated": "09-22-2021 10:02:50"
+      },
+      {
+        "id": 113,
+        "groupFilterFunctionProduct": {
+          "id": 1025,
+          "groupProductFilter": {
+            "id": "COMPUTERMAIN",
+            "categoryGroupProduct": {
+              "id": "COMPUTER",
+              "nameCategoryProduct": "Máy tính",
+              "slugCategoryProduct": "may-tinh",
+              "icon": "bx bx-laptop",
+              "typeCategoryProduct": 1,
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameGroupProduct": "Máy tính",
+            "timeCreated": "09-22-2021 10:02:50",
+            "slugGroupProduct": "may-tinh"
+          },
+          "nameGroupFilterProduct": "Kích thước màn hình",
+          "typeGroupFilterProduct": 0,
+          "timeCreated": "09-22-2021 10:02:50"
+        },
+        "nameFunctionProduct": "17 Inch",
+        "typeFunctionProduct": 0,
+        "timeCreated": "09-22-2021 10:02:50"
+      },
+      {
+        "id": 108,
+        "groupFilterFunctionProduct": {
+          "id": 1028,
+          "groupProductFilter": {
+            "id": "COMPUTERMAIN",
+            "categoryGroupProduct": {
+              "id": "COMPUTER",
+              "nameCategoryProduct": "Máy tính",
+              "slugCategoryProduct": "may-tinh",
+              "icon": "bx bx-laptop",
+              "typeCategoryProduct": 1,
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameGroupProduct": "Máy tính",
+            "timeCreated": "09-22-2021 10:02:50",
+            "slugGroupProduct": "may-tinh"
+          },
+          "nameGroupFilterProduct": "Loại ổ cứng",
+          "typeGroupFilterProduct": 0,
+          "timeCreated": "09-22-2021 10:02:50"
+        },
+        "nameFunctionProduct": "Chỉ có SSD",
+        "typeFunctionProduct": 0,
+        "timeCreated": "09-22-2021 10:02:50"
+      },
+      {
+        "id": 114,
+        "groupFilterFunctionProduct": {
+          "id": 1038,
+          "groupProductFilter": {
+            "id": "COMPUTERMAIN",
+            "categoryGroupProduct": {
+              "id": "COMPUTER",
+              "nameCategoryProduct": "Máy tính",
+              "slugCategoryProduct": "may-tinh",
+              "icon": "bx bx-laptop",
+              "typeCategoryProduct": 1,
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameGroupProduct": "Máy tính",
+            "timeCreated": "09-22-2021 10:02:50",
+            "slugGroupProduct": "may-tinh"
+          },
+          "nameGroupFilterProduct": "Loại máy tính",
+          "typeGroupFilterProduct": 0,
+          "timeCreated": "09-22-2021 10:02:50"
+        },
+        "nameFunctionProduct": "Học tập , văn phòng",
+        "typeFunctionProduct": 0,
+        "timeCreated": "09-22-2021 10:02:50"
+      },
+      {
+        "id": 119,
+        "groupFilterFunctionProduct": {
+          "id": 1038,
+          "groupProductFilter": {
+            "id": "COMPUTERMAIN",
+            "categoryGroupProduct": {
+              "id": "COMPUTER",
+              "nameCategoryProduct": "Máy tính",
+              "slugCategoryProduct": "may-tinh",
+              "icon": "bx bx-laptop",
+              "typeCategoryProduct": 1,
+              "timeCreated": "09-22-2021 10:02:50"
+            },
+            "nameGroupProduct": "Máy tính",
+            "timeCreated": "09-22-2021 10:02:50",
+            "slugGroupProduct": "may-tinh"
+          },
+          "nameGroupFilterProduct": "Loại máy tính",
+          "typeGroupFilterProduct": 0,
+          "timeCreated": "09-22-2021 10:02:50"
+        },
+        "nameFunctionProduct": "Macbook",
+        "typeFunctionProduct": 0,
+        "timeCreated": "09-22-2021 10:02:50"
+      }
+    ]
+  },
+  "images": null,
+  "descriptions": null,
+  "loading": false,
+  "imageColor": [
+    {
+      "color": {
+        "id": 2,
+        "code": "#CCCCFF",
+        "description": "Tím nhẹ",
+        "timeCreated": "09-22-2021 10:02:50"
+      },
+      "image": {}
+    },
+    {
+      "color": {
+        "id": 3,
+        "code": "#FFFFFF",
+        "description": "Trắng",
+        "timeCreated": "09-22-2021 10:02:50"
+      },
+      "image": {}
+    }
+  ],
+  "index": 5
+}

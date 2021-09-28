@@ -50,7 +50,6 @@ function InfoSimple(props) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   const onSubmit = () => {};
   return (
     <div
@@ -133,71 +132,19 @@ function InfoSimple(props) {
               : false
           }
         />
-        <div className="w-full my-2 flex p-3">
-          <div className="w-1/2 flex items-center">
-            <input
-              type="radio"
-              name="check"
-              onChange={(e) =>
-                dispatch(productsAction.loadSwitchAddProduct(e.target.checked))
-              }
-              className="transform scale-150 mr-3"
-              checked={products.infoSimple.typeAdd ? true : false}
-            />
-            Thêm sản phẩm mới
-          </div>
-          <div className="w-1/2 flex items-center">
-            <input
-              onChange={(e) =>
-                dispatch(productsAction.loadSwitchAddProduct(!e.target.checked))
-              }
-              type="radio"
-              name="check"
-              className="transform scale-150 mr-3"
-              checked={products.infoSimple.typeAdd ? false : true}
-            />
-            Sản phẩm có sẳn
-          </div>
-        </div>
-        {!products.infoSimple.typeAdd ? (
-          <SelectCustom
-            list={[]}
-            className={
-              "w-full rounded-lg p-2.5 border-2 border-solid border-gray-300 mt-2 relative"
-            }
-            attribute={"nameLineProduct"}
-            dataProps={
-              products.infoSimple.lineProduct
-                ? products.infoSimple.lineProduct.nameLineProduct
-                : null
-            }
-            placeHolder={"Chọn nội dung"}
-            label={"Dòng sản phẩm"}
-            table={"Dòng sản phẩm"}
-            setData={(item) =>
-              dispatch(productsAction.loadSimpleInfoProductData(item, 6))
-            }
-            disabled={
-              lineProduct.length === 0 && !products.infoSimple.lineProduct
-                ? true
-                : false
-            }
-          />
-        ) : (
-          <InputField
-            register={register}
-            className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-            showError={errors["nameLineProduct"]}
-            placeHolder={"Nhập tên sản phẩm"}
-            name={"nameLineProduct"}
-            label={"Tên sản phẩm"}
-            type="text"
-            onChange={(item) =>
-              dispatch(productsAction.loadSimpleInfoProductData(item, 2))
-            }
-            disabled={false}
-          />
-        )}
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["nameLineProduct"]}
+          placeHolder={"Nhập tên sản phẩm"}
+          name={"nameLineProduct"}
+          label={"Tên sản phẩm"}
+          type="text"
+          onChange={(item) =>
+            dispatch(productsAction.loadSimpleInfoProductData(item, 2))
+          }
+          disabled={lineProduct.length <= 0 ? true : false}
+        />
         <SelectCustom
           list={brand}
           className={
@@ -215,6 +162,45 @@ function InfoSimple(props) {
           setData={(item) =>
             dispatch(productsAction.loadSimpleInfoProductData(item, 3))
           }
+        />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["width"]}
+          placeHolder={"Nhập chiều rộng"}
+          name={"width"}
+          label={"Chiều rộng sản phẩm"}
+          type="text"
+          onChange={(item) =>
+            dispatch(productsAction.loadSimpleInfoProductData(item, 7))
+          }
+          disabled={false}
+        />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["height"]}
+          placeHolder={"Nhập chiều cao"}
+          name={"height"}
+          label={"Chiều cao sản phẩm"}
+          type="text"
+          onChange={(item) =>
+            dispatch(productsAction.loadSimpleInfoProductData(item, 8))
+          }
+          disabled={false}
+        />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["weight"]}
+          placeHolder={"Nhập Cân nặng"}
+          name={"weight"}
+          label={"Cân nặng sản phẩm"}
+          type="text"
+          onChange={(item) =>
+            dispatch(productsAction.loadSimpleInfoProductData(item, 9))
+          }
+          disabled={false}
         />
       </form>
     </div>
