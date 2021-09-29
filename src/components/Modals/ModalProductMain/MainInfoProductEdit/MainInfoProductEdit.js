@@ -1,21 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import ColorMemoryRam from "./ColorMemoryRam/ColorMemoryRam";
-import ContentMainProduct from "./ContentMainProduct/ContentMainProduct";
+import ColorMemoryRamEdit from "./ColorMemoryRamEdit/ColorMemoryRamEdit";
+import ContentMainProductEdit from "./ContentMainProductEdit/ContentMainProductEdit";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-function MainInfoProduct(props) {
-  const schema = Yup.object().shape({
-    id: Yup.string(),
-    nameRam: Yup.string().required("Tên bộ nhớ không được trống !!"),
-    type: Yup.number().integer().default(0),
-    timeCreated: Yup.date(),
-  });
+function MainInfoProductEdit(props) {
+  const schema = Yup.object().shape({});
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
@@ -25,20 +21,18 @@ function MainInfoProduct(props) {
   return (
     <div
       className="w-full mx-auto overflow-y-auto scrollbar-css"
-      style={{
-        height: 530,
-        maxHeight: 530,
-      }}
+      style={{ height: "530px", maxHeight: "530px" }}
     >
-      <ColorMemoryRam />
-      <ContentMainProduct
+      <ColorMemoryRamEdit />
+      <ContentMainProductEdit
         register={register}
         errors={errors}
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
+        setValue={setValue}
       />
     </div>
   );
 }
 
-export default MainInfoProduct;
+export default MainInfoProductEdit;

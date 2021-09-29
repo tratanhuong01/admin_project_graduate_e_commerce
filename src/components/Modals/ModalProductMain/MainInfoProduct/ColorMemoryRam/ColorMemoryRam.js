@@ -61,7 +61,11 @@ function ColorMemoryRam(props) {
                         0
                       )
                     );
-                    dispatch(productsAction.loadInfoMainProductDataFull());
+                    dispatch(
+                      productsAction.loadInfoMainProductDataFullRequest(
+                        products
+                      )
+                    );
                     dispatch(
                       productsAction.loadInfoImageMainProductRequest({
                         lineProduct: products.infoMain.lineProduct,
@@ -71,8 +75,8 @@ function ColorMemoryRam(props) {
                   }
                 }}
                 key={index}
-                className={`w-10 h-10 rounded-full mr-1.5 flex-shrink-0 cursor-pointer 
-                ${pos !== -1 ? "border-2 border-solid border-gray-400" : ""}`}
+                className={`w-10 h-10 rounded-full mr-1.5 flex-shrink-0 cursor-pointer border-2 border-solid 
+                ${pos !== -1 ? "border-gray-800" : "border-gray-400"}`}
                 style={{ backgroundColor: color.code }}
               ></div>
             );
@@ -115,7 +119,9 @@ function ColorMemoryRam(props) {
                       1
                     )
                   );
-                  dispatch(productsAction.loadInfoMainProductDataFull());
+                  dispatch(
+                    productsAction.loadInfoMainProductDataFullRequest(products)
+                  );
                 }
               }}
             />
@@ -131,7 +137,7 @@ function ColorMemoryRam(props) {
                 className="w-7 h-7 ml-1 rounded-full mr-1.5 flex-shrink-0 cursor-pointer relative"
               >
                 <div
-                  className="w-7 h-7 rounded-full flex-shrink-0"
+                  className="w-7 h-7 rounded-full flex-shrink-0 border-2 border-solid border-gray-500"
                   style={{ backgroundColor: color.code }}
                 ></div>
                 <span
@@ -153,7 +159,11 @@ function ColorMemoryRam(props) {
                       products.infoMain.roms.length === 0
                     )
                       return;
-                    dispatch(productsAction.loadInfoMainProductDataFull());
+                    dispatch(
+                      productsAction.loadInfoMainProductDataFullRequest(
+                        products
+                      )
+                    );
                   }}
                   className="w-4 h-4 bg-white rounded-full flex items-center justify-center absolute -top-1.5 -right-1.5"
                 >
@@ -183,7 +193,9 @@ function ColorMemoryRam(props) {
                     products.infoMain.roms.length === 0
                   )
                     return;
-                  dispatch(productsAction.loadInfoMainProductDataFull());
+                  dispatch(
+                    productsAction.loadInfoMainProductDataFullRequest(products)
+                  );
                 }}
                 key={index}
                 className="px-2 h-10 rounded-lg font-semibold mr-1.5 flex-shrink-0 flex items-center 

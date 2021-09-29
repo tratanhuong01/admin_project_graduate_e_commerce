@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CloseModal from "../../CloseModal/CloseModal";
 import MainInfoProduct from "./MainInfoProduct/MainInfoProduct";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import WaitingEnterLineProduct from "./WaitingEnterLineProduct/WaitingEnterLineProduct";
+import * as productsAction from "../../../actions/products/index";
+import MainInfoProductEdit from "./MainInfoProductEdit/MainInfoProductEdit";
+
 function ModalProductMain(props) {
   //
+  const { data } = props;
   const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //
+    if (data) dispatch(productsAction.loadInfoEditProductInfoRequest(data.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   //
   return (
     <div
@@ -16,11 +26,15 @@ function ModalProductMain(props) {
       <div className="w-full relative">
         <div className="w-full sticky top-0 p-3 text-center text-2xl font-semibold">
           Thêm sản phẩm
-          <CloseModal />
+          <CloseModal
+            addEvent={() => dispatch(productsAction.resetDataProductState())}
+          />
         </div>
 
         {products.infoMain.lineProduct ? (
           <MainInfoProduct />
+        ) : data ? (
+          <MainInfoProductEdit data={data} />
         ) : (
           <WaitingEnterLineProduct />
         )}

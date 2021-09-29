@@ -2,6 +2,8 @@ import { convertFromRaw, EditorState } from "draft-js";
 import * as Types from "../../constants/ActionTypes";
 import api from "../../Utils/api";
 import htmlToDraft from "html-to-draft";
+import { v4 as uuidv4 } from "uuid";
+import * as productApi from "../../api/productsApi";
 
 export const loadCategoryProductByIndex = (index) => {
   return {
@@ -52,9 +54,131 @@ export const loadInfoImageMainProduct = (file, data) => {
   };
 };
 
-export const loadInfoMainProductDataFull = () => {
+export const loadInfoMainProductDataFullRequest = (state) => {
+  return (dispatch) => {
+    if (state.infoMain.lists.length > 0)
+      if (state.infoMain.lists[0].id === -1) state.infoMain.lists = [];
+    if (state.infoMain.colors.length > 0 && state.infoMain.roms.length > 0) {
+      state.infoMain.colors.forEach((color) => {
+        state.infoMain.roms.forEach((rom) => {
+          let index = state.infoMain.lists.findIndex((item) => {
+            if (item.color.id && item.rom.id)
+              return item.color.id === color.id && item.rom.id === rom.id;
+            else return item.color.id === color.id || item.rom.id === rom.id;
+          });
+          if (index === -1)
+            state.infoMain.lists = [
+              ...state.infoMain.lists,
+              {
+                id: uuidv4(),
+                nameProduct: `${state.infoMain.lineProduct.nameLineProduct} ${
+                  state.infoMain.ram ? state.infoMain.ram.nameRam + "/" : ""
+                } ${rom.nameMemory} màu ${color.description.toLowerCase()}`,
+                priceInput: 0,
+                priceOutput: 0,
+                sale: 0,
+                amountInput: 0,
+                amountOutput: 0,
+                color: color,
+                rom: rom,
+                ram: state.infoMain.ram,
+              },
+            ];
+          else {
+            state.infoMain.lists[index].nameProduct = `${
+              state.infoMain.lineProduct.nameLineProduct
+            } ${state.infoMain.ram ? state.infoMain.ram.nameRam + "/" : ""} ${
+              rom.nameMemory
+            } màu ${color.description.toLowerCase()}`;
+            state.infoMain.lists[index].rom = rom;
+            state.infoMain.lists[index].color = color;
+          }
+        });
+      });
+    } else if (
+      state.infoMain.colors.length > 0 &&
+      state.infoMain.roms.length <= 0
+    ) {
+      state.infoMain.colors.forEach((color) => {
+        const index = state.infoMain.lists.findIndex(
+          (item) => item.color.id === color.id
+        );
+        if (index === -1)
+          state.infoMain.lists = [
+            ...state.infoMain.lists,
+            {
+              id: uuidv4(),
+              nameProduct: `${
+                state.infoMain.lineProduct.nameLineProduct
+              } màu ${color.description.toLowerCase()}`,
+              amountInput: 0,
+              amountOutput: 0,
+              priceInput: 0,
+              priceOutput: 0,
+              sale: 0,
+              color: color,
+              rom: { id: null },
+              ram: state.infoMain.ram,
+            },
+          ];
+        else {
+          state.infoMain.lists[index].nameProduct = `${
+            state.infoMain.lineProduct.nameLineProduct
+          }  màu ${color.description.toLowerCase()}`;
+        }
+      });
+    } else if (
+      state.infoMain.colors.length <= 0 &&
+      state.infoMain.roms.length > 0
+    ) {
+      state.infoMain.roms.forEach((rom) => {
+        const index = state.infoMain.lists.findIndex(
+          (item) => item.rom.id === rom.id
+        );
+
+        if (index === -1)
+          state.infoMain.lists = [
+            ...state.infoMain.lists,
+            {
+              id: uuidv4(),
+              nameProduct: `${state.infoMain.lineProduct.nameLineProduct} ${
+                state.infoMain.ram ? state.infoMain.ram.nameRam + "/" : ""
+              } ${rom.nameMemory}`,
+              amountInput: 0,
+              amountOutput: 0,
+              sale: 0,
+              color: { id: "" },
+              rom: rom,
+              ram: state.infoMain.ram,
+            },
+          ];
+        else {
+          state.infoMain.lists[index].nameProduct = `${
+            state.infoMain.lineProduct.nameLineProduct
+          } ${state.infoMain.ram ? state.infoMain.ram.nameRam + "/" : ""} ${
+            rom.nameMemory
+          }`;
+        }
+      });
+    } else {
+      state.infoMain.lists.push({
+        id: "",
+        nameProduct: `${state.infoMain.lineProduct.nameLineProduct}`,
+        amountInput: 0,
+        amountOutput: 0,
+        priceInput: 0,
+        priceOutput: 0,
+        sale: 0,
+      });
+    }
+    dispatch(loadInfoMainProductDataFull(state.infoMain));
+  };
+};
+
+export const loadInfoMainProductDataFull = (infoMain) => {
   return {
     type: Types.LOAD_INFO_MAIN_PRODUCT_DATA_FULL,
+    infoMain,
   };
 };
 
@@ -284,15 +408,46 @@ export const loadInfoEditLineProductRequest = (idLineProduct) => {
   };
 };
 
-export const loadInfoEditLineProduct = (data) => {
+export const loadInfoEditProductInfoRequest = (idProduct) => {
+  return async (dispatch) => {
+    const result = await productApi.getCombineProductInfoProduct(idProduct);
+    dispatch(
+      loadInfoEditLineProduct(
+        {
+          lineProduct: result.data.product.lineProduct,
+          image: result.data.product.imageProduct,
+          ram: result.data.product.ramProduct,
+          rom: result.data.product.memoryProduct,
+          color: result.data.product.imageProduct.colorProduct,
+          sale: result.data.infoProduct.sale,
+          priceInput: result.data.infoProduct.priceInput,
+          priceOutput: result.data.infoProduct.priceOutput,
+          amountInput: result.data.infoProduct.amountInput,
+        },
+        true
+      )
+    );
+  };
+};
+
+export const loadInfoEditLineProduct = (data, mode) => {
   return {
     type: Types.LOAD_INFO_EDIT_LINE_PRODUCT_REQUEST,
     data,
+    mode,
   };
 };
 
 export const resetDataProductState = () => {
   return {
     type: Types.RESET_DATA_PRODUCT_STATE,
+  };
+};
+
+export const updateInfoMainEdit = (index, data) => {
+  return {
+    type: Types.UPDATE_INFO_MAIN_EDIT,
+    index,
+    data,
   };
 };

@@ -35,3 +35,11 @@ export const getColorsAll = () => {
 export const getLineProductsAll = () => {
   return api(`lineProductsAll`, "GET", null);
 };
+
+export const getProductFullById = (id) => {
+  return api(`products/full/${id}`, "GET", null);
+};
+
+export const getCombineProductInfoProduct = (id) => {
+  return api(`products/combine/?idProduct=${id}`, "GET", null);
+};
