@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import { useDispatch, useSelector } from "react-redux";
-import api from "../../../../../../Utils/api";
-import SelectCustom from "../../../../../SelectCustom/SelectCustom";
-import * as productsAction from "../../../../../../actions/products/index";
+import api from "../../../../../Utils/api";
+import SelectCustom from "../../../../SelectCustom/SelectCustom";
+import * as productsAction from "../../../../../actions/products/index";
 
 function ColorMemoryRam(props) {
   //
+  const products = useSelector((state) => state.products);
   const [colors, setColors] = useState([]);
   const [roms, setRoms] = useState([]);
   const [rams, setRams] = useState([]);
@@ -14,7 +15,11 @@ function ColorMemoryRam(props) {
     //
     let unmouted = false;
     async function fetch() {
-      const colorList = await api("colorsAll", "GET", null);
+      const colorList = await api(
+        `colors/lineProduct/?idLineProduct=${products.infoMain.lineProduct.id}`,
+        "GET",
+        null
+      );
       const romList = await api("memoriesAll", "GET", null);
       const ramList = await api("ramsAll", "GET", null);
       Promise.all([colorList, romList, ramList])
@@ -30,9 +35,8 @@ function ColorMemoryRam(props) {
     return () => {
       return (unmouted = true);
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   //
   return (
@@ -58,6 +62,12 @@ function ColorMemoryRam(props) {
                       )
                     );
                     dispatch(productsAction.loadInfoMainProductDataFull());
+                    dispatch(
+                      productsAction.loadInfoImageMainProductRequest({
+                        lineProduct: products.infoMain.lineProduct,
+                        color,
+                      })
+                    );
                   }
                 }}
                 key={index}
@@ -179,7 +189,7 @@ function ColorMemoryRam(props) {
                 className="px-2 h-10 rounded-lg font-semibold mr-1.5 flex-shrink-0 flex items-center 
                 justify-center border-2 border-solid border-gray-200 cursor-pointer text-xs"
               >
-                {rom.id}
+                {rom.nameMemory}
               </div>
             );
           })}

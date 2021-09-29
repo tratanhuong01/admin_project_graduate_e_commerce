@@ -12,7 +12,6 @@ import ImageRespectiveProduct from "../components/Modals/ModalProduct/ImageRespe
 const initialState = {
   data: <InfoSimple />,
   infoSimple: {
-    lineProduct: null,
     categoryProduct: null,
     groupProduct: null,
     nameProduct: null,
@@ -25,6 +24,7 @@ const initialState = {
   },
   infoAttribute: null,
   infoMain: {
+    lineProduct: null,
     colors: [],
     roms: [],
     ram: null,
@@ -46,7 +46,11 @@ const initialState = {
     index: 1,
     type: false,
   },
-  features: null,
+  features: {
+    choose: [],
+    listCurrent: [],
+    list: [],
+  },
   images: [],
   descriptions: null,
   loading: true,
@@ -107,7 +111,7 @@ const myReducer = (state = initialState, action) => {
           state.infoSimple.dateOutput = action.data;
           break;
         case 6:
-          state.infoSimple.lineProduct = action.data;
+          state.infoMain.lineProduct = action.data;
           break;
         case 7:
           state.infoSimple.width = action.data;
@@ -153,7 +157,7 @@ const myReducer = (state = initialState, action) => {
                 ...state.infoMain.lists,
                 {
                   id: uuidv4(),
-                  nameProduct: `${state.infoSimple.nameProduct} ${
+                  nameProduct: `${state.infoMain.lineProduct.nameLineProduct} ${
                     state.infoMain.ram ? state.infoMain.ram.nameRam : ""
                   } ${rom.nameMemory} màu ${color.description.toLowerCase()}`,
                   priceInput: 0,
@@ -168,7 +172,7 @@ const myReducer = (state = initialState, action) => {
               ];
             else {
               state.infoMain.lists[index].nameProduct = `${
-                state.infoSimple.nameProduct
+                state.infoMain.lineProduct.nameLineProduct
               } ${state.infoMain.ram ? state.infoMain.ram.nameRam : ""} ${
                 rom.nameMemory
               } màu ${color.description.toLowerCase()}`;
@@ -191,7 +195,7 @@ const myReducer = (state = initialState, action) => {
               {
                 id: uuidv4(),
                 nameProduct: `${
-                  state.infoSimple.nameProduct
+                  state.infoMain.lineProduct.nameLineProduct
                 } màu ${color.description.toLowerCase()}`,
                 amountInput: 0,
                 amountOutput: 0,
@@ -205,7 +209,7 @@ const myReducer = (state = initialState, action) => {
             ];
           else {
             state.infoMain.lists[index].nameProduct = `${
-              state.infoSimple.nameProduct
+              state.infoMain.lineProduct.nameLineProduct
             }  màu ${color.description.toLowerCase()}`;
           }
         });
@@ -223,7 +227,7 @@ const myReducer = (state = initialState, action) => {
               ...state.infoMain.lists,
               {
                 id: uuidv4(),
-                nameProduct: `${state.infoSimple.nameProduct} ${
+                nameProduct: `${state.infoMain.lineProduct.nameLineProduct} ${
                   state.infoMain.ram ? state.infoMain.ram.nameRam : ""
                 } ${rom.nameMemory}`,
                 amountInput: 0,
@@ -236,7 +240,7 @@ const myReducer = (state = initialState, action) => {
             ];
           else {
             state.infoMain.lists[index].nameProduct = `${
-              state.infoSimple.nameProduct
+              state.infoMain.lineProduct.nameLineProduct
             } ${state.infoMain.ram ? state.infoMain.ram.nameRam : ""} ${
               rom.nameMemory
             }`;
@@ -245,7 +249,7 @@ const myReducer = (state = initialState, action) => {
       } else {
         state.infoMain.lists.push({
           id: "",
-          nameProduct: `${state.infoSimple.nameProduct}`,
+          nameProduct: `${state.infoMain.lineProduct.nameLineProduct}`,
           amountInput: 0,
           amountOutput: 0,
           priceInput: 0,
@@ -326,7 +330,10 @@ const myReducer = (state = initialState, action) => {
       state.images = action.list;
       return { ...state };
     case Types.LOAD_FEATURE_PRODUCT:
-      state.features = action.data;
+      state.features.choose = action.data.choose;
+      state.features.listCurrent = action.data.listCurrent;
+      state.features.list = action.data.list;
+      console.log(state);
       return { ...state };
     case Types.REMOVE_FEATURE_PRODUCT:
       state.features = action.data;
@@ -344,12 +351,62 @@ const myReducer = (state = initialState, action) => {
       state.imageColor = action.imageColor;
       return { ...state };
     case Types.LOAD_INFO_EDIT_LINE_PRODUCT_REQUEST:
-      state.infoSimple = action.infoSimple;
-      state.infoAttribute = action.infoAttribute;
-      state.features = action.features;
-      state.images = action.images;
-      state.descriptions = action.descriptions;
-      state.imageColor = action.imageColor;
+      state.infoSimple = action.data.infoSimple;
+      state.infoAttribute = action.data.infoAttribute;
+      state.features.choose = action.data.features;
+      state.images = action.data.images;
+      state.descriptions = action.data.descriptions;
+      state.imageColor = action.data.imageColor;
+      return { ...state };
+    case Types.RESET_DATA_PRODUCT_STATE:
+      state = {
+        data: <InfoSimple />,
+        infoSimple: {
+          lineProduct: null,
+          categoryProduct: null,
+          groupProduct: null,
+          nameProduct: null,
+          brand: null,
+          dateInput: null,
+          dateOutput: null,
+          width: null,
+          height: null,
+          weight: null,
+        },
+        infoAttribute: null,
+        infoMain: {
+          colors: [],
+          roms: [],
+          ram: null,
+          images: {},
+          lists: [
+            {
+              id: -1,
+              nameProduct: null,
+              priceInput: 0,
+              priceOutput: 0,
+              sale: 0,
+              amountInput: 0,
+              amountOutput: 0,
+              color: { id: null },
+              rom: { id: null },
+              ram: null,
+            },
+          ],
+          index: 1,
+          type: false,
+        },
+        features: {
+          choose: [],
+          listCurrent: [],
+          list: [],
+        },
+        images: [],
+        descriptions: null,
+        loading: true,
+        imageColor: [],
+        index: 0,
+      };
       return { ...state };
     default:
       return state;

@@ -16,16 +16,19 @@ function MainInfoProduct(props) {
   const onSubmit = () => {};
   return (
     <div
-      className="w-11/12 mx-auto overflow-y-auto scrollbar-css"
+      className="w-full mx-auto overflow-y-auto scrollbar-css"
       style={{
         height: 530,
         maxHeight: 530,
       }}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <ColorMemoryRam />
-        <ContentMainProduct register={register} errors={errors} />
-      </form>
+      <ColorMemoryRam />
+      <ContentMainProduct
+        register={register}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+      />
     </div>
   );
 }

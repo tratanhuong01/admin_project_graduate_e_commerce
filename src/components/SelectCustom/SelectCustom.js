@@ -25,6 +25,12 @@ function SelectCustom(props) {
   );
   useEffect(() => {
     setListCurrent(list);
+    setContent(
+      dataProps
+        ? { [attribute]: `${dataProps}` }
+        : { [attribute]: `Chọn ${table}` }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list, dataProps]);
   //
   return (

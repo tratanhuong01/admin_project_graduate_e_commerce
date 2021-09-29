@@ -27,7 +27,9 @@ function ItemImageRespectiveProduct(props) {
             &times;
           </span>
           <img
-            src={URL.createObjectURL(item.image)}
+            src={
+              item.image.id ? item.image.src : URL.createObjectURL(item.image)
+            }
             alt=""
             className="w-full object-contain h-72"
           />

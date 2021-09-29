@@ -8,7 +8,10 @@ function ItemImagesProduct(props) {
   const products = useSelector((state) => state.products);
   //
   return (
-    <div className="w-1/4 h-60 rounded-lg mb-3 relative">
+    <div
+      className="h-60 rounded-lg mb-3 relative px-2"
+      style={{ width: "calc(25% - 16px)" }}
+    >
       <span
         onClick={() => {
           let clone = [...products.images];
@@ -22,7 +25,7 @@ function ItemImagesProduct(props) {
       <img
         className="w-full h-60 object-contain rounded-lg"
         alt=""
-        src={URL.createObjectURL(image)}
+        src={image.id ? image.src : URL.createObjectURL(image)}
       />
     </div>
   );

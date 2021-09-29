@@ -28,8 +28,14 @@ function InfoSimple(props) {
   useEffect(() => {
     //
     setValue("nameLineProduct", products.infoSimple.nameProduct);
+    setValue("groupProduct", products.infoSimple.groupProduct);
+    setValue("categoryProduct", products.infoSimple.categoryProduct);
+    setValue("brandProduct", products.infoSimple.brandProduct);
     setValue("dateInput", products.infoSimple.dateInput);
     setValue("dateOutput", products.infoSimple.dateOutput);
+    setValue("width", products.infoSimple.width);
+    setValue("height", products.infoSimple.height);
+    setValue("weight", products.infoSimple.weight);
     let unmounted = false;
     async function fetch() {
       const result1 = await api("categoryProductsAll", "GET", null);
@@ -49,7 +55,7 @@ function InfoSimple(props) {
       unmounted = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [products]);
   const onSubmit = () => {};
   return (
     <div

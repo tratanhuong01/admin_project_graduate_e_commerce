@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as productsAction from "../../../../../../actions/products/index";
 
 function ChooseFeatureProduct(props) {
   //
   const dispatch = useDispatch();
-  const { products, name } = props;
-  useEffect(() => {}, [products]);
+  const products = useSelector((state) => state.products);
+  const { name } = props;
   //
   return (
     products.features && (
@@ -30,8 +30,8 @@ function ChooseFeatureProduct(props) {
                 text-sm font-semibold cursor-pointer"
                 key={index}
               >
-                {item[name]}
-                <span className="bx bx-x text-xl ml-2 absolute top-1.5 right-1.5"></span>
+                {`${item.groupFilterFunctionProduct.nameGroupFilterProduct} : ${item[name]}`}
+                <span className="bx bx-x text-xl ml-2 absolute top-0 right-1.5"></span>
               </div>
             );
           })}

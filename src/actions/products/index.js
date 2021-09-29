@@ -1,5 +1,7 @@
+import { convertFromRaw, EditorState } from "draft-js";
 import * as Types from "../../constants/ActionTypes";
 import api from "../../Utils/api";
+import htmlToDraft from "html-to-draft";
 
 export const loadCategoryProductByIndex = (index) => {
   return {
@@ -27,6 +29,18 @@ export const loadInfoMainProductByIndex = (index) => {
   return {
     type: Types.LOAD_INFO_MAIN_PRODUCT_BY_INDEX,
     index,
+  };
+};
+
+export const loadInfoImageMainProductRequest = (data) => {
+  return async (dispatch) => {
+    const { lineProduct, color } = data;
+    const result = await api(
+      `images/lineProduct/color/?idLineProduct=${lineProduct.id}&idColor=${color.id}`,
+      "GET",
+      null
+    );
+    dispatch(loadInfoImageMainProduct(result.data, color));
   };
 };
 
@@ -79,6 +93,28 @@ export const loadInfoMainImageOther = (list) => {
   return {
     type: Types.LOAD_INFO_MAIN_IMAGE_OTHER,
     list,
+  };
+};
+
+export const loadFeaturesProductRequest = (products, table) => {
+  return async (dispatch) => {
+    const result = await api(
+      `${table}/${products.infoSimple.groupProduct.slugGroupProduct}`,
+      "GET",
+      null
+    );
+    let clone = [...result.data];
+    products.features.choose.forEach((dt) => {
+      const index = clone.findIndex((dt_) => dt_.id === dt.id);
+      if (index !== -1) clone.splice(index, 1);
+    });
+    dispatch(
+      loadFeaturesProduct({
+        choose: products.features.choose,
+        listCurrent: clone,
+        list: clone,
+      })
+    );
   };
 };
 
@@ -185,29 +221,64 @@ export const loadInfoEditLineProductRequest = (idLineProduct) => {
       height: lineProduct.data.height,
       weight: lineProduct.data.weight,
     };
-    let infoAttribute = null;
+    let infoAttribute = {};
     const groupAttributes = await api(`groupAttributesAll`, "GET", null);
     groupAttributes.data.forEach(async (item) => {
-      const data = await api(`attributeProducts/${item.id}`, "GET", null);
+      const data = await api(
+        `attributeProducts/?idLineProduct=${idLineProduct}&idGroupAttribute=${item.id}`,
+        "GET",
+        null
+      );
+      let list = [];
+      data.data.forEach((dt) => {
+        list.push({
+          data: dt.attributeProduct,
+          value: dt.valueAttributeProduct,
+        });
+      });
       infoAttribute[item.id] = {
         id: item.id,
-        list: data.data,
+        list,
       };
     });
+    let features = [];
     const featureData = await api(
-      `grouFilterProducts/${idLineProduct}`,
+      `detailFunctionProducts/${idLineProduct}`,
       "GET",
       null
     );
+    featureData.data.forEach((element) => {
+      features.push(element.functionProductDetail);
+    });
     const images = await api(`imageOthers/${idLineProduct}`, "GET", null);
     let imageColor = [];
+    const imageColorData = await api(
+      `images/lineProduct/?idLineProduct=${idLineProduct}`,
+      "GET",
+      null
+    );
+    imageColorData.data.forEach((dt) => {
+      imageColor.push({
+        color: dt.colorProduct,
+        image: dt,
+      });
+    });
     dispatch(
       loadInfoEditLineProduct({
         infoSimple,
         infoAttribute,
-        features: featureData.data,
+        features,
         images: images.data,
         imageColor,
+        descriptions: EditorState.createWithContent(
+          convertFromRaw(
+            htmlToDraft(
+              lineProduct.data.describeProduct
+                ? lineProduct.data.describeProduct
+                : "<p></p>"
+            )
+          )
+        ),
       })
     );
   };
@@ -217,5 +288,11 @@ export const loadInfoEditLineProduct = (data) => {
   return {
     type: Types.LOAD_INFO_EDIT_LINE_PRODUCT_REQUEST,
     data,
+  };
+};
+
+export const resetDataProductState = () => {
+  return {
+    type: Types.RESET_DATA_PRODUCT_STATE,
   };
 };

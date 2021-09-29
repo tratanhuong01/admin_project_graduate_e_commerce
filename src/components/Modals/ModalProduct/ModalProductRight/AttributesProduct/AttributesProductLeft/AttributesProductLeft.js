@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../../../../../../Utils/api";
 import * as productsAction from "../../../../../../actions/products/index";
 
@@ -7,7 +7,8 @@ function AttributesProductLeft(props) {
   //
   const [groups, setGroups] = useState([]);
   const dispatch = useDispatch();
-  const { current, setCurrent, infoAttribute } = props;
+  const { current, setCurrent } = props;
+  const { infoAttribute } = useSelector((state) => state.products);
   useEffect(() => {
     //
     let unmounted = false;
@@ -15,7 +16,7 @@ function AttributesProductLeft(props) {
       const result = await api("groupAttributesAll", "GET", null);
       if (unmounted) return;
       setGroups(result.data);
-      if (!infoAttribute) {
+      if (infoAttribute === null) {
         setCurrent({ index: 0, data: result.data[0] });
         const data = Object();
         result.data.forEach((group) => {

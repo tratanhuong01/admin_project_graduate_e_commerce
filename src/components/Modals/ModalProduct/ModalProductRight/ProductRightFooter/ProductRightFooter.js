@@ -146,7 +146,10 @@ function ProductRightFooter(props) {
   return (
     <div className="w-11/12 mx-auto bg-white text-right pt-1 pb-3 border-t-2 border-solid border-gray-300 mt-4 z-50">
       <button
-        onClick={() => dispatch(modalsAction.closeModal())}
+        onClick={() => {
+          dispatch(modalsAction.closeModal());
+          dispatch(productsAction.resetDataProductState());
+        }}
         type="button"
         className=" py-2.5 px-5 mr-4 rounded-lg bg-gray-500 font-semibold text-xm text-white"
       >
@@ -156,6 +159,7 @@ function ProductRightFooter(props) {
         onClick={() => {
           if (products.index === 5) {
             addProduct();
+            dispatch(productsAction.resetDataProductState());
           } else
             dispatch(
               productsAction.loadCategoryProductByIndex(products.index + 1)

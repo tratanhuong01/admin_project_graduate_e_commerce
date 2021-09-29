@@ -1,38 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import api from "../../../../../../Utils/api";
+import { useDispatch, useSelector } from "react-redux";
 import * as productsAction from "../../../../../../actions/products/index";
 function OptionFeatureProduct(props) {
   //
   const dispatch = useDispatch();
-  const { name, table, products } = props;
+  const products = useSelector((state) => state.products);
+  const { name, table } = props;
   const [value, setValue] = useState("");
   useEffect(() => {
     //
-    let unmounted = false;
-    async function fetch() {
-      const result = await api(
-        `${table}/${products.infoSimple.groupProduct.slugGroupProduct}`,
-        "GET",
-        null
-      );
-      if (unmounted) return;
-      if (!products.features)
-        dispatch(
-          productsAction.loadFeaturesProduct({
-            choose: [],
-            listCurrent: result.data,
-            list: result.data,
-          })
-        );
-    }
-    if (products.infoSimple.groupProduct) fetch();
-    return () => {
-      unmounted = true;
-    };
+    if (products.infoSimple.groupProduct)
+      dispatch(productsAction.loadFeaturesProductRequest(products, table));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {}, [products]);
   //
   return (
     products.features && (
@@ -45,7 +25,7 @@ function OptionFeatureProduct(props) {
             setValue(event.target.value);
             const result = products.features.list.filter(
               (item) =>
-                item[name]
+                `${item.groupFilterFunctionProduct.nameGroupFilterProduct} : ${item[name]}`
                   .toLowerCase()
                   .indexOf(event.target.value.toLowerCase()) !== -1
             );
@@ -73,7 +53,7 @@ function OptionFeatureProduct(props) {
                 className="w-full p-2.5 hover:bg-gray-200 font-semibold cursor-pointer"
                 key={index}
               >
-                {item[name]}
+                {`${item.groupFilterFunctionProduct.nameGroupFilterProduct} : ${item[name]}`}
               </div>
             );
           })}

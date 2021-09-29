@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import AttributesProductLeft from "./AttributesProductLeft/AttributesProductLeft";
 import AttributesProductRight from "./AttributesProductRight/AttributesProductRight";
 
 function AttributesProduct(props) {
   //
-  const products = useSelector((state) => state.products);
   const [current, setCurrent] = useState(0);
   //
   return (
@@ -21,15 +19,8 @@ function AttributesProduct(props) {
         <b>@</b> trước mỗi giá trị thuộc tính.
       </div>
       <div className="w-full flex">
-        <AttributesProductLeft
-          current={current}
-          setCurrent={setCurrent}
-          infoAttribute={products.infoAttribute}
-        />
-        <AttributesProductRight
-          current={current}
-          infoAttribute={products.infoAttribute}
-        />
+        <AttributesProductLeft current={current} setCurrent={setCurrent} />
+        <AttributesProductRight current={current} />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ function DateInfoSimple(props) {
           showError={errors["dateInput"]}
           placeHolder={""}
           name={"dateInput"}
-          label={"Ngày nhập vào"}
+          label={"Ngày bắt đầu khuyến mãi"}
           type="date"
           onChange={(item) =>
             dispatch(productsAction.loadSimpleInfoProductData(item, 4))
@@ -32,7 +32,7 @@ function DateInfoSimple(props) {
           showError={errors["dateOutput"]}
           placeHolder={""}
           name={"dateOutput"}
-          label={"Ngày bán ra"}
+          label={"Ngày kết thúc khuyến mãi"}
           type="date"
           onChange={(item) =>
             dispatch(productsAction.loadSimpleInfoProductData(item, 5))

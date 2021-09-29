@@ -31,3 +31,7 @@ export const getRamsAll = () => {
 export const getColorsAll = () => {
   return api(`colorsAll`, "GET", null);
 };
+
+export const getLineProductsAll = () => {
+  return api(`lineProductsAll`, "GET", null);
+};

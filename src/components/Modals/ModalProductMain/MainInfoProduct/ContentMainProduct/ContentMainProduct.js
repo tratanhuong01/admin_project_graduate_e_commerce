@@ -1,80 +1,44 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import InputField from "../../../../../InputField/InputField";
-import * as productsAction from "../../../../../../actions/products/index";
-import DateInfoSimple from "../../InfoSimple/DateInfoSimple/DateInfoSimple";
+import InputField from "../../../../InputField/InputField";
+import * as productsAction from "../../../../../actions/products/index";
+import DateInfoSimple from "../../../ModalProduct/ModalProductRight/InfoSimple/DateInfoSimple/DateInfoSimple";
 function ContentMainProduct(props) {
   //
-  const { register, errors } = props;
+  const { register, errors, handleSubmit, onSubmit } = props;
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {}, [products.infoMain.index]);
   //
   return (
     products.infoMain.lists.length > 0 && (
-      <div className="w-full relative">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full relative">
         <div className="w-full flex px-3">
-          <div className="w-1/2 mr-3">
-            <div className="font-semibold text-xm my-3">
-              {products.infoMain.lists[products.infoMain.index - 1].nameProduct}
-            </div>
-            {products.infoMain.images[
-              products.infoMain.colors.length > 0
-                ? products.infoMain.lists[products.infoMain.index - 1].color.id
-                : -1
-            ] ? (
+          <div className="w-1/2">
+            {products.infoMain.lists[products.infoMain.index - 1].id !== -1 && (
               <>
-                <input
-                  type="file"
-                  id="file"
-                  className="hidden"
-                  onChange={(event) => {
-                    dispatch(
-                      productsAction.loadInfoImageMainProduct(
-                        event.target.files[0],
-                        products.infoMain.lists[products.infoMain.index - 1]
-                          .color
-                      )
-                    );
-                  }}
+                <div className="font-semibold text-xm my-3">
+                  {
+                    products.infoMain.lists[products.infoMain.index - 1]
+                      .nameProduct
+                  }
+                </div>
+                <img
+                  src={
+                    products.infoMain.lists[products.infoMain.index - 1].color
+                      .id &&
+                    products.infoMain.images[
+                      products.infoMain.lists[products.infoMain.index - 1].color
+                        .id
+                    ] &&
+                    products.infoMain.images[
+                      products.infoMain.lists[products.infoMain.index - 1].color
+                        .id
+                    ].src
+                  }
+                  alt=""
+                  className="w-3/4 object-contain h-72 mx-auto"
                 />
-                <label htmlFor="file" className="w-11/12 h-72 mx-auto relative">
-                  <img
-                    src={URL.createObjectURL(
-                      products.infoMain.images[
-                        products.infoMain.colors.length > 0
-                          ? products.infoMain.lists[products.infoMain.index - 1]
-                              .color.id
-                          : -1
-                      ]
-                    )}
-                    alt=""
-                    className="w-full object-contain h-72"
-                  />
-                </label>
-              </>
-            ) : (
-              <>
-                <input
-                  type="file"
-                  id="file"
-                  onChange={(event) => {
-                    dispatch(
-                      productsAction.loadInfoImageMainProduct(
-                        event.target.files[0],
-                        products.infoMain.lists[products.infoMain.index - 1]
-                          .color
-                      )
-                    );
-                  }}
-                  className="hidden"
-                />
-                <label
-                  htmlFor="file"
-                  className="w-11/12 h-72 mx-auto relative flex items-center justify-center"
-                >
-                  <i className="bx bx-image-alt text-7xl text-gray-600" />
-                </label>
               </>
             )}
           </div>
@@ -210,7 +174,7 @@ function ContentMainProduct(props) {
             </li>
           </ul>
         </div>
-      </div>
+      </form>
     )
   );
 }

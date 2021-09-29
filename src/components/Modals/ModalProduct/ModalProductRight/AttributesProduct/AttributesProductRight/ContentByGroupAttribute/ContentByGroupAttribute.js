@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../../../../../../../Utils/api";
 import InputField from "../../../../../../InputField/InputField";
 import * as productsAction from "../../../../../../../actions/products/index";
@@ -7,7 +7,9 @@ import { useForm } from "react-hook-form";
 
 function ContentByGroupAttribute(props) {
   //
-  const { data, infoAttribute } = props;
+  const products = useSelector((state) => state.products);
+  const { infoAttribute } = products;
+  const { data, current } = props;
   const { handleSubmit, setValue, register } = useForm({
     mode: "onChange",
     shouldUnregister: false,
@@ -36,7 +38,7 @@ function ContentByGroupAttribute(props) {
         setValue(`${item.data.id}`, item.value);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [infoAttribute]);
+  }, [infoAttribute, current]);
   //
   return infoAttribute && data ? (
     <div className="w-full">
@@ -62,7 +64,7 @@ function ContentByGroupAttribute(props) {
           );
         })}
       </select>
-      <div className="w-full my-2 max-h-12 p-2 max-h-24 overflow-y-auto flex flex-wrap">
+      <div className="w-full my-2 p-2 max-h-24 overflow-y-auto flex flex-wrap">
         {infoAttribute[data.id].list.map((item, index) => {
           return (
             <span
