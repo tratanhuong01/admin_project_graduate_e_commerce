@@ -82,6 +82,9 @@ export const loadInfoMainProductDataFullRequest = (state) => {
                 color: color,
                 rom: rom,
                 ram: state.infoMain.ram,
+                saleDefault: 0,
+                timeStartSale: null,
+                timeEndSale: null,
               },
             ];
           else {
@@ -119,6 +122,9 @@ export const loadInfoMainProductDataFullRequest = (state) => {
               color: color,
               rom: { id: null },
               ram: state.infoMain.ram,
+              saleDefault: 0,
+              timeStartSale: null,
+              timeEndSale: null,
             },
           ];
         else {
@@ -150,6 +156,9 @@ export const loadInfoMainProductDataFullRequest = (state) => {
               color: { id: "" },
               rom: rom,
               ram: state.infoMain.ram,
+              saleDefault: 0,
+              timeStartSale: null,
+              timeEndSale: null,
             },
           ];
         else {
@@ -169,6 +178,9 @@ export const loadInfoMainProductDataFullRequest = (state) => {
         priceInput: 0,
         priceOutput: 0,
         sale: 0,
+        saleDefault: 0,
+        timeStartSale: null,
+        timeEndSale: null,
       });
     }
     dispatch(loadInfoMainProductDataFull(state.infoMain));
@@ -423,6 +435,9 @@ export const loadInfoEditProductInfoRequest = (idProduct) => {
           priceInput: result.data.infoProduct.priceInput,
           priceOutput: result.data.infoProduct.priceOutput,
           amountInput: result.data.infoProduct.amountInput,
+          saleDefault: result.data.infoProduct.saleDefault,
+          timeStartSale: result.data.infoProduct.timeStartSale,
+          timeEndSale: result.data.infoProduct.timeEndSale,
         },
         true
       )
@@ -444,7 +459,7 @@ export const resetDataProductState = () => {
   };
 };
 
-export const updateInfoMainEdit = (index, data) => {
+export const updateInfoMainEdit = (data, index) => {
   return {
     type: Types.UPDATE_INFO_MAIN_EDIT,
     index,

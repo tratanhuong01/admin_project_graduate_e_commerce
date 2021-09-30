@@ -40,6 +40,9 @@ const initialState = {
         color: { id: null },
         rom: { id: null },
         ram: null,
+        saleDefault: 0,
+        timeStartSale: null,
+        timeEndSale: null,
       },
     ],
     index: 1,
@@ -208,6 +211,18 @@ const myReducer = (state = initialState, action) => {
           state.infoMain.lists[state.infoMain.index - 1].amountOutput =
             action.data;
           break;
+        case 5:
+          state.infoMain.lists[state.infoMain.index - 1].saleDefault =
+            action.data;
+          break;
+        case 6:
+          state.infoMain.lists[state.infoMain.index - 1].timeStartSale =
+            action.data;
+          break;
+        case 7:
+          state.infoMain.lists[state.infoMain.index - 1].timeEndSale =
+            action.data;
+          break;
         default:
           break;
       }
@@ -309,26 +324,33 @@ const myReducer = (state = initialState, action) => {
           state.infoMainEdit.amountOutput = action.data;
           break;
         case 3:
-          state.infoMainEdit.dateStartSale = action.data;
+          state.infoMainEdit.timeStartSale = action.data;
           break;
         case 4:
-          state.infoMainEdit.dateEndSale = action.data;
+          state.infoMainEdit.timeEndSale = action.data;
           break;
         case 5:
-          state.infoMainEdit = action.data;
+          state.infoMainEdit.sale = action.data;
           break;
         case 6:
-          state.infoMainEdit = action.data;
+          state.infoMainEdit.saleDefault = action.data;
           break;
         case 7:
-          state.infoMainEdit = action.data;
+          state.infoMainEdit.ram = action.data;
           break;
         case 8:
-          state.infoMainEdit = action.data;
+          state.infoMainEdit.rom = action.data;
+          break;
+        case 9:
+          state.infoMainEdit.color = action.data;
+          break;
+        case 10:
+          state.infoMainEdit.image = action.data;
           break;
         default:
           break;
       }
+      console.log(state.infoMainEdit);
       return { ...state };
     default:
       return state;

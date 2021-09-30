@@ -29,54 +29,15 @@ function ProductRightFooter(props) {
       height: data.infoSimple.height,
       width: data.infoSimple.width,
       weight: data.infoSimple.weight,
-      timeCreated: "09-22-2021 10:02:50",
+      describeProduct: data.descriptions,
+      timeCreated: null,
     });
-    await addImageMain(lineProduct.data);
-    // let id = 1000000000;
-    // const getId = await api("getIdBestNew", "GET", null);
-    // if (getId.data === null || getId.data === "") {
-    // } else id = Number(getId.data.id.replace("SP", ""));
-    async function fetch() {
-      for (let index = 0; index < data.infoMain.lists.length; index++) {
-        // const list = data.infoMain.lists[index];
-        // const pos = listImage.findIndex((item) =>
-        //   item.color && list.color ? item.color.id === list.color.id : false
-        // );
-        // id++;
-        // const product = await api("products", "POST", {
-        //   id: `SP${id}`,
-        //   describeProduct: data.descriptions,
-        //   isShow: 1,
-        //   slug: `${convertStringToSlug(
-        //     StringUtils.removeVietnameseTones(`${list.nameProduct}`)
-        //   )}`,
-        //   brandProduct: data.infoSimple.brand,
-        //   colorProduct: list.color.id === null ? null : list.color,
-        //   imageProduct: pos !== -1 ? listImage[pos].image : listImage[0].image,
-        //   lineProduct: lineProduct.data,
-        //   memoryProduct: list.rom.id === null ? null : list.rom,
-        //   userProduct: null,
-        //   ramProduct: list.ram && list.ram.id ? list.ram : null,
-        // });
-        // await api(`infoProducts`, "POST", {
-        //   id: null,
-        //   infoProduct: product.data,
-        //   priceInput: list.priceInput,
-        //   priceOutput: list.priceOutput,
-        //   sale: list.sale,
-        //   itemCurrent: list.amountInput ? list.amountInput : 0,
-        //   itemSold: 0,
-        //   typeInfoProduct: list.typeInfoProduct ? list.typeInfoProduct : 0,
-        //   review: 50,
-        //   timeInput: "09-18-2021 05:53:06",
-        // });
-      }
-    }
-    fetch();
-    await addImageOther(lineProduct.data);
+    if (data.imageColor.length > 0) await addImageMain(lineProduct.data);
+    if (data.images.length > 0) await addImageOther(lineProduct.data);
     await addProductAttribute(lineProduct.data);
     await addFunctionProduct(lineProduct.data);
     dispatch(modalsAction.closeModal());
+    dispatch(productsAction.resetDataProductState());
   };
   const addImageMain = async (lineProduct) => {
     let listImage = [];
@@ -86,11 +47,14 @@ function ProductRightFooter(props) {
       formData.append("multipartFile", item.image);
       formData.append("id", `${lineProduct.id}__${item.color.id}`);
       formData.append("publicId", "E-Commerce/Products/");
-      const result = await api("updateImageSingle", "POST", formData, null);
+      const result = await api("updateImageSingle", "POST", formData, {
+        "Content-Type": "multipart/form-data",
+      });
       const image = await api("images", "POST", {
         id: "",
         alt: "",
         src: result.data.url,
+        colorProduct: item.color,
         type: 0,
       });
       listImage.push({ color: item, image: image.data });
@@ -157,10 +121,8 @@ function ProductRightFooter(props) {
       </button>
       <button
         onClick={() => {
-          if (products.index === 5) {
-            addProduct();
-            dispatch(productsAction.resetDataProductState());
-          } else
+          if (products.index === 5) addProduct();
+          else
             dispatch(
               productsAction.loadCategoryProductByIndex(products.index + 1)
             );

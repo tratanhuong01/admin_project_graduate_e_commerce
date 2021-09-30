@@ -3,7 +3,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import api from "../../../../../Utils/api";
 import SelectCustom from "../../../../SelectCustom/SelectCustom";
-// import * as productsAction from "../../../../../actions/products/index";
+import * as productsAction from "../../../../../actions/products/index";
 
 function ColorMemoryRamEdit(props) {
   //
@@ -50,7 +50,30 @@ function ColorMemoryRamEdit(props) {
           {colors.map((color, index) => {
             return (
               <div
-                onClick={() => dispatch(() => "")}
+                onClick={() => {
+                  let unmounted = false;
+                  async function fetch() {
+                    const result = await api(
+                      `images/lineProduct/color/?idLineProduct=${products.infoMainEdit.lineProduct.id}&idColor=${color.id}`,
+                      "GET",
+                      null
+                    );
+                    if (unmounted) return;
+                    dispatch(
+                      productsAction.updateInfoMainEdit(
+                        result.data.colorProduct,
+                        9
+                      )
+                    );
+                    dispatch(
+                      productsAction.updateInfoMainEdit(result.data, 10)
+                    );
+                  }
+                  fetch();
+                  return () => {
+                    unmounted = true;
+                  };
+                }}
                 key={index}
                 className={`w-10 h-10 rounded-full mr-1.5 flex-shrink-0 cursor-pointer border-2 border-solid 
                 ${
@@ -74,8 +97,14 @@ function ColorMemoryRamEdit(props) {
               placeHolder={"Nhập ram"}
               label={""}
               table={"ram"}
-              setData={(item) => ""}
-              dataProps={products.infoMainEdit.ram.nameRam}
+              setData={(item) =>
+                dispatch(productsAction.updateInfoMainEdit(item, 7))
+              }
+              dataProps={
+                products.infoMainEdit.ram
+                  ? products.infoMainEdit.ram.nameRam
+                  : null
+              }
             />
           </div>
           <div className="w-1/2">
@@ -88,35 +117,17 @@ function ColorMemoryRamEdit(props) {
               placeHolder={"Nhập rom"}
               label={""}
               table={"rom"}
-              setData={(item) => ""}
-              dataProps={products.infoMainEdit.rom.nameMemory}
+              setData={(item) =>
+                dispatch(productsAction.updateInfoMainEdit(item, 8))
+              }
+              dataProps={
+                products.infoMainEdit.rom
+                  ? products.infoMainEdit.rom.nameMemory
+                  : null
+              }
             />
           </div>
         </div>
-      </div>
-      <div className="w-full flex">
-        <ScrollContainer className="w-1/2 mr-3 max-w-1/2 overflow-x-auto flex p-1 border-2 border-solid border-gray-200 shadow-lg items-center">
-          <div className="w-7 h-7 ml-1 rounded-full mr-1.5 flex-shrink-0 cursor-pointer relative">
-            <div
-              className="w-7 h-7 rounded-full flex-shrink-0 border-2 border-solid border-gray-500"
-              style={{ backgroundColor: products.infoMainEdit.color.code }}
-            ></div>
-            <span
-              onClick={() => ""}
-              className="w-4 h-4 bg-white rounded-full flex items-center justify-center absolute -top-1.5 -right-1.5"
-            >
-              <i className="bx bx-x" />
-            </span>
-          </div>
-        </ScrollContainer>
-        <ScrollContainer className="w-1/2 max-w-1/2 overflow-x-auto flex p-1 border-2  border-solid border-gray-200 shadow-lg">
-          <div
-            className="px-2 h-10 rounded-lg font-semibold mr-1.5 flex-shrink-0 flex items-center 
-                justify-center border-2 border-solid border-gray-200 cursor-pointer text-xs"
-          >
-            {products.infoMainEdit.rom.nameMemory}
-          </div>
-        </ScrollContainer>
       </div>
     </>
   ) : (

@@ -17,7 +17,7 @@ function RowProductTable(props) {
       <td className="p-2 text-center">
         {item.color ? (
           <div
-            className="w-10 h-10 rounded-full mx-auto"
+            className="w-10 h-10 rounded-full mx-auto border-2 border-solid border-gray-700"
             style={{ backgroundColor: item.color.code }}
           ></div>
         ) : (

@@ -11,8 +11,12 @@ function ContentMainProductEdit(props) {
   useEffect(() => {
     //
     if (products.infoMainEdit) {
-      setValue("priceInput", products.infoMainEdit.priceInput);
+      setValue(
+        "priceInput",
+        new Intl.NumberFormat().format(products.infoMainEdit.priceInput) + " đ"
+      );
       setValue("priceOutput", products.infoMainEdit.priceOutput);
+      setValue("saleDefault", products.infoMainEdit.saleDefault);
       setValue("sale", products.infoMainEdit.sale);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -20,7 +24,7 @@ function ContentMainProductEdit(props) {
   //
   return (
     products.infoMainEdit && (
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full relative">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full relative mb-4">
         <div className="w-full flex px-3">
           <div className="w-1/2">
             <div className="font-semibold text-xm my-3">
@@ -38,32 +42,26 @@ function ContentMainProductEdit(props) {
                 <InputField
                   register={register}
                   className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-                  showError={errors["id"]}
-                  placeHolder={"Nhập giá nhập vào"}
+                  showError={errors["priceInput"]}
+                  placeHolder={"Nhập giá nhập"}
                   name={"priceInput"}
-                  label={"Giá nhập vào"}
+                  label={"Giá nhập"}
                   type="text"
-                  onChange={(value) =>
-                    dispatch(
-                      productsAction.loadInfoMainPriceAmountSale(value, 0)
-                    )
-                  }
-                  disabled={false}
+                  onChange={(value) => ""}
+                  disabled={true}
                 />
               </div>
               <div className="w-1/2">
                 <InputField
                   register={register}
                   className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-                  showError={errors["id"]}
-                  placeHolder={"Nhập giá bán ra"}
+                  showError={errors["priceOutput"]}
+                  placeHolder={"Nhập giá bán"}
                   name={"priceOutput"}
-                  label={"Giá nhập ra"}
+                  label={"Giá bán"}
                   type="text"
                   onChange={(value) =>
-                    dispatch(
-                      productsAction.loadInfoMainPriceAmountSale(value, 1)
-                    )
+                    dispatch(productsAction.updateInfoMainEdit(value, 0))
                   }
                   disabled={false}
                 />
@@ -75,14 +73,12 @@ function ContentMainProductEdit(props) {
                   register={register}
                   className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
                   showError={errors["amountInput"]}
-                  placeHolder={"Số lượng bán ra"}
+                  placeHolder={"Số lượng nhập"}
                   name={"amountInput"}
-                  label={"Số lượng nhập vào"}
+                  label={"Số lượng nhập"}
                   type="number"
                   onChange={(value) =>
-                    dispatch(
-                      productsAction.loadInfoMainPriceAmountSale(value, 2)
-                    )
+                    dispatch(productsAction.updateInfoMainEdit(value, 1))
                   }
                   disabled={false}
                 />
@@ -91,34 +87,41 @@ function ContentMainProductEdit(props) {
                 <InputField
                   register={register}
                   className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-                  showError={errors["id"]}
+                  showError={errors["saleDefault"]}
                   placeHolder={"Nhập khuyến mãi mặc định"}
-                  name={"sale"}
-                  label={"Khuyến mãi"}
+                  name={"saleDefault"}
+                  label={"Khuyến mãi mặc định"}
                   type="number"
                   onChange={(value) =>
-                    dispatch(
-                      productsAction.loadInfoMainPriceAmountSale(value, 3)
-                    )
+                    dispatch(productsAction.updateInfoMainEdit(value, 6))
                   }
                   disabled={false}
                 />
               </div>
             </div>
-            <DateInfoSimple register={register} errors={errors} />
-            <InputField
-              register={register}
-              className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-              showError={errors["id"]}
-              placeHolder={"Nhập phần trăm đang khuyến mãi "}
-              name={"sale"}
-              label={"Khuyến mãi"}
-              type="number"
-              onChange={(value) =>
-                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 3))
-              }
-              disabled={false}
-            />
+            <DateInfoSimple register={register} errors={errors} edit={true} />
+            <div className="w-full flex">
+              <div className="w-1/2">
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["sale"]}
+                  placeHolder={"Nhập phần trăm đang khuyến mãi "}
+                  name={"sale"}
+                  label={"Khuyến mãi"}
+                  type="number"
+                  onChange={(value) =>
+                    dispatch(productsAction.updateInfoMainEdit(value, 5))
+                  }
+                  disabled={false}
+                />
+              </div>
+              <div className="w-1/2 flex justify-end items-center pt-8">
+                <button className="px-4 py-3 bg-organce rounded-lg text-white font-semibold">
+                  Cập nhật
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </form>

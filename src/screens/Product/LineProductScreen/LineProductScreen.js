@@ -36,8 +36,8 @@ function LineProductScreen(props) {
           />
         </div>
       </div>
-      <Control type={feature.type} data={feature} />
-      <Table category={category} feature={feature}>
+      <Control type={feature.type} data={feature} table={feature.nameTable} />
+      <Table category={category} feature={feature} modal={true}>
         <LineProductTable feature={feature} category={category} />
       </Table>
     </Screen>

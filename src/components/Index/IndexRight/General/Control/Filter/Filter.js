@@ -53,7 +53,8 @@ function Filter(props) {
     //
     let unmounted = false;
     if (unmounted) return;
-    product.queryFilter(filter);
+    if (table === "product") product.queryFilterProduct(filter);
+    if (table === "lineProduct") product.queryFilterLineproduct(filter);
     return () => {
       unmounted = true;
     };

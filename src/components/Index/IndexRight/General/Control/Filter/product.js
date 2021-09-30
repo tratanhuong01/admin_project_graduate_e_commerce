@@ -1,6 +1,6 @@
 import * as productApi from "../../../../../../api/productsApi";
 
-export const queryFilter = async (filter) => {
+export const queryFilterProduct = async (filter) => {
   const brands = await productApi.getBrandsAll();
   const roms = await productApi.getMemoriesAll();
   const rams = await productApi.getRamsAll();
@@ -92,6 +92,44 @@ export const queryFilter = async (filter) => {
       filter[index].data.push({
         id: count,
         idFilter: "PRODUCT_FILTER_BRAND",
+        nameFilter: "Thương hiệu",
+        name: element.nameBrand,
+        query: `brand=${element.id}`,
+      });
+      count++;
+    });
+  }
+  return clone;
+};
+
+export const queryFilterLineproduct = async (filter) => {
+  const brands = await productApi.getBrandsAll();
+  const groups = await productApi.getGroupProductsAll();
+  let clone = [...filter];
+  let index = -1;
+  let count = 0;
+  index = clone.findIndex((item) => item.id === "LINE_PRODUCT_FILTER_GROUP");
+  if (index !== -1) {
+    count = 0;
+    groups.data.forEach((element) => {
+      filter[index].data.push({
+        id: count,
+        idFilter: "LINE_PRODUCT_FILTER_GROUP",
+        nameFilter: "Nhóm sản phẩm",
+        name: element.nameGroupProduct,
+        query: `group=${element.id}`,
+      });
+      count++;
+    });
+  }
+  index = -1;
+  index = clone.findIndex((item) => item.id === "LINE_PRODUCT_FILTER_BRAND");
+  if (index !== -1) {
+    count = 0;
+    brands.data.forEach((element) => {
+      filter[index].data.push({
+        id: count,
+        idFilter: "LINE_PRODUCT_FILTER_BRAND",
         nameFilter: "Thương hiệu",
         name: element.nameBrand,
         query: `brand=${element.id}`,

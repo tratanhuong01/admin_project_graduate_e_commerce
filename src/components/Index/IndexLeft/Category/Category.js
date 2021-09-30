@@ -15,22 +15,8 @@ function Category(props) {
       id: 2,
       name: "Khách hàng",
       icon: "bx bx-user",
-      child: [
-        {
-          id: 0,
-          name: "Khách hàng",
-          type: "customer",
-          label: "Quản lí khách hàng",
-          to: Config.USER,
-        },
-        {
-          id: 1,
-          name: "Nhà cung cấp",
-          type: "manufacture",
-          label: "Quản lí nhà cung cấp",
-          to: Config.SUPPILER,
-        },
-      ],
+      child: [],
+      to: Config.USER,
     },
     {
       id: 3,
@@ -106,28 +92,10 @@ function Category(props) {
     },
     {
       id: 5,
-      name: "Khuyến mãi",
+      name: "Mã giảm giá",
       icon: "bx bx-gift",
-      child: [
-        {
-          id: 0,
-          name: "Mã giảm giá",
-          label: "Quản lí mã giảm giá",
-          type: "codeSale",
-        },
-        {
-          id: 1,
-          name: "Sản phẩm giảm giá",
-          label: "Quản lí sản phẩm giảm giá",
-          type: "productSale",
-        },
-        {
-          id: 3,
-          name: "Chương trình khuyến mãi",
-          label: "Quản lí sản phẩm giảm giá",
-          type: "promotions",
-        },
-      ],
+      child: [],
+      to: "ma-giam-gia",
     },
     {
       id: 6,
@@ -135,6 +103,7 @@ function Category(props) {
       icon: "fas fa-cog",
       type: "config",
       child: [],
+      to: "thiet-lap",
     },
     {
       id: 7,
@@ -181,6 +150,7 @@ function Category(props) {
       icon: "bx bx-current-location",
       type: "contact",
       child: [],
+      to: "lien-he",
     },
     {
       id: 10,

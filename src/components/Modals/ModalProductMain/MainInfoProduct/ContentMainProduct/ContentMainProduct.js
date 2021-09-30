@@ -45,7 +45,6 @@ function ContentMainProduct(props) {
           <div className="w-1/2">
             <div className="w-full flex">
               <div className="w-1/2 pr-5">
-                {" "}
                 <InputField
                   register={register}
                   className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
@@ -117,19 +116,42 @@ function ContentMainProduct(props) {
               </div>
             </div>
             <DateInfoSimple register={register} errors={errors} />
-            <InputField
-              register={register}
-              className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
-              showError={errors["id"]}
-              placeHolder={"Nhập khuyến mãi"}
-              name={"sale"}
-              label={"Khuyến mãi"}
-              type="number"
-              onChange={(value) =>
-                dispatch(productsAction.loadInfoMainPriceAmountSale(value, 3))
-              }
-              disabled={false}
-            />
+            <div className="w-full flex">
+              <div className="w-1/2 pr-5">
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["sale"]}
+                  placeHolder={"Nhập khuyến mãi"}
+                  name={"sale"}
+                  label={"Khuyến mãi"}
+                  type="number"
+                  onChange={(value) =>
+                    dispatch(
+                      productsAction.loadInfoMainPriceAmountSale(value, 3)
+                    )
+                  }
+                  disabled={false}
+                />
+              </div>
+              <div className="w-1/2">
+                <InputField
+                  register={register}
+                  className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+                  showError={errors["saleDefault"]}
+                  placeHolder={"Nhập khuyến mãi mặc định"}
+                  name={"saleDefault"}
+                  label={"Khuyến mãi mặc định"}
+                  type="number"
+                  onChange={(value) =>
+                    dispatch(
+                      productsAction.loadInfoMainPriceAmountSale(value, 5)
+                    )
+                  }
+                  disabled={false}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className="w-full flex justify-center">
@@ -173,6 +195,17 @@ function ContentMainProduct(props) {
               Next
             </li>
           </ul>
+        </div>
+        <div className="my-2 flex justify-end pr-4">
+          <button className="px-4 py-3 bg-gray-500 mr-4 rounded-lg text-white font-semibold">
+            Hủy
+          </button>
+          <button
+            type="submit"
+            className="px-4 py-3 bg-organce rounded-lg text-white font-semibold"
+          >
+            Thêm sản phẩm
+          </button>
         </div>
       </form>
     )

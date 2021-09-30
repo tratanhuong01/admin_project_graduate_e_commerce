@@ -13,6 +13,7 @@ function InputField(props) {
     onChange,
     disabled,
     file,
+    price,
   } = props;
 
   const Field = register(name, { required: true });
@@ -39,8 +40,12 @@ function InputField(props) {
           onChange={(e) => {
             if (file) {
               if (e.target.files) onChange(e.target.files[0]);
-            } else onChange(e.target.value);
-            if (typeof Field === "function") Field.onChange(e);
+            } else {
+              onChange(e.target.value);
+            }
+            if (typeof Field === "function")
+              if (price) Field.onChange(e);
+              else Field.onChange(e);
           }}
           placeholder={placeHolder}
           disabled={disabled}
