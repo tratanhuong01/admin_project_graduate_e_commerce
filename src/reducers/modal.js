@@ -4,6 +4,7 @@ import ModalOrders from "../components/Modals/ModalOrders/ModalOrders";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
 import ModalProductMain from "../components/Modals/ModalProductMain/ModalProductMain";
 import ModalUpdateStatusCategory from "../components/Modals/ModalUpdateStatusCategory/ModalUpdateStatusCategory";
+import ModalVoucher from "../components/Modals/ModalVoucher/ModalVoucher";
 import * as Types from "../constants/ActionTypes";
 
 const initialState = {
@@ -28,6 +29,9 @@ const myReducer = (state = initialState, action) => {
         case "new":
           state.data = <ModalNews data={null} />;
           break;
+        case "discountCode":
+          state.data = <ModalVoucher data={null} />;
+          break;
         default:
           break;
       }
@@ -45,6 +49,9 @@ const myReducer = (state = initialState, action) => {
           break;
         case "bill":
           state.data = <ModalOrders data={action.data} />;
+          break;
+        case "discountCode":
+          state.data = <ModalVoucher data={action.data} />;
           break;
         default:
           break;

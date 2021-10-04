@@ -58,13 +58,7 @@ function InfoSimple(props) {
   }, [products]);
   const onSubmit = () => {};
   return (
-    <div
-      className="w-11/12 mx-auto overflow-y-auto scrollbar-css"
-      style={{
-        height: 530,
-        maxHeight: 530,
-      }}
-    >
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <DateInfoSimple register={register} errors={errors} />
         <SelectCustom
@@ -209,7 +203,7 @@ function InfoSimple(props) {
           disabled={false}
         />
       </form>
-    </div>
+    </>
   );
 }
 

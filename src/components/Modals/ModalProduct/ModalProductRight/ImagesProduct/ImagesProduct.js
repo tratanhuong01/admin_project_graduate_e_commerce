@@ -9,13 +9,7 @@ function ImagesProduct(props) {
   useEffect(() => {}, [products.images]);
   //
   return (
-    <div
-      className="w-11/12 mx-auto overflow-y-auto overflow-x-hidden scrollbar-css flex flex-wrap px-2"
-      style={{
-        height: 530,
-        maxHeight: 530,
-      }}
-    >
+    <>
       {products.images ? (
         <>
           {products.images.map((image, index) => {
@@ -69,7 +63,7 @@ function ImagesProduct(props) {
           </label>
         </>
       )}
-    </div>
+    </>
   );
 }
 

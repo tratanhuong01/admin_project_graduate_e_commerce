@@ -186,9 +186,11 @@ export const deleteCategoryRequest = (list, table, data) => {
   };
 };
 
-export const addCategoryRequest = (obj, table, query, status) => {
+export const addCategoryRequest = (obj, table, query, status, filters) => {
   return async (dispatch) => {
     await crudApi.addData(obj, table);
+    if (status)
+      dispatch(loadListCategoryConnectRequest(table, query, status, filters));
     dispatch(loadListCategoryRequest(table, query, status));
   };
 };

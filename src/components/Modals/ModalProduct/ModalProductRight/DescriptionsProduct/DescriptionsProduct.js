@@ -10,13 +10,7 @@ function DescriptionProduct(props) {
   const dispatch = useDispatch();
   //
   return (
-    <div
-      className="w-11/12 mx-auto overflow-y-auto scrollbar-css"
-      style={{
-        height: 530,
-        maxHeight: 530,
-      }}
-    >
+    <>
       <Editor
         wrapperClassName="wrapper-class"
         editorClassName="editor-class"
@@ -26,7 +20,7 @@ function DescriptionProduct(props) {
           dispatch(productsAction.loadDescriptionProduct(editorState))
         }
       />
-    </div>
+    </>
   );
 }
 

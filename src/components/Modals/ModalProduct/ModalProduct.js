@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import CloseModal from "../../CloseModal/CloseModal";
 import ModalProductLeft from "./ModalProductLeft/ModalProductLeft";
 import ModalProductRight from "./ModalProductRight/ModalProductRight";
 import * as productsAction from "../../../actions/products/index";
 import { useDispatch } from "react-redux";
+import ModalWrapper from "../ModalWrapper";
 function ModalProduct(props) {
   //
   const { data } = props;
@@ -15,24 +15,17 @@ function ModalProduct(props) {
   }, []);
   //
   return (
-    <div
-      className={`w-3/4 rounded-lg p-1 absolute top-1/2 left-1/2 transform -translate-y-1/2 
+    <ModalWrapper
+      className={`w-3/4 rounded-lg absolute top-1/2 left-1/2 transform -translate-y-1/2 
       -translate-x-1/2 bg-white animate__animated animate__fadeIn`}
+      title={`${data ? "Sửa" : "Thêm"} dòng sản phẩm`}
+      addEvent={() => dispatch(productsAction.resetDataProductState())}
     >
-      <div className="w-full relative">
-        <div className="w-full sticky top-0 p-3 text-center text-2xl font-semibold">
-          {data ? "Sửa" : "Thêm"} sản phẩm
-          <CloseModal
-            addEvent={() => dispatch(productsAction.resetDataProductState())}
-          />
-        </div>
-        <div className="w-full overflow-y-auto scrollbar-css flex bg-white overflow-x-hidden">
-          <ModalProductLeft />
-          <ModalProductRight />
-        </div>
+      <div className="w-full pt-16 px-2">
+        <ModalProductLeft />
+        <ModalProductRight />
       </div>
-    </div>
+    </ModalWrapper>
   );
 }
-
 export default ModalProduct;

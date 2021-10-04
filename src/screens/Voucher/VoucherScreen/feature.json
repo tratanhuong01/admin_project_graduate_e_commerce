@@ -1,0 +1,245 @@
+{
+  "filter": [
+    {
+      "id": "VOUCHER_FILTER_1",
+      "name": "Loại mã giảm giá",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "VOUCHER_FILTER_1",
+          "nameFilter": "Loại mã giảm giá",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "idFilter": "VOUCHER_FILTER_1",
+          "nameFilter": "Loại mã giảm giá",
+          "name": "Miễn phí vận chuyển",
+          "query": "typeDiscountCode=0"
+        },
+        {
+          "id": 0,
+          "idFilter": "VOUCHER_FILTER_1",
+          "nameFilter": "Loại mã giảm giá",
+          "name": "Giảm % cho hóa đơn",
+          "query": "typeDiscountCode=1"
+        }
+      ]
+    }
+  ],
+  "sorter": [
+    {
+      "name": "Giảm tối thiểu",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Giảm tối thiểu",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Giảm tối thiểu",
+          "query": "minSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Giảm tối thiểu",
+          "name": "Giảm dần",
+          "query": "minSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Sắp hết hạn",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Giảm tối đa",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Sắp hết hạn",
+          "query": "expired=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Sắp hết hạn",
+          "name": "Giảm dần",
+          "query": "expired=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Giảm tối đa",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Giảm tối đa",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Giảm tối đa",
+          "query": "maxSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Giảm tối đa",
+          "name": "Giảm dần",
+          "query": "maxSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Mới nhất",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Mới nhất",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Mới nhất",
+          "query": "newBestSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Mới nhất",
+          "name": "Giảm dần",
+          "query": "newBestSorter=DESC"
+        }
+      ]
+    },
+    {
+      "name": "Phần trăm giảm",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Mới nhất",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Mới nhất",
+          "query": "percentSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Mới nhất",
+          "name": "Giảm dần",
+          "query": "percentSorter=DESC"
+        }
+      ]
+    }
+  ],
+  "condition": {
+    "typeDiscountCode": [
+      {
+        "type": 0,
+        "bgColor": "bg-red-500",
+        "name": "Miễn phí thanh toán"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-yellow-600",
+        "name": "Giảm % cho đơn hàng"
+      },
+      {
+        "type": 2,
+        "bgColor": "bg-yellow-600",
+        "name": "Chưa xác minh email"
+      },
+      {
+        "type": 3,
+        "bgColor": "bg-green-600",
+        "name": "Đã xác minh"
+      }
+    ]
+  },
+  "nameTable": "discountCode",
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 1,
+      "name": "STT"
+    },
+    {
+      "id": 2,
+      "name": "Code"
+    },
+    {
+      "id": 3,
+      "name": "Tên mã giảm giá"
+    },
+    {
+      "id": 7,
+      "name": "Thời gian bắt đầu"
+    },
+    {
+      "id": 4,
+      "name": "Thời gian kết thúc"
+    },
+    {
+      "id": 6,
+      "name": "Phần trăm giảm"
+    },
+    {
+      "id": 8,
+      "name": "Số lượng"
+    },
+    {
+      "id": 9,
+      "name": "Loại mã giảm giá"
+    },
+    {
+      "id": 11,
+      "name": "Giảm tối thiểu cho đơn hàng"
+    },
+    {
+      "id": 10,
+      "name": "Giảm tối đa cho đơn hàng"
+    }
+  ],
+  "add": false,
+  "status": {
+    "title": "Trạng thái tài khoản",
+    "column": "status",
+    "list": [
+      {
+        "name": "Bình thường",
+        "icon": "fas fa-user-check",
+        "description": "Người dùng sử dụng được đầy đủ tính năng của website",
+        "data": 0
+      },
+      {
+        "name": "Tạm khóa",
+        "icon": "fas fa-unlock-alt",
+        "description": "Người dùng sẽ bị tạm khóa trong một số thời gian nhất định",
+        "data": 1
+      },
+      {
+        "name": "Khóa vĩnh viễn",
+        "icon": "bx bx-block",
+        "description": "Người dùng sẽ không được sử dụng tài khoản của mình vĩnh viễn",
+        "data": 2
+      }
+    ]
+  }
+}

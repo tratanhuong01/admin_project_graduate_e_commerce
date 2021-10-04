@@ -17,6 +17,7 @@ import OrderScreen from "../screens/OrderScreen/OrderScreen";
 import NewsScreen from "../screens/NewsScreen/NewsScreen";
 import SupportLiveScreen from "../screens/SupportLiveScreen/SupportLiveScreen";
 import RamScreen from "../screens/RamScreen/RamScreen";
+import VoucherScreen from "../screens/Voucher/VoucherScreen/VoucherScreen";
 
 const routes = [
   {
@@ -119,6 +120,12 @@ const routes = [
     to: `${Config.SUPPORT_LIVE}`,
     exact: true,
     main: () => <SupportLiveScreen />,
+    once: false,
+  },
+  {
+    to: `${Config.DISCOUNT_CODE}`,
+    exact: true,
+    main: () => <VoucherScreen />,
     once: false,
   },
 ];

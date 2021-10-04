@@ -290,12 +290,12 @@
       {
         "type": 1,
         "bgColor": "bg-yellow-600",
-        "name": "Chưa xác minh số điện thoại"
+        "name": "Đang xác minh"
       },
       {
         "type": 2,
         "bgColor": "bg-yellow-600",
-        "name": "Chưa xác minh email"
+        "name": "Đang xác minh"
       },
       {
         "type": 3,
@@ -345,11 +345,7 @@
     },
     {
       "id": 2,
-      "name": "Họ"
-    },
-    {
-      "id": 3,
-      "name": "Tên"
+      "name": "Họ và tên"
     },
     {
       "id": 7,

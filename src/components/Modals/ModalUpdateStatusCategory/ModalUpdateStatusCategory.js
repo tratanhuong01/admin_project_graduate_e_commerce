@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CloseModal from "../../CloseModal/CloseModal";
+import ModalWrapper from "../ModalWrapper";
 import ItemUpdateStatusCategory from "./ItemUpdateStatusCategory/ItemUpdateStatusCategory";
 
 function ModalUpdateStatusCategory(props) {
@@ -8,16 +8,12 @@ function ModalUpdateStatusCategory(props) {
   const [value, setValue] = useState(itemCurrent);
   //
   return (
-    <div
-      className="shadow-sm border border-solid border-gray-500 p-3 bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg  sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3 transform 
+    <ModalWrapper
+      className="shadow-sm border border-solid border-gray-500 px-3 bg-white w-full fixed z-50 top-1/2 left-1/2 dark:bg-dark-second rounded-lg  sm:w-10/12 md:w-2/3 lg:w-2/3 xl:w-1/3 transform 
       -translate-x-1/2 -translate-y-1/2 overflow-y-auto"
       style={{ maxHeight: 450 }}
+      title={data.title}
     >
-      <div className="w-full text-center relative h-16">
-        <p className="text-2xl font-bold p-2.5 dark:text-white">{data.title}</p>
-        <CloseModal />
-        <hr />
-      </div>
       <ul className="w-full">
         {data.list &&
           data.list.map((item, index) => (
@@ -32,7 +28,7 @@ function ModalUpdateStatusCategory(props) {
             />
           ))}
       </ul>
-    </div>
+    </ModalWrapper>
   );
 }
 

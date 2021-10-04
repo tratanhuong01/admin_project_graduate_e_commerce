@@ -21,3 +21,4 @@ export const GROUP_ATTRIBUTE = `${PAGE_ADMIN}/san-pham/nhom-thuoc-tinh`;
 export const FUNCTION_PRODUCT = `${PAGE_ADMIN}/san-pham/chuc-nang-san-pham`;
 export const NEWS_LIST = `${PAGE_ADMIN}/bai-viet/danh-sach-bai-viet`;
 export const SUPPORT_LIVE = `${PAGE_ADMIN}/ho-tro-truc-tuyen`;
+export const DISCOUNT_CODE = `${PAGE_ADMIN}/ma-giam-gia`;

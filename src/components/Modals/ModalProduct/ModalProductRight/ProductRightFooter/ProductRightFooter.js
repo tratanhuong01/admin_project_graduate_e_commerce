@@ -108,14 +108,17 @@ function ProductRightFooter(props) {
   };
   //
   return (
-    <div className="w-11/12 mx-auto bg-white text-right pt-1 pb-3 border-t-2 border-solid border-gray-300 mt-4 z-50">
+    <div
+      className="mx-auto bg-white text-right pt-1 pb-3 border-t-2 border-solid border-gray-300 mt-4 z-50"
+      style={{ width: "98%" }}
+    >
       <button
         onClick={() => {
           dispatch(modalsAction.closeModal());
           dispatch(productsAction.resetDataProductState());
         }}
         type="button"
-        className=" py-2.5 px-5 mr-4 rounded-lg bg-gray-500 font-semibold text-xm text-white"
+        className="mt-3 py-2.5 px-5 mr-4 rounded-lg bg-gray-500 font-semibold text-xm text-white"
       >
         {"Hủy"}
       </button>

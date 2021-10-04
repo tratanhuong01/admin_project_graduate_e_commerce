@@ -16,8 +16,7 @@ function RowUserTable(props) {
   //
   return (
     <RowTableMain item={item} index={index}>
-      <td className="p-2">{item.firstName}</td>
-      <td className="p-2">{item.lastName}</td>
+      <td className="p-2">{`${item.firstName} ${item.lastName}`}</td>
       <td className="p-2">
         <ContentColor condition={feature.condition.sex} typeData={item.sex} />
       </td>

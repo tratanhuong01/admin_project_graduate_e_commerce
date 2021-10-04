@@ -20,8 +20,8 @@ function MainInfoProductEdit(props) {
   const onSubmit = () => {};
   return (
     <div
-      className="w-full mx-auto overflow-y-auto scrollbar-css"
-      style={{ height: "530px", maxHeight: "530px" }}
+      className="w-full pt-16 px-3"
+      style={{ height: "550px", maxHeight: "550px" }}
     >
       <ColorMemoryRamEdit />
       <ContentMainProductEdit
