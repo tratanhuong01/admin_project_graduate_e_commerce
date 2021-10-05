@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import { SketchPicker } from "react-color";
 import * as categorysAction from "../../../actions/category/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function ColorForm(props) {
   //
@@ -21,9 +21,19 @@ function ColorForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+  const headers = useSelector((state) => state.headers);
   const dispatch = useDispatch();
   const onSubmit = (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setColor("");
     setValue("id", "");
     setValue("code", "");
@@ -54,7 +64,7 @@ function ColorForm(props) {
               name={"id"}
               label={"ID"}
               type="text"
-              onChange={(color) => setColor(color)}
+              onChange={() => ""}
               disabled={true}
             />
           </div>
@@ -73,7 +83,6 @@ function ColorForm(props) {
                 onChangeComplete={(color) => {
                   setShow(false);
                   setColor(color.hex.toUpperCase());
-                  setValue("id", color.hex.toUpperCase().replace("#", ""));
                   setValue("code", color.hex.toUpperCase());
                 }}
               />

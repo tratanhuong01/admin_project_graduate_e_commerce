@@ -9,14 +9,24 @@ function SupportLiveScreen(props) {
   const [messages, setMessagesData] = useState([]);
   const [index, setIndex] = useState(0);
   const [send, setSend] = useState(false);
-  const socket = useSelector((state) => state.socket);
+  const { user, socket, headers } = useSelector((state) => {
+    return {
+      user: state.user,
+      socket: state.socket,
+      headers: state.headers,
+    };
+  });
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(`messages/${"3000000000"}`, "GET", {
-        "Access-Control-Allow-Origin": "*",
-      });
+      const result = await api(
+        `messages/${user.id}`,
+        "GET",
+        Object.assign(headers, {
+          "Access-Control-Allow-Origin": "*",
+        })
+      );
       if (unmounted) return;
       setMessagesData(result.data);
     }
@@ -24,17 +34,20 @@ function SupportLiveScreen(props) {
     return () => {
       unmounted = true;
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [send]);
   useEffect(() => {
     //
     let unmounted = false;
-    socket.on(`receiveMessage.${"3000000000"}`, (data) => {
-      console.log("revice");
+    socket.on(`receiveMessage.${user.id}`, (data) => {
       async function fetch() {
-        const result = await api(`messages/${"3000000000"}`, "GET", {
-          "Access-Control-Allow-Origin": "*",
-        });
+        const result = await api(
+          `messages/${user.id}`,
+          "GET",
+          Object.assign(headers, {
+            "Access-Control-Allow-Origin": "*",
+          })
+        );
         if (unmounted) return;
         setMessagesData(result.data);
       }
@@ -44,7 +57,7 @@ function SupportLiveScreen(props) {
       socket.disconnect();
       unmounted = true;
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
   //
   return (

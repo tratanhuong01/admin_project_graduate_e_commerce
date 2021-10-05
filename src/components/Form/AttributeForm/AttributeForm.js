@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import SelectCustom from "../../SelectCustom/SelectCustom";
 import * as categorysAction from "../../../actions/category/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as productsApi from "../../../api/productsApi";
 
 function AttributeForm(props) {
@@ -23,9 +23,19 @@ function AttributeForm(props) {
     shouldUnregister: false,
   });
   const dispatch = useDispatch();
+  const headers = useSelector((state) => state.headers);
   const [groupAttributes, setGroupAttributes] = useState([]);
   const onSubmit = async (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("groupAttribute", "");
     setValue("nameAttribute", "");
@@ -34,7 +44,7 @@ function AttributeForm(props) {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await productsApi.getGroupAttributesAll();
+      const result = await productsApi.getGroupAttributesAll(headers);
       if (unmounted) return;
       setGroupAttributes(result.data);
       setValue("id", dataProps ? dataProps.id : "");

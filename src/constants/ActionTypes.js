@@ -1,3 +1,10 @@
+//
+export const LOGIN_ACCOUNT = "LOGIN_ACCOUNT";
+//
+export const LOGOUT_ACCOUNT = "LOGOUT_ACCOUNT";
+//
+export const UPDATE_HEADERS = "UPDATE_HEADERS";
+//
 export const HANDLE_DASHBOARD = "HANDLE_DASHBOARD";
 //
 export const HANDLE_CATEGORY = "HANDLE_CATEGORY";

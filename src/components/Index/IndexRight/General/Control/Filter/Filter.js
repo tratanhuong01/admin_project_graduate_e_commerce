@@ -6,6 +6,7 @@ function Filter(props) {
   //
   const { table } = props;
   const [filter] = useState(props.filter);
+  const headers = useSelector((state) => state.headers);
   const [name, setName] = useState(filter[0].data[0].name);
   const [data, setData] = useState(filter[0]);
   const [showLeft, setShowLeft] = useState(false);
@@ -32,12 +33,15 @@ function Filter(props) {
       <div
         onClick={() => {
           dispatch(
-            filtersAction.addFilterCategoryRequest({
-              filters: filters.choose,
-              item,
-              table,
-              index: 0,
-            })
+            filtersAction.addFilterCategoryRequest(
+              {
+                filters: filters.choose,
+                item,
+                table,
+                index: 0,
+              },
+              headers
+            )
           );
           setName(item.name);
           setShowRight(false);
@@ -53,8 +57,9 @@ function Filter(props) {
     //
     let unmounted = false;
     if (unmounted) return;
-    if (table === "product") product.queryFilterProduct(filter);
-    if (table === "lineProduct") product.queryFilterLineproduct(filter);
+    if (table === "product") product.queryFilterProduct(filter, headers);
+    if (table === "lineProduct")
+      product.queryFilterLineproduct(filter, headers);
     return () => {
       unmounted = true;
     };

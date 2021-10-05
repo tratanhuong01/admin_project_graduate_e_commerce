@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import ModalHeaderRight from "./ModalHeaderRight/ModalHeaderRight";
 
 function HeaderRight(props) {
   //
   const [show, setShow] = useState(false);
+  const user = useSelector((state) => state.user);
   //
   return (
     <div className="w-3/4 xl:w-1/3 relative">
@@ -29,14 +31,10 @@ function HeaderRight(props) {
         <li className="p-2 flex items-center">
           <div className="w-full flex relative p-2 cursor-pointer">
             <div className="text-right mr-2 cursor-pointer">
-              <img
-                src="../../images/avatar.jpg"
-                className="w-9 h-9 rounded-full"
-                alt=""
-              />
+              <img src={user.avatar} className="w-9 h-9 rounded-full" alt="" />
             </div>
-            <div className="flex items-center hidden lg:flex">
-              <p className="font-bold text-sm">Trà Tấn Hưởng</p>
+            <div className=" items-center hidden lg:flex">
+              <p className="font-bold text-sm">{`${user.firstName} ${user.lastName}`}</p>
             </div>
             <i
               onClick={() => setShow(!show)}

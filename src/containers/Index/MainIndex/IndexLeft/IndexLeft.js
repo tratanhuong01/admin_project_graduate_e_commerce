@@ -8,7 +8,7 @@ function IndexLeft(props) {
   // const { match } = props;
   //
   return (
-    <div className="w-32 lg:w-60 xl:w-1/5 shadow-lg h-screen h-full max-h-full overflow-y-auto  scrollbar-css">
+    <div className="w-32 lg:w-60 xl:w-1/5 shadow-lg h-screen max-h-full overflow-y-auto  scrollbar-css">
       <Logo />
       <InfoAdmin />
       <Category />

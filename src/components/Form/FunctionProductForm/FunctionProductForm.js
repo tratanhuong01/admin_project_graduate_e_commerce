@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import * as categorysAction from "../../../actions/category/index";
 import SelectCustom from "../../SelectCustom/SelectCustom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as productsApi from "../../../api/productsApi";
 function FunctionProductForm(props) {
   //
@@ -22,8 +22,18 @@ function FunctionProductForm(props) {
     shouldUnregister: false,
   });
   const dispatch = useDispatch();
+  const headers = useSelector((state) => state.headers);
   const onSubmit = async (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("nameFunctionProduct", "");
     setValue("typeFunctionProduct", "");
@@ -45,7 +55,7 @@ function FunctionProductForm(props) {
   useEffect(() => {
     let unmounted = false;
     async function fetch() {
-      const result = await productsApi.getGroupFilterProductsAll();
+      const result = await productsApi.getGroupFilterProductsAll(headers);
       if (unmounted) return;
       setGroupFilterProduct(result.data);
     }
@@ -53,6 +63,7 @@ function FunctionProductForm(props) {
     return () => {
       unmounted = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //
   return (

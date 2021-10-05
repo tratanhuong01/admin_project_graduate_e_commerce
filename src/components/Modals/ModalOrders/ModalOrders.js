@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../../../Utils/api";
+import { useSelector } from "react-redux";
+import * as orderApi from "../../../api/orderApi";
 import CloseModal from "../../CloseModal/CloseModal";
 import ContentOrderLeft from "./ContentOrderLeft/ContentOrderLeft";
 import ContentOrderRight from "./ContentOrderRight/ContentOrderRight";
@@ -8,11 +9,12 @@ function ModalOrders(props) {
   //
   const { data } = props;
   const [order, setOrder] = useState(null);
+  const headers = useSelector((state) => state.headers);
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(`bills/${data.id}`, "GET", null);
+      const result = await orderApi.getBillById(data.id, headers);
       if (unmounted) return;
       setOrder(result.data);
     }

@@ -6,35 +6,29 @@ function ControlChatRight(props) {
   //
   const { send, setSend, message, scrollBottomContent } = props;
   const [content, setContent] = useState("");
-  const socket = useSelector((state) => state.socket);
+  const { socket, headers, user } = useSelector((state) => {
+    return {
+      socket: state.socket,
+      headers: state.headers,
+      user: state.user,
+    };
+  });
   const sendMessage = async () => {
-    await api(`messages`, "POST", {
-      id: null,
-      userMessages: {
-        id: "3000000000",
-        firstName: "Thùy",
-        lastName: "Linh",
-        birthday: "10-01-2001 00:00:00",
-        avatar:
-          "https://i-ione.vnecdn.net/2021/09/07/7-9-sang-2-jpeg-5111-1630990484.jpg",
-        sex: "Nữ",
-        email: "chatlive_thuylinh@hsmart.com",
-        phone: "0372138713",
-        password: "8F18324DBB673A4E16C701A667C59EDD",
-        codeEmail: null,
-        codePhone: null,
-        isVerifyEmail: 0,
-        isVerifyPhone: 0,
-        type: 0,
-        timeCreated: "09-05-2021 20:45:27",
+    await api(
+      `messages`,
+      "POST",
+      {
+        id: null,
+        userMessages: user,
+        groupChatMessages: message.groupChat,
+        guest: null,
+        content: content,
+        images: null,
+        timeCreated: null,
+        typeMessages: 0,
       },
-      groupChatMessages: message.groupChat,
-      guest: null,
-      content: content,
-      images: null,
-      timeCreated: null,
-      typeMessages: 0,
-    });
+      headers
+    );
     setSend(!send);
     setContent("");
     scrollBottomContent();

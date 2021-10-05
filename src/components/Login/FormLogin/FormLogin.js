@@ -1,34 +1,64 @@
 import React from "react";
-
+import { useForm } from "react-hook-form";
+import ItemFormLogin from "./ItemFormLogin/ItemFormLogin";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as usersAction from "../../../actions/user/index";
+import { useDispatch } from "react-redux";
 function FormLogin(props) {
+  //
+  const dispatch = useDispatch();
+  const schema = Yup.object().shape({
+    emailOrPhone: Yup.string().required(
+      "Email hoặc số điện thoại không được trống !!"
+    ),
+    password: Yup.string()
+      .required("Mật khẩu không được trống !!")
+      .min(6, "Mật khẩu phải hơn 6 kí tự !!"),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+    shouldUnregister: false,
+  });
+  //
   return (
-    <div class="w-full px-4 py-6 bg-white">
-      <p class="my-2">Tên đăng nhập</p>
-      <input
+    <form
+      onSubmit={handleSubmit(async (data) => {
+        dispatch(usersAction.loginAccountRequest(data));
+      })}
+      className="w-full px-4 py-6 bg-white"
+    >
+      <ItemFormLogin
+        label="Email hoặc số điện thoại"
+        placeholder="Email hoặc số điện thoại"
+        register={register}
+        errors={errors["emailOrPhone"]}
         type="text"
-        class="w-full mx-auto border-2 border-gray-100 p-2.5 border-solid"
-        placeholder="Tên đăng nhập"
+        name="emailOrPhone"
       />
-      <br />
-      <p class="my-2">Mật khẩu</p>
-      <input
-        type="password"
-        class="w-full mx-auto border-2 border-gray-100 p-2.5 border-solid"
+      <ItemFormLogin
+        label="Mật khẩu"
         placeholder="Mật khẩu"
+        register={register}
+        errors={errors["password"]}
+        type="password"
+        name="password"
       />
-      <br />
-      <div class="w-full flex py-4">
-        <div class="w-1/2">
-          <input type="checkbox" class="mr-3 my-3" />
+      <div className="w-full flex py-4 justify-between">
+        <div>
+          <input type="checkbox" className="mr-3 my-3" />
           Lưu đăng nhập
         </div>
-        <div class="w-1/2 text-right">
-          <button type="submit" class="p-2 bg-blue-500 font-bold text-white">
-            Đăng nhập
-          </button>
-        </div>
+        <button type="submit" className="p-2 bg-organce font-bold text-white">
+          Đăng nhập
+        </button>
       </div>
-    </div>
+    </form>
   );
 }
 

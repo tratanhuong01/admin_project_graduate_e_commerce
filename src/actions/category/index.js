@@ -3,6 +3,7 @@ import api from "../../Utils/api";
 import * as crudApi from "../../api/crudApi";
 import * as filterApi from "../../api/filterApi";
 import * as modalsAction from "../modals/index";
+
 export const handleCategory = (data) => {
   return {
     type: Types.HANDLE_CATEGORY,
@@ -10,18 +11,20 @@ export const handleCategory = (data) => {
   };
 };
 
-export const searchCategoryRequest = (data) => {
+export const searchCategoryRequest = (data, headers) => {
   return async (dispatch) => {
     const { table, keyword } = data;
     const result1 = await api(
       `${table}All/search/?keyword=${keyword}`,
       "GET",
-      null
+      null,
+      headers
     );
     const result2 = await api(
       `${table}/search/?keyword=${keyword}&offset=${0}&limit=${10}`,
       "GET",
-      null
+      null,
+      headers
     );
     dispatch(loadListCategory(result2.data, result1.data.length));
   };
@@ -35,17 +38,19 @@ export const loadListCategory = (list, length) => {
   };
 };
 
-export const loadListCategoryRequest = (data, params, status) => {
+export const loadListCategoryRequest = (data, params, status, headers) => {
   return async (dispatch) => {
     const result1 = await api(
       `${data}${params ? params.limit : ""}`,
       "GET",
-      null
+      null,
+      headers
     );
     const result2 = await api(
       `${data}All${params ? params.full : ""}`,
       "GET",
-      null
+      null,
+      headers
     );
     dispatch(
       loadListCategory(
@@ -60,7 +65,8 @@ export const loadListCategoryConnectRequest = (
   data,
   params,
   status,
-  filterData
+  filterData,
+  headers
 ) => {
   return async (dispatch) => {
     const { filters, sorter, search } = filterData;
@@ -74,12 +80,14 @@ export const loadListCategoryConnectRequest = (
     const result1 = await api(
       `${data}${params ? params.limit : ""}${stringQuery}`,
       "GET",
-      null
+      null,
+      headers
     );
     const result2 = await api(
       `${data}All${params ? params.full : ""}${stringQuery}`,
       "GET",
-      null
+      null,
+      headers
     );
     dispatch(
       loadListCategory(
@@ -96,19 +104,20 @@ export const resetCategory = () => {
   };
 };
 
-export const loadPaginationRequest = (data) => {
+export const loadPaginationRequest = (data, headers) => {
   return async (dispatch) => {
     const result = await api(
       `${data.table}s/${data.index * 10}/10`,
       "GET",
-      null
+      null,
+      headers
     );
     dispatch(loadPagination(result.data, data.index));
     document.getElementById("contentRight").scrollTo(0, 0);
   };
 };
 
-export const loadPaginationModalRequest = (data) => {
+export const loadPaginationModalRequest = (data, headers) => {
   return async (dispatch) => {
     const { table, filters, sorter, index, search } = data;
     let stringQuery = "";
@@ -120,7 +129,9 @@ export const loadPaginationModalRequest = (data) => {
     if (search) stringQuery += `&keyword=${search}`;
     const result = await filterApi.filters(
       table,
-      `?${table}Type=0${stringQuery}&offset=${index}&limit=10`
+      `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
+      false,
+      headers
     );
     dispatch(loadPagination(result.data, data.index));
     document.getElementById("contentRight").scrollTo(0, 0);
@@ -161,11 +172,11 @@ export const addItemChooseAll = () => {
   };
 };
 
-export const deleteCategoryRequest = (list, table, data) => {
+export const deleteCategoryRequest = (list, table, data, headers) => {
   return async (dispatch) => {
     for (let index = 0; index < list.length; index++) {
       const element = list[index];
-      await api(`${table}`, "DELETE", element);
+      await api(`${table}`, "DELETE", element, headers);
     }
     dispatch(removeItemChooseAll());
     if (data) {
@@ -179,19 +190,35 @@ export const deleteCategoryRequest = (list, table, data) => {
             filters,
             sorter,
             search,
-          }
+          },
+          headers
         )
       );
-    } else dispatch(loadListCategoryRequest(table));
+    } else dispatch(loadListCategoryRequest(table, null, false, headers));
   };
 };
 
-export const addCategoryRequest = (obj, table, query, status, filters) => {
+export const addCategoryRequest = (
+  obj,
+  table,
+  query,
+  status,
+  filters,
+  headers
+) => {
   return async (dispatch) => {
-    await crudApi.addData(obj, table);
+    await crudApi.addData(obj, status ? `${table}s` : table, headers);
     if (status)
-      dispatch(loadListCategoryConnectRequest(table, query, status, filters));
-    dispatch(loadListCategoryRequest(table, query, status));
+      dispatch(
+        loadListCategoryConnectRequest(
+          `${table}Filters`,
+          query,
+          status,
+          filters,
+          headers
+        )
+      );
+    dispatch(loadListCategoryRequest(table, query, status, headers));
   };
 };
 
@@ -201,7 +228,7 @@ export const resetIndexCategory = () => {
   };
 };
 
-export const updateStatusCategoryRequest = (data) => {
+export const updateStatusCategoryRequest = (data, headers) => {
   return async (dispatch) => {
     const { table, item, query, status, filterData } = data;
     await crudApi.updateCategory(
@@ -214,7 +241,8 @@ export const updateStatusCategoryRequest = (data) => {
         table + "Filters",
         query,
         status,
-        filterData
+        filterData,
+        headers
       )
     );
     dispatch(modalsAction.closeModal());

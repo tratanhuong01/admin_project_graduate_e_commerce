@@ -34,13 +34,14 @@ export const loadInfoMainProductByIndex = (index) => {
   };
 };
 
-export const loadInfoImageMainProductRequest = (data) => {
+export const loadInfoImageMainProductRequest = (data, headers) => {
   return async (dispatch) => {
     const { lineProduct, color } = data;
     const result = await api(
       `images/lineProduct/color/?idLineProduct=${lineProduct.id}&idColor=${color.id}`,
       "GET",
-      null
+      null,
+      headers
     );
     dispatch(loadInfoImageMainProduct(result.data, color));
   };
@@ -232,12 +233,13 @@ export const loadInfoMainImageOther = (list) => {
   };
 };
 
-export const loadFeaturesProductRequest = (products, table) => {
+export const loadFeaturesProductRequest = (products, table, headers) => {
   return async (dispatch) => {
     const result = await api(
       `${table}/${products.infoSimple.groupProduct.slugGroupProduct}`,
       "GET",
-      null
+      null,
+      headers
     );
     let clone = [...result.data];
     products.features.choose.forEach((dt) => {
@@ -342,9 +344,14 @@ export const updateImageColor = (imageColor) => {
   };
 };
 
-export const loadInfoEditLineProductRequest = (idLineProduct) => {
+export const loadInfoEditLineProductRequest = (idLineProduct, headers) => {
   return async (dispatch) => {
-    const lineProduct = await api(`lineProducts/${idLineProduct}`, "GET", null);
+    const lineProduct = await api(
+      `lineProducts/${idLineProduct}`,
+      "GET",
+      null,
+      headers
+    );
     let infoSimple = {
       lineProduct: lineProduct.data,
       categoryProduct: lineProduct.data.groupProduct.categoryGroupProduct,
@@ -358,12 +365,18 @@ export const loadInfoEditLineProductRequest = (idLineProduct) => {
       weight: lineProduct.data.weight,
     };
     let infoAttribute = {};
-    const groupAttributes = await api(`groupAttributesAll`, "GET", null);
+    const groupAttributes = await api(
+      `groupAttributesAll`,
+      "GET",
+      null,
+      headers
+    );
     groupAttributes.data.forEach(async (item) => {
       const data = await api(
         `attributeProducts/?idLineProduct=${idLineProduct}&idGroupAttribute=${item.id}`,
         "GET",
-        null
+        null,
+        headers
       );
       let list = [];
       data.data.forEach((dt) => {
@@ -381,17 +394,24 @@ export const loadInfoEditLineProductRequest = (idLineProduct) => {
     const featureData = await api(
       `detailFunctionProducts/${idLineProduct}`,
       "GET",
-      null
+      null,
+      headers
     );
     featureData.data.forEach((element) => {
       features.push(element.functionProductDetail);
     });
-    const images = await api(`imageOthers/${idLineProduct}`, "GET", null);
+    const images = await api(
+      `imageOthers/${idLineProduct}`,
+      "GET",
+      null,
+      headers
+    );
     let imageColor = [];
     const imageColorData = await api(
       `images/lineProduct/?idLineProduct=${idLineProduct}`,
       "GET",
-      null
+      null,
+      headers
     );
     imageColorData.data.forEach((dt) => {
       imageColor.push({
@@ -420,9 +440,12 @@ export const loadInfoEditLineProductRequest = (idLineProduct) => {
   };
 };
 
-export const loadInfoEditProductInfoRequest = (idProduct) => {
+export const loadInfoEditProductInfoRequest = (idProduct, headers) => {
   return async (dispatch) => {
-    const result = await productApi.getCombineProductInfoProduct(idProduct);
+    const result = await productApi.getCombineProductInfoProduct(
+      idProduct,
+      headers
+    );
     dispatch(
       loadInfoEditLineProduct(
         {

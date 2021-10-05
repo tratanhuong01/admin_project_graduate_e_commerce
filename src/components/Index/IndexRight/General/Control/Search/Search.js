@@ -7,7 +7,12 @@ function Search(props) {
   const { table } = props;
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
-  const filters = useSelector((state) => state.filters);
+  const { filters, headers } = useSelector((state) => {
+    return {
+      filters: state.filters,
+      headers: state.headers,
+    };
+  });
   //
   return (
     <input
@@ -18,13 +23,16 @@ function Search(props) {
       onChange={(event) => {
         setKeyword(event.target.value);
         dispatch(
-          filtersAction.searchCategoryRequest({
-            filters: filters.choose,
-            sorter: filters.sorter,
-            keyword: event.target.value,
-            table,
-            index: 0,
-          })
+          filtersAction.searchCategoryRequest(
+            {
+              filters: filters.choose,
+              sorter: filters.sorter,
+              keyword: event.target.value,
+              table,
+              index: 0,
+            },
+            headers
+          )
         );
       }}
     />

@@ -2,15 +2,17 @@ import React, { useEffect } from "react";
 import ModalProductLeft from "./ModalProductLeft/ModalProductLeft";
 import ModalProductRight from "./ModalProductRight/ModalProductRight";
 import * as productsAction from "../../../actions/products/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalWrapper from "../ModalWrapper";
 function ModalProduct(props) {
   //
   const { data } = props;
   const dispatch = useDispatch();
+  const headers = useSelector((state) => state.headers);
   useEffect(() => {
     //
-    if (data) dispatch(productsAction.loadInfoEditLineProductRequest(data.id));
+    if (data)
+      dispatch(productsAction.loadInfoEditLineProductRequest(data.id, headers));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //

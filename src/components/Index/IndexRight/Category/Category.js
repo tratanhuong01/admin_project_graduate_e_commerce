@@ -12,16 +12,19 @@ import NotModal from "./NotModal/NotModal";
 function Category(props) {
   //
   const { data } = props;
-  const { category, form } = useSelector((state) => {
+  const { category, form, headers } = useSelector((state) => {
     return {
       category: state.category,
       form: state.form,
+      headers: state.headers,
     };
   });
   const dispatch = useDispatch();
   useEffect(() => {
     //
-    dispatch(categorysAction.loadListCategoryRequest(`${data.nameTable}s`));
+    dispatch(
+      categorysAction.loadListCategoryRequest(`${data.nameTable}s`, headers)
+    );
     if (!data.modal) dispatch(formsAction.openFormAdd(data.nameTable));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

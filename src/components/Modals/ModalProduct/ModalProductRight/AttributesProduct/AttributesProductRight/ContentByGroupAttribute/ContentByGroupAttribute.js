@@ -7,7 +7,12 @@ import { useForm } from "react-hook-form";
 
 function ContentByGroupAttribute(props) {
   //
-  const products = useSelector((state) => state.products);
+  const { products, headers } = useSelector((state) => {
+    return {
+      products: state.products,
+      headers: state.headers,
+    };
+  });
   const { infoAttribute } = products;
   const { data, current } = props;
   const { handleSubmit, setValue, register } = useForm({
@@ -21,7 +26,7 @@ function ContentByGroupAttribute(props) {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(`attributes/${data.id}`, "GET", null);
+      const result = await api(`attributes/${data.id}`, "GET", null, headers);
       if (unmounted) return;
       setAttributes(result.data);
     }
@@ -29,7 +34,7 @@ function ContentByGroupAttribute(props) {
     return () => {
       unmounted = true;
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
   useEffect(() => {
     //

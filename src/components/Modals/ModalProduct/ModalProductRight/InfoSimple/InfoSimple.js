@@ -24,7 +24,12 @@ function InfoSimple(props) {
   const [lineProduct, setLineProduct] = useState([]);
   const [brand, setBrand] = useState([]);
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
+  const { products, headers } = useSelector((state) => {
+    return {
+      products: state.products,
+      headers: state.headers,
+    };
+  });
   useEffect(() => {
     //
     setValue("nameLineProduct", products.infoSimple.nameProduct);
@@ -38,8 +43,8 @@ function InfoSimple(props) {
     setValue("weight", products.infoSimple.weight);
     let unmounted = false;
     async function fetch() {
-      const result1 = await api("categoryProductsAll", "GET", null);
-      const result2 = await api("brandsAll", "GET", null);
+      const result1 = await api("categoryProductsAll", "GET", null, headers);
+      const result2 = await api("brandsAll", "GET", null, headers);
       Promise.all([result1, result2])
         .then((res) => {
           if (unmounted) return;
@@ -82,7 +87,8 @@ function InfoSimple(props) {
               const result = await api(
                 `groupProductsByCategory/${item.id}`,
                 "GET",
-                null
+                null,
+                headers
               );
               if (unmounted) return;
               dispatch(productsAction.loadSimpleInfoProductData(item, 0));
@@ -115,7 +121,8 @@ function InfoSimple(props) {
               const result = await api(
                 `getLineProductsByGroup/${item.id}`,
                 "GET",
-                null
+                null,
+                headers
               );
               if (unmounted) return;
               dispatch(productsAction.loadSimpleInfoProductData(item, 1));

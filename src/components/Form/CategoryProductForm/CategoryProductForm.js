@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import * as categorysAction from "../../../actions/category/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 function CategoryProductForm(props) {
   //
   const { dataProps } = props;
@@ -20,9 +20,18 @@ function CategoryProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
-
+  const headers = useSelector((state) => state.headers);
   const onSubmit = async (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, "categoryProducts"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        "categoryProducts",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("nameCategoryProduct", "");
     setValue("slugCategoryProduct", "");

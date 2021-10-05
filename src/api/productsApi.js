@@ -1,45 +1,45 @@
 import api from "../Utils/api";
 
-export const getGroupFilterProductsAll = () => {
-  return api(`groupFilterProductsAll`, "GET", null);
+export const getGroupFilterProductsAll = (headers) => {
+  return api(`groupFilterProductsAll`, "GET", null, headers);
 };
 
-export const getGroupAttributesAll = () => {
-  return api(`groupAttributesAll`, "GET", null);
+export const getGroupAttributesAll = (headers) => {
+  return api(`groupAttributesAll`, "GET", null, headers);
 };
 
-export const getGroupProductsAll = () => {
-  return api(`groupProductsAll`, "GET", null);
+export const getGroupProductsAll = (headers) => {
+  return api(`groupProductsAll`, "GET", null, headers);
 };
 
-export const getCategoryProductsAll = () => {
-  return api(`categoryProductsAll`, "GET", null);
+export const getCategoryProductsAll = (headers) => {
+  return api(`categoryProductsAll`, "GET", null, headers);
 };
 
-export const getBrandsAll = () => {
-  return api(`brandsAll`, "GET", null);
+export const getBrandsAll = (headers) => {
+  return api(`brandsAll`, "GET", null, headers);
 };
 
-export const getMemoriesAll = () => {
-  return api(`memoriesAll`, "GET", null);
+export const getMemoriesAll = (headers) => {
+  return api(`memoriesAll`, "GET", null, headers);
 };
 
-export const getRamsAll = () => {
-  return api(`memoriesAll`, "GET", null);
+export const getRamsAll = (headers) => {
+  return api(`memoriesAll`, "GET", null, headers);
 };
 
-export const getColorsAll = () => {
-  return api(`colorsAll`, "GET", null);
+export const getColorsAll = (headers) => {
+  return api(`colorsAll`, "GET", null, headers);
 };
 
-export const getLineProductsAll = () => {
-  return api(`lineProductsAll`, "GET", null);
+export const getLineProductsAll = (headers) => {
+  return api(`lineProductsAll`, "GET", null, headers);
 };
 
-export const getProductFullById = (id) => {
-  return api(`products/full/${id}`, "GET", null);
+export const getProductFullById = (id, headers) => {
+  return api(`products/full/${id}`, "GET", null, headers);
 };
 
-export const getCombineProductInfoProduct = (id) => {
-  return api(`products/combine/?idProduct=${id}`, "GET", null);
+export const getCombineProductInfoProduct = (id, headers) => {
+  return api(`products/combine/?idProduct=${id}`, "GET", null, headers);
 };

@@ -5,7 +5,7 @@ import ModalWrapper from "../ModalWrapper";
 import FormVoucher from "./FormVoucher/FormVoucher";
 import * as Yup from "yup";
 import * as categorysAction from "../../../actions/category/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../../actions/modals/index";
 function ModalVoucher(props) {
   //
@@ -27,6 +27,12 @@ function ModalVoucher(props) {
     min: Yup.string().required("Min không được trống !!"),
     max: Yup.string().required("Max không được trống !!"),
     timeCreaed: Yup.string(),
+  });
+  const { filters, headers } = useSelector((state) => {
+    return {
+      filters: state.filters,
+      headers: state.headers,
+    };
   });
   const {
     register,
@@ -69,13 +75,18 @@ function ModalVoucher(props) {
           dispatch(
             categorysAction.addCategoryRequest(
               datas,
-              "discountCodes",
+              "discountCode",
               {
                 full: `?`,
                 limit: `?limit=${10}&offset=${0}`,
               },
               true,
-              { filters: [], sorter: null, search: null }
+              {
+                filters: filters.choose,
+                sorter: filters.sorter,
+                search: filters.search,
+              },
+              headers
             )
           );
           dispatch(modalsAction.closeModal());

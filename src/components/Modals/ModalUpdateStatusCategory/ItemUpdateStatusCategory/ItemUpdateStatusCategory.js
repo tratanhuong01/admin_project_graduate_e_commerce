@@ -5,8 +5,13 @@ import * as categorysAction from "../../../../actions/category/index";
 function ItemUpdateStatusCategory(props) {
   //
   const { item, value, setValue, table, column, id } = props;
-  const category = useSelector((state) => state.category);
-  const filters = useSelector((state) => state.filters);
+  const { category, filters, headers } = useSelector((state) => {
+    return {
+      category: state.category,
+      filters: state.filters,
+      headers: state.headers,
+    };
+  });
   const dispatch = useDispatch();
   const action = () => {
     setValue(item.data);
@@ -24,6 +29,7 @@ function ItemUpdateStatusCategory(props) {
           sorter: filters.sorter,
           search: filters.search,
         },
+        headers,
       })
     );
   };

@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import * as categorysAction from "../../../actions/category/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function MemoryForm(props) {
   //
@@ -21,8 +21,18 @@ function MemoryForm(props) {
     shouldUnregister: false,
   });
   const dispatch = useDispatch();
+  const headers = useSelector((state) => state.headers);
   const onSubmit = (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("nameMemory", "");
   };

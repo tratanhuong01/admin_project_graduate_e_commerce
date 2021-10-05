@@ -9,7 +9,12 @@ import api from "../../../../../Utils/api";
 function ProductRightFooter(props) {
   //
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
+  const { products, headers } = useSelector((state) => {
+    return {
+      products: state.products,
+      headers: state.headers,
+    };
+  });
   // const convertStringToSlug = (string) => {
   //   return string
   //     .toLowerCase()
@@ -21,17 +26,22 @@ function ProductRightFooter(props) {
     data.descriptions = draftToHtml(
       convertToRaw(data.descriptions.getCurrentContent())
     );
-    const lineProduct = await api("lineProducts", "POST", {
-      id: null,
-      nameLineProduct: data.infoSimple.nameProduct,
-      groupProduct: data.infoSimple.groupProduct,
-      brandProduct: data.infoSimple.brand,
-      height: data.infoSimple.height,
-      width: data.infoSimple.width,
-      weight: data.infoSimple.weight,
-      describeProduct: data.descriptions,
-      timeCreated: null,
-    });
+    const lineProduct = await api(
+      "lineProducts",
+      "POST",
+      {
+        id: null,
+        nameLineProduct: data.infoSimple.nameProduct,
+        groupProduct: data.infoSimple.groupProduct,
+        brandProduct: data.infoSimple.brand,
+        height: data.infoSimple.height,
+        width: data.infoSimple.width,
+        weight: data.infoSimple.weight,
+        describeProduct: data.descriptions,
+        timeCreated: null,
+      },
+      headers
+    );
     if (data.imageColor.length > 0) await addImageMain(lineProduct.data);
     if (data.images.length > 0) await addImageOther(lineProduct.data);
     await addProductAttribute(lineProduct.data);
@@ -47,16 +57,26 @@ function ProductRightFooter(props) {
       formData.append("multipartFile", item.image);
       formData.append("id", `${lineProduct.id}__${item.color.id}`);
       formData.append("publicId", "E-Commerce/Products/");
-      const result = await api("updateImageSingle", "POST", formData, {
-        "Content-Type": "multipart/form-data",
-      });
-      const image = await api("images", "POST", {
-        id: "",
-        alt: "",
-        src: result.data.url,
-        colorProduct: item.color,
-        type: 0,
-      });
+      const result = await api(
+        "updateImageSingle",
+        "POST",
+        formData,
+        Object.assign(headers, {
+          "Content-Type": "multipart/form-data",
+        })
+      );
+      const image = await api(
+        "images",
+        "POST",
+        {
+          id: "",
+          alt: "",
+          src: result.data.url,
+          colorProduct: item.color,
+          type: 0,
+        },
+        headers
+      );
       listImage.push({ color: item, image: image.data });
     }
     return listImage;
@@ -68,13 +88,18 @@ function ProductRightFooter(props) {
       formData.append("multipartFile", image);
       formData.append("id", index);
       formData.append("publicId", "E-Commerce/Products/");
-      const result = await api("updateImageSingle", "POST", formData, null);
-      await api("imageOthers", "POST", {
-        id: 1,
-        lineProductImage: lineProduct,
-        src: result.data.url,
-        type: 1,
-      });
+      const result = await api("updateImageSingle", "POST", formData, headers);
+      await api(
+        "imageOthers",
+        "POST",
+        {
+          id: 1,
+          lineProductImage: lineProduct,
+          src: result.data.url,
+          type: 1,
+        },
+        headers
+      );
     }
   };
   const addProductAttribute = async (lineProduct) => {
@@ -86,12 +111,17 @@ function ProductRightFooter(props) {
           index++
         ) {
           const element = products.infoAttribute[property].list[index];
-          await api("attributeProducts", "POST", {
-            id: null,
-            lineProductAttribute: lineProduct,
-            attributeProduct: element.data,
-            valueAttributeProduct: element.value,
-          });
+          await api(
+            "attributeProducts",
+            "POST",
+            {
+              id: null,
+              lineProductAttribute: lineProduct,
+              attributeProduct: element.data,
+              valueAttributeProduct: element.value,
+            },
+            headers
+          );
         }
       }
     }
@@ -99,11 +129,16 @@ function ProductRightFooter(props) {
   const addFunctionProduct = async (lineProduct) => {
     for (let index = 0; index < products.features.choose.length; index++) {
       const feature = products.features.choose[index];
-      await api("detailFunctionProducts", "POST", {
-        id: null,
-        lineProductFunctionProduct: lineProduct,
-        functionProductDetail: feature,
-      });
+      await api(
+        "detailFunctionProducts",
+        "POST",
+        {
+          id: null,
+          lineProductFunctionProduct: lineProduct,
+          functionProductDetail: feature,
+        },
+        headers
+      );
     }
   };
   //

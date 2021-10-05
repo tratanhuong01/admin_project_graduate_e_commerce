@@ -6,7 +6,12 @@ function ItemDataFilterOrder(props) {
   //
   const { item, table, type } = props;
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
+  const { filters, headers } = useSelector((state) => {
+    return {
+      filters: state.filters,
+      headers: state.headers,
+    };
+  });
   // const category = useSelector((state) => state.category);
   //
   return (
@@ -14,21 +19,27 @@ function ItemDataFilterOrder(props) {
       onClick={() => {
         if (type)
           dispatch(
-            filtersAction.removeSorterCategoryRequest({
-              filters: filters.choose,
-              table,
-              index: 0,
-            })
+            filtersAction.removeSorterCategoryRequest(
+              {
+                filters: filters.choose,
+                table,
+                index: 0,
+              },
+              headers
+            )
           );
         else
           dispatch(
-            filtersAction.removeFilterCategoryRequest({
-              filters: filters.choose,
-              sorter: filters.sorter,
-              item,
-              table,
-              index: 0,
-            })
+            filtersAction.removeFilterCategoryRequest(
+              {
+                filters: filters.choose,
+                sorter: filters.sorter,
+                item,
+                table,
+                index: 0,
+              },
+              headers
+            )
           );
       }}
       className="mr-2 mt-2 text-xs cursor-pointer rounded-sm  

@@ -8,8 +8,10 @@ function MainIndex(props) {
   //
   return (
     <div className="w-full h-screen flex">
-      <IndexLeft match={match} />
-      <IndexRight match={match} />
+      <>
+        <IndexLeft match={match} />
+        <IndexRight match={match} />
+      </>
     </div>
   );
 }

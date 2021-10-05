@@ -105,6 +105,10 @@ const myReducer = (state = initialState, action) => {
           );
           state.type = 1;
           break;
+        case "ram":
+          state.data = <RamForm dataProps={action.data} table={action.table} />;
+          state.type = 0;
+          break;
         case "memorie":
           state.data = (
             <MemoryForm dataProps={action.data} table={action.table} />

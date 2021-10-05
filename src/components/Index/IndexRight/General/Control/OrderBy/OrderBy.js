@@ -5,6 +5,7 @@ import * as filtersAction from "../../../../../../actions/filter/index";
 function OrderBy(props) {
   //
   const { orderBy, table } = props;
+  const headers = useSelector((state) => state.headers);
   const [name, setName] = useState(orderBy[0].data[0].name);
   const [data, setData] = useState(orderBy[0]);
   const [showLeft, setShowLeft] = useState(false);
@@ -31,12 +32,15 @@ function OrderBy(props) {
       <div
         onClick={() => {
           dispatch(
-            filtersAction.addSorterCategoryRequest({
-              filters: filters.choose,
-              table: table,
-              item,
-              index: 0,
-            })
+            filtersAction.addSorterCategoryRequest(
+              {
+                filters: filters.choose,
+                table: table,
+                item,
+                index: 0,
+              },
+              headers
+            )
           );
           setName(item.name);
           setShowRight(false);

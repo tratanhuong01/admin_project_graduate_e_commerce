@@ -4,15 +4,17 @@ import * as dashboardApi from "../../../../../api/dashboardApi";
 import NewBestDashboard from "./NewBestDashboard/NewBestDashboard";
 import ChartProductSold from "./Chart/ChartProductSold/ChartProductSold";
 import ChartRevenue from "./Chart/ChartRevenue/ChartRevenue";
+import { useSelector } from "react-redux";
 
 function Dashboard(props) {
   //
   const [infos, setInfos] = useState([]);
+  const headers = useSelector((state) => state.headers);
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await dashboardApi.getDashboardHeader();
+      const result = await dashboardApi.getDashboardHeader(headers);
       if (unmounted) return;
       setInfos([
         {
@@ -61,8 +63,7 @@ function Dashboard(props) {
     return () => {
       unmounted = true;
     };
-
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //
   return (

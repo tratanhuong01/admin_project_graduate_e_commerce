@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as categorysAction from "../../../actions/category/index";
 function BrandForm(props) {
   //
@@ -19,16 +19,28 @@ function BrandForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+  const headers = useSelector((state) => state.headers);
   const dispatch = useDispatch();
   const onSubmit = (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("nameBrand", "");
+    setValue("imageBrand", "");
   };
   useEffect(() => {
     //
     setValue("id", dataProps ? dataProps.id : "");
     setValue("nameBrand", dataProps ? dataProps.nameBrand : "");
+    setValue("imageBrand", dataProps ? dataProps.imageBrand : "");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataProps]);
   //
@@ -54,6 +66,17 @@ function BrandForm(props) {
           placeHolder={"Nhập tên thuong hiệu"}
           name={"nameBrand"}
           label={"Thương hiệu"}
+          onChange={() => ""}
+          type="text"
+          disabled={false}
+        />
+        <InputField
+          register={register}
+          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          showError={errors["imageBrand"]}
+          placeHolder={"Nhập đường dẫn thuong hiệu"}
+          name={"imageBrand"}
+          label={"Hình ảnh thương hiệu"}
           onChange={() => ""}
           type="text"
           disabled={false}

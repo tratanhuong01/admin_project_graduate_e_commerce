@@ -1,18 +1,18 @@
 import api from "../Utils/api";
 
-export const addData = (item, table) => {
-  return api(`${table}`, "POST", item, {});
+export const addData = (item, table, headers) => {
+  return api(`${table}`, "POST", item, headers);
 };
 
-export const updateData = (item, table) => {
-  return api(`${table}`, "PUT", item, {});
+export const updateData = (item, table, headers) => {
+  return api(`${table}`, "PUT", item, headers);
 };
 
-export const deleteData = (item, table) => {
-  return api(`${table}`, "DELETE", item, {});
+export const deleteData = (item, table, headers) => {
+  return api(`${table}`, "DELETE", item, headers);
 };
 
-export const updateCategory = (table, item, column) => {
+export const updateCategory = (table, item, column, headers) => {
   return api(
     `${table}/update/${column}/`,
     "PUT",
@@ -20,6 +20,6 @@ export const updateCategory = (table, item, column) => {
       id: item.id,
       value: item.value,
     },
-    {}
+    headers
   );
 };

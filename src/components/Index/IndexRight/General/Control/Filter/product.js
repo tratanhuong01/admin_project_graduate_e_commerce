@@ -1,12 +1,12 @@
 import * as productApi from "../../../../../../api/productsApi";
 
-export const queryFilterProduct = async (filter) => {
-  const brands = await productApi.getBrandsAll();
-  const roms = await productApi.getMemoriesAll();
-  const rams = await productApi.getRamsAll();
-  const colors = await productApi.getColorsAll();
-  const categories = await productApi.getCategoryProductsAll();
-  const groups = await productApi.getGroupProductsAll();
+export const queryFilterProduct = async (filter, headers) => {
+  const brands = await productApi.getBrandsAll(headers);
+  const roms = await productApi.getMemoriesAll(headers);
+  const rams = await productApi.getRamsAll(headers);
+  const colors = await productApi.getColorsAll(headers);
+  const categories = await productApi.getCategoryProductsAll(headers);
+  const groups = await productApi.getGroupProductsAll(headers);
   let clone = [...filter];
   let index = -1;
   index = clone.findIndex((item) => item.id === "PRODUCT_FILTER_CATEGORY");
@@ -102,9 +102,9 @@ export const queryFilterProduct = async (filter) => {
   return clone;
 };
 
-export const queryFilterLineproduct = async (filter) => {
-  const brands = await productApi.getBrandsAll();
-  const groups = await productApi.getGroupProductsAll();
+export const queryFilterLineproduct = async (filter, headers) => {
+  const brands = await productApi.getBrandsAll(headers);
+  const groups = await productApi.getGroupProductsAll(headers);
   let clone = [...filter];
   let index = -1;
   let count = 0;

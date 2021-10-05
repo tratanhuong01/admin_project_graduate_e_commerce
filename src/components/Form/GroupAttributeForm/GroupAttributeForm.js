@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/Button";
 import ValidForm from "./ValidForm";
 import * as categorysAction from "../../../actions/category/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 function GroupAttributeForm(props) {
   //
   const { dataProps, table } = props;
@@ -19,9 +19,19 @@ function GroupAttributeForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+  const headers = useSelector((state) => state.headers);
   const dispatch = useDispatch();
   const onSubmit = (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("nameGroupAttribute", "");
   };

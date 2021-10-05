@@ -350,7 +350,6 @@ const myReducer = (state = initialState, action) => {
         default:
           break;
       }
-      console.log(state.infoMainEdit);
       return { ...state };
     default:
       return state;

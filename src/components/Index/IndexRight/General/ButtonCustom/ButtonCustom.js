@@ -5,8 +5,13 @@ import * as categorysAction from "../../../../../actions/category/index";
 function ButtonCustom(props) {
   //
   const { table, content, type, bgColor, icon, params } = props;
-  const category = useSelector((state) => state.category);
-  const filters = useSelector((state) => state.filters);
+  const { category, filters, headers } = useSelector((state) => {
+    return {
+      category: state.category,
+      filters: state.filters,
+      headers: state.headers,
+    };
+  });
   const dispatch = useDispatch();
   //
   return (
@@ -24,7 +29,8 @@ function ButtonCustom(props) {
                 sorter: filters.sorter,
                 filters: filters.choose,
                 params,
-              }
+              },
+              headers
             )
           );
         if (type === 1)

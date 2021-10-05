@@ -7,7 +7,7 @@ import ValidForm from "./ValidForm";
 import SelectCustom from "../../SelectCustom/SelectCustom";
 import * as categorysAction from "../../../actions/category/index";
 import * as productsApi from "../../../api/productsApi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 function GroupProductForm(props) {
   //
   const { dataProps, table } = props;
@@ -20,9 +20,19 @@ function GroupProductForm(props) {
     resolver: yupResolver(ValidForm),
     shouldUnregister: false,
   });
+  const headers = useSelector((state) => state.headers);
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
-    dispatch(categorysAction.addCategoryRequest(data, table + "s"));
+    dispatch(
+      categorysAction.addCategoryRequest(
+        data,
+        table + "s",
+        null,
+        false,
+        null,
+        headers
+      )
+    );
     setValue("id", "");
     setValue("nameGroupProduct", "");
     setValue("slugGroupProduct", "");
@@ -32,7 +42,7 @@ function GroupProductForm(props) {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await productsApi.getCategoryProductsAll();
+      const result = await productsApi.getCategoryProductsAll(headers);
       if (unmounted) return;
       setList(result.data);
       setValue("id", dataProps ? dataProps.id : "");

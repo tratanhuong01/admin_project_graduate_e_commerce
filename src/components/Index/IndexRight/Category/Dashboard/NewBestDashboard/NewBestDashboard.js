@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ItemNewBest from "../ItemNewBest/ItemNewBest";
 import * as dashboardApi from "../../../../../../api/dashboardApi";
+import { useSelector } from "react-redux";
 
 function NewBestDashboard(props) {
   //
   const { label, type, content, attribute } = props;
   const [data, setData] = useState([]);
+  const headers = useSelector((state) => state.headers);
   useEffect(() => {
     //
     let unmounted = false;
@@ -13,13 +15,13 @@ function NewBestDashboard(props) {
     async function fetch() {
       switch (type) {
         case 0:
-          result = await dashboardApi.getUserNew(0, 5, 0);
+          result = await dashboardApi.getUserNew(0, 5, 0, headers);
           break;
         case 1:
-          result = await dashboardApi.getBillNew(5, 0);
+          result = await dashboardApi.getBillNew(5, 0, headers);
           break;
         case 2:
-          result = await dashboardApi.getUserNew(0, 5, 0);
+          result = await dashboardApi.getUserNew(0, 5, 0, headers);
           break;
         default:
           break;

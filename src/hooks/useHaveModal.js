@@ -4,7 +4,12 @@ import * as categorysAction from "../actions/category/index";
 
 export const useHaveModal = (table, query, status) => {
   //
-  const category = useSelector((state) => state.category);
+  const { category, headers } = useSelector((state) => {
+    return {
+      category: state.category,
+      headers: state.headers,
+    };
+  });
   const dispatch = useDispatch();
   useEffect(() => {
     //
@@ -12,7 +17,8 @@ export const useHaveModal = (table, query, status) => {
       categorysAction.loadListCategoryRequest(
         `${table}${status ? "" : "s"}`,
         query,
-        status
+        status,
+        headers
       )
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -7,7 +7,12 @@ import * as productsAction from "../../../../../actions/products/index";
 
 function ColorMemoryRam(props) {
   //
-  const products = useSelector((state) => state.products);
+  const { products, headers } = useSelector((state) => {
+    return {
+      products: state.products,
+      headers: state.headers,
+    };
+  });
   const [colors, setColors] = useState([]);
   const [roms, setRoms] = useState([]);
   const [rams, setRams] = useState([]);
@@ -18,10 +23,11 @@ function ColorMemoryRam(props) {
       const colorList = await api(
         `colors/lineProduct/?idLineProduct=${products.infoMain.lineProduct.id}`,
         "GET",
-        null
+        null,
+        headers
       );
-      const romList = await api("memoriesAll", "GET", null);
-      const ramList = await api("ramsAll", "GET", null);
+      const romList = await api("memoriesAll", "GET", null, headers);
+      const ramList = await api("ramsAll", "GET", null, headers);
       Promise.all([colorList, romList, ramList])
         .then((res) => {
           if (unmouted) return;
@@ -63,14 +69,18 @@ function ColorMemoryRam(props) {
                     );
                     dispatch(
                       productsAction.loadInfoMainProductDataFullRequest(
-                        products
+                        products,
+                        headers
                       )
                     );
                     dispatch(
-                      productsAction.loadInfoImageMainProductRequest({
-                        lineProduct: products.infoMain.lineProduct,
-                        color,
-                      })
+                      productsAction.loadInfoImageMainProductRequest(
+                        {
+                          lineProduct: products.infoMain.lineProduct,
+                          color,
+                        },
+                        headers
+                      )
                     );
                   }
                 }}

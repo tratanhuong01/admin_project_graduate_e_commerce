@@ -4,14 +4,14 @@ import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draft";
 import CloseModal from "../../CloseModal/CloseModal";
-import api from "../../../Utils/api";
+import * as newsApi from "../../../api/newsApi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ValidForm from "./ValidForm";
 import TabInfoNews from "./TabInfoNews/TabInfoNews";
 import TabWriteContent from "./TabWriteContent/TabWriteContent";
 import * as StringUtils from "../../../Utils/StringUtils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as categorysAction from "../../../actions/category/index";
 import * as modalsAction from "../../../actions/modals/index";
 function ModalNews(props) {
@@ -24,6 +24,12 @@ function ModalNews(props) {
       : EditorState.createEmpty()
   );
   const [index, setIndex] = useState(0);
+  const { filters, headers } = useSelector((state) => {
+    return {
+      filters: state.filters,
+      headers: state.headers,
+    };
+  });
   const {
     register,
     handleSubmit,
@@ -38,7 +44,7 @@ function ModalNews(props) {
   useEffect(() => {
     let unmounted = false;
     async function fetch() {
-      const categoryNewsAPI = await api("categoryNews", "GET", null);
+      const categoryNewsAPI = await newsApi.getCategoryNews(headers);
       if (unmounted) return;
       setCategoryNewsList(categoryNewsAPI.data);
       if (data) {
@@ -89,12 +95,18 @@ function ModalNews(props) {
     dispatch(
       categorysAction.addCategoryRequest(
         news,
-        "news",
+        "new",
         {
           full: `?`,
           limit: `?limit=${10}&offset=${0}`,
         },
-        true
+        true,
+        {
+          filters: filters.choose,
+          sorter: filters.sorter,
+          search: filters.search,
+        },
+        headers
       )
     );
     dispatch(modalsAction.closeModal());

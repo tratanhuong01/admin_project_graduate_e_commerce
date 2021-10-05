@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import SelectCustom from "../../../SelectCustom/SelectCustom";
 import * as productsApi from "../../../../api/productsApi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as productsAction from "../../../../actions/products/index";
 
 function WaitingEnterLineProduct(props) {
   //
   const [lineProducts, setLineProducts] = useState([]);
+  const headers = useSelector((state) => state.headers);
   const dispatch = useDispatch();
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await productsApi.getLineProductsAll();
+      const result = await productsApi.getLineProductsAll(headers);
       if (unmounted) return;
       setLineProducts(result.data);
     }
@@ -20,7 +21,7 @@ function WaitingEnterLineProduct(props) {
     return () => {
       unmounted = true;
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //
   return (

@@ -9,11 +9,17 @@ import ModalWrapper from "../ModalWrapper";
 function ModalProductMain(props) {
   //
   const { data } = props;
-  const products = useSelector((state) => state.products);
+  const { headers, products } = useSelector((state) => {
+    return {
+      products: state.products,
+      headers: state.headers,
+    };
+  });
   const dispatch = useDispatch();
   useEffect(() => {
     //
-    if (data) dispatch(productsAction.loadInfoEditProductInfoRequest(data.id));
+    if (data)
+      dispatch(productsAction.loadInfoEditProductInfoRequest(data.id, headers));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //

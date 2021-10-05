@@ -1,19 +1,25 @@
 import api from "../Utils/api";
 
-export const getDashboardHeader = () => {
-  return api(`getDashboardHeader`, "GET", null);
+export const getDashboardHeader = (headers) => {
+  return api(`getDashboardHeader`, "GET", null, headers);
 };
 
-export const getUserNew = (type, limit, offset) => {
+export const getUserNew = (type, limit, offset, headers) => {
   return api(
     `getUserByTypeLimit/?type=${type}&limit=${limit}&offset=${offset}`,
     "GET",
-    null
+    null,
+    headers
   );
 };
 
-export const getBillNew = (limit, offset) => {
-  return api(`bills/admin/?limit=${limit}&offset=${offset}`, "GET", null);
+export const getBillNew = (limit, offset, headers) => {
+  return api(
+    `bills/admin/?limit=${limit}&offset=${offset}`,
+    "GET",
+    null,
+    headers
+  );
 };
 
 // export const getBillNew = (limit, offset) => {

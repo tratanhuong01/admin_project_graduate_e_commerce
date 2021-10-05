@@ -9,11 +9,12 @@ function AttributesProductLeft(props) {
   const dispatch = useDispatch();
   const { current, setCurrent } = props;
   const { infoAttribute } = useSelector((state) => state.products);
+  const headers = useSelector((state) => state.headers);
   useEffect(() => {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api("groupAttributesAll", "GET", null);
+      const result = await api("groupAttributesAll", "GET", null, headers);
       if (unmounted) return;
       setGroups(result.data);
       if (infoAttribute === null) {

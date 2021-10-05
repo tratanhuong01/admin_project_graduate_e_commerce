@@ -6,7 +6,12 @@ function ItemPagination(props) {
   //
   const { table, indexCurrent, index, item, modal } = props;
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
+  const { filters, headers } = useSelector((state) => {
+    return {
+      filters: state.filters,
+      headers: state.headers,
+    };
+  });
 
   //
   return (
@@ -14,20 +19,26 @@ function ItemPagination(props) {
       onClick={() => {
         if (modal)
           dispatch(
-            categorysAction.loadPaginationModalRequest({
-              table,
-              filters: filters.choose,
-              sorter: filters.sorter,
-              index,
-              search: filters.search,
-            })
+            categorysAction.loadPaginationModalRequest(
+              {
+                table,
+                filters: filters.choose,
+                sorter: filters.sorter,
+                index,
+                search: filters.search,
+              },
+              headers
+            )
           );
         else
           dispatch(
-            categorysAction.loadPaginationRequest({
-              index: item,
-              table: table,
-            })
+            categorysAction.loadPaginationRequest(
+              {
+                index: item,
+                table: table,
+              },
+              headers
+            )
           );
       }}
       className={`py-2 px-2.5 text-white ${

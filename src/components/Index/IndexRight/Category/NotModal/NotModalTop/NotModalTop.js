@@ -6,7 +6,12 @@ import * as categorysAction from "../../../../../../actions/category/index";
 function NotModalTop(props) {
   //
   const { table } = props;
-  const category = useSelector((state) => state.category);
+  const { category, headers } = useSelector((state) => {
+    return {
+      category: state.category,
+      headers: state.headers,
+    };
+  });
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {}, [category.choose]);
@@ -21,13 +26,23 @@ function NotModalTop(props) {
         onChange={(event) => {
           setKeyword(event.target.value);
           if (event.target.value.length <= 0)
-            dispatch(categorysAction.loadListCategoryRequest(table + "s"));
+            dispatch(
+              categorysAction.loadListCategoryRequest(
+                table + "s",
+                null,
+                false,
+                headers
+              )
+            );
           else {
             dispatch(
-              categorysAction.searchCategoryRequest({
-                keyword,
-                table: table + "s",
-              })
+              categorysAction.searchCategoryRequest(
+                {
+                  keyword,
+                  table: table + "s",
+                },
+                headers
+              )
             );
           }
         }}
@@ -54,7 +69,12 @@ function NotModalTop(props) {
       <button
         onClick={() =>
           dispatch(
-            categorysAction.deleteCategoryRequest(category.choose, table + "s")
+            categorysAction.deleteCategoryRequest(
+              category.choose,
+              table + "s",
+              null,
+              headers
+            )
           )
         }
         className="px-7 py-2.5 font-semibold text-white bg-organce mx-2 
