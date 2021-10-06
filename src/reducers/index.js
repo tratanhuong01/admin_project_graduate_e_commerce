@@ -7,6 +7,7 @@ import socket from "./socket";
 import filters from "./filters";
 import user from "./user";
 import headers from "./headers";
+import config from "./config";
 const myReducer = combineReducers({
   category,
   modal,
@@ -16,6 +17,7 @@ const myReducer = combineReducers({
   filters,
   user,
   headers,
+  config,
 });
 
 export default myReducer;

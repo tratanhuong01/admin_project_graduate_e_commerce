@@ -3,6 +3,7 @@ import Dashboard from "../components/Index/IndexRight/Category/Dashboard/Dashboa
 import * as Types from "../constants/ActionTypes";
 import Category from "../components/Index/IndexRight/Category/Category";
 import SupportLiveScreen from "../screens/SupportLiveScreen/SupportLiveScreen";
+import ConfigScreen from "../screens/ConfigScreen/ConfigScreen";
 
 const initialState = {
   data: <Dashboard />,
@@ -33,6 +34,9 @@ const myReducer = (state = initialState, action) => {
           break;
         case "support":
           state.data = <SupportLiveScreen />;
+          break;
+        case "config":
+          state.data = <ConfigScreen />;
           break;
         default:
           state.data = <Category data={action.data} />;

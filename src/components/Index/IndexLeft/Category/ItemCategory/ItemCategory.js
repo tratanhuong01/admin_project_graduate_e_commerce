@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import * as categorysAction from "../../../../../actions/category/index";
 import * as filtersAction from "../../../../../actions/filter/index";
+import { Link } from "react-router-dom";
 function ItemCategory(props) {
   //
   const location = useLocation();
@@ -21,6 +22,7 @@ function ItemCategory(props) {
   return (
     <>
       <li
+        to={item.to}
         onClick={() => {
           setCategoryCurrent(item.id);
           item.child.length > 0 &&
@@ -54,13 +56,13 @@ function ItemCategory(props) {
           {item.child.length > 0 &&
             item.child.map((dt, index) => {
               return (
-                <div
+                <Link
+                  to={dt.to}
                   onClick={() => {
                     if (location.pathname !== dt.to) {
                       dispatch(categorysAction.resetCategory());
                       dispatch(filtersAction.removeAllFilterSorterSearch());
                     }
-                    history.push(dt.to);
                   }}
                   className={`w-full text-gray-800 flex my-0.5 h-11 items-center cursor-pointer 
                   font-semibold`}
@@ -74,7 +76,7 @@ function ItemCategory(props) {
                     }  text-2xl flex mx-5`}
                   ></span>
                   <span className="flex">{dt.name}</span>
-                </div>
+                </Link>
               );
             })}
         </div>

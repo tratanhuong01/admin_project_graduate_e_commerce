@@ -12,6 +12,7 @@ function RowImage(props) {
           src={src}
           alt={alt}
           className={`${width} ${height} object-contain mx-auto`}
+          loading="lazy"
         />
       </Zoom>
     </div>
