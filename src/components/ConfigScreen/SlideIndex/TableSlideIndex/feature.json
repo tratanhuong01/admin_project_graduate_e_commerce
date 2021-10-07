@@ -1,0 +1,39 @@
+{
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 0,
+      "name": "STT"
+    },
+    {
+      "id": 1,
+      "name": "Tên sản phẩm"
+    },
+    {
+      "id": 2,
+      "name": "Sologan"
+    },
+    {
+      "id": 3,
+      "name": "Hiển thị"
+    }
+  ],
+  "nameTable": "slide",
+  "condition": {
+    "isShow": [
+      {
+        "type": 0,
+        "bgColor": "bg-green-600",
+        "name": "Hiển thị"
+      },
+      {
+        "type": 1,
+        "bgColor": "bg-red-600",
+        "name": "Ẩn"
+      }
+    ]
+  }
+}

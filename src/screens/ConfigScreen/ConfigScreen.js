@@ -8,7 +8,7 @@ function ConfigScreen(props) {
   //
   return (
     <div
-      className="w-full px-3 shadow-lg flex overflow-y-auto overflow-x-hidden flex-col items-center"
+      className="w-full px-3 shadow-lg flex overflow-hidden flex-col items-center"
       style={{
         height: "calc(100vh - 80px)",
         maxHeight: "calc(100vh - 80px)",

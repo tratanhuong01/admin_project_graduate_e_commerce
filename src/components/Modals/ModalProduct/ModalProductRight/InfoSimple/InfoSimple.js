@@ -21,7 +21,6 @@ function InfoSimple(props) {
   });
   const [categoryProduct, setCategoryProduct] = useState([]);
   const [groupProduct, setGroupProduct] = useState([]);
-  const [lineProduct, setLineProduct] = useState([]);
   const [brand, setBrand] = useState([]);
   const dispatch = useDispatch();
   const { products, headers } = useSelector((state) => {
@@ -115,23 +114,7 @@ function InfoSimple(props) {
               : null
           }
           setData={(item) => {
-            setLineProduct([]);
-            let unmounted = false;
-            async function fetch() {
-              const result = await api(
-                `getLineProductsByGroup/${item.id}`,
-                "GET",
-                null,
-                headers
-              );
-              if (unmounted) return;
-              dispatch(productsAction.loadSimpleInfoProductData(item, 1));
-              setLineProduct(result.data);
-            }
-            fetch();
-            return () => {
-              unmounted = true;
-            };
+            dispatch(productsAction.loadSimpleInfoProductData(item, 1));
           }}
           disabled={
             groupProduct.length === 0 && !products.infoSimple.groupProduct
@@ -150,7 +133,7 @@ function InfoSimple(props) {
           onChange={(item) =>
             dispatch(productsAction.loadSimpleInfoProductData(item, 2))
           }
-          disabled={lineProduct.length <= 0 ? true : false}
+          disabled={false}
         />
         <SelectCustom
           list={brand}

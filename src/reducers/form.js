@@ -11,6 +11,9 @@ import GroupFilterProductForm from "../components/Form/GroupFilterProductForm/Gr
 import * as Types from "../constants/ActionTypes";
 import FunctionProductForm from "../components/Form/FunctionProductForm/FunctionProductForm";
 import RamForm from "../components/Form/RamForm/RamForm";
+import FormSlideIndex from "../components/ConfigScreen/SlideIndex/FormSlideIndex/FormSlideIndex";
+import FormPopupIndex from "../components/ConfigScreen/PopupIndex/FormPopupIndex/FormPopupIndex";
+import FormBannerTopSell from "../components/ConfigScreen/BannerTopSell/FormBannerTopSell/FormBannerTopSell";
 
 const initialState = {
   data: null,
@@ -82,6 +85,24 @@ const myReducer = (state = initialState, action) => {
         case "functionProduct":
           state.data = (
             <FunctionProductForm dataProps={action.data} table={action.table} />
+          );
+          state.type = 0;
+          break;
+        case "slide":
+          state.data = (
+            <FormSlideIndex dataProps={action.data} table={action.table} />
+          );
+          state.type = 0;
+          break;
+        case "popupAd":
+          state.data = (
+            <FormPopupIndex dataProps={action.data} table={action.table} />
+          );
+          state.type = 0;
+          break;
+        case "bannerIndexe":
+          state.data = (
+            <FormBannerTopSell dataProps={action.data} table={action.table} />
           );
           state.type = 0;
           break;
@@ -157,6 +178,24 @@ const myReducer = (state = initialState, action) => {
         case "functionProduct":
           state.data = (
             <FunctionProductForm dataProps={action.data} table={action.table} />
+          );
+          state.type = 1;
+          break;
+        case "slide":
+          state.data = (
+            <FormSlideIndex dataProps={action.data} table={action.table} />
+          );
+          state.type = 1;
+          break;
+        case "popupAd":
+          state.data = (
+            <FormPopupIndex dataProps={action.data} table={action.table} />
+          );
+          state.type = 1;
+          break;
+        case "bannerIndexe":
+          state.data = (
+            <FormBannerTopSell dataProps={action.data} table={action.table} />
           );
           state.type = 1;
           break;

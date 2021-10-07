@@ -72,10 +72,13 @@ function ProductRightFooter(props) {
           id: "",
           alt: "",
           src: result.data.url,
+          imageLineProduct: lineProduct,
           colorProduct: item.color,
           type: 0,
         },
-        headers
+        Object.assign(headers, {
+          "Content-Type": "application/json",
+        })
       );
       listImage.push({ color: item, image: image.data });
     }
@@ -93,7 +96,7 @@ function ProductRightFooter(props) {
         "imageOthers",
         "POST",
         {
-          id: 1,
+          id: null,
           lineProductImage: lineProduct,
           src: result.data.url,
           type: 1,
@@ -120,7 +123,9 @@ function ProductRightFooter(props) {
               attributeProduct: element.data,
               valueAttributeProduct: element.value,
             },
-            headers
+            Object.assign(headers, {
+              "Content-Type": "application/json",
+            })
           );
         }
       }

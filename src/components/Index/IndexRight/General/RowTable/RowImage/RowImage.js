@@ -6,7 +6,7 @@ function RowImage(props) {
   const { src, alt, width, height } = props;
   //
   return (
-    <div className={`${width} ${height}`}>
+    <div className={`${width} ${height} mx-auto`}>
       <Zoom>
         <img
           src={src}

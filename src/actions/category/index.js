@@ -183,7 +183,7 @@ export const deleteCategoryRequest = (list, table, data, headers) => {
       const { filters, sorter, search, status, params } = data;
       dispatch(
         loadListCategoryConnectRequest(
-          table.replace("s", "") + "Filters",
+          table.slice(0, -1) + "Filters",
           params,
           status,
           {

@@ -234,7 +234,6 @@ const myReducer = (state = initialState, action) => {
       state.features.choose = action.data.choose;
       state.features.listCurrent = action.data.listCurrent;
       state.features.list = action.data.list;
-      console.log(state);
       return { ...state };
     case Types.REMOVE_FEATURE_PRODUCT:
       state.features = action.data;

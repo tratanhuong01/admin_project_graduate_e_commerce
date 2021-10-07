@@ -8,9 +8,9 @@ function ContentColor({ condition, typeData, onClick = () => "" }) {
     <span
       onClick={() => onClick()}
       className={`rounded-full px-3 p-1 text-xs text-white font-semibold 
-        ${condition[index].bgColor}`}
+        ${condition[index] && condition[index].bgColor}`}
     >
-      {condition[index].name}
+      {condition[index] && condition[index].name}
     </span>
   );
 }

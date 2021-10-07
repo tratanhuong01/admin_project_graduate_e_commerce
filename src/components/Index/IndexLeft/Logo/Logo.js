@@ -1,4 +1,6 @@
 import React from "react";
+import logo from "../../../../assets/images/logo.png";
+//
 function Logo(props) {
   return (
     <div
@@ -6,17 +8,10 @@ function Logo(props) {
       justify-center -ml-5 bg-white relative h-14 lg:h-auto"
     >
       <img
-        src="../../../images/logo.png"
-        className="absolute left-1/2 -ml-1 flex h-14 lg:object-cover cursor-pointer 
-        lg:relative lg:left-3 object-contain"
+        src={logo}
+        className="w-52 h-20 object-contain cursor-pointer"
         alt=""
       />
-      <span
-        className="font-bold text-2xl absolute top-5 xl:left-36 lg:left-28 lg:ml-1.5 text-gray-700 
-      cursor-pointer hidden lg:block"
-      >
-        XSMART
-      </span>
     </div>
   );
 }

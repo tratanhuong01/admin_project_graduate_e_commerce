@@ -49,6 +49,8 @@ function InputField(props) {
           }}
           placeholder={placeHolder}
           disabled={disabled}
+          spellCheck={false}
+          autoComplete={"off"}
         />
         <p className="m-2 text-sm w-full text-red-500 font-semibold">
           {showError && showError.message}

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 function SelectCustom(props) {
   //
-
   const {
     className,
     list,
@@ -67,6 +66,7 @@ function SelectCustom(props) {
             className={
               "w-full p-2 border-l-2 border-r-2 border-t-2 border-solid border-blue-500 relative shadow-lg"
             }
+            spellCheck={false}
             value={value}
             onChange={(event) => {
               setValue(event.target.value);
