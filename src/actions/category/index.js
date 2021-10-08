@@ -234,7 +234,8 @@ export const updateStatusCategoryRequest = (data, headers) => {
     await crudApi.updateCategory(
       table + "s",
       { id: item.id, value: item.data },
-      item.column
+      item.column,
+      headers
     );
     dispatch(
       loadListCategoryConnectRequest(

@@ -9,7 +9,7 @@ function ContentOrderLeft(props) {
 
   //
   return (
-    <div className="w-1/2">
+    <div className="w-1/2 flex-1 h-full overflow-y-auto overflow-x-hidden scrollbar-css pr-3">
       <div className="w-full relative">
         {order.billDetailList.map((item, index) => (
           <ItemOrder item={item} key={index} />

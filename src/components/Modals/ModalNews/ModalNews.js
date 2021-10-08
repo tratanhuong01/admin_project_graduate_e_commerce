@@ -86,11 +86,11 @@ function ModalNews(props) {
       title: dataForm.title,
       thumbnail: dataForm.thumbnailLink,
       describeSmall: dataForm.contentShort,
-      timeCreated: null,
-      view: 0,
+      timeCreated: data ? data.timeCreated : null,
+      view: data ? data.view : 0,
       content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
       slug: StringUtils.removeVietnameseTones(dataForm.title),
-      commentCount: 0,
+      commentCount: data ? data.commentCount : null,
     };
     dispatch(
       categorysAction.addCategoryRequest(

@@ -16,21 +16,23 @@ function ItemUpdateStatusCategory(props) {
   const action = () => {
     setValue(item.data);
     dispatch(
-      categorysAction.updateStatusCategoryRequest({
-        table: table,
-        item: Object.assign(item, { column, id }),
-        query: {
-          full: `?userType=${0}`,
-          limit: `?userType=${0}&limit=${10}&offset=${category.index}`,
+      categorysAction.updateStatusCategoryRequest(
+        {
+          table: table,
+          item: Object.assign(item, { column, id }),
+          query: {
+            full: `?userType=${0}`,
+            limit: `?userType=${0}&limit=${10}&offset=${category.index}`,
+          },
+          status: true,
+          filterData: {
+            filters: filters.choose,
+            sorter: filters.sorter,
+            search: filters.search,
+          },
         },
-        status: true,
-        filterData: {
-          filters: filters.choose,
-          sorter: filters.sorter,
-          search: filters.search,
-        },
-        headers,
-      })
+        headers
+      )
     );
   };
   //

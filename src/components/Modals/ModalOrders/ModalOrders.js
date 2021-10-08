@@ -33,7 +33,7 @@ function ModalOrders(props) {
     >
       <div className="w-full relative h-full">
         <div className="w-full sticky top-0 p-3 text-center text-2xl font-semibold">
-          Xử lí hóa đơn
+          Hóa đơn
           <CloseModal />
         </div>
         {order ? (

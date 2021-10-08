@@ -60,6 +60,7 @@ function Filter(props) {
     if (table === "product") product.queryFilterProduct(filter, headers);
     if (table === "lineProduct")
       product.queryFilterLineproduct(filter, headers);
+    if (table === "new") product.queryFilterNews(filter, headers);
     return () => {
       unmounted = true;
     };

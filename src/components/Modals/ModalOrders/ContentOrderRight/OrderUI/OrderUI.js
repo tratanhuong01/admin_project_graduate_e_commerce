@@ -55,7 +55,14 @@ function OrderUI(props) {
                 return (
                   <tr key={index} className="p-2">
                     <td>{index + 1}</td>
-                    <td className="">{item.productFull.nameLineProduct}</td>
+                    <td>
+                      <div
+                        className="text-sm whitespace-normal"
+                        style={{ width: "270px", maxWidth: "270px" }}
+                      >
+                        {item.productFull.nameLineProduct}
+                      </div>
+                    </td>
                     <td>{item.billDetail.amount}</td>
                     <td>
                       {new Intl.NumberFormat().format(item.billDetail.price)}

@@ -254,5 +254,29 @@
     {
       "id": 10
     }
-  ]
+  ],
+  "status": {
+    "title": "Trạng thái đơn hàng",
+    "column": "status",
+    "list": [
+      {
+        "name": "Xóa đơn hàng",
+        "icon": "fas fa-user-check",
+        "description": "Đơn hàng có vấn đề",
+        "data": 0
+      },
+      {
+        "name": "Xác nhận - Chờ đưa hàng cho bên giao hàng",
+        "icon": "fas fa-unlock-alt",
+        "description": "Hàng hóa sẽ được giao khi xác nhận",
+        "data": 1
+      },
+      {
+        "name": "Đã giao hàng bên giao hàng",
+        "icon": "bx bx-block",
+        "description": "Người dùng chờ nhận hàng",
+        "data": 2
+      }
+    ]
+  }
 }

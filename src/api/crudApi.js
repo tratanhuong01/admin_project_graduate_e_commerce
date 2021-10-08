@@ -1,7 +1,7 @@
 import api from "../Utils/api";
 
 export const addData = (item, table, headers) => {
-  return api(`${table}`, "POST", item, headers);
+  return api(`${table}`, item.id ? "PUT" : "POST", item, headers);
 };
 
 export const updateData = (item, table, headers) => {

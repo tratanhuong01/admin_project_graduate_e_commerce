@@ -14,6 +14,7 @@ function ItemFormLogin(props) {
         name={name}
         className="w-full mx-auto border-2 border-gray-100 p-2.5 border-solid"
         placeholder={placeholder}
+        autoComplete="true"
       />
       <br />
       {errors && (

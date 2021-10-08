@@ -18,8 +18,9 @@ function ItemOrder(props) {
           </span>
           <p>Số lương : {item.billDetail.amount}</p>
           <p className="flex flex-col">
-            Màu : {item.productFull.color.description} - Bộ nhớ :{" "}
-            {item.productFull.memory.nameMemory}
+            Màu : {item.productFull.color.description}
+            {item.productFull.memory &&
+              `- Bộ nhớ : ${item.productFull.memory.nameMemory}`}
           </p>
         </div>
       </div>

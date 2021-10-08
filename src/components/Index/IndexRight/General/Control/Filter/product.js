@@ -1,5 +1,6 @@
 import * as productApi from "../../../../../../api/productsApi";
-
+import * as userApi from "../../../../../../api/userApi";
+import api from "../../../../../../Utils/api";
 export const queryFilterProduct = async (filter, headers) => {
   const brands = await productApi.getBrandsAll(headers);
   const roms = await productApi.getMemoriesAll(headers);
@@ -133,6 +134,45 @@ export const queryFilterLineproduct = async (filter, headers) => {
         nameFilter: "Thương hiệu",
         name: element.nameBrand,
         query: `brand=${element.id}`,
+      });
+      count++;
+    });
+  }
+  return clone;
+};
+
+export const queryFilterNews = async (filter, headers) => {
+  const user = await userApi.getUser("WRITER", headers);
+  const categoryNews = await api(`categoryNews`, "GET", null, headers);
+  let clone = [...filter];
+  let index = -1;
+  let count = 0;
+  index = clone.findIndex((item) => item.id === "NEWS_FILTER_1");
+  if (index !== -1) {
+    count = 0;
+    user.data.forEach((element) => {
+      filter[index].data.push({
+        id: count,
+        idFilter: "NEWS_FILTER_1",
+        nameFilter: "Người đăng",
+        name: `${element.firstName} ${element.lastName}`,
+        query: `poster=${element.id}`,
+      });
+      count++;
+    });
+  }
+  index = -1;
+  count = 0;
+  index = clone.findIndex((item) => item.id === "NEWS_FILTER_2");
+  if (index !== -1) {
+    count = 0;
+    categoryNews.data.forEach((element) => {
+      filter[index].data.push({
+        id: count,
+        idFilter: "NEWS_FILTER_2",
+        nameFilter: "Danh mục tin tức",
+        name: element.nameCategoryNews,
+        query: `category=${element.id}`,
       });
       count++;
     });

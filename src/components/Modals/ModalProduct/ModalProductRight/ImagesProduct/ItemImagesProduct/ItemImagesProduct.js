@@ -25,6 +25,7 @@ function ItemImagesProduct(props) {
       <img
         className="w-full h-60 object-contain rounded-lg"
         alt=""
+        loading="lazy"
         src={image.id ? image.src : URL.createObjectURL(image)}
       />
     </div>
