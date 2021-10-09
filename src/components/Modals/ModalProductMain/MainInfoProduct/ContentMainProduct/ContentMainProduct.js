@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import InputField from "../../../../InputField/InputField";
 import * as productsAction from "../../../../../actions/products/index";
 import DateInfoSimple from "../../../ModalProduct/ModalProductRight/InfoSimple/DateInfoSimple/DateInfoSimple";
+
 function ContentMainProduct(props) {
   //
   const { register, errors, handleSubmit, onSubmit } = props;

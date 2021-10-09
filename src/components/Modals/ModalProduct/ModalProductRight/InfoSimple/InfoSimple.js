@@ -6,7 +6,6 @@ import InputField from "../../../../InputField/InputField";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SelectCustom from "../../../../SelectCustom/SelectCustom";
 import * as productsAction from "../../../../../actions/products/index";
-import DateInfoSimple from "./DateInfoSimple/DateInfoSimple";
 import ValidForm from "./ValidForm";
 function InfoSimple(props) {
   const {
@@ -64,7 +63,6 @@ function InfoSimple(props) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <DateInfoSimple register={register} errors={errors} />
         <SelectCustom
           list={categoryProduct}
           className={

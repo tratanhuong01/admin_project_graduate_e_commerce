@@ -60,11 +60,11 @@ function MainInfoProduct(props) {
           itemSold: 0,
           typeInfoProduct: 0,
           review: 50,
-          timeInput: item.timeInput,
+          timeInput: null,
           amountInput: item.amountInput,
           saleDefault: item.saleDefault,
-          timeStartSale: null,
-          timeEndSale: null,
+          timeStartSale: StringUtils.formatDateTime(item.timeStartSale),
+          timeEndSale: StringUtils.formatDateTime(item.timeStartSale),
         },
         headers
       );

@@ -381,6 +381,7 @@ export const loadInfoEditLineProductRequest = (idLineProduct, headers) => {
       let list = [];
       data.data.forEach((dt) => {
         list.push({
+          id: dt.id,
           data: dt.attributeProduct,
           value: dt.valueAttributeProduct,
         });
@@ -398,7 +399,10 @@ export const loadInfoEditLineProductRequest = (idLineProduct, headers) => {
       headers
     );
     featureData.data.forEach((element) => {
-      features.push(element.functionProductDetail);
+      features.push({
+        ...element.functionProductDetail,
+        idDetailFunctionProduct: element.id,
+      });
     });
     const images = await api(
       `imageOthers/${idLineProduct}`,
@@ -419,24 +423,23 @@ export const loadInfoEditLineProductRequest = (idLineProduct, headers) => {
         image: dt,
       });
     });
-    dispatch(
-      loadInfoEditLineProduct({
-        infoSimple,
-        infoAttribute,
-        features,
-        images: images.data,
-        imageColor,
-        descriptions: EditorState.createWithContent(
-          convertFromRaw(
-            htmlToDraft(
-              lineProduct.data.describeProduct
-                ? lineProduct.data.describeProduct
-                : "<p></p>"
-            )
+    const listData = {
+      infoSimple,
+      infoAttribute,
+      features,
+      images: images.data,
+      imageColor,
+      descriptions: EditorState.createWithContent(
+        convertFromRaw(
+          htmlToDraft(
+            lineProduct.data.describeProduct
+              ? lineProduct.data.describeProduct
+              : "<p></p>"
           )
-        ),
-      })
-    );
+        )
+      ),
+    };
+    dispatch(loadInfoEditLineProduct(listData));
   };
 };
 
@@ -457,10 +460,11 @@ export const loadInfoEditProductInfoRequest = (idProduct, headers) => {
           sale: result.data.infoProduct.sale,
           priceInput: result.data.infoProduct.priceInput,
           priceOutput: result.data.infoProduct.priceOutput,
-          amountInput: result.data.infoProduct.amountInput,
+          amountInput: 0,
           saleDefault: result.data.infoProduct.saleDefault,
           timeStartSale: result.data.infoProduct.timeStartSale,
           timeEndSale: result.data.infoProduct.timeEndSale,
+          data: result.data,
         },
         true
       )

@@ -26,50 +26,52 @@ function MainInfoProductEdit(props) {
     shouldUnregister: false,
   });
   const onSubmit = async () => {
-    const productNewBest = await api(`getIdBestNew`, "GET", null, headers);
-    let id = 1000000000;
-    if (productNewBest.data)
-      id = Number(productNewBest.data.id.replace("SP", ""));
-    for (let index = 0; index < products.infoMain.lists.length; index++) {
-      const item = products.infoMain.lists[index];
-      id++;
-      const product = await api(
-        `products`,
-        "POST",
-        {
-          id: "SP" + id,
-          productUser: null,
-          memoryProduct: null,
-          lineProduct: null,
-          ramProduct: null,
-          imageProduct: null,
-          isShow: 1,
-          slug: StringUtils.removeVietnameseTones(item.nameProduct),
-        },
-        headers
-      );
-      await api(
-        `infoProducts`,
-        "POST",
-        {
-          id: null,
-          infoProduct: product.data,
-          priceInput: item.priceInput,
-          priceOutput: item.priceOutput,
-          sale: item.sale,
-          itemCurrent: item.amountOutput,
-          itemSold: 0,
-          typeInfoProduct: 0,
-          review: 50,
-          timeInput: item.timeInput,
-          amountInput: item.amountInput,
-          saleDefault: item.saleDefault,
-          timeStartSale: item.timeStartSale,
-          timeEndSale: item.timeEndSale,
-        },
-        headers
-      );
-    }
+    await api(
+      `products`,
+      "POST",
+      {
+        id: products.infoMainEdit.data.product.id,
+        productUser: null,
+        memoryProduct: products.infoMainEdit.rom.id
+          ? products.infoMainEdit.rom
+          : null,
+        lineProduct: products.infoMainEdit.lineProduct,
+        ramProduct: products.infoMainEdit.ram,
+        imageProduct: products.infoMainEdit.image,
+        isShow: products.infoMainEdit.data.product.isShow,
+        slug: products.infoMainEdit.data.product.slug,
+      },
+      headers
+    );
+    await api(
+      `infoProducts`,
+      "POST",
+      {
+        id: products.infoMainEdit.data.id,
+        infoProduct: products.infoMainEdit.data.product,
+        priceInput: products.infoMainEdit.priceInput,
+        priceOutput: products.infoMainEdit.priceOutput,
+        sale: products.infoMainEdit.sale,
+        itemCurrent: products.infoMainEdit.amountOutput,
+        itemSold: products.infoMainEdit.data.infoProduct.itemSold,
+        typeInfoProduct: products.infoMainEdit.data.infoProduct.typeInfoProduct,
+        review: products.infoMainEdit.data.infoProduct.review,
+        timeInput: products.infoMainEdit.data.infoProduct.timeInput,
+        amountInput:
+          products.infoMainEdit.amountInput === 0
+            ? products.infoMainEdit.data.infoProduct.amountInput
+            : products.infoMainEdit.data.infoProduct.amountInput +
+              products.infoMainEdit.amountInput,
+        saleDefault: products.infoMainEdit.saleDefault,
+        timeStartSale: StringUtils.formatDateTime(
+          products.infoMainEdit.timeStartSale
+        ),
+        timeEndSale: StringUtils.formatDateTime(
+          products.infoMainEdit.timeStartSale
+        ),
+      },
+      headers
+    );
   };
   return (
     <div

@@ -43,9 +43,10 @@ function InputField(props) {
             } else {
               onChange(e.target.value);
             }
-            if (typeof Field === "function")
+            if (typeof Field === "object") {
               if (price) Field.onChange(e);
               else Field.onChange(e);
+            }
           }}
           placeholder={placeHolder}
           disabled={disabled}

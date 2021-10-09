@@ -59,6 +59,7 @@ const initialState = {
   loading: true,
   imageColor: [],
   index: 0,
+  listData: null,
 };
 
 const myReducer = (state = initialState, action) => {
@@ -259,6 +260,7 @@ const myReducer = (state = initialState, action) => {
         state.images = action.data.images;
         state.descriptions = action.data.descriptions;
         state.imageColor = action.data.imageColor;
+        state.listData = action.data;
       }
       return { ...state };
     case Types.RESET_DATA_PRODUCT_STATE:

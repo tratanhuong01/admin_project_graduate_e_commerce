@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import InputField from "../../../../InputField/InputField";
 import * as productsAction from "../../../../../actions/products/index";
 import DateInfoSimple from "../../../ModalProduct/ModalProductRight/InfoSimple/DateInfoSimple/DateInfoSimple";
+import * as StringUtils from "../../../../../Utils/StringUtils";
 function ContentMainProductEdit(props) {
   //
   const { register, errors, handleSubmit, onSubmit, setValue } = props;
@@ -18,9 +19,21 @@ function ContentMainProductEdit(props) {
       setValue("priceOutput", products.infoMainEdit.priceOutput);
       setValue("saleDefault", products.infoMainEdit.saleDefault);
       setValue("sale", products.infoMainEdit.sale);
+      setValue(
+        "timeStartSale",
+        StringUtils.formatDateTimeBack(
+          products.infoMainEdit.data.infoProduct.timeStartSale
+        )
+      );
+      setValue(
+        "timeEndSale",
+        StringUtils.formatDateTimeBack(
+          products.infoMainEdit.data.infoProduct.timeEndSale
+        )
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products]);
+  }, [products.infoMainEdit]);
   //
   return products.infoMainEdit ? (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full relative mb-4">
@@ -98,7 +111,12 @@ function ContentMainProductEdit(props) {
               />
             </div>
           </div>
-          <DateInfoSimple register={register} errors={errors} edit={true} />
+          <DateInfoSimple
+            register={register}
+            errors={errors}
+            edit={true}
+            setValue={setValue}
+          />
           <div className="w-full flex">
             <div className="w-1/2">
               <InputField
