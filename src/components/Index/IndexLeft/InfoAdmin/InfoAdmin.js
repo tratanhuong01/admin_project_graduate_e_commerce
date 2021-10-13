@@ -11,7 +11,7 @@ function InfoAdmin(props) {
         <div className="w-full lg:w-auto text-right mr-2 flex justify-center ">
           <img
             src={user.avatar}
-            className="w-12 h-12 rounded-full border-4 border-solid border-blue-500 xl:border-none"
+            className="w-12 h-12 rounded-full border-4 border-solid border-blue-500 xl:border-none object-cover"
             alt=""
           />
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as formsAction from "../../../../../../actions/form/index";
 import * as categorysAction from "../../../../../../actions/category/index";
+import { LOADING_CATEGORY } from "../../../../../../constants/ActionTypes";
 
 function NotModalTop(props) {
   //
@@ -14,7 +15,37 @@ function NotModalTop(props) {
   });
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
-  useEffect(() => {}, [category.choose]);
+  useEffect(() => {
+    //
+    let timeOut;
+    dispatch({ type: LOADING_CATEGORY, loading: true });
+    timeOut = setTimeout(async () => {
+      if (keyword.length <= 0)
+        dispatch(
+          categorysAction.loadListCategoryRequest(
+            table + "s",
+            null,
+            false,
+            headers
+          )
+        );
+      else {
+        dispatch(
+          categorysAction.searchCategoryRequest(
+            {
+              keyword,
+              table: table + "s",
+            },
+            headers
+          )
+        );
+      }
+    }, 300);
+    return () => {
+      clearTimeout(timeOut);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [keyword, category.choose]);
   //
   return (
     <div className="w-full flex justify-end">
@@ -23,29 +54,7 @@ function NotModalTop(props) {
         bg-white border-solid border-gray-200 border-2"
         placeholder="Nhập ID hoặc tên danh mục"
         spellCheck={false}
-        onChange={(event) => {
-          setKeyword(event.target.value);
-          if (event.target.value.length <= 0)
-            dispatch(
-              categorysAction.loadListCategoryRequest(
-                table + "s",
-                null,
-                false,
-                headers
-              )
-            );
-          else {
-            dispatch(
-              categorysAction.searchCategoryRequest(
-                {
-                  keyword,
-                  table: table + "s",
-                },
-                headers
-              )
-            );
-          }
-        }}
+        onChange={(event) => setKeyword(event.target.value)}
         value={keyword}
       />
       <button

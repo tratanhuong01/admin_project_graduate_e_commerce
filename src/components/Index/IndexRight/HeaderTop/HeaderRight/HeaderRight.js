@@ -31,7 +31,11 @@ function HeaderRight(props) {
         <li className="p-2 flex items-center">
           <div className="w-full flex relative p-2 cursor-pointer">
             <div className="text-right mr-2 cursor-pointer">
-              <img src={user.avatar} className="w-9 h-9 rounded-full" alt="" />
+              <img
+                src={user.avatar}
+                className="w-9 h-9 rounded-full object-cover"
+                alt=""
+              />
             </div>
             <div className=" items-center hidden lg:flex">
               <p className="font-bold text-sm">{`${user.firstName} ${user.lastName}`}</p>

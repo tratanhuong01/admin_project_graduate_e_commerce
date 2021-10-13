@@ -249,3 +249,10 @@ export const updateStatusCategoryRequest = (data, headers) => {
     dispatch(modalsAction.closeModal());
   };
 };
+
+export const loadingCategory = (loading) => {
+  return {
+    type: Types.LOADING_CATEGORY,
+    loading,
+  };
+};

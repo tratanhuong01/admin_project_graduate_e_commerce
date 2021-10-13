@@ -5,7 +5,7 @@ import Date from "../../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../../components/Index/IndexRight/General/FileDown/FileDown";
 import Table from "../../../components/Table/Table";
 import TableMain from "../../../components/Table/TableMain/TableMain";
-import RowVoucherTable from "../../../components/Table/VoucherTable/RowVoucherTable/RowVoucherTable";
+import RowVoucherTable from "../../../components/Table/RowVoucherTable/RowVoucherTable";
 import { useHaveModal } from "../../../hooks/useHaveModal";
 import Screen from "../../Screen";
 import feature from "./feature";

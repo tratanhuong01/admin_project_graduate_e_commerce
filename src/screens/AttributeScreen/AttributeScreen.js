@@ -5,7 +5,7 @@ import Screen from "../Screen";
 import feature from "./feature";
 import { useNotModal } from "../../hooks/useNotModal";
 import TableMain from "../../components/Table/TableMain/TableMain";
-import RowAttributeTable from "../../components/Table/AttributeTable/RowAttributeTable/RowAttributeTable";
+import RowAttributeTable from "../../components/Table/RowAttributeTable/RowAttributeTable";
 function AttributeScreen(props) {
   //
   const { category, form } = useNotModal(feature.nameTable);

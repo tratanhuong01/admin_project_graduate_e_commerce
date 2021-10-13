@@ -3,8 +3,9 @@ import CrudCategoryModal from "../../components/CrudCategoryModal/CrudCategoryMo
 import Control from "../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../components/Index/IndexRight/General/FileDown/FileDown";
-import NewsTable from "../../components/Table/NewsTable/NewsTable";
+import RowNewsTable from "../../components/Table/RowNewsTable/RowNewsTable";
 import Table from "../../components/Table/Table";
+import TableMain from "../../components/Table/TableMain/TableMain";
 import { useHaveModal } from "../../hooks/useHaveModal";
 import Screen from "../Screen";
 import feature from "./feature";
@@ -46,11 +47,18 @@ function NewsScreen(props) {
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />
         <Table category={category} feature={feature} modal={true}>
-          <NewsTable
-            feature={feature}
-            category={category}
-            table={feature.nameTable}
-          />
+          <TableMain feature={feature} category={category} numRow={10}>
+            {category.list &&
+              category.list.map((item, index) => (
+                <RowNewsTable
+                  table={feature.nameTable}
+                  item={item}
+                  key={index}
+                  category={category}
+                  index={index}
+                />
+              ))}
+          </TableMain>
         </Table>
       </Screen>
     </>

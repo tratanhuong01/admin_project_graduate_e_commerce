@@ -1,7 +1,8 @@
 import React from "react";
 import NotModalTop from "../../../components/Index/IndexRight/Category/NotModal/NotModalTop/NotModalTop";
-import GroupProductTable from "../../../components/Table/GroupProductTable/GroupProductTable";
+import RowGroupProductTable from "../../../components/Table/RowGroupProductTable/RowGroupProductTable";
 import Table from "../../../components/Table/Table";
+import TableMain from "../../../components/Table/TableMain/TableMain";
 import { useNotModal } from "../../../hooks/useNotModal";
 import Screen from "../../Screen";
 import feature from "./feature";
@@ -24,7 +25,20 @@ function GroupProductScreen(props) {
           <div className="w-3/5">
             <NotModalTop category={category} table={feature.nameTable} />
             <Table category={category} feature={feature}>
-              <GroupProductTable category={category} feature={feature} />
+              <TableMain feature={feature} category={category} numRow={12}>
+                {category.list &&
+                  category.list.map((item, index) => {
+                    return (
+                      <RowGroupProductTable
+                        item={item}
+                        key={index}
+                        category={category}
+                        index={index}
+                        feature={feature}
+                      />
+                    );
+                  })}
+              </TableMain>
             </Table>
           </div>
         </div>

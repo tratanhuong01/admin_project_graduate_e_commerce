@@ -1,6 +1,6 @@
 import React from "react";
 import NotModalTop from "../../components/Index/IndexRight/Category/NotModal/NotModalTop/NotModalTop";
-import RowBrandTable from "../../components/Table/BrandTable/RowBrandTable/RowBrandTable";
+import RowBrandTable from "../../components/Table/RowBrandTable/RowBrandTable";
 import Table from "../../components/Table/Table";
 import TableMain from "../../components/Table/TableMain/TableMain";
 import { useNotModal } from "../../hooks/useNotModal";

@@ -3,8 +3,9 @@ import CrudCategoryModal from "../../../components/CrudCategoryModal/CrudCategor
 import Control from "../../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../../components/Index/IndexRight/General/FileDown/FileDown";
-import ProductTable from "../../../components/Table/ProductTable/ProductTable";
+import RowProductTable from "../../../components/Table/RowProductTable/RowProductTable";
 import Table from "../../../components/Table/Table";
+import TableMain from "../../../components/Table/TableMain/TableMain";
 import { useHaveModal } from "../../../hooks/useHaveModal";
 import Screen from "../../Screen";
 import feature from "./feature";
@@ -46,7 +47,20 @@ function ProductListScreen(props) {
         </div>
         <Control type={feature.type} data={feature} table={feature.nameTable} />
         <Table category={category} feature={feature} modal={true}>
-          <ProductTable feature={feature} category={category} />
+          <TableMain feature={feature} category={category} numRow={14}>
+            {category.list &&
+              category.list.map((item, index) => {
+                return (
+                  <RowProductTable
+                    item={item}
+                    key={index}
+                    category={category}
+                    index={index}
+                    feature={feature}
+                  />
+                );
+              })}
+          </TableMain>
         </Table>
       </Screen>
     </>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as filtersAction from "../../../../../../actions/filter/index";
+import { LOADING_CATEGORY } from "../../../../../../constants/ActionTypes";
 
 function Search(props) {
   //
@@ -13,6 +14,29 @@ function Search(props) {
       headers: state.headers,
     };
   });
+  useEffect(() => {
+    //
+    let timeOut;
+    dispatch({ type: LOADING_CATEGORY, loading: true });
+    timeOut = setTimeout(async () => {
+      dispatch(
+        filtersAction.searchCategoryRequest(
+          {
+            filters: filters.choose,
+            sorter: filters.sorter,
+            keyword: keyword,
+            table,
+            index: 0,
+          },
+          headers
+        )
+      );
+    }, 300);
+    return () => {
+      clearTimeout(timeOut);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [keyword]);
   //
   return (
     <input
@@ -20,21 +44,7 @@ function Search(props) {
       bg-white border-solid border-gray-200 border-2"
       placeholder="Tìm kiếm"
       value={keyword}
-      onChange={(event) => {
-        setKeyword(event.target.value);
-        dispatch(
-          filtersAction.searchCategoryRequest(
-            {
-              filters: filters.choose,
-              sorter: filters.sorter,
-              keyword: event.target.value,
-              table,
-              index: 0,
-            },
-            headers
-          )
-        );
-      }}
+      onChange={(event) => setKeyword(event.target.value)}
     />
   );
 }

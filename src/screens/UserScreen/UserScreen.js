@@ -7,7 +7,7 @@ import Screen from "../Screen";
 import feature from "./feature";
 import { useHaveModal } from "../../hooks/useHaveModal";
 import TableMain from "../../components/Table/TableMain/TableMain";
-import RowUserTable from "../../components/Table/UserTable/RowUserTable/RowUserTable";
+import RowUserTable from "../../components/Table/RowUserTable/RowUserTable";
 import CrudCategoryModal from "../../components/CrudCategoryModal/CrudCategoryModal";
 function UserScreen(props) {
   //

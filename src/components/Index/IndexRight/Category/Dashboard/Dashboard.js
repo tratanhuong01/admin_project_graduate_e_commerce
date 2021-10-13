@@ -65,6 +65,24 @@ function Dashboard(props) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const statusBill = (status) => {
+    switch (status) {
+      case -1:
+        return "Đã hủy";
+      case 0:
+        return "Chưa xác nhận";
+      case 1:
+        return "Đã xác nhận - Chờ gửi hàng";
+      case 2:
+        return "Đang giao";
+      case 3:
+        return "Thành công";
+      case 4:
+        return "Thất bại";
+      default:
+        return "...";
+    }
+  };
   //
   return (
     <div
@@ -94,7 +112,7 @@ function Dashboard(props) {
           attribute={() =>
             "https://image.flaticon.com/icons/png/512/552/552791.png"
           }
-          content={(bill) => `#${bill.id} ${"đang vận chuyển"}`}
+          content={(bill) => `#${bill.id} ${statusBill(bill.status)}`}
         />
         <NewBestDashboard
           label={"Người dùng đăng kí gần đây"}

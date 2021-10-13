@@ -1,7 +1,8 @@
 import React from "react";
 import NotModalTop from "../../components/Index/IndexRight/Category/NotModal/NotModalTop/NotModalTop";
-import GroupAttributeTable from "../../components/Table/GroupAttributeTable/GroupAttributeTable";
+import RowGroupAttributeTable from "../../components/Table/RowGroupAttributeTable/RowGroupAttributeTable";
 import Table from "../../components/Table/Table";
+import TableMain from "../../components/Table/TableMain/TableMain";
 import { useNotModal } from "../../hooks/useNotModal";
 import Screen from "../Screen";
 import feature from "./feature";
@@ -25,7 +26,17 @@ function GroupAttributeScreen(props) {
           <div className="w-3/5">
             <NotModalTop category={category} table={feature.nameTable} />
             <Table category={category} feature={feature}>
-              <GroupAttributeTable category={category} feature={feature} />
+              <TableMain feature={feature} category={category} numRow={4}>
+                {category.list &&
+                  category.list.map((item, index) => (
+                    <RowGroupAttributeTable
+                      item={item}
+                      key={index}
+                      category={category}
+                      index={index}
+                    />
+                  ))}
+              </TableMain>
             </Table>
           </div>
         </div>

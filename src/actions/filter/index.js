@@ -163,6 +163,7 @@ export const searchCategoryRequest = (data, headers) => {
     );
     dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
     dispatch(updateSearchCategory(keyword));
+    dispatch({ type: Types.LOADING_CATEGORY, loading: false });
   };
 };
 

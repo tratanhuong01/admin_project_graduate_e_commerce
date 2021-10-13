@@ -42,11 +42,12 @@ const myReducer = (state = initialState, action) => {
           state.data = <Category data={action.data} />;
           break;
       }
-      state.loading = true;
+      // state.loading = true;
       return { ...state };
     case Types.LOAD_LIST_CATEGORY:
       state.length = action.length;
       state.list = action.list;
+      state.loading = false;
       return { ...state };
     case Types.LOAD_PAGINATION:
       state.index = action.index;
@@ -74,6 +75,9 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.RESET_INDEX_CATEGORY:
       state.index = 0;
+      return { ...state };
+    case Types.LOADING_CATEGORY:
+      state.loading = action.loading;
       return { ...state };
     default:
       return state;

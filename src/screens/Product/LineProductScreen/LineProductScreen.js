@@ -3,8 +3,9 @@ import CrudCategoryModal from "../../../components/CrudCategoryModal/CrudCategor
 import Control from "../../../components/Index/IndexRight/General/Control/Control";
 import Date from "../../../components/Index/IndexRight/General/Date/Date";
 import FileDown from "../../../components/Index/IndexRight/General/FileDown/FileDown";
-import LineProductTable from "../../../components/Table/LineProductTable/LineProductTable";
+import RowLineProductTable from "../../../components/Table/RowLineProductTable/RowLineProductTable";
 import Table from "../../../components/Table/Table";
+import TableMain from "../../../components/Table/TableMain/TableMain";
 import { useNotModal } from "../../../hooks/useNotModal";
 import Screen from "../../Screen";
 import feature from "./feature";
@@ -38,7 +39,20 @@ function LineProductScreen(props) {
       </div>
       <Control type={feature.type} data={feature} table={feature.nameTable} />
       <Table category={category} feature={feature} modal={true}>
-        <LineProductTable feature={feature} category={category} />
+        <TableMain feature={feature} category={category} numRow={12}>
+          {category.list &&
+            category.list.map((item, index) => {
+              return (
+                <RowLineProductTable
+                  item={item}
+                  key={index}
+                  category={category}
+                  index={index}
+                  feature={feature}
+                />
+              );
+            })}
+        </TableMain>
       </Table>
     </Screen>
   );
