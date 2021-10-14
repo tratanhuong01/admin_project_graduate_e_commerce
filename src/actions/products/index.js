@@ -37,13 +37,17 @@ export const loadInfoMainProductByIndex = (index) => {
 export const loadInfoImageMainProductRequest = (data, headers) => {
   return async (dispatch) => {
     const { lineProduct, color } = data;
-    const result = await api(
-      `images/lineProduct/color/?idLineProduct=${lineProduct.id}&idColor=${color.id}`,
-      "GET",
-      null,
-      headers
-    );
-    dispatch(loadInfoImageMainProduct(result.data, color));
+    try {
+      const result = await api(
+        `images/lineProduct/color/?idLineProduct=${lineProduct.id}&idColor=${color.id}`,
+        "GET",
+        null,
+        headers
+      );
+      dispatch(loadInfoImageMainProduct(result.data, color));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -235,24 +239,28 @@ export const loadInfoMainImageOther = (list) => {
 
 export const loadFeaturesProductRequest = (products, table, headers) => {
   return async (dispatch) => {
-    const result = await api(
-      `${table}/${products.infoSimple.groupProduct.slugGroupProduct}`,
-      "GET",
-      null,
-      headers
-    );
-    let clone = [...result.data];
-    products.features.choose.forEach((dt) => {
-      const index = clone.findIndex((dt_) => dt_.id === dt.id);
-      if (index !== -1) clone.splice(index, 1);
-    });
-    dispatch(
-      loadFeaturesProduct({
-        choose: products.features.choose,
-        listCurrent: clone,
-        list: clone,
-      })
-    );
+    try {
+      const result = await api(
+        `${table}/${products.infoSimple.groupProduct.slugGroupProduct}`,
+        "GET",
+        null,
+        headers
+      );
+      let clone = [...result.data];
+      products.features.choose.forEach((dt) => {
+        const index = clone.findIndex((dt_) => dt_.id === dt.id);
+        if (index !== -1) clone.splice(index, 1);
+      });
+      dispatch(
+        loadFeaturesProduct({
+          choose: products.features.choose,
+          listCurrent: clone,
+          list: clone,
+        })
+      );
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -346,129 +354,137 @@ export const updateImageColor = (imageColor) => {
 
 export const loadInfoEditLineProductRequest = (idLineProduct, headers) => {
   return async (dispatch) => {
-    const lineProduct = await api(
-      `lineProducts/${idLineProduct}`,
-      "GET",
-      null,
-      headers
-    );
-    let infoSimple = {
-      lineProduct: lineProduct.data,
-      categoryProduct: lineProduct.data.groupProduct.categoryGroupProduct,
-      groupProduct: lineProduct.data.groupProduct,
-      nameProduct: lineProduct.data.nameLineProduct,
-      brand: lineProduct.data.brandProduct,
-      dateInput: null,
-      dateOutput: null,
-      width: lineProduct.data.width,
-      height: lineProduct.data.height,
-      weight: lineProduct.data.weight,
-    };
-    let infoAttribute = {};
-    const groupAttributes = await api(
-      `groupAttributesAll`,
-      "GET",
-      null,
-      headers
-    );
-    groupAttributes.data.forEach(async (item) => {
-      const data = await api(
-        `attributeProducts/?idLineProduct=${idLineProduct}&idGroupAttribute=${item.id}`,
+    try {
+      const lineProduct = await api(
+        `lineProducts/${idLineProduct}`,
         "GET",
         null,
         headers
       );
-      let list = [];
-      data.data.forEach((dt) => {
-        list.push({
-          id: dt.id,
-          data: dt.attributeProduct,
-          value: dt.valueAttributeProduct,
+      let infoSimple = {
+        lineProduct: lineProduct.data,
+        categoryProduct: lineProduct.data.groupProduct.categoryGroupProduct,
+        groupProduct: lineProduct.data.groupProduct,
+        nameProduct: lineProduct.data.nameLineProduct,
+        brand: lineProduct.data.brandProduct,
+        dateInput: null,
+        dateOutput: null,
+        width: lineProduct.data.width,
+        height: lineProduct.data.height,
+        weight: lineProduct.data.weight,
+      };
+      let infoAttribute = {};
+      const groupAttributes = await api(
+        `groupAttributesAll`,
+        "GET",
+        null,
+        headers
+      );
+      groupAttributes.data.forEach(async (item) => {
+        const data = await api(
+          `attributeProducts/?idLineProduct=${idLineProduct}&idGroupAttribute=${item.id}`,
+          "GET",
+          null,
+          headers
+        );
+        let list = [];
+        data.data.forEach((dt) => {
+          list.push({
+            id: dt.id,
+            data: dt.attributeProduct,
+            value: dt.valueAttributeProduct,
+          });
+        });
+        infoAttribute[item.id] = {
+          id: item.id,
+          list,
+        };
+      });
+      let features = [];
+      const featureData = await api(
+        `detailFunctionProducts/${idLineProduct}`,
+        "GET",
+        null,
+        headers
+      );
+      featureData.data.forEach((element) => {
+        features.push({
+          ...element.functionProductDetail,
+          idDetailFunctionProduct: element.id,
         });
       });
-      infoAttribute[item.id] = {
-        id: item.id,
-        list,
-      };
-    });
-    let features = [];
-    const featureData = await api(
-      `detailFunctionProducts/${idLineProduct}`,
-      "GET",
-      null,
-      headers
-    );
-    featureData.data.forEach((element) => {
-      features.push({
-        ...element.functionProductDetail,
-        idDetailFunctionProduct: element.id,
+      const images = await api(
+        `imageOthers/${idLineProduct}`,
+        "GET",
+        null,
+        headers
+      );
+      let imageColor = [];
+      const imageColorData = await api(
+        `images/lineProduct/?idLineProduct=${idLineProduct}`,
+        "GET",
+        null,
+        headers
+      );
+      imageColorData.data.forEach((dt) => {
+        imageColor.push({
+          color: dt.colorProduct,
+          image: dt,
+        });
       });
-    });
-    const images = await api(
-      `imageOthers/${idLineProduct}`,
-      "GET",
-      null,
-      headers
-    );
-    let imageColor = [];
-    const imageColorData = await api(
-      `images/lineProduct/?idLineProduct=${idLineProduct}`,
-      "GET",
-      null,
-      headers
-    );
-    imageColorData.data.forEach((dt) => {
-      imageColor.push({
-        color: dt.colorProduct,
-        image: dt,
-      });
-    });
-    const listData = {
-      infoSimple,
-      infoAttribute,
-      features,
-      images: images.data,
-      imageColor,
-      descriptions: EditorState.createWithContent(
-        convertFromRaw(
-          htmlToDraft(
-            lineProduct.data.describeProduct
-              ? lineProduct.data.describeProduct
-              : "<p></p>"
+      const listData = {
+        infoSimple,
+        infoAttribute,
+        features,
+        images: images.data,
+        imageColor,
+        descriptions: EditorState.createWithContent(
+          convertFromRaw(
+            htmlToDraft(
+              lineProduct.data.describeProduct
+                ? lineProduct.data.describeProduct
+                : "<p></p>"
+            )
           )
-        )
-      ),
-    };
-    dispatch(loadInfoEditLineProduct(listData));
+        ),
+      };
+      dispatch(loadInfoEditLineProduct(listData));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
 export const loadInfoEditProductInfoRequest = (idProduct, headers) => {
   return async (dispatch) => {
-    const result = await productApi.getCombineProductInfoProduct(
-      idProduct,
-      headers
-    );
-    dispatch(
-      loadInfoEditLineProduct(
-        {
-          lineProduct: result.data.product.lineProduct,
-          image: result.data.product.imageProduct,
-          ram: result.data.product.ramProduct,
-          rom: result.data.product.memoryProduct,
-          color: result.data.product.imageProduct.colorProduct,
-          sale: result.data.infoProduct.sale,
-          priceInput: result.data.infoProduct.priceInput,
-          priceOutput: result.data.infoProduct.priceOutput,
-          amountInput: 0,
-          saleDefault: result.data.infoProduct.saleDefault,
-          timeStartSale: result.data.infoProduct.timeStartSale,
-          timeEndSale: result.data.infoProduct.timeEndSale,
-          data: result.data,
-        },
-        true
-      )
-    );
+    try {
+      const result = await productApi.getCombineProductInfoProduct(
+        idProduct,
+        headers
+      );
+      dispatch(
+        loadInfoEditLineProduct(
+          {
+            lineProduct: result.data.product.lineProduct,
+            image: result.data.product.imageProduct,
+            ram: result.data.product.ramProduct,
+            rom: result.data.product.memoryProduct,
+            color: result.data.product.imageProduct.colorProduct,
+            sale: result.data.infoProduct.sale,
+            priceInput: result.data.infoProduct.priceInput,
+            priceOutput: result.data.infoProduct.priceOutput,
+            amountInput: 0,
+            saleDefault: result.data.infoProduct.saleDefault,
+            timeStartSale: result.data.infoProduct.timeStartSale,
+            timeEndSale: result.data.infoProduct.timeEndSale,
+            data: result.data,
+          },
+          true
+        )
+      );
+    } catch (error) {
+      throw error;
+    }
   };
 };
 

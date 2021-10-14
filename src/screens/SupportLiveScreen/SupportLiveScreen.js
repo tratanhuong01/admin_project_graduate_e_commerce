@@ -20,15 +20,19 @@ function SupportLiveScreen(props) {
     //
     let unmounted = false;
     async function fetch() {
-      const result = await api(
-        `messages/${user.id}`,
-        "GET",
-        Object.assign(headers, {
-          "Access-Control-Allow-Origin": "*",
-        })
-      );
-      if (unmounted) return;
-      setMessagesData(result.data);
+      try {
+        const result = await api(
+          `messages/${user.id}`,
+          "GET",
+          Object.assign(headers, {
+            "Access-Control-Allow-Origin": "*",
+          })
+        );
+        if (unmounted) return;
+        setMessagesData(result.data);
+      } catch (error) {
+        throw error;
+      }
     }
     fetch();
     return () => {

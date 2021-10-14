@@ -14,19 +14,23 @@ export const handleCategory = (data) => {
 export const searchCategoryRequest = (data, headers) => {
   return async (dispatch) => {
     const { table, keyword } = data;
-    const result1 = await api(
-      `${table}All/search/?keyword=${keyword}`,
-      "GET",
-      null,
-      headers
-    );
-    const result2 = await api(
-      `${table}/search/?keyword=${keyword}&offset=${0}&limit=${10}`,
-      "GET",
-      null,
-      headers
-    );
-    dispatch(loadListCategory(result2.data, result1.data.length));
+    try {
+      const result1 = await api(
+        `${table}All/search/?keyword=${keyword}`,
+        "GET",
+        null,
+        headers
+      );
+      const result2 = await api(
+        `${table}/search/?keyword=${keyword}&offset=${0}&limit=${10}`,
+        "GET",
+        null,
+        headers
+      );
+      dispatch(loadListCategory(result2.data, result1.data.length));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -40,24 +44,28 @@ export const loadListCategory = (list, length) => {
 
 export const loadListCategoryRequest = (data, params, status, headers) => {
   return async (dispatch) => {
-    const result1 = await api(
-      `${data}${params ? params.limit : ""}`,
-      "GET",
-      null,
-      headers
-    );
-    const result2 = await api(
-      `${data}All${params ? params.full : ""}`,
-      "GET",
-      null,
-      headers
-    );
-    dispatch(
-      loadListCategory(
-        result1.data,
-        status ? result2.data : result2.data.length
-      )
-    );
+    try {
+      const result1 = await api(
+        `${data}${params ? params.limit : ""}`,
+        "GET",
+        null,
+        headers
+      );
+      const result2 = await api(
+        `${data}All${params ? params.full : ""}`,
+        "GET",
+        null,
+        headers
+      );
+      dispatch(
+        loadListCategory(
+          result1.data,
+          status ? result2.data : result2.data.length
+        )
+      );
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -77,24 +85,28 @@ export const loadListCategoryConnectRequest = (
       });
     if (sorter) stringQuery += `&${sorter.query}`;
     if (search) stringQuery += `&keyword=${search}`;
-    const result1 = await api(
-      `${data}${params ? params.limit : ""}${stringQuery}`,
-      "GET",
-      null,
-      headers
-    );
-    const result2 = await api(
-      `${data}All${params ? params.full : ""}${stringQuery}`,
-      "GET",
-      null,
-      headers
-    );
-    dispatch(
-      loadListCategory(
-        result1.data,
-        status ? result2.data : result2.data.length
-      )
-    );
+    try {
+      const result1 = await api(
+        `${data}${params ? params.limit : ""}${stringQuery}`,
+        "GET",
+        null,
+        headers
+      );
+      const result2 = await api(
+        `${data}All${params ? params.full : ""}${stringQuery}`,
+        "GET",
+        null,
+        headers
+      );
+      dispatch(
+        loadListCategory(
+          result1.data,
+          status ? result2.data : result2.data.length
+        )
+      );
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -106,14 +118,18 @@ export const resetCategory = () => {
 
 export const loadPaginationRequest = (data, headers) => {
   return async (dispatch) => {
-    const result = await api(
-      `${data.table}s/${data.index * 10}/10`,
-      "GET",
-      null,
-      headers
-    );
-    dispatch(loadPagination(result.data, data.index));
-    document.getElementById("contentRight").scrollTo(0, 0);
+    try {
+      const result = await api(
+        `${data.table}s/${data.index * 10}/10`,
+        "GET",
+        null,
+        headers
+      );
+      dispatch(loadPagination(result.data, data.index));
+      document.getElementById("contentRight").scrollTo(0, 0);
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -127,14 +143,18 @@ export const loadPaginationModalRequest = (data, headers) => {
       });
     if (sorter) stringQuery += `&${sorter.query}`;
     if (search) stringQuery += `&keyword=${search}`;
-    const result = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
-      false,
-      headers
-    );
-    dispatch(loadPagination(result.data, data.index));
-    document.getElementById("contentRight").scrollTo(0, 0);
+    try {
+      const result = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
+        false,
+        headers
+      );
+      dispatch(loadPagination(result.data, data.index));
+      document.getElementById("contentRight").scrollTo(0, 0);
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -176,7 +196,11 @@ export const deleteCategoryRequest = (list, table, data, headers) => {
   return async (dispatch) => {
     for (let index = 0; index < list.length; index++) {
       const element = list[index];
-      await api(`${table}`, "DELETE", element, headers);
+      try {
+        await api(`${table}`, "DELETE", element, headers);
+      } catch (error) {
+        throw error;
+      }
     }
     dispatch(removeItemChooseAll());
     if (data) {
@@ -207,7 +231,11 @@ export const addCategoryRequest = (
   headers
 ) => {
   return async (dispatch) => {
-    await crudApi.addData(obj, status ? `${table}s` : table, headers);
+    try {
+      await crudApi.addData(obj, status ? `${table}s` : table, headers);
+    } catch (error) {
+      throw error;
+    }
     if (status)
       dispatch(
         loadListCategoryConnectRequest(
@@ -231,12 +259,16 @@ export const resetIndexCategory = () => {
 export const updateStatusCategoryRequest = (data, headers) => {
   return async (dispatch) => {
     const { table, item, query, status, filterData } = data;
-    await crudApi.updateCategory(
-      table + "s",
-      { id: item.id, value: item.data },
-      item.column,
-      headers
-    );
+    try {
+      await crudApi.updateCategory(
+        table + "s",
+        { id: item.id, value: item.data },
+        item.column,
+        headers
+      );
+    } catch (error) {
+      throw error;
+    }
     dispatch(
       loadListCategoryConnectRequest(
         table + "Filters",

@@ -31,7 +31,6 @@ function ProductRightFooter(props) {
       </button>
       <button
         onClick={() => {
-          console.log(products);
           if (products.index === 5) add.addProduct(products, headers, dispatch);
           else
             dispatch(

@@ -18,20 +18,24 @@ export const addFilterCategoryRequest = (data, headers) => {
         stringQuery += "&" + element.query;
       });
     if (sorter) stringQuery += `&${sorter.query}`;
-    const result_2 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}`,
-      true,
-      headers
-    );
-    const result_1 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&offset=${0}&limit=10`,
-      false,
-      headers
-    );
-    dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
-    dispatch(updateFilterCategory(clone));
+    try {
+      const result_2 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}`,
+        true,
+        headers
+      );
+      const result_1 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&offset=${0}&limit=10`,
+        false,
+        headers
+      );
+      dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
+      dispatch(updateFilterCategory(clone));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -52,41 +56,49 @@ export const removeFilterCategoryRequest = (data, headers) => {
         stringQuery += "&" + element.query;
       });
     if (sorter) stringQuery += `&${sorter.query}`;
-    const result_2 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}`,
-      true,
-      headers
-    );
-    const result_1 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
-      false,
-      headers
-    );
+    try {
+      const result_2 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}`,
+        true,
+        headers
+      );
+      const result_1 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
+        false,
+        headers
+      );
 
-    dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
-    dispatch(updateFilterCategory(clone));
+      dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
+      dispatch(updateFilterCategory(clone));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
 export const resetFiltersAllRequest = (data, headers) => {
   return async (dispatch) => {
     const { table, index } = data;
-    const result_1 = await filterApi.filters(
-      table,
-      `?${table}Type=0&offset=${index}&limit=10`,
-      false,
-      headers
-    );
-    const result_2 = await filterApi.filters(
-      table,
-      `?${table}Type=0`,
-      false,
-      headers
-    );
-    dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
-    dispatch(updateFilterCategory([]));
+    try {
+      const result_1 = await filterApi.filters(
+        table,
+        `?${table}Type=0&offset=${index}&limit=10`,
+        false,
+        headers
+      );
+      const result_2 = await filterApi.filters(
+        table,
+        `?${table}Type=0`,
+        false,
+        headers
+      );
+      dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
+      dispatch(updateFilterCategory([]));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -98,20 +110,24 @@ export const addSorterCategoryRequest = (data, headers) => {
       filters.forEach((element) => {
         stringQuery += "&" + element.query;
       });
-    const result_1 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&${item.query}&offset=${index}&limit=10`,
-      false,
-      headers
-    );
-    const result_2 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&${item.query}`,
-      true,
-      headers
-    );
-    dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
-    dispatch(updateSorterCategory(item));
+    try {
+      const result_1 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&${item.query}&offset=${index}&limit=10`,
+        false,
+        headers
+      );
+      const result_2 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&${item.query}`,
+        true,
+        headers
+      );
+      dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
+      dispatch(updateSorterCategory(item));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -123,20 +139,24 @@ export const removeSorterCategoryRequest = (data, headers) => {
       filters.forEach((element) => {
         stringQuery += "&" + element.query;
       });
-    const result_1 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
-      false,
-      headers
-    );
-    const result_2 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}`,
-      true,
-      headers
-    );
-    dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
-    dispatch(updateSorterCategory(null));
+    try {
+      const result_1 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
+        false,
+        headers
+      );
+      const result_2 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}`,
+        true,
+        headers
+      );
+      dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
+      dispatch(updateSorterCategory(null));
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
@@ -149,21 +169,25 @@ export const searchCategoryRequest = (data, headers) => {
         stringQuery += "&" + element.query;
       });
     if (sorter) stringQuery += `&${sorter.query}`;
-    const result_1 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&keyword=${keyword}&offset=${index}&limit=10`,
-      false,
-      headers
-    );
-    const result_2 = await filterApi.filters(
-      table,
-      `?${table}Type=0${stringQuery}&keyword=${keyword}`,
-      true,
-      headers
-    );
-    dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
-    dispatch(updateSearchCategory(keyword));
-    dispatch({ type: Types.LOADING_CATEGORY, loading: false });
+    try {
+      const result_1 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&keyword=${keyword}&offset=${index}&limit=10`,
+        false,
+        headers
+      );
+      const result_2 = await filterApi.filters(
+        table,
+        `?${table}Type=0${stringQuery}&keyword=${keyword}`,
+        true,
+        headers
+      );
+      dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
+      dispatch(updateSearchCategory(keyword));
+      dispatch({ type: Types.LOADING_CATEGORY, loading: false });
+    } catch (error) {
+      throw error;
+    }
   };
 };
 

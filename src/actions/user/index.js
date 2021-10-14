@@ -3,21 +3,29 @@ import * as userApi from "../../api/userApi";
 
 export const loadInfoUserRequest = (headers) => {
   return async (dispatch) => {
-    const result = await userApi.getUserFromJWT(headers);
-    if (result.data) {
-      dispatch(loginAccount(result.data));
-      dispatch(updateHeaders(result.data.token));
+    try {
+      const result = await userApi.getUserFromJWT(headers);
+      if (result.data) {
+        dispatch(loginAccount(result.data));
+        dispatch(updateHeaders(result.data.token));
+      }
+    } catch (error) {
+      throw error;
     }
   };
 };
 
 export const loginAccountRequest = (data, headers) => {
   return async (dispatch) => {
-    const result = await userApi.checkLoginJWT(data, headers);
-    if (result.data) {
-      dispatch(loginAccount(result.data));
-      dispatch(updateHeaders(result.data.token));
-    } else alert("Sai thông tin đăng nhập !!");
+    try {
+      const result = await userApi.checkLoginJWT(data, headers);
+      if (result.data) {
+        dispatch(loginAccount(result.data));
+        dispatch(updateHeaders(result.data.token));
+      } else alert("Sai thông tin đăng nhập !!");
+    } catch (error) {
+      throw error;
+    }
   };
 };
 
