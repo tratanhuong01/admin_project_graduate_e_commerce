@@ -4,6 +4,7 @@ import * as orderApi from "../../../api/orderApi";
 import CloseModal from "../../CloseModal/CloseModal";
 import ContentOrderLeft from "./ContentOrderLeft/ContentOrderLeft";
 import ContentOrderRight from "./ContentOrderRight/ContentOrderRight";
+import FooterContentOrder from "./FooterContentOrder/FooterContentOrder";
 
 function ModalOrders(props) {
   //
@@ -38,14 +39,23 @@ function ModalOrders(props) {
         </div>
         {order ? (
           <div
-            className="w-full flex overflow-y-auto scrollbar-css "
+            className="w-full"
             style={{
               height: "calc(100% - 60px )",
               maxHeight: "calc(100% - 60px )",
             }}
           >
-            <ContentOrderLeft order={order} />
-            <ContentOrderRight order={order} />
+            <div
+              className="w-full flex overflow-y-auto scrollbar-css "
+              style={{
+                height: "calc(100% - 60px )",
+                maxHeight: "calc(100% - 60px )",
+              }}
+            >
+              <ContentOrderLeft order={order} />
+              <ContentOrderRight order={order} />
+            </div>
+            <FooterContentOrder order={order} />
           </div>
         ) : (
           ""

@@ -48,6 +48,7 @@ function SupportLiveScreen(props) {
         const result = await api(
           `messages/${user.id}`,
           "GET",
+          null,
           Object.assign(headers, {
             "Access-Control-Allow-Origin": "*",
           })

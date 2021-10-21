@@ -13,6 +13,14 @@
           "query": "true=true"
         },
         {
+          "id": -2,
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Từ chối",
+          "type": -2,
+          "query": "status=-2"
+        },
+        {
           "id": 0,
           "idFilter": "ORDER_FILTER_1",
           "nameFilter": "Trạng thái",
@@ -160,6 +168,12 @@
   "condition": {
     "status": [
       {
+        "id": -1,
+        "bgColor": "bg-red-600",
+        "name": "Từ chối",
+        "type": -2
+      },
+      {
         "id": 0,
         "name": "Đã hủy",
         "bgColor": "bg-gray-600",
@@ -191,8 +205,8 @@
       },
       {
         "id": 5,
-        "bgColor": "bg-green-600",
-        "name": "Thất bại",
+        "bgColor": "bg-red-600",
+        "name": "Không thành công",
         "type": 4
       }
     ]

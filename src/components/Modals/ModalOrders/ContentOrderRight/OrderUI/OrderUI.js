@@ -44,39 +44,41 @@ function OrderUI(props) {
           <br />
           <div className="w-full text-sm my-2  text-gray-700">
             <table id="table__orders">
-              <tr className="p-2">
-                <th>STT</th>
-                <th>Tên sản phẩm</th>
-                <th>SL</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
-              </tr>
-              {order.billDetailList.map((item, index) => {
-                return (
-                  <tr key={index} className="p-2">
-                    <td>{index + 1}</td>
-                    <td>
-                      <div
-                        className="text-sm whitespace-normal"
-                        style={{ width: "270px", maxWidth: "270px" }}
-                      >
-                        {item.productFull.nameLineProduct}
-                      </div>
-                    </td>
-                    <td>{item.billDetail.amount}</td>
-                    <td>
-                      {new Intl.NumberFormat().format(item.billDetail.price)}
-                      <u>đ</u>
-                    </td>
-                    <td>
-                      {new Intl.NumberFormat().format(
-                        item.billDetail.price * item.billDetail.amount
-                      )}
-                      <u>đ</u>
-                    </td>
-                  </tr>
-                );
-              })}
+              <tbody>
+                <tr className="p-2">
+                  <th>STT</th>
+                  <th>Tên sản phẩm</th>
+                  <th>SL</th>
+                  <th>Đơn giá</th>
+                  <th>Thành tiền</th>
+                </tr>
+                {order.billDetailList.map((item, index) => {
+                  return (
+                    <tr key={index} className="p-2">
+                      <td>{index + 1}</td>
+                      <td>
+                        <div
+                          className="text-sm whitespace-normal"
+                          style={{ width: "270px", maxWidth: "270px" }}
+                        >
+                          {item.productFull.nameLineProduct}
+                        </div>
+                      </td>
+                      <td>{item.billDetail.amount}</td>
+                      <td>
+                        {new Intl.NumberFormat().format(item.billDetail.price)}
+                        <u>đ</u>
+                      </td>
+                      <td>
+                        {new Intl.NumberFormat().format(
+                          item.billDetail.price * item.billDetail.amount
+                        )}
+                        <u>đ</u>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
           <div

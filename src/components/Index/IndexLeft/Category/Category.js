@@ -161,11 +161,12 @@ function Category(props) {
       to: Config.SUPPORT_LIVE,
     },
   ];
-  const { match } = props;
+  const { match, show } = props;
   const [categoryCurrent, setCategoryCurrent] = useState(0);
   const showCategorys = category.map((item, index) => {
     return (
       <ItemCategory
+        showData={show}
         item={item}
         key={index}
         id={categoryCurrent}

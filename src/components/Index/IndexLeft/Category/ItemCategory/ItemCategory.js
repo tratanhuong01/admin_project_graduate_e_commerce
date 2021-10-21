@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function ItemCategory(props) {
   //
   const location = useLocation();
-  const { item, setCategoryCurrent, match } = props;
+  const { item, setCategoryCurrent, match, showData } = props;
   const history = useHistory();
   const dispatch = useDispatch();
   const [show, setShow] = useState({
@@ -46,7 +46,9 @@ function ItemCategory(props) {
         }`}
       >
         <span className={`${item.icon} text-xl mr-3 flex `}></span>
-        <span className="hidden lg:flex">{item.name}</span>
+        <span className={`${showData ? "hidden lg:flex" : "hidden"}`}>
+          {item.name}
+        </span>
         <span
           className={`${show.icon} absolute top-3.5 text-xl right-3`}
         ></span>

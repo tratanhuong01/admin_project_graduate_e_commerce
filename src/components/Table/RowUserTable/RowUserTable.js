@@ -61,7 +61,12 @@ function RowUserTable(props) {
           typeData={!item.amountOrder ? 0 : 1}
         />
       </td>
-
+      <td className="p-2">
+        <ContentColor
+          condition={feature.condition.isRegister}
+          typeData={item.isRegister}
+        />
+      </td>
       <td className="p-2">{item.timeCreated}</td>
     </RowTableMain>
   );

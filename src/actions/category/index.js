@@ -233,20 +233,20 @@ export const addCategoryRequest = (
   return async (dispatch) => {
     try {
       await crudApi.addData(obj, status ? `${table}s` : table, headers);
+      if (status)
+        dispatch(
+          loadListCategoryConnectRequest(
+            `${table}Filters`,
+            query,
+            status,
+            filters,
+            headers
+          )
+        );
+      else dispatch(loadListCategoryRequest(table, query, status, headers));
     } catch (error) {
       throw error;
     }
-    if (status)
-      dispatch(
-        loadListCategoryConnectRequest(
-          `${table}Filters`,
-          query,
-          status,
-          filters,
-          headers
-        )
-      );
-    dispatch(loadListCategoryRequest(table, query, status, headers));
   };
 };
 

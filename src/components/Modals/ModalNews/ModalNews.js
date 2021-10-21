@@ -24,10 +24,11 @@ function ModalNews(props) {
       : EditorState.createEmpty()
   );
   const [index, setIndex] = useState(0);
-  const { filters, headers } = useSelector((state) => {
+  const { filters, headers, user } = useSelector((state) => {
     return {
       filters: state.filters,
       headers: state.headers,
+      user: state.user,
     };
   });
   const {
@@ -64,24 +65,7 @@ function ModalNews(props) {
   const addNews = (dataForm) => {
     const news = {
       id: data ? data.id : null,
-      userNews: {
-        id: "2000000000",
-        firstName: "Trà",
-        lastName: "Writer",
-        birthday: "10-01-2045 00:00:00",
-        avatar: "https://cf.shopee.vn/file/e4e139c5df5bff16e526b4fe1c31e7e8_tn",
-        sex: "Nam",
-        email: "adminnews@gmail.com",
-        phone: "0354114665",
-        password: "8F4B4F8D10B7606B8F65F50259A4B3AC",
-        codeEmail: "",
-        codePhone: "",
-        isVerifyEmail: 1,
-        isVerifyPhone: 1,
-        type: 1,
-        timeCreated: "08-11-2021 13:58:01",
-        status: 0,
-      },
+      userNews: data ? data.userNews : user,
       categoryNews: dataForm.categoryNews,
       title: dataForm.title,
       thumbnail: dataForm.thumbnailLink,

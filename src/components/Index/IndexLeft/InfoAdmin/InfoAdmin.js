@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function InfoAdmin(props) {
+function InfoAdmin({ show }) {
   //
   const user = useSelector((state) => state.user);
   //
@@ -15,7 +15,7 @@ function InfoAdmin(props) {
             alt=""
           />
         </div>
-        <div className="hidden xl:flex items-center">
+        <div className={`${show ? "hidden xl:flex" : "hidden"} items-center`}>
           <div className="flex flex-wrap items-center pl-4">
             <p className="font-bold">{`${user.firstName} ${user.lastName}`}</p>
             <p className="w-full">{user.userRole.nameRole}</p>

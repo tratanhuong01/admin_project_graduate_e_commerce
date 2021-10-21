@@ -5,13 +5,17 @@ import Logo from "../../../../components/Index/IndexLeft/Logo/Logo";
 
 function IndexLeft(props) {
   //
-  // const { match } = props;
+  const { show } = props;
   //
   return (
-    <div className="w-32 lg:w-60 xl:w-1/5 shadow-lg h-screen max-h-full overflow-y-auto  scrollbar-css">
-      <Logo />
-      <InfoAdmin />
-      <Category />
+    <div
+      className={`w-32 ${
+        show ? " lg:w-60 xl:w-1/5 " : ""
+      } shadow-lg h-screen max-h-full overflow-y-auto  scrollbar-css`}
+    >
+      <Logo show={show} />
+      <InfoAdmin show={show} />
+      <Category show={show} />
     </div>
   );
 }

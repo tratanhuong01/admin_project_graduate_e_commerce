@@ -5,9 +5,13 @@ import category from "../../../../routes/category";
 
 function IndexRight(props) {
   //
+  const { show } = props;
   //
   return (
-    <div className="w-4/5 h-screen ">
+    <div
+      className={`${show ? "w-4/5 " : ""} h-screen`}
+      style={show ? {} : { width: "calc(100% - 128px)" }}
+    >
       <HeaderTop />
       <Switch>
         {category.map((route, index) => {
