@@ -2,7 +2,7 @@ import React from "react";
 import image_add_lazing from "../../../assets/images/image_add_lazing.jpg";
 function FileUpload(props) {
   //
-  const { file, setFile } = props;
+  const { file, setFile, index } = props;
   //
   return (
     <>
@@ -22,7 +22,7 @@ function FileUpload(props) {
       </div>
       <input
         type="file"
-        id={`fileUploadSlide`}
+        id={`fileUploadSlide__${index}`}
         className="hidden"
         onChange={(event) => {
           if (event.target.files.length > 0)
@@ -48,7 +48,7 @@ function FileUpload(props) {
         />
       ) : (
         <label
-          htmlFor={`fileUploadSlide`}
+          htmlFor={`fileUploadSlide__${index}`}
           className="w-full my-3 flex justify-center"
         >
           <img

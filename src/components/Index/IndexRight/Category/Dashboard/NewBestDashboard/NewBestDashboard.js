@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function NewBestDashboard(props) {
   //
-  const { label, type, content, attribute } = props;
+  const { label, type, content, attribute, specification, Component } = props;
   const [data, setData] = useState([]);
   const headers = useSelector((state) => state.headers);
   useEffect(() => {
@@ -43,6 +43,8 @@ function NewBestDashboard(props) {
         {data.map((item, index) => {
           return (
             <ItemNewBest
+              specification={specification}
+              Component={Component}
               key={index}
               item={item}
               content={content}

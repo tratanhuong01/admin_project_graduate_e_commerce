@@ -2,7 +2,7 @@ import React from "react";
 
 function ItemNewBest(props) {
   //
-  const { content, item, attribute } = props;
+  const { content, item, attribute, specification, Component } = props;
   //
   return (
     <li className="w-full px-2.5 pb-2.5 flex">
@@ -18,9 +18,14 @@ function ItemNewBest(props) {
         <br />
       </div>
       <div className="pl-3">
-        <p className="text-gray-600 pb-0.5 font-bold break-all whitespace-nowrap">
-          {content(item)}
-        </p>
+        <div className="text-gray-600 font-semibold break-all whitespace-nowrap flex items-center">
+          <div>{content(item)}</div>
+          {specification && (
+            <div className="ml-1">
+              <Component status={item[specification]} />
+            </div>
+          )}
+        </div>
         <p className="text-sm text-gray-600">{item.timeCreated}</p>
       </div>
     </li>

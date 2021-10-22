@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ItemCategory from "./ItemCategory/ItemCategory";
 import * as Config from "../../../../constants/Config";
+import { useSelector } from "react-redux";
 function Category(props) {
   const category = [
     {
@@ -10,6 +11,7 @@ function Category(props) {
       type: "dashboard",
       child: [],
       to: Config.DASHBOARD,
+      permission: ["ADMINSTAFF", "LEADER"],
     },
     {
       id: 2,
@@ -17,6 +19,7 @@ function Category(props) {
       icon: "bx bx-user",
       child: [],
       to: Config.USER,
+      permission: ["ADMINSTAFF", "LEADER"],
     },
     {
       id: 3,
@@ -26,6 +29,7 @@ function Category(props) {
       label: "Quản lí đơn hàng",
       child: [],
       to: Config.BILL,
+      permission: ["ADMINSTAFF", "LEADER", "SUPPORTER"],
     },
     {
       id: 4,
@@ -89,6 +93,7 @@ function Category(props) {
           to: Config.GROUP_FILTER_PRODUCT,
         },
       ],
+      permission: ["ADMINSTAFF", "LEADER"],
     },
     {
       id: 5,
@@ -96,6 +101,7 @@ function Category(props) {
       icon: "bx bx-gift",
       child: [],
       to: "ma-giam-gia",
+      permission: ["ADMINSTAFF", "LEADER"],
     },
     {
       id: 6,
@@ -104,11 +110,13 @@ function Category(props) {
       type: "config",
       child: [],
       to: "thiet-lap",
+      permission: ["LEADER"],
     },
     {
       id: 7,
       name: "Danh mục",
       icon: "bx bxs-category-alt",
+      permission: ["ADMINSTAFF", "LEADER"],
       child: [
         {
           id: 0,
@@ -143,6 +151,7 @@ function Category(props) {
       type: "news",
       child: [],
       to: Config.NEWS_LIST,
+      permission: ["ADMINSTAFF", "LEADER", "WRITER"],
     },
     {
       id: 9,
@@ -151,6 +160,7 @@ function Category(props) {
       type: "contact",
       child: [],
       to: "lien-he",
+      permission: ["ADMINSTAFF", "LEADER"],
     },
     {
       id: 10,
@@ -159,12 +169,17 @@ function Category(props) {
       type: "support",
       child: [],
       to: Config.SUPPORT_LIVE,
+      permission: ["SUPPORTER"],
     },
   ];
+  const user = useSelector((state) => state.user);
   const { match, show } = props;
   const [categoryCurrent, setCategoryCurrent] = useState(0);
   const showCategorys = category.map((item, index) => {
-    return (
+    const pos = item.permission.findIndex(
+      (dt) => dt === (user.userRole ? user.userRole.id : "")
+    );
+    return pos !== -1 ? (
       <ItemCategory
         showData={show}
         item={item}
@@ -173,6 +188,8 @@ function Category(props) {
         setCategoryCurrent={setCategoryCurrent}
         match={match}
       />
+    ) : (
+      ""
     );
   });
 

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import ItemDashboarEveryDay from "./ItemDashboarEveryDay/ItemDashboarEveryDay";
 import * as dashboardApi from "../../../../../api/dashboardApi";
 import NewBestDashboard from "./NewBestDashboard/NewBestDashboard";
-import ChartProductSold from "./Chart/ChartProductSold/ChartProductSold";
-import ChartRevenue from "./Chart/ChartRevenue/ChartRevenue";
 import { useSelector } from "react-redux";
-
+import ChartData from "./Chart/ChartData";
+import feature from "../../../../../screens/OrderScreen/feature";
+import ContentColor from "../../General/RowTable/ContentColor/ContentColor";
 function Dashboard(props) {
   //
   const [infos, setInfos] = useState([]);
@@ -65,24 +65,6 @@ function Dashboard(props) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const statusBill = (status) => {
-    switch (status) {
-      case -1:
-        return "Đã hủy";
-      case 0:
-        return "Chưa xác nhận";
-      case 1:
-        return "Đã xác nhận - Chờ gửi hàng";
-      case 2:
-        return "Đang giao";
-      case 3:
-        return "Thành công";
-      case 4:
-        return "Thất bại";
-      default:
-        return "...";
-    }
-  };
   //
   return (
     <div
@@ -96,8 +78,16 @@ function Dashboard(props) {
         })}
       </ul>
       <div className="w-full flex my-4 -ml-3 xl:flex-row flex-col">
-        <ChartProductSold />
-        <ChartRevenue />
+        <ChartData
+          url="getProductSixMonthCurrent"
+          nameChart="Biểu đồ sản phẩm trong 6 tháng gần đây"
+          label="Tổng sản phẩm trong tháng"
+        />
+        <ChartData
+          url="getBillSixMonthCurrent"
+          nameChart="Biểu đồ hóa đơn trong 6 tháng gần đây"
+          label="Tổng hóa đơn trong tháng"
+        />
       </div>
       <div className="w-full flex py-5 flex-wrap md:flex-col xl:flex-row">
         <NewBestDashboard
@@ -112,7 +102,15 @@ function Dashboard(props) {
           attribute={() =>
             "https://image.flaticon.com/icons/png/512/552/552791.png"
           }
-          content={(bill) => `#${bill.id} ${statusBill(bill.status)}`}
+          content={(bill) => `#${bill.id}`}
+          specification={"status"}
+          Component={({ status }) => (
+            <ContentColor
+              onClick={() => ""}
+              condition={feature.condition.status}
+              typeData={status}
+            />
+          )}
         />
         <NewBestDashboard
           label={"Người dùng đăng kí gần đây"}

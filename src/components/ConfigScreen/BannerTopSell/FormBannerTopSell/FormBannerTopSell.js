@@ -103,6 +103,7 @@ function FormBannerTopSell(props) {
         file={fileLeft}
         setFile={setFileLeft}
         type="Left"
+        index="0"
         isShow={isShow}
         setIsShow={setIsShow}
       />
@@ -110,6 +111,7 @@ function FormBannerTopSell(props) {
         file={fileRight}
         setFile={setFileRight}
         type="Right"
+        index="1"
         isShow={isShow}
         setIsShow={setIsShow}
       />
