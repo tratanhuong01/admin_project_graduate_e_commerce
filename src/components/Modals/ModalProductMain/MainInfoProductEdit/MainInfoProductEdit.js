@@ -75,7 +75,7 @@ function MainInfoProductEdit(props) {
   };
   return (
     <div
-      className="w-full pt-16 px-3"
+      className="w-full px-3"
       style={{ height: "550px", maxHeight: "550px" }}
     >
       <ColorMemoryRamEdit />

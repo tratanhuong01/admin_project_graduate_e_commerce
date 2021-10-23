@@ -72,7 +72,7 @@ function MainInfoProduct(props) {
   };
   return (
     <div
-      className="w-full mx-auto overflow-y-auto scrollbar-css pt-16 px-3"
+      className="w-full mx-auto overflow-y-auto scrollbar-css px-3"
       style={{
         height: 600,
         maxHeight: 600,

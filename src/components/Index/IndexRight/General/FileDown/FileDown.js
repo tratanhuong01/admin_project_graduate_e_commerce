@@ -8,7 +8,7 @@ function FileDown(props) {
     <>
       <div
         onClick={() => setShow(!show)}
-        className="w-40 p-3 mr-5 font-semibold flex bg-white cursor-pointer relative"
+        className="w-40 p-3 mr-5 font-semibold flex bg-white cursor-pointer relative hidden"
       >
         <p className="items-center">Chọn dạng file</p>
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
@@ -23,7 +23,7 @@ function FileDown(props) {
           </div>
         )}
       </div>
-      <button className="px-5 py-2 bg-organce  text-white font-bold rounded-lg">
+      <button className="px-5 py-2 bg-organce  text-white font-bold rounded-lg hidden">
         <i className="bx bxs-download mr-3"></i>Tải xuống
       </button>
     </>

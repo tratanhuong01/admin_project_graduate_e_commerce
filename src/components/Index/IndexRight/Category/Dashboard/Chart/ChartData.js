@@ -27,7 +27,7 @@ function ChartData({ url, nameChart, label }) {
     return () => {
       unmounted = true;
     };
-    //
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="w-full lg:w-1/2 px-4">

@@ -67,6 +67,9 @@ const myReducer = (state = initialState, action) => {
         />
       );
       return { ...state };
+    case Types.SET_LOADING_MODAL:
+      state.loading = action.loading;
+      return { ...state };
     default:
       return state;
   }

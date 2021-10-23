@@ -3,7 +3,6 @@ import React from "react";
 function ItemUserChatLeft(props) {
   //
   const { message, setIndex, index, indexCurrent } = props;
-
   //
   return (
     <>
@@ -22,7 +21,13 @@ function ItemUserChatLeft(props) {
         </div>
         <div className="flex flex-col pl-5">
           <p className="font-semibold mb-1">{message.groupChat.fullName}</p>
-          <p className="text-blue-500 font-semibold text-sm">
+          <p
+            className={`${
+              message.messagesList[message.messagesList.length - 1].isRead === 1
+                ? "text-gray-700"
+                : "text-blue-500"
+            } font-semibold text-sm`}
+          >
             {message.messagesList[
               message.messagesList.length - 1
             ].content.substring(0, 40) + "..."}

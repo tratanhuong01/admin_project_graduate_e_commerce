@@ -6,6 +6,7 @@ import api from "../../../../../Utils/api";
 
 export const addProduct = async (products, headers, dispatch) => {
   let data = products;
+  dispatch(modalsAction.setLoadingModal(true));
   data.descriptions = draftToHtml(
     convertToRaw(data.descriptions.getCurrentContent())
   );
@@ -95,60 +96,62 @@ const addImageOther = async (lineProduct, products, headers) => {
   }
 };
 const addProductAttribute = async (lineProduct, products, headers) => {
-  for (const property in products.infoAttribute) {
-    if (products.infoAttribute[property].list.length > 0) {
-      for (
-        let index = 0;
-        index < products.infoAttribute[property].list.length;
-        index++
-      ) {
-        const element = products.infoAttribute[property].list[index];
-        await api(
-          "attributeProducts",
-          "POST",
-          {
-            id: element.id,
-            lineProductAttribute: lineProduct,
-            attributeProduct: element.data,
-            valueAttributeProduct: element.value,
-          },
-          Object.assign(headers, {
-            "Content-Type": "application/json",
-          })
-        );
-      }
-    }
-  }
-  for (const property in products.infoAttribute) {
-    for (
-      let i = 0;
-      i < products.listData.infoAttribute[property].list.length;
-      i++
-    ) {
-      let count = 0;
-      for (let j = 0; j < products.infoAttribute[property].list.length; j++) {
-        if (
-          products.listData.infoAttribute[property].list[i].id ===
-          products.infoAttribute[property].list[j].id
+  if (products.infoAttribute) {
+    for (const property in products.infoAttribute) {
+      if (products.infoAttribute[property].list.length > 0) {
+        for (
+          let index = 0;
+          index < products.infoAttribute[property].list.length;
+          index++
         ) {
-          count++;
+          const element = products.infoAttribute[property].list[index];
+          await api(
+            "attributeProducts",
+            "POST",
+            {
+              id: element.id,
+              lineProductAttribute: lineProduct,
+              attributeProduct: element.data,
+              valueAttributeProduct: element.value,
+            },
+            Object.assign(headers, {
+              "Content-Type": "application/json",
+            })
+          );
         }
       }
-      if (count === 0) {
-        const element = products.listData.infoAttribute[property].list[i];
-        await api(
-          "attributeProducts",
-          "DELETE",
-          {
-            id: element.id,
-            lineProductAttribute: lineProduct,
-            attributeProduct: element.data,
-            valueAttributeProduct: element.value,
-          },
-          Object.assign(headers, {
-            "Content-Type": "application/json",
-          })
-        );
+    }
+    for (const property in products.infoAttribute) {
+      for (
+        let i = 0;
+        i < products.listData.infoAttribute[property].list.length;
+        i++
+      ) {
+        let count = 0;
+        for (let j = 0; j < products.infoAttribute[property].list.length; j++) {
+          if (
+            products.listData.infoAttribute[property].list[i].id ===
+            products.infoAttribute[property].list[j].id
+          ) {
+            count++;
+          }
+        }
+        if (count === 0) {
+          const element = products.listData.infoAttribute[property].list[i];
+          await api(
+            "attributeProducts",
+            "DELETE",
+            {
+              id: element.id,
+              lineProductAttribute: lineProduct,
+              attributeProduct: element.data,
+              valueAttributeProduct: element.value,
+            },
+            Object.assign(headers, {
+              "Content-Type": "application/json",
+            })
+          );
+        }
       }
     }
   }

@@ -34,3 +34,10 @@ export const openModalNews = (newData) => {
     newData,
   };
 };
+
+export const setLoadingModal = (loading) => {
+  return {
+    type: Types.SET_LOADING_MODAL,
+    loading,
+  };
+};

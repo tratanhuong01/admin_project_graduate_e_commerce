@@ -3,7 +3,7 @@ import SettingChatPopup from "./SettingChatPopup/SettingChatPopup";
 
 function ContentChatTop(props) {
   //
-  const { message } = props;
+  const { message, send, setSend } = props;
   const [showInput, setShowInput] = useState(false);
   const [showSetting, setShowSetting] = useState(false);
   //
@@ -42,7 +42,14 @@ function ContentChatTop(props) {
           onClick={() => setShowSetting(!showSetting)}
           className="fas fa-cog text-2xl ml-6 mb-0.5 cursor-pointer"
         />
-        {showSetting && <SettingChatPopup />}
+        {showSetting && (
+          <SettingChatPopup
+            setSend={setSend}
+            send={send}
+            groupChat={message.groupChat}
+            setShowSetting={setShowSetting}
+          />
+        )}
       </div>
     </div>
   );

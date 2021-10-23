@@ -23,7 +23,7 @@ function ModalProduct(props) {
       title={`${data ? "Sửa" : "Thêm"} dòng sản phẩm`}
       addEvent={() => dispatch(productsAction.resetDataProductState())}
     >
-      <div className="w-full pt-16 px-2">
+      <div className="w-full pr-3">
         <ModalProductLeft />
         <ModalProductRight />
       </div>

@@ -16,7 +16,7 @@ function SupportLiveRight(props) {
   //
   return (
     <div className="w-2/3 h-full flex pl-4 flex-col">
-      <ContentChatTop message={message} />
+      <ContentChatTop message={message} setSend={setSend} send={send} />
       <ContentChatRight
         ref={ref}
         message={message}
