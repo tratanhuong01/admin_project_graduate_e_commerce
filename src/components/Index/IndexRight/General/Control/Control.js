@@ -5,15 +5,15 @@ import OrderBy from "./OrderBy/OrderBy";
 
 function Control(props) {
   //
-  const { data, table } = props;
+  const { data, table, params } = props;
   //
   return (
     <>
       <div className="w-full flex py-3">
-        <Filter filter={data.filter} table={table} />
-        <OrderBy orderBy={data.sorter} table={table} />
+        <Filter filter={data.filter} table={table} params={params} />
+        <OrderBy orderBy={data.sorter} table={table} params={params} />
       </div>
-      <DataFilterOrder table={table} />
+      <DataFilterOrder table={table} params={params} />
     </>
   );
 }

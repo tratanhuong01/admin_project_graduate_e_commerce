@@ -4,7 +4,7 @@ import Search from "../Search/Search";
 import * as filtersAction from "../../../../../../actions/filter/index";
 function OrderBy(props) {
   //
-  const { orderBy, table } = props;
+  const { orderBy, table, params } = props;
   const headers = useSelector((state) => state.headers);
   const [name, setName] = useState(orderBy[0].data[0].name);
   const [data, setData] = useState(orderBy[0]);
@@ -38,6 +38,7 @@ function OrderBy(props) {
                 table: table,
                 item,
                 index: 0,
+                params,
               },
               headers
             )
@@ -85,7 +86,7 @@ function OrderBy(props) {
           </div>
         )}
       </div>
-      <Search table={table} />
+      <Search table={table} params={params} />
     </div>
   );
 }

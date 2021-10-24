@@ -69,7 +69,7 @@ function Dashboard(props) {
   return (
     <div
       className="w-full p-5 bg-gray-100 overflow-y-auto scrollbar-css"
-      style={{ height: "685px", maxHeight: "685px" }}
+      style={{ height: "710px", maxHeight: "710px" }}
     >
       <p className="text-2xl font-bold pb-3">Tổng quan trong ngày</p>
       <ul className="w-full flex flex-wrap">

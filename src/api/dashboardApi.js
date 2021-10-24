@@ -6,7 +6,7 @@ export const getDashboardHeader = (headers) => {
 
 export const getUserNew = (type, limit, offset, headers) => {
   return api(
-    `getUserByTypeLimit/?type=${type}&limit=${limit}&offset=${offset}`,
+    `getUserByTypeLimit/?idRole=${type}&limit=${limit}&offset=${offset}`,
     "GET",
     null,
     headers

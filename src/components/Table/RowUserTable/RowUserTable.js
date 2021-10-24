@@ -22,7 +22,13 @@ function RowUserTable(props) {
       </td>
       <td className="p-2">{item.email}</td>
       <td className="p-2">{item.phone}</td>
-      <td className="p-2">{item.birthday.split(" ")[0]}</td>
+      <td className="p-2">
+        {item.birthday
+          ? item.birthday.split(" ").length > 0
+            ? item.birthday.split(" ")[0]
+            : ""
+          : ""}
+      </td>
       <td className="p-2">
         <ContentColor
           condition={feature.condition.isVerify}

@@ -15,7 +15,7 @@ function NewBestDashboard(props) {
     async function fetch() {
       switch (type) {
         case 0:
-          result = await dashboardApi.getUserNew(0, 5, 0, headers);
+          result = await dashboardApi.getUserNew("CUSTOMER", 5, 0, headers);
           break;
         case 1:
           result = await dashboardApi.getBillNew(5, 0, headers);

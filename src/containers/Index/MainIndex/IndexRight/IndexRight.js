@@ -8,10 +8,7 @@ function IndexRight(props) {
   const { show } = props;
   //
   return (
-    <div
-      className={`${show ? "w-4/5 " : ""} h-screen`}
-      style={show ? {} : { width: "calc(100% - 128px)" }}
-    >
+    <div className={`${show ? "w-4/5 " : ""} h-screen`}>
       <HeaderTop />
       <Switch>
         {category.map((route, index) => {

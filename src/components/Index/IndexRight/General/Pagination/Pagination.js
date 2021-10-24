@@ -3,7 +3,7 @@ import ItemPagination from "./ItemPagination/ItemPagination";
 
 function Pagination(props) {
   //
-  const { category, table, modal } = props;
+  const { category, table, modal, params } = props;
   let list = [];
   for (let index = 0; index < Math.ceil(category.length / 10); index++)
     list.push(index);
@@ -14,6 +14,7 @@ function Pagination(props) {
         {list.map((item, index) => {
           return (
             <ItemPagination
+              params={params}
               modal={modal}
               item={item}
               key={index}

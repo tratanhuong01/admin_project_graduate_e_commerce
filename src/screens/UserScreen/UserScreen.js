@@ -9,13 +9,15 @@ import { useHaveModal } from "../../hooks/useHaveModal";
 import TableMain from "../../components/Table/TableMain/TableMain";
 import RowUserTable from "../../components/Table/RowUserTable/RowUserTable";
 import CrudCategoryModal from "../../components/CrudCategoryModal/CrudCategoryModal";
+
 function UserScreen(props) {
   //
   const category = useHaveModal(
     feature.nameTable + "Filters",
     {
-      full: `?userType=${0}`,
-      limit: `?userType=${0}&limit=${10}&offset=${0}`,
+      full: `?userType=${"CUSTOMER"}`,
+      limit: `?userType=${"CUSTOMER"}&limit=${10}&offset=${0}`,
+      type: `?userType=${"CUSTOMER"}`,
     },
     true
   );
@@ -35,8 +37,9 @@ function UserScreen(props) {
             <CrudCategoryModal
               feature={feature}
               params={{
-                full: `?userType=0`,
-                limit: `?userType=0&limit=${10}&offset=${0}`,
+                full: `?userType=CUSTOMER`,
+                limit: `?userType=CUSTOMER&limit=${10}&offset=${0}`,
+                type: `?userType=${"CUSTOMER"}`,
               }}
               add={false}
               edit={false}
@@ -44,8 +47,26 @@ function UserScreen(props) {
             />
           </div>
         </div>
-        <Control type={feature.type} data={feature} table={feature.nameTable} />
-        <Table category={category} feature={feature} modal={true}>
+        <Control
+          type={feature.type}
+          data={feature}
+          table={feature.nameTable}
+          params={{
+            full: `?userType=CUSTOMER`,
+            limit: `?userType=CUSTOMER&limit=${10}&offset=${0}`,
+            type: `userType=${"CUSTOMER"}`,
+          }}
+        />
+        <Table
+          category={category}
+          feature={feature}
+          modal={true}
+          params={{
+            full: `?userType=CUSTOMER`,
+            limit: `?userType=CUSTOMER&limit=${10}&offset=${0}`,
+            type: `userType=${"CUSTOMER"}`,
+          }}
+        >
           <TableMain feature={feature} category={category} numRow={13}>
             {category.list
               ? category.list.map((item, index) => {

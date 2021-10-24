@@ -4,7 +4,7 @@ import * as filtersAction from "../../../../../../actions/filter/index";
 import * as product from "./product";
 function Filter(props) {
   //
-  const { table } = props;
+  const { table, params } = props;
   const [filter] = useState(props.filter);
   const headers = useSelector((state) => state.headers);
   const [name, setName] = useState(filter[0].data[0].name);
@@ -39,6 +39,7 @@ function Filter(props) {
                 item,
                 table,
                 index: 0,
+                params,
               },
               headers
             )

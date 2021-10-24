@@ -44,7 +44,6 @@ function SupportLiveScreen(props) {
     //
     let unmounted = false;
     socket.on(`receiveMessage.${user.id}`, (data) => {
-      console.log("oke...");
       async function fetch() {
         const result = await api(
           `messages/${user.id}`,

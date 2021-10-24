@@ -4,7 +4,7 @@ import * as filtersAction from "../../../../../../actions/filter/index";
 
 function ItemDataFilterOrder(props) {
   //
-  const { item, table, type } = props;
+  const { item, table, type, params } = props;
   const dispatch = useDispatch();
   const { filters, headers } = useSelector((state) => {
     return {
@@ -24,6 +24,7 @@ function ItemDataFilterOrder(props) {
                 filters: filters.choose,
                 table,
                 index: 0,
+                params,
               },
               headers
             )
@@ -37,6 +38,7 @@ function ItemDataFilterOrder(props) {
                 item,
                 table,
                 index: 0,
+                params,
               },
               headers
             )

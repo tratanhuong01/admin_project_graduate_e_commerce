@@ -135,7 +135,7 @@ export const loadPaginationRequest = (data, headers) => {
 
 export const loadPaginationModalRequest = (data, headers) => {
   return async (dispatch) => {
-    const { table, filters, sorter, index, search } = data;
+    const { table, filters, sorter, index, search, params } = data;
     let stringQuery = "";
     if (filters.length > 0)
       filters.forEach((element) => {
@@ -146,7 +146,7 @@ export const loadPaginationModalRequest = (data, headers) => {
     try {
       const result = await filterApi.filters(
         table,
-        `?${table}Type=0${stringQuery}&offset=${index}&limit=10`,
+        `?${params ? params.type : ""}${stringQuery}&offset=${index}&limit=10`,
         false,
         headers
       );
@@ -214,6 +214,7 @@ export const deleteCategoryRequest = (list, table, data, headers) => {
             filters,
             sorter,
             search,
+            params,
           },
           headers
         )

@@ -4,7 +4,7 @@ import * as categorysAction from "../../../../../../actions/category/index";
 
 function ItemPagination(props) {
   //
-  const { table, indexCurrent, index, item, modal } = props;
+  const { table, indexCurrent, index, item, modal, params } = props;
   const dispatch = useDispatch();
   const { filters, headers } = useSelector((state) => {
     return {
@@ -26,6 +26,7 @@ function ItemPagination(props) {
                 sorter: filters.sorter,
                 index,
                 search: filters.search,
+                params,
               },
               headers
             )
