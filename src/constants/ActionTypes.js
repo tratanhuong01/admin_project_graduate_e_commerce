@@ -105,3 +105,4 @@ export const UPDATE_TABS = "UPDATE_TABS";
 export const UPDATE_INDEX_TABS = "UPDATE_INDEX_TABS";
 //
 export const SET_LOADING_MODAL = "SET_LOADING_MODAL";
+//

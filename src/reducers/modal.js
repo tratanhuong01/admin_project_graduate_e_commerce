@@ -1,4 +1,5 @@
 import React from "react";
+import ModalContact from "../components/Modals/ModalContact/ModalContact";
 import ModalNews from "../components/Modals/ModalNews/ModalNews";
 import ModalOrders from "../components/Modals/ModalOrders/ModalOrders";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
@@ -53,6 +54,9 @@ const myReducer = (state = initialState, action) => {
         case "discountCode":
           state.data = <ModalVoucher data={action.data} />;
           break;
+        case "contact":
+          state.data = <ModalContact data={action.data} />;
+          break;
         default:
           break;
       }
@@ -60,6 +64,7 @@ const myReducer = (state = initialState, action) => {
     case Types.OPEN_MODAL_UPDATE_STATUS_CATEGORY:
       state.data = (
         <ModalUpdateStatusCategory
+          dataMain={action.data}
           data={action.data.data}
           itemCurrent={action.data.itemCurrent}
           table={action.data.table}

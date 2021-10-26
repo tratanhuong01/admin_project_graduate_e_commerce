@@ -3,8 +3,10 @@ import ContentColor from "../../Index/IndexRight/General/RowTable/ContentColor/C
 import RowTableMain from "../RowTableMain";
 import * as modalsAction from "../../../actions/modals/index";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 function RowUserTable(props) {
   //
+  const socket = useSelector((state) => state.socket);
   const { item, index, feature } = props;
   const dispatch = useDispatch();
   const isVerify = () => {
@@ -18,16 +20,20 @@ function RowUserTable(props) {
     <RowTableMain item={item} index={index}>
       <td className="p-2">{`${item.firstName} ${item.lastName}`}</td>
       <td className="p-2">
-        <ContentColor condition={feature.condition.sex} typeData={item.sex} />
+        {item.sex ? (
+          <ContentColor condition={feature.condition.sex} typeData={item.sex} />
+        ) : (
+          "<Trống>"
+        )}
       </td>
-      <td className="p-2">{item.email}</td>
-      <td className="p-2">{item.phone}</td>
+      <td className="p-2">{item.email || "<Trống>"}</td>
+      <td className="p-2">{item.phone || "<Trống>"}</td>
       <td className="p-2">
         {item.birthday
           ? item.birthday.split(" ").length > 0
             ? item.birthday.split(" ")[0]
             : ""
-          : ""}
+          : "<Trống>"}
       </td>
       <td className="p-2">
         <ContentColor
@@ -44,6 +50,9 @@ function RowUserTable(props) {
                 itemCurrent: item.status,
                 table: feature.nameTable,
                 id: item.id,
+                actionFunc: (id) => {
+                  socket.emit("updateStatusUser", id);
+                },
               })
             )
           }

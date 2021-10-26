@@ -4,7 +4,7 @@ import * as categorysAction from "../../../../actions/category/index";
 
 function ItemUpdateStatusCategory(props) {
   //
-  const { item, value, setValue, table, column, id } = props;
+  const { item, value, setValue, table, column, id, dataMain } = props;
   const { category, filters, headers } = useSelector((state) => {
     return {
       category: state.category,
@@ -21,8 +21,10 @@ function ItemUpdateStatusCategory(props) {
           table: table,
           item: Object.assign(item, { column, id }),
           query: {
-            full: `?userType=${0}`,
-            limit: `?userType=${0}&limit=${10}&offset=${category.index}`,
+            full: `?userType=${"CUSTOMER"}`,
+            limit: `?userType=${"CUSTOMER"}&limit=${10}&offset=${
+              category.index
+            }`,
           },
           status: true,
           filterData: {
@@ -34,6 +36,9 @@ function ItemUpdateStatusCategory(props) {
         headers
       )
     );
+
+    if (dataMain.actionFunc)
+      if (typeof dataMain.actionFunc === "function") dataMain.actionFunc(id);
   };
   //
   return (

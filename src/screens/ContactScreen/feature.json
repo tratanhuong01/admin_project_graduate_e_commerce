@@ -1,0 +1,75 @@
+{
+  "filter": [
+    {
+      "id": "CONTACT_FILTER_1",
+      "name": "Loại",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "CONTACT_FILTER_1",
+          "nameFilter": "Loại",
+          "name": "Tất cả",
+          "type": -1,
+          "query": "true=true"
+        }
+      ]
+    }
+  ],
+  "sorter": [
+    {
+      "name": "Thời gian tạo",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Thời gian tạo",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Thời gian tạo",
+          "query": "timeCreated=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Thời gian tạo",
+          "name": "Giảm dần",
+          "query": "timeCreated=DESC"
+        }
+      ]
+    }
+  ],
+  "condition": null,
+  "nameTable": "contact",
+  "table": [
+    {
+      "id": -1,
+      "name": "CBX"
+    },
+    {
+      "id": 1,
+      "name": "STT"
+    },
+    {
+      "id": 2,
+      "name": "Họ tên"
+    },
+    {
+      "id": 3,
+      "name": "Số điện thoại"
+    },
+    {
+      "id": 7,
+      "name": "Email"
+    },
+    {
+      "id": 4,
+      "name": "Nội dung"
+    },
+    {
+      "id": 6,
+      "name": "Thời gian tạo"
+    }
+  ]
+}

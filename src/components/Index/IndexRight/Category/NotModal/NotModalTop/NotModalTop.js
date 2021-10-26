@@ -45,7 +45,7 @@ function NotModalTop(props) {
       clearTimeout(timeOut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [keyword, category.choose]);
+  }, [keyword]);
   //
   return (
     <div className="w-full flex justify-end">

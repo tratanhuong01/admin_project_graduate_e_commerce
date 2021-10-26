@@ -1,3 +1,10 @@
+import {
+  IMAGE_NOTIFY_APPOVED,
+  IMAGE_NOTIFY_DELIVERING,
+  IMAGE_NOTIFY_DENIED,
+  IMAGE_NOTIFY_NOT_SUCCESSED,
+  IMAGE_NOTIFY_SUCCESSED,
+} from "../../../../constants/Config";
 import api from "../../../../Utils/api";
 
 export default function updateBillByStatus({ status, headers, user, reason }) {
@@ -11,8 +18,7 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
           userNotify: user,
           nameNotify: "Đơn hàng của bạn đã bị từ chối",
           url: null,
-          image:
-            "https://cf.shopee.vn/file/fed467fc00192be487e1aa69720a432d_tn",
+          image: IMAGE_NOTIFY_DENIED,
           description:
             "🌀 Chúng tôi nhận thấy đơn hàng của bạn có vấn đề : " +
             reason +
@@ -31,8 +37,7 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
           userNotify: user,
           nameNotify: "Đơn hàng của bạn đã được xử lí",
           url: null,
-          image:
-            "https://cf.shopee.vn/file/fed467fc00192be487e1aa69720a432d_tn",
+          image: IMAGE_NOTIFY_APPOVED,
           description:
             "🌀 Bên cửa hàng đang giao sản phẩm đến bên vận chuyển 🌀",
           timeCreated: null,
@@ -40,7 +45,6 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
         },
         headers
       );
-
     case 2:
       return api(
         `notifies`,
@@ -50,8 +54,7 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
           userNotify: user,
           nameNotify: "Đơn hàng của bạn đang được bên vận chuyển giao hàng",
           url: null,
-          image:
-            "https://cf.shopee.vn/file/fed467fc00192be487e1aa69720a432d_tn",
+          image: IMAGE_NOTIFY_DELIVERING,
           description:
             "🌀 Vui lòng gửi liên lạc để bên vận chuyển giao hàng đúng tiến độ 🌀",
           timeCreated: null,
@@ -59,7 +62,6 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
         },
         headers
       );
-
     case 3:
       return api(
         `notifies`,
@@ -69,8 +71,7 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
           userNotify: user,
           nameNotify: "Đơn hàng của bạn đã thành công",
           url: null,
-          image:
-            "https://cf.shopee.vn/file/fed467fc00192be487e1aa69720a432d_tn",
+          image: IMAGE_NOTIFY_SUCCESSED,
           description:
             "🌀 Cảm ơn bạn đã mua hàng . Mọi thắc mặc xin liên hệ với chúng tôi qua chat hổ trợ hoặc 0354114665 🌀",
           timeCreated: null,
@@ -78,7 +79,6 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
         },
         headers
       );
-
     case 4:
       return api(
         `notifies`,
@@ -88,8 +88,7 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
           userNotify: user,
           nameNotify: "Đơn hàng của bạn không thành công",
           url: null,
-          image:
-            "https://cf.shopee.vn/file/fed467fc00192be487e1aa69720a432d_tn",
+          image: IMAGE_NOTIFY_NOT_SUCCESSED,
           description:
             "🌀 Có vẻ như " +
             reason +
@@ -99,7 +98,6 @@ export default function updateBillByStatus({ status, headers, user, reason }) {
         },
         headers
       );
-
     default:
   }
 }

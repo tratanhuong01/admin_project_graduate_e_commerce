@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Title from "../../Index/IndexRight/General/Title/Title";
 import NotResultTable from "../NotResultTable";
 
 function TableMain(props) {
   const { feature, category, numRow } = props;
-  useEffect(() => {}, [category]);
   //
   return (
     <>

@@ -4,7 +4,7 @@ import ItemUpdateStatusCategory from "./ItemUpdateStatusCategory/ItemUpdateStatu
 
 function ModalUpdateStatusCategory(props) {
   //
-  const { data, itemCurrent, id, table } = props;
+  const { data, itemCurrent, id, table, dataMain } = props;
   const [value, setValue] = useState(itemCurrent);
   //
   return (
@@ -14,10 +14,11 @@ function ModalUpdateStatusCategory(props) {
       style={{ maxHeight: 550 }}
       title={data.title}
     >
-      <ul className="w-full pt-12 pb-2">
+      <ul className="w-full pb-2">
         {data.list &&
           data.list.map((item, index) => (
             <ItemUpdateStatusCategory
+              dataMain={dataMain}
               setValue={setValue}
               item={item}
               value={value}

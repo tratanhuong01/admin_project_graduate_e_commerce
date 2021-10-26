@@ -48,11 +48,12 @@ function FooterContentOrder({ order }) {
   const [choose, setChoose] = useState(null);
   const [show, setShow] = useState(false);
   const [data, setData] = useState("");
-  const { headers, category, filters } = useSelector((state) => {
+  const { headers, category, filters, socket } = useSelector((state) => {
     return {
       headers: state.headers,
       category: state.category,
       filters: state.filters,
+      socket: state.socket,
     };
   });
   const dispatch = useDispatch();
@@ -63,13 +64,15 @@ function FooterContentOrder({ order }) {
       null,
       headers
     );
-    if (order.bill.billUser)
+    if (order.bill.billUser) {
       await updateBillByStatus({
         status: choose.type,
         headers,
         user: order.bill.billUser,
         reason: data,
       });
+      socket.emit("notifyUser", order.bill.billUser.id);
+    }
     dispatch(
       categorysAction.loadListCategoryConnectRequest(
         `billFilters`,

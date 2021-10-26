@@ -19,6 +19,7 @@ import SupportLiveScreen from "../screens/SupportLiveScreen/SupportLiveScreen";
 import RamScreen from "../screens/RamScreen/RamScreen";
 import VoucherScreen from "../screens/Voucher/VoucherScreen/VoucherScreen";
 import ConfigScreen from "../screens/ConfigScreen/ConfigScreen";
+import ContactScreen from "../screens/ContactScreen/ContactScreen";
 
 const routes = [
   {
@@ -151,6 +152,13 @@ const routes = [
     to: `${Config.CONFIG_SCREEN}`,
     exact: true,
     main: () => <ConfigScreen />,
+    once: false,
+    permission: ["LEADER"],
+  },
+  {
+    to: `${Config.CONTACT_SCREEN}`,
+    exact: true,
+    main: () => <ContactScreen />,
     once: false,
     permission: ["LEADER"],
   },

@@ -10,6 +10,7 @@ import feature from "./feature";
 function ColorScreen(props) {
   //
   const { category, form } = useNotModal(feature.nameTable);
+  console.log("render");
   //
   return (
     <Screen>
