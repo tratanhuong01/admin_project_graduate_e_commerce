@@ -4,6 +4,8 @@ import Modal from "../containers/Modal";
 import * as usersAction from "../actions/user/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
+import jwt_decode from "jwt-decode";
+
 function AdminIndex(props) {
   //
   const { match } = props;
@@ -16,12 +18,21 @@ function AdminIndex(props) {
   });
   useEffect(() => {
     //
-    document.getElementsByTagName("body")[0].classList.add("overflow-hidden");
-    dispatch(usersAction.loadInfoUserRequest(headers));
+    if (localStorage && localStorage.getItem("adminToken")) {
+      const token = jwt_decode(localStorage.getItem("adminToken"));
+      if (token.exp < Date.now() / 1000) {
+        localStorage.removeItem("adminToken");
+      } else {
+        document
+          .getElementsByTagName("body")[0]
+          .classList.add("overflow-hidden");
+        dispatch(usersAction.loadInfoUserRequest(headers));
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //
-  return localStorage.getItem("adminToken") ? (
+  return localStorage && localStorage.getItem("adminToken") ? (
     <>
       {user ? (
         <MainIndex match={match} />

@@ -6,6 +6,7 @@ export const loadInfoUserRequest = (headers) => {
     try {
       const result = await userApi.getUserFromJWT(headers);
       if (result.data) {
+        localStorage.setItem("adminToken", result.data.token);
         dispatch(loginAccount(result.data));
         dispatch(updateHeaders(result.data.token));
       }
