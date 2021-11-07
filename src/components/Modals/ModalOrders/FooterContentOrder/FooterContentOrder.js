@@ -135,13 +135,16 @@ function FooterContentOrder({ order }) {
         )}
       </div>
       <div className="absolute flex justify-end right-3">
-        <button className="px-5 py-3 mr-5 rounded-sm bg-gray-700 text-white font-semibold">
-          In hóa đơn
-        </button>
+        {order.bill.status !== -3 && (
+          <button className="px-5 py-3 mr-5 rounded-sm bg-gray-700 text-white font-semibold">
+            In hóa đơn
+          </button>
+        )}
         {order.bill.status !== -1 &&
           order.bill.status !== -2 &&
           order.bill.status !== 3 &&
-          order.bill.status !== 4 && (
+          order.bill.status !== 4 &&
+          order.bill.status !== -3 && (
             <button
               onClick={update}
               className="px-5 py-3 rounded-sm bg-organce text-white font-semibold"

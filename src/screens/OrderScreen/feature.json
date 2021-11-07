@@ -13,6 +13,14 @@
           "query": "true=true"
         },
         {
+          "id": -3,
+          "idFilter": "ORDER_FILTER_1",
+          "nameFilter": "Trạng thái",
+          "name": "Chưa xác nhận email",
+          "type": -2,
+          "query": "status=-3"
+        },
+        {
           "id": -2,
           "idFilter": "ORDER_FILTER_1",
           "nameFilter": "Trạng thái",
@@ -167,6 +175,12 @@
   ],
   "condition": {
     "status": [
+      {
+        "id": -2,
+        "bgColor": "bg-indigo-600",
+        "name": "Chưa xác nhận email",
+        "type": -3
+      },
       {
         "id": -1,
         "bgColor": "bg-red-600",
