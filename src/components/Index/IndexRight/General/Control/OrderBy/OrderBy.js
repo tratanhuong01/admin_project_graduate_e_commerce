@@ -65,7 +65,7 @@ function OrderBy(props) {
         {showLeft && (
           <div
             className="w-48 bg-white border-2 border-solid border-gray-200 p-1 
-          font-semibold absolute top-full left-0 shadow-lg"
+          font-semibold absolute top-full left-0 shadow-lg z-50"
           >
             {showDataLeft}
           </div>
@@ -80,7 +80,7 @@ function OrderBy(props) {
         {showRight && (
           <div
             className="w-48 bg-white border-2 border-solid border-gray-200 p-1 
-            font-semibold absolute top-full left-0 shadow-lg"
+            font-semibold absolute top-full left-0 shadow-lg z-50"
           >
             {showDataRight}
           </div>

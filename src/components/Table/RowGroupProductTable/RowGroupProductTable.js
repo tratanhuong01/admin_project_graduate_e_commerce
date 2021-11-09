@@ -10,7 +10,6 @@ function RowGroupProductTable(props) {
       <td className="p-2">{item.categoryGroupProduct.nameCategoryProduct}</td>
       <td className="p-2">{item.nameGroupProduct}</td>
       <td className="p-2">{item.slugGroupProduct}</td>
-      <td className="p-2"></td>
     </RowTableMain>
   );
 }

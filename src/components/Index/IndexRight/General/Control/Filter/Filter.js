@@ -81,7 +81,7 @@ function Filter(props) {
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
         {showLeft && (
           <div
-            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 
+            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 z-50 
           font-semibold absolute top-full left-0 shadow-lg"
           >
             {showDataLeft}
@@ -96,7 +96,7 @@ function Filter(props) {
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
         {showRight && (
           <div
-            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 
+            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 z-50 
             font-semibold absolute top-full left-0 shadow-lg max-h-80 overflow-y-auto  scrollbar-css"
           >
             {showDataRight}

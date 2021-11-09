@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as productsAction from "../../../../actions/products/index";
 
@@ -32,7 +32,6 @@ function ModalProductLeft(props) {
   ];
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  useEffect(() => {}, [products.index]);
   //
   return (
     <div className="w-1/4 text-gray-700 fixed">

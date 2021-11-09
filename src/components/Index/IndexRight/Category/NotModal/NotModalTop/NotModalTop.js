@@ -48,7 +48,7 @@ function NotModalTop(props) {
   }, [keyword]);
   //
   return (
-    <div className="w-full flex justify-end">
+    <div className="w-full flex justify-end mb-5">
       <input
         className="w-1/2 mr-4 p-2.5 rounded-3xl 
         bg-white border-solid border-gray-200 border-2"

@@ -13,11 +13,11 @@ function DateInfoSimple(props) {
       <div className="w-1/2 pr-5">
         <InputField
           register={register}
-          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          className="w-full rounded-lg p-2.5 text-xs border-2 border-solid mt-2"
           showError={errors["timeStartSale"]}
           name={"timeStartSale"}
           label={"Ngày bắt đầu khuyến mãi"}
-          type="date"
+          type="datetime-local"
           onChange={(item) => {
             if (edit) dispatch(productsAction.updateInfoMainEdit(item, 3));
             else dispatch(productsAction.loadInfoMainPriceAmountSale(item, 6));
@@ -29,11 +29,11 @@ function DateInfoSimple(props) {
       <div className="w-1/2">
         <InputField
           register={register}
-          className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
+          className="w-full rounded-lg p-2.5 text-xs border-2 border-solid mt-2"
           showError={errors["timeEndSale"]}
           name={"timeEndSale"}
           label={"Ngày kết thúc khuyến mãi"}
-          type="date"
+          type="datetime-local"
           onChange={(item) => {
             if (edit) dispatch(productsAction.updateInfoMainEdit(item, 4));
             else dispatch(productsAction.loadInfoMainPriceAmountSale(item, 7));

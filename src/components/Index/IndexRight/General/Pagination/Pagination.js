@@ -9,7 +9,7 @@ function Pagination(props) {
     list.push(index);
   //
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center my-5">
       <ul className="flex justify-center">
         {list.map((item, index) => {
           return (

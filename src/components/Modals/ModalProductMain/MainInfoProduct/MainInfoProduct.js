@@ -63,8 +63,8 @@ function MainInfoProduct(props) {
           timeInput: null,
           amountInput: item.amountInput,
           saleDefault: item.saleDefault,
-          timeStartSale: StringUtils.formatDateTime(item.timeStartSale),
-          timeEndSale: StringUtils.formatDateTime(item.timeStartSale),
+          timeStartSale: StringUtils.formatDateTimeCustom(item.timeStartSale),
+          timeEndSale: StringUtils.formatDateTimeCustom(item.timeStartSale),
         },
         headers
       );

@@ -8,7 +8,7 @@ function DataFilterOrder(props) {
   const filters = useSelector((state) => state.filters);
   //
   return (
-    <div className="w-full flex py-1">
+    <div className="w-full flex py-1 mb-5 z-50">
       {filters.choose &&
         filters.choose.map((item, index) => {
           return (

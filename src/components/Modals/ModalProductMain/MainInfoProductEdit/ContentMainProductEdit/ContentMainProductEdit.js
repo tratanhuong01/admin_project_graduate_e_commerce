@@ -21,13 +21,13 @@ function ContentMainProductEdit(props) {
       setValue("sale", products.infoMainEdit.sale);
       setValue(
         "timeStartSale",
-        StringUtils.formatDateTimeBack(
+        StringUtils.formatDateTimeCustomReturn(
           products.infoMainEdit.data.infoProduct.timeStartSale
         )
       );
       setValue(
         "timeEndSale",
-        StringUtils.formatDateTimeBack(
+        StringUtils.formatDateTimeCustomReturn(
           products.infoMainEdit.data.infoProduct.timeEndSale
         )
       );

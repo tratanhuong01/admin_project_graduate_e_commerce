@@ -465,6 +465,7 @@ export const loadInfoEditProductInfoRequest = (idProduct, headers) => {
       dispatch(
         loadInfoEditLineProduct(
           {
+            amountInputNew: null,
             lineProduct: result.data.product.lineProduct,
             image: result.data.product.imageProduct,
             ram: result.data.product.ramProduct,

@@ -92,8 +92,7 @@ const myReducer = (state = initialState, action) => {
       state.loading = false;
       return { ...state };
     case Types.LOAD_INFO_ATTRIBUTE_DATA:
-      state.infoAttribute = action.data;
-      return { ...state };
+      return { ...state, infoAttribute: action.data };
     case Types.LOAD_SIMPLE_INFO_PRODUCT_DATA:
       switch (action.index) {
         case 0:
@@ -260,7 +259,13 @@ const myReducer = (state = initialState, action) => {
         state.images = action.data.images;
         state.descriptions = action.data.descriptions;
         state.imageColor = action.data.imageColor;
-        state.listData = action.data;
+        let data = { attribute: {}, lineProduct: {}, features: [] };
+        for (const property in action.data.infoAttribute) {
+          data.attribute[property] = action.data.infoAttribute[property].list;
+        }
+        data.lineProduct = action.data.infoSimple.lineProduct;
+        data.features = action.data.features;
+        state.listData = data;
       }
       return { ...state };
     case Types.RESET_DATA_PRODUCT_STATE:
@@ -319,7 +324,7 @@ const myReducer = (state = initialState, action) => {
           state.infoMainEdit.priceOutput = action.data;
           break;
         case 1:
-          state.infoMainEdit.amountInput = action.data;
+          state.infoMainEdit.amountInputNew = action.data;
           break;
         case 2:
           state.infoMainEdit.amountOutput = action.data;

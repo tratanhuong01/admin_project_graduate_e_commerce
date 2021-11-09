@@ -28,7 +28,7 @@ function MainInfoProductEdit(props) {
   const onSubmit = async () => {
     await api(
       `products`,
-      "POST",
+      "PUT",
       {
         id: products.infoMainEdit.data.product.id,
         productUser: null,
@@ -45,14 +45,17 @@ function MainInfoProductEdit(props) {
     );
     await api(
       `infoProducts`,
-      "POST",
+      "PUT",
       {
-        id: products.infoMainEdit.data.id,
+        id: products.infoMainEdit.data.infoProduct.id,
         infoProduct: products.infoMainEdit.data.product,
         priceInput: products.infoMainEdit.priceInput,
         priceOutput: products.infoMainEdit.priceOutput,
         sale: products.infoMainEdit.sale,
-        itemCurrent: products.infoMainEdit.amountOutput,
+        itemCurrent: products.infoMainEdit.amountInputNew
+          ? products.infoMainEdit.amountInput +
+            products.infoMainEdit.amountInputNew
+          : products.infoMainEdit.amountInput,
         itemSold: products.infoMainEdit.data.infoProduct.itemSold,
         typeInfoProduct: products.infoMainEdit.data.infoProduct.typeInfoProduct,
         review: products.infoMainEdit.data.infoProduct.review,
@@ -63,10 +66,10 @@ function MainInfoProductEdit(props) {
             : products.infoMainEdit.data.infoProduct.amountInput +
               products.infoMainEdit.amountInput,
         saleDefault: products.infoMainEdit.saleDefault,
-        timeStartSale: StringUtils.formatDateTime(
+        timeStartSale: StringUtils.formatDateTimeCustom(
           products.infoMainEdit.timeStartSale
         ),
-        timeEndSale: StringUtils.formatDateTime(
+        timeEndSale: StringUtils.formatDateTimeCustom(
           products.infoMainEdit.timeStartSale
         ),
       },

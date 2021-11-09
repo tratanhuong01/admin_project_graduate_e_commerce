@@ -9,7 +9,6 @@ function RowColorTable(props) {
     <RowTableMain item={item} index={index}>
       <td className="p-2">{item.code}</td>
       <td className="p-2">{item.description}</td>
-      <td className="p-2"></td>
     </RowTableMain>
   );
 }

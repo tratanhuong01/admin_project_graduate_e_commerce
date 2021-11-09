@@ -4,6 +4,9 @@ import RowTableMain from "../RowTableMain";
 import * as modalsAction from "../../../actions/modals/index";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import moment from "moment";
+import * as StringUtil from "../../../Utils/StringUtils";
+import "moment/locale/vi";
 function RowUserTable(props) {
   //
   const socket = useSelector((state) => state.socket);
@@ -18,22 +21,40 @@ function RowUserTable(props) {
   //
   return (
     <RowTableMain item={item} index={index}>
-      <td className="p-2">{`${item.firstName} ${item.lastName}`}</td>
+      <td className="p-2">
+        {(item.firstName !== null) & (item.lastName != null) ? (
+          `${item.firstName} ${item.lastName}`
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
       <td className="p-2">
         {item.sex ? (
           <ContentColor condition={feature.condition.sex} typeData={item.sex} />
         ) : (
-          "<Trống>"
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
         )}
       </td>
-      <td className="p-2">{item.email || "<Trống>"}</td>
-      <td className="p-2">{item.phone || "<Trống>"}</td>
       <td className="p-2">
-        {item.birthday
-          ? item.birthday.split(" ").length > 0
-            ? item.birthday.split(" ")[0]
-            : ""
-          : "<Trống>"}
+        {item.email || (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
+      <td className="p-2">
+        {item.phone || (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
+      <td className="p-2">
+        {item.birthday ? (
+          item.birthday.split(" ").length > 0 ? (
+            StringUtil.formatDateTimeBack2(item.birthday.split(" ")[0])
+          ) : (
+            ""
+          )
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
       </td>
       <td className="p-2">
         <ContentColor
@@ -60,11 +81,11 @@ function RowUserTable(props) {
           typeData={item.status}
         />
       </td>
-      <td className="p-2 font-semibold">
+      <td className="p-2">
         {new Intl.NumberFormat().format(
           !item.amountOrder ? 0 : item.amountOrder
         )}{" "}
-        đơn hàng{" "}
+        đơn hàng <br />
         {new Intl.NumberFormat().format(
           !item.amountProduct ? 0 : item.amountProduct
         )}{" "}
@@ -82,7 +103,14 @@ function RowUserTable(props) {
           typeData={item.isRegister}
         />
       </td>
-      <td className="p-2">{item.timeCreated}</td>
+      <td className="p-2">
+        {moment(
+          `${item.timeCreated.split(" ")[0].split("-")[2]}${
+            item.timeCreated.split(" ")[0].split("-")[0]
+          }${item.timeCreated.split(" ")[0].split("-")[1]}`,
+          "YYYYMMDD"
+        ).fromNow()}
+      </td>
     </RowTableMain>
   );
 }

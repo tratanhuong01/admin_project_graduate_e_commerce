@@ -37,10 +37,45 @@ export const formatDateTime = (date) => {
   return `${date} ${hour}:${min}:${sec}`;
 };
 
+export const formatDateTimeCustom = (date) => {
+  return date.split("T")[0] + " " + date.split("T")[1] + ":00";
+};
+
+export const formatDateTimeCustomReturn = (date) => {
+  const arr = date.split(" ")[0].split("-");
+  const day = arr[1];
+  const month = arr[0];
+  const year = arr[2];
+
+  return (
+    `${year}-${month}-${day}` +
+    "T" +
+    date.split(" ")[1].split(":")[0] +
+    ":" +
+    date.split(" ")[1].split(":")[1]
+  );
+};
+
 export const formatDateTimeBack = (date) => {
   const arr = date.split(" ")[0].split("-");
   const day = arr[1];
   const month = arr[0];
   const year = arr[2];
-  return `${year}-${month}-${day}`;
+  return `${year}/${month}/${day}`;
+};
+
+export const formatDateTimeBack2 = (date) => {
+  const arr = date.split(" ")[0].split("-");
+  const day = arr[0];
+  const month = arr[1];
+  const year = arr[2];
+  return `${year}/${month}/${day}`;
+};
+
+export const formatDateTimeMain = (date) => {
+  const arr = date.split(" ");
+  const day = arr[0].split("-")[2];
+  const month = arr[0].split("-")[0];
+  const year = arr[0].split("-")[1];
+  return `${year}/${month}/${day} ${arr[1]}`;
 };

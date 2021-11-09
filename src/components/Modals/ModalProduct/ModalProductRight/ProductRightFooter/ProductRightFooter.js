@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as modalsAction from "../../../../../actions/modals/index";
 import * as productsAction from "../../../../../actions/products/index";
 import * as add from "./add";
+import * as edit from "./edit";
+
 function ProductRightFooter(props) {
   //
   const dispatch = useDispatch();
@@ -31,7 +33,9 @@ function ProductRightFooter(props) {
       </button>
       <button
         onClick={() => {
-          if (products.index === 5) add.addProduct(products, headers, dispatch);
+          if (products.index === 5)
+            if (!products.listData) add.addProduct(products, headers, dispatch);
+            else edit.updateProduct(products, headers, dispatch);
           else
             dispatch(
               productsAction.loadCategoryProductByIndex(products.index + 1)

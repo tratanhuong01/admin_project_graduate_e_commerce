@@ -3,6 +3,7 @@ import ContentColor from "../../Index/IndexRight/General/RowTable/ContentColor/C
 import RowTableMain from "../RowTableMain";
 import * as modalsAction from "../../../actions/modals/index";
 import { useDispatch } from "react-redux";
+import * as StringUtil from "../../../Utils/StringUtils";
 function RowOrderTable(props) {
   //
   const { item, index, feature } = props;
@@ -28,13 +29,29 @@ function RowOrderTable(props) {
         />
       </td>
       <td className="p-2">{item.fullName}</td>
-      <td className="p-2">{item.address}</td>
+      <td className="p-2 font-semibold">
+        {item.address.split(",").map((data, index) => (
+          <div key={index}>{data}</div>
+        ))}
+      </td>
       <td className="p-2">{item.phone}</td>
       <td className="p-2">
         {new Intl.NumberFormat().format(item.total)} <u>đ</u>
       </td>
-      <td className="p-2">{item.timeCreated}</td>
-      <td className="p-2">{item.timeCompleted}</td>
+      <td className="p-2">
+        {item.timeCreated ? (
+          StringUtil.formatDateTimeMain(item.timeCreated)
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
+      <td className="p-2">
+        {item.timeCompleted ? (
+          StringUtil.formatDateTimeMain(item.timeCompleted)
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
       <td className="p-2">
         {new Intl.NumberFormat().format(item.fee)} <u>đ</u>
       </td>
