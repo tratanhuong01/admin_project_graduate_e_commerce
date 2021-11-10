@@ -18,7 +18,7 @@ function NotResultTable(props) {
         colSpan={numRow}
         className="py-6 text-gray-600 font-semibold text-center"
       >
-        <img src={table__not__result} className="w-56 mx-auto" />
+        <img src={table__not__result} className="w-56 mx-auto" alt="" />
         Không tìm thấy bất kỳ kết quả nào ...{" "}
       </td>
     </tr>

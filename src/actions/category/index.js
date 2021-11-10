@@ -229,22 +229,42 @@ export const addCategoryRequest = (
   query,
   status,
   filters,
-  headers
+  headers,
+  funcOther
 ) => {
   return async (dispatch) => {
     try {
-      await crudApi.addData(obj, status ? `${table}s` : table, headers);
-      if (status)
+      const result = await crudApi.addData(
+        obj,
+        status ? `${table}s` : table,
+        headers
+      );
+      if (status) {
+        if (funcOther) {
+          funcOther(result.data.id, obj);
+        }
         dispatch(
           loadListCategoryConnectRequest(
             `${table}Filters`,
             query,
             status,
             filters,
-            headers
+            Object.assign(headers, {
+              "Content-Type": "application/json",
+            })
           )
         );
-      else dispatch(loadListCategoryRequest(table, query, status, headers));
+      } else
+        dispatch(
+          loadListCategoryRequest(
+            table,
+            query,
+            status,
+            Object.assign(headers, {
+              "Content-Type": "application/json",
+            })
+          )
+        );
     } catch (error) {
       throw error;
     }
@@ -287,5 +307,12 @@ export const loadingCategory = (loading) => {
   return {
     type: Types.LOADING_CATEGORY,
     loading,
+  };
+};
+
+export const setIndexCategory = (index) => {
+  return {
+    type: Types.SET_INDEX_CATEGORY,
+    index,
   };
 };

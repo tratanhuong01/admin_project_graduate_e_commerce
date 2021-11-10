@@ -55,7 +55,7 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.ADD_ITEM_CHOOSE:
       state.choose = [...state.choose, action.item];
-      state.index = 0;
+      // state.index = 0;
       return { ...state };
     case Types.REMOVE_ITEM_CHOOSE:
       index = state.choose.findIndex((item) => item.id === action.item.id);
@@ -68,13 +68,16 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.REMOVE_ITEM_CHOOSE_ALL:
       state.choose = [];
-      state.index = 0;
+      // state.index = 0;
       return { ...state };
     case Types.ADD_ITEM_CHOOSE_ALL:
       state.choose = state.list;
       return { ...state };
     case Types.RESET_INDEX_CATEGORY:
       state.index = 0;
+      return { ...state };
+    case Types.SET_INDEX_CATEGORY:
+      state.index = action.index;
       return { ...state };
     case Types.LOADING_CATEGORY:
       state.loading = action.loading;

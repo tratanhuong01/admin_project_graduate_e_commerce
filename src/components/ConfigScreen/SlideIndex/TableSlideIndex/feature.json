@@ -9,15 +9,19 @@
       "name": "STT"
     },
     {
+      "id": 0,
+      "name": "Hình ảnh"
+    },
+    {
       "id": 1,
       "name": "Tên sản phẩm"
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Sologan"
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Hiển thị"
     }
   ],

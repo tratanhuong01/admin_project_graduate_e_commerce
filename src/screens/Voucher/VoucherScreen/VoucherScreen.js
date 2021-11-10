@@ -35,8 +35,8 @@ function VoucherScreen(props) {
             <CrudCategoryModal
               feature={feature}
               params={{
-                full: `?userType=0`,
-                limit: `?userType=0&limit=${10}&offset=${0}`,
+                full: `?paramsData=0`,
+                limit: `?paramsData=0&limit=${10}&offset=${category.index}`,
               }}
               add={true}
               edit={true}

@@ -37,7 +37,7 @@ function OrderScreen(props) {
               feature={feature}
               params={{
                 full: `?`,
-                limit: `?&limit=${10}&offset=${0}`,
+                limit: `?&limit=${10}&offset=${category.index}`,
               }}
               add={false}
               edit={true}

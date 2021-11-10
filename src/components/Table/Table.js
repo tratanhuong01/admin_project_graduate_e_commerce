@@ -1,4 +1,5 @@
 import React from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 import Pagination from "../Index/IndexRight/General/Pagination/Pagination";
 
 function Table(props) {
@@ -7,11 +8,11 @@ function Table(props) {
   //
   return (
     <>
-      <div className="w-full scrollbar-css overflow-x-auto overflow-y-hidden max-w-full">
+      <ScrollContainer className="w-full scrollbar-css overflow-x-auto overflow-y-hidden max-w-full">
         <table className="w-full bg-white table__main">
           <tbody>{props.children}</tbody>
         </table>
-      </div>
+      </ScrollContainer>
       <Pagination
         params={params}
         modal={modal}

@@ -21,13 +21,29 @@ function RowProductTable(props) {
             style={{ backgroundColor: item.color.code }}
           ></div>
         ) : (
-          "< Trống >"
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
         )}
       </td>
-      <td className="p-2">{item.brand ? item.brand.nameBrand : "< Trống >"}</td>
-      <td className="p-2">{item.ram ? item.ram.nameRam : "< Trống >"}</td>
       <td className="p-2">
-        {item.memory ? item.memory.nameMemory : "< Trống >"}
+        {item.brand ? (
+          item.brand.nameBrand
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
+      <td className="p-2">
+        {item.ram ? (
+          item.ram.nameRam
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
+      </td>
+      <td className="p-2">
+        {item.memory ? (
+          item.memory.nameMemory
+        ) : (
+          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+        )}
       </td>
       <td className="p-2 font-bold">{`${new Intl.NumberFormat().format(
         item.priceInput

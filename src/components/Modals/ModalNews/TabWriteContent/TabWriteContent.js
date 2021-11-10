@@ -6,10 +6,7 @@ function TabWriteContent(props) {
   const { editorState, setEditorState } = props;
   //
   return (
-    <div
-      className="w-full overflow-y-auto scrollbar-css"
-      style={{ height: "calc(100% - 100px)", maxHeight: "calc(100% - 100px)" }}
-    >
+    <div className="w-full overflow-y-auto scrollbar-css max-h-full">
       <Editor
         wrapperClassName="wrapper-class"
         editorClassName="editor-class"

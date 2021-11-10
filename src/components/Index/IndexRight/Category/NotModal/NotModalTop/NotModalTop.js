@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as formsAction from "../../../../../../actions/form/index";
 import * as categorysAction from "../../../../../../actions/category/index";
-import { LOADING_CATEGORY } from "../../../../../../constants/ActionTypes";
+import {
+  LOADING_CATEGORY,
+  SET_INDEX_CATEGORY,
+} from "../../../../../../constants/ActionTypes";
 
 function NotModalTop(props) {
   //
@@ -20,6 +23,9 @@ function NotModalTop(props) {
     let timeOut;
     dispatch({ type: LOADING_CATEGORY, loading: true });
     timeOut = setTimeout(async () => {
+      if (category.index !== 0) {
+        dispatch({ type: SET_INDEX_CATEGORY, index: 0 });
+      }
       if (keyword.length <= 0)
         dispatch(
           categorysAction.loadListCategoryRequest(

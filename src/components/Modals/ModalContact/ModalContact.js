@@ -1,8 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { CLOSE_MODAL, SET_LOADING_MODAL } from "../../../constants/ActionTypes";
+import api from "../../../Utils/api";
 import ModalWrapper from "../ModalWrapper";
-
+import * as categorysAction from "../../../actions/category/index";
 function ModalContact({ data }) {
   //
+  const { category, headers, filters } = useSelector((state) => {
+    return {
+      category: state.category,
+      headers: state.headers,
+      filters: state.filters,
+    };
+  });
+  const [content, setContent] = useState("");
+  const dispatch = useDispatch();
+  const replaceContact = async () => {
+    dispatch({ type: SET_LOADING_MODAL, loading: true });
+    await api(
+      "sendMailContacts",
+      "POST",
+      {
+        email: data.email,
+        topic: "Reply contact from user . Thank you contact with us",
+        content,
+      },
+      Object.assign(headers, { "Content-Type": "application/json" })
+    );
+    let clone = { ...data };
+    clone.status = 1;
+    await api(
+      "contacts",
+      "PUT",
+      clone,
+      Object.assign(headers, { "Content-Type": "application/json" })
+    );
+    dispatch(
+      categorysAction.loadListCategoryConnectRequest(
+        "contactFilters",
+        {
+          full: `?contactType=0`,
+          limit: `?contactType=0&limit=${10}&offset=${category.index}`,
+        },
+        true,
+        {
+          filters: filters.choose,
+          sorter: filters.sorter,
+          search: filters.search,
+        },
+        headers
+      )
+    );
+    dispatch({ type: SET_LOADING_MODAL, loading: false });
+    dispatch({ type: CLOSE_MODAL });
+  };
   //
   return (
     <ModalWrapper
@@ -43,11 +94,16 @@ function ModalContact({ data }) {
         <div className="w-1/2">
           <textarea
             name=""
+            onChange={(event) => setContent(event.target.value)}
             placeholder="Nội dung phản hồi"
+            defaultValue={content}
             className="w-full resize-none rounded-lg p-3 flex max-h-56 overflow-y-auto my-2 h-56 border-2 border-solid border-gray-300"
           ></textarea>
           <div className="w-full flex justify-center my-3">
-            <button className="text-center p-2.5 bg-organce rounded-lg text-white font-semibold">
+            <button
+              onClick={() => replaceContact()}
+              className="text-center p-2.5 bg-organce rounded-lg text-white font-semibold"
+            >
               Gửi mail
             </button>
           </div>

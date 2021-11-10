@@ -1,34 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import InputField from "../../../../InputField/InputField";
 
-function ModeAddFile(props) {
+function ModeAddFile({ register, errors, setFileData, setIsFile, isFile }) {
   //
-  const { register, errors, setFileData } = props;
-  const [data, setData] = useState(true);
   //
   return (
     <>
       <div className="my-2 flex items-center pl-2 font-semibold">
         Thêm hình bằng file{" "}
         <i
-          onClick={() => setData(!data)}
+          onClick={() => setIsFile(!isFile)}
           className={`bx bxs-toggle-${
-            data ? "right" : "left"
+            isFile ? "right" : "left"
           } text-organce text-6xl ml-5`}
         ></i>
       </div>
       <InputField
         register={register}
-        showError={errors[data ? "thumbnailFile" : "thumbnailLink"]}
-        type={data ? "file" : "text"}
+        showError={errors[isFile ? "thumbnailFile" : "thumbnailLink"]}
+        type={isFile ? "file" : "text"}
         className="w-full p-3 rounded-full my-1 border-2 border-solid border-gray-200"
         placeHolder="Ảnh thu nhỏ"
-        name={data ? "thumbnailFile" : "thumbnailLink"}
+        name={isFile ? "thumbnailFile" : "thumbnailLink"}
         onChange={(dt) => {
-          if (data) setFileData({ type: true, data: dt });
+          if (isFile) setFileData({ type: true, data: dt });
           else setFileData({ type: false, data: dt });
         }}
-        file={data}
+        file={isFile}
       />
     </>
   );

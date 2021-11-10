@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as filtersAction from "../../../../../../actions/filter/index";
-import { LOADING_CATEGORY } from "../../../../../../constants/ActionTypes";
+import {
+  LOADING_CATEGORY,
+  SET_INDEX_CATEGORY,
+} from "../../../../../../constants/ActionTypes";
 
 function Search(props) {
   //
   const { table, params } = props;
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState(null);
-  const { filters, headers } = useSelector((state) => {
+  const { filters, headers, category } = useSelector((state) => {
     return {
       filters: state.filters,
       headers: state.headers,
+      category: state.category,
     };
   });
   useEffect(() => {
@@ -20,6 +24,9 @@ function Search(props) {
     dispatch({ type: LOADING_CATEGORY, loading: true });
     if (keyword != null) {
       timeOut = setTimeout(async () => {
+        if (category.index !== 0) {
+          dispatch({ type: SET_INDEX_CATEGORY, index: 0 });
+        }
         dispatch(
           filtersAction.searchCategoryRequest(
             {

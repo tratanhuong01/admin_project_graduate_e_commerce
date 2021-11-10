@@ -4,6 +4,7 @@ import api from "../../../../Utils/api";
 import * as categorysAction from "../../../../actions/category/index";
 import { CLOSE_MODAL } from "../../../../constants/ActionTypes";
 import updateBillByStatus from "./updateBillByStatus";
+import html2canvas from "html2canvas";
 
 const typeBill = [
   {
@@ -135,8 +136,31 @@ function FooterContentOrder({ order }) {
         )}
       </div>
       <div className="absolute flex justify-end right-3">
+        <a
+          href={() => false}
+          download="bill.png"
+          className="hidden"
+          id="click__download"
+        >
+          a
+        </a>
         {order.bill.status !== -3 && (
-          <button className="px-5 py-3 mr-5 rounded-sm bg-gray-700 text-white font-semibold">
+          <button
+            onClick={() => {
+              let clone = document.getElementById("order__main__ui");
+              clone.style.width = clone.offsetWidth + "px";
+              clone.style.height = clone.offsetHeight + "px";
+              clone.style.maxHeight = clone.offsetHeight + "px";
+              html2canvas(clone).then(function (canvas) {
+                var image = canvas
+                  .toDataURL("image/png")
+                  .replace("image/png", "image/octet-stream"); // here is the most important part because if you dont replace you will get a DOM 18 exception.
+                document.getElementById("click__download").href = image;
+                document.getElementById("click__download").click();
+              });
+            }}
+            className="px-5 py-3 mr-5 rounded-sm bg-gray-700 text-white font-semibold"
+          >
             In hóa đơn
           </button>
         )}

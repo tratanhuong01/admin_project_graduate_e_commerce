@@ -12,8 +12,8 @@ function FormVoucher(props) {
   //
   return (
     <div
-      className="w-full pb-20 py-16 overflow-x-hidden overflow-y-auto scrollbar-css px-3 relative"
-      style={{ maxHeight: "calc(90vh - 64px)" }}
+      className="w-full overflow-x-hidden overflow-y-auto scrollbar-css px-3 relative"
+      style={{ maxHeight: "calc(95vh)", height: "80vh" }}
     >
       <div className="w-full flex">
         <div className="w-1/3 flex pr-5">
@@ -51,7 +51,7 @@ function FormVoucher(props) {
             showError={errors["timeStart"]}
             name={"timeStart"}
             label={"Thời gian bắt đầu khuyến mãi"}
-            type="date"
+            type="datetime-local"
             onChange={(value) => setValue("timeStart", value)}
             disabled={false}
           />
@@ -63,7 +63,7 @@ function FormVoucher(props) {
             showError={errors["timeExpired"]}
             name={"timeExpired"}
             label={"Thời gian kết thúc khuyến mãi"}
-            type="date"
+            type="datetime-local"
             onChange={(value) => setValue("timeExpired", value)}
             disabled={false}
           />
@@ -138,6 +138,7 @@ function FormVoucher(props) {
         dataProps={
           data
             ? typeVoucher[typeVoucher.findIndex((dt) => dt.type === data.type)]
+                .name
             : null
         }
       />

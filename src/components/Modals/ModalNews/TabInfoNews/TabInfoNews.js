@@ -3,10 +3,17 @@ import InputField from "../../../InputField/InputField";
 import SelectCustom from "../../../SelectCustom/SelectCustom";
 import ModeAddFile from "./ModeAddFile/ModeAddFile";
 
-function TabInfoNews(props) {
+function TabInfoNews({
+  register,
+  setValue,
+  errors,
+  categoryNewsList,
+  data,
+  isFile,
+  setIsFile,
+}) {
   //
   const [fileData, setFileData] = useState(null);
-  const { register, setValue, errors, categoryNewsList, data } = props;
   useEffect(() => {
     //
     if (data) {
@@ -39,6 +46,8 @@ function TabInfoNews(props) {
           onChange={() => ""}
         />
         <ModeAddFile
+          isFile={isFile}
+          setIsFile={setIsFile}
           register={register}
           errors={errors}
           setFileData={setFileData}

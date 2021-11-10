@@ -6,7 +6,8 @@ function OrderUI(props) {
   //
   return (
     <div
-      className="w-full items-start flex flex-1 overflow-y-auto scrollbar-css relative orders__modal"
+      className="w-full items-start flex flex-1 relative orders__modal"
+      id="order__main__ui"
       style={{ fontFamily: "monospace !important" }}
     >
       <div className="w-full mx-auto border-2 border-solid border-gray-100 p-3 text-organce">
@@ -98,7 +99,7 @@ function OrderUI(props) {
               <p className="mb-1 text-sm">Ngày 27 tháng 09 năm 2021</p>
               <p className="mb-1 texxt">NGƯỜI BÁN HÀNG</p>
               <p className="mb-1 text-sm">Kí và ghi rõ họ tên</p>
-              <div className="h-28"></div>
+              <div className="py-16"></div>
             </div>
           </div>
           <div className="w-full my-1 text-xs text-organce text-center font-semibold">

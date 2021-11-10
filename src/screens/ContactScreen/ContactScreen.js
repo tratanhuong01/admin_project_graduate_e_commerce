@@ -35,8 +35,8 @@ function ContactScreen(props) {
             <CrudCategoryModal
               feature={feature}
               params={{
-                full: `?userType=0`,
-                limit: `?userType=0&limit=${10}&offset=${0}`,
+                full: `?contactType=0`,
+                limit: `?contactType=0&limit=${10}&offset=${category.index}`,
               }}
               add={false}
               edit={true}

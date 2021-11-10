@@ -1,11 +1,25 @@
 import api from "../Utils/api";
 
 export const addData = (item, table, headers) => {
-  return api(`${table}`, item.id ? "PUT" : "POST", item, headers);
+  return api(
+    `${table}`,
+    item.id ? "PUT" : "POST",
+    item,
+    Object.assign(headers, {
+      "Content-Type": "application/json",
+    })
+  );
 };
 
 export const updateData = (item, table, headers) => {
-  return api(`${table}`, "PUT", item, headers);
+  return api(
+    `${table}`,
+    "PUT",
+    item,
+    Object.assign(headers, {
+      "Content-Type": "application/json",
+    })
+  );
 };
 
 export const deleteData = (item, table, headers) => {
