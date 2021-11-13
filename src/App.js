@@ -19,7 +19,6 @@ function App(props) {
     }
     return result;
   };
-
   return (
     <Router>
       <Switch>{showAllLinks(main)}</Switch>

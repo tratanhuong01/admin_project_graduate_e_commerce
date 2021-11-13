@@ -56,11 +56,6 @@ function ModalVoucher(props) {
   });
   useEffect(() => {
     //
-    setValue("id", -1);
-    setValue("percent", 0);
-    setValue("amount", 1);
-    setValue("min", 0);
-    setValue("max", 0);
     if (data) {
       setValue(
         "timeStart",
@@ -79,6 +74,12 @@ function ModalVoucher(props) {
       setValue("min", data.min);
       setValue("max", data.max);
       setValue("timeCreated", data.timeCreated);
+    } else {
+      setValue("id", -1);
+      setValue("percent", 0);
+      setValue("amount", 1);
+      setValue("min", 0);
+      setValue("max", 0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

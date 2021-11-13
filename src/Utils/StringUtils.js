@@ -43,10 +43,9 @@ export const formatDateTimeCustom = (date) => {
 
 export const formatDateTimeCustomReturn = (date) => {
   const arr = date.split(" ")[0].split("-");
-  const day = arr[1];
-  const month = arr[0];
-  const year = arr[2];
-
+  const day = arr[2];
+  const month = arr[1];
+  const year = arr[0];
   return (
     `${year}-${month}-${day}` +
     "T" +

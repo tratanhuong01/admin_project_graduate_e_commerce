@@ -3,6 +3,7 @@ import NotModalTop from "../../components/Index/IndexRight/Category/NotModal/Not
 import RowBrandTable from "../../components/Table/RowBrandTable/RowBrandTable";
 import Table from "../../components/Table/Table";
 import TableMain from "../../components/Table/TableMain/TableMain";
+import WrapperLoadingNotModal from "../../components/WrapperLoadingNotModal/WrapperLoadingNotModal";
 import { useNotModal } from "../../hooks/useNotModal";
 import Screen from "../Screen";
 import feature from "./feature";
@@ -18,29 +19,27 @@ function BrandScreen(props) {
           {feature.label}
         </p>
       </div>
-      <div className="w-full py-3">
-        <div className="w-full flex">
-          <div className="w-2/5">{form.data}</div>
-          <div className="w-3/5">
-            <NotModalTop category={category} table={feature.nameTable} />
-            <Table category={category} feature={feature}>
-              <TableMain category={category} feature={feature}>
-                {category.list &&
-                  category.list.map((item, index) => {
-                    return (
-                      <RowBrandTable
-                        item={item}
-                        key={index}
-                        category={category}
-                        index={index}
-                      />
-                    );
-                  })}
-              </TableMain>
-            </Table>
-          </div>
+      <WrapperLoadingNotModal>
+        <div className="w-2/5">{form.data}</div>
+        <div className="w-3/5">
+          <NotModalTop category={category} table={feature.nameTable} />
+          <Table category={category} feature={feature}>
+            <TableMain category={category} feature={feature}>
+              {category.list &&
+                category.list.map((item, index) => {
+                  return (
+                    <RowBrandTable
+                      item={item}
+                      key={index}
+                      category={category}
+                      index={index}
+                    />
+                  );
+                })}
+            </TableMain>
+          </Table>
         </div>
-      </div>
+      </WrapperLoadingNotModal>
     </Screen>
   );
 }

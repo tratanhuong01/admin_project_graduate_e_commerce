@@ -14,3 +14,10 @@ export const openFormEdit = (table, data) => {
     data,
   };
 };
+
+export const setLoadingForm = (loading) => {
+  return {
+    type: Types.SET_LOADING_FORM,
+    loading,
+  };
+};

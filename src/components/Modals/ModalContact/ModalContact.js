@@ -65,22 +65,32 @@ function ModalContact({ data }) {
     >
       <div className="w-full flex h-full p-3 border-r-2 border-solid border-gray-300">
         <div className="w-1/2 mr-5">
-          <p className="my-2 font-semibold items-center flex">
+          <p className="my-3 font-semibold items-center flex">
             Họ tên :
-            <span className=" px-3 py-1 rounded-full bg-yellow-700 text-white ml-4">
+            <span className=" px-3 py-1 rounded-full text-sm  bg-yellow-700 text-white ml-4">
               {data.fullName}
             </span>
           </p>
-          <p className="my-2 font-semibold items-center flex">
+          <p className="my-3 font-semibold items-center flex">
             Email :
-            <span className=" px-3 py-1 rounded-full bg-green-700 text-white ml-4">
+            <span className=" px-3 py-1 rounded-full text-sm  bg-green-700 text-white ml-4">
               {data.email}
             </span>
           </p>
-          <p className="my-2 font-semibold items-center flex">
+          <p className="my-3 font-semibold items-center flex">
             Số điện thoại :
-            <span className=" px-3 py-1 rounded-full bg-red-500 text-white ml-4">
+            <span className=" px-3 py-1 rounded-full text-sm  bg-red-500 text-white ml-4">
               {data.phone}
+            </span>
+          </p>
+          <p className="my-3 font-semibold items-center flex">
+            Tình trạng :
+            <span
+              className={`px-3 py-1 rounded-full text-sm ${
+                data.status === 0 ? "bg-red-500 " : "bg-green-700 "
+              } text-white ml-4`}
+            >
+              {data.status === 0 ? "Chưa phản hồi" : "Đã phản hồi"}
             </span>
           </p>
           <p className="font-semibold">Nội dung</p>

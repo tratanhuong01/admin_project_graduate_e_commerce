@@ -12,8 +12,8 @@ export const updateProduct = async (products, headers, dispatch) => {
   data.descriptions = draftToHtml(
     convertToRaw(data.descriptions.getCurrentContent())
   );
-  // // await updateImageMain(lineProduct, products, headers);
-  // // await updateImageOther(lineProduct, products, headers);
+  //await updateImageMain(lineProduct, products, headers);
+  //await updateImageOther(lineProduct, products, headers);
   await updateProductAttribute(lineProduct, products, headers);
   await updateFunctionProduct(lineProduct, products, headers);
   dispatch(modalsAction.closeModal());

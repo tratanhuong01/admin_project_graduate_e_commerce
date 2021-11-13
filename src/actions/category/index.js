@@ -49,13 +49,17 @@ export const loadListCategoryRequest = (data, params, status, headers) => {
         `${data}${params ? params.limit : ""}`,
         "GET",
         null,
-        headers
+        Object.assign(headers, {
+          "Content-Type": "application/json",
+        })
       );
       const result2 = await api(
         `${data}All${params ? params.full : ""}`,
         "GET",
         null,
-        headers
+        Object.assign(headers, {
+          "Content-Type": "application/json",
+        })
       );
       dispatch(
         loadListCategory(
@@ -240,9 +244,6 @@ export const addCategoryRequest = (
         headers
       );
       if (status) {
-        if (funcOther) {
-          funcOther(result.data.id, obj);
-        }
         dispatch(
           loadListCategoryConnectRequest(
             `${table}Filters`,
@@ -265,6 +266,10 @@ export const addCategoryRequest = (
             })
           )
         );
+      console.log(funcOther);
+      if (funcOther) {
+        funcOther(result.data.id, obj, headers);
+      }
     } catch (error) {
       throw error;
     }

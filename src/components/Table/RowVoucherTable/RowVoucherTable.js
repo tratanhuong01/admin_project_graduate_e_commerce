@@ -1,7 +1,7 @@
 import React from "react";
 import ContentColor from "../../Index/IndexRight/General/RowTable/ContentColor/ContentColor";
 import RowTableMain from "../RowTableMain";
-
+import * as StringUtils from "../../../Utils/StringUtils";
 function RowVoucherTable(props) {
   //
   const { item, index, feature } = props;
@@ -10,9 +10,15 @@ function RowVoucherTable(props) {
     <RowTableMain item={item} index={index}>
       <td className="p-2">{item.code}</td>
       <td className="p-2">{item.nameDiscountCode}</td>
-      <td className="p-2">{item.timeStart}</td>
-      <td className="p-2">{item.timeExpired}</td>
-      <td className="p-2">{item.percent}</td>
+      <td className="p-2">{StringUtils.formatDateTimeMain(item.timeStart)}</td>
+      <td className="p-2">
+        {StringUtils.formatDateTimeMain(item.timeExpired)}
+      </td>
+      <td className="p-2">
+        <span className="px-2 py-1 text-white bg-red-500 font-semibold rounded-full">
+          {item.percent}&nbsp;%
+        </span>
+      </td>
       <td className="p-2">{item.amount}</td>
       <td className="p-2">
         <ContentColor

@@ -109,7 +109,6 @@ const myReducer = (state = initialState, action) => {
         default:
           break;
       }
-      state.loading = false;
       return { ...state };
 
     case Types.OPEN_FORM_EDIT:
@@ -202,7 +201,9 @@ const myReducer = (state = initialState, action) => {
         default:
           break;
       }
-      state.loading = false;
+      return { ...state };
+    case Types.SET_LOADING_FORM:
+      state.loading = action.loading;
       return { ...state };
     default:
       return state;

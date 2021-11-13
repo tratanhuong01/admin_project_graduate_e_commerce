@@ -80,7 +80,7 @@ function ModalNews(props) {
       slug: StringUtils.removeVietnameseTones(dataForm.title),
       commentCount: data ? data.commentCount : null,
     };
-    const funcOther = async (idNews, news) => {
+    const funcOther = async (idNews, news, headers) => {
       const formData = new FormData();
       formData.append("multipartFile", dataForm.thumbnailFile[0]);
       formData.append("id", `news__${idNews}`);

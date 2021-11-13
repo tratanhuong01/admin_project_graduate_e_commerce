@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import api from "../../../../Utils/api";
 import * as categorysAction from "../../../../actions/category/index";
-import { CLOSE_MODAL } from "../../../../constants/ActionTypes";
+import {
+  CLOSE_MODAL,
+  SET_LOADING_MODAL,
+} from "../../../../constants/ActionTypes";
 import updateBillByStatus from "./updateBillByStatus";
 import html2canvas from "html2canvas";
-
+import sendMailByStatus from "./sendMailByStatus";
 const typeBill = [
   {
     id: 0,
@@ -59,6 +62,7 @@ function FooterContentOrder({ order }) {
   });
   const dispatch = useDispatch();
   const update = async () => {
+    dispatch({ type: SET_LOADING_MODAL, loading: true });
     await api(
       `bills/update/status/?idBill=${order.bill.id}&status=${choose.type}`,
       "GET",
@@ -72,7 +76,17 @@ function FooterContentOrder({ order }) {
         user: order.bill.billUser,
         reason: data,
       });
-      socket.emit("notifyUser", order.bill.billUser.id);
+      if (order.bill.billUser.isRegister === 0) {
+        await sendMailByStatus({
+          email: order.bill.email,
+          status: order.bill.status,
+          idOrder: order.bill.id,
+          reason: "",
+          headers: headers,
+        });
+      } else {
+        socket.emit("notifyUser", order.bill.billUser.id);
+      }
     }
     dispatch(
       categorysAction.loadListCategoryConnectRequest(
@@ -90,6 +104,7 @@ function FooterContentOrder({ order }) {
         headers
       )
     );
+    dispatch({ type: SET_LOADING_MODAL, loading: true });
     dispatch({ type: CLOSE_MODAL });
   };
   //
