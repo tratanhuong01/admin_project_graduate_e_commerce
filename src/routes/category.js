@@ -20,6 +20,7 @@ import RamScreen from "../screens/RamScreen/RamScreen";
 import VoucherScreen from "../screens/Voucher/VoucherScreen/VoucherScreen";
 import ConfigScreen from "../screens/ConfigScreen/ConfigScreen";
 import ContactScreen from "../screens/ContactScreen/ContactScreen";
+import EmployeeScreen from "../screens/EmployeeScreen/EmployeeScreen";
 
 const routes = [
   {
@@ -60,9 +61,16 @@ const routes = [
   {
     to: `${Config.USER}`,
     exact: true,
-    main: () => <UserScreen />,
+    main: () => <UserScreen userType={"CUSTOMER"}/>,
     once: false,
     permission: ["ADMINSTAFF", "LEADER"],
+  },
+  {
+    to: `${Config.EMPLOYEE}`,
+    exact: true,
+    main: () => <EmployeeScreen userType=""/>,
+    once: false,
+    permission: [ "LEADER"],
   },
   {
     to: `${Config.LIST_PRODUCT}`,

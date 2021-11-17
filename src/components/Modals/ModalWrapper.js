@@ -29,7 +29,7 @@ function ModalWrapper(props) {
     <div className={className} style={style}>
       <div className="w-full relative rounded-lg bg-white dark:bg-dark-second z-50">
         {!notHeader && (
-          <div className="w-full fixed top-0 bg-white dark:bg-dark-third z-50 h-16 flex items-center justify-center rounded-lg">
+          <div className="w-full z-50 fixed top-0 bg-white dark:bg-dark-third z-50 h-16 flex items-center justify-center rounded-lg">
             {data ? (
               <Component setIndex={data.setData} index={data.data} />
             ) : (

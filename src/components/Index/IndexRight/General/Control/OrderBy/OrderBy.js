@@ -39,6 +39,7 @@ function OrderBy(props) {
                 item,
                 index: 0,
                 params,
+                mainFilters: filters
               },
               headers
             )
@@ -58,14 +59,15 @@ function OrderBy(props) {
     <div className="w-1/2 flex">
       <div
         onClick={() => setShowLeft(!showLeft)}
-        className="w-48 p-3 mr-5 font-semibold flex bg-white cursor-pointer relative"
+        className="w-48 p-3 mr-5 font-semibold flex bg-white cursor-pointer relative border-2 border-solid 
+        border-gray-200 shadow-lg"
       >
         <p className="items-center">{data.name}</p>
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
         {showLeft && (
           <div
-            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 
-          font-semibold absolute top-full left-0 shadow-lg z-50"
+            className="w-48 bg-white border-2 border-solid border-gray-200 py-1 
+          font-semibold absolute top-full -left-0.5 shadow-lg z-50"
           >
             {showDataLeft}
           </div>
@@ -73,14 +75,15 @@ function OrderBy(props) {
       </div>
       <div
         onClick={() => setShowRight(!showRight)}
-        className="w-48 p-3 font-semibold flex bg-white cursor-pointer relative"
+        className="w-48 p-3 font-semibold flex bg-white cursor-pointer relative border-2 border-solid 
+        border-gray-200 shadow-lg"
       >
         <p className="items-center">{name}</p>
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
         {showRight && (
           <div
-            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 
-            font-semibold absolute top-full left-0 shadow-lg z-50"
+            className="w-48 bg-white border-2 border-solid border-gray-200 py-1 
+            font-semibold absolute top-full -left-0.5 shadow-lg z-50"
           >
             {showDataRight}
           </div>

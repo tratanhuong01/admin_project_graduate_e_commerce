@@ -13,7 +13,7 @@ function ModalHeaderRight(props) {
     >
       <div className="w-full flex pb-2">
         <div className="">
-          <img src={user.avatar} className="w-16 h-16 rounded-lg" alt="" />
+          <img src={user.avatar} className="w-16 h-16 rounded-lg object-cover" alt="" />
         </div>
         <div className="ml-3">
           <p>{`${user.firstName} ${user.lastName}`}</p>

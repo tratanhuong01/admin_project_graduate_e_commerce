@@ -31,7 +31,10 @@ function NewsScreen(props) {
             </p>
           </div>
           <div className="w-auto flex items-center justify-end">
-            <Date />
+            <Date table={feature.nameTable} query={{
+              full: `?`,
+              limit: `?limit=${10}&offset=${0}`,
+            }} />
             <FileDown />
             <CrudCategoryModal
               feature={feature}

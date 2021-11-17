@@ -86,7 +86,6 @@ function ModalVoucher(props) {
   const submitForm = (datas) => {
     datas.timeStart = StringUtils.formatDateTimeCustom(datas.timeStart);
     datas.timeExpired = StringUtils.formatDateTimeCustom(datas.timeExpired);
-    console.log(datas);
     dispatch(
       categorysAction.addCategoryRequest(
         datas,

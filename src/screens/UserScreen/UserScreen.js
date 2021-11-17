@@ -10,14 +10,14 @@ import TableMain from "../../components/Table/TableMain/TableMain";
 import RowUserTable from "../../components/Table/RowUserTable/RowUserTable";
 import CrudCategoryModal from "../../components/CrudCategoryModal/CrudCategoryModal";
 
-function UserScreen(props) {
+function UserScreen({ userType }) {
   //
   const category = useHaveModal(
     feature.nameTable + "Filters",
     {
-      full: `?userType=${"CUSTOMER"}`,
-      limit: `?userType=${"CUSTOMER"}&limit=${10}&offset=${0}`,
-      type: `?userType=${"CUSTOMER"}`,
+      full: `?userType=${userType}`,
+      limit: `?userType=${userType}&limit=${10}&offset=${0}`,
+      type: `?userType=${userType}`,
     },
     true
   );
@@ -32,14 +32,18 @@ function UserScreen(props) {
             </p>
           </div>
           <div className="w-auto flex items-center justify-end">
-            <Date />
+            <Date table={feature.nameTable} query={{
+              full: `?userType=${userType}`,
+              limit: `?userType=${userType}&limit=${10}&offset=${0}`,
+              type: `?userType=${userType}`,
+            }} />
             <FileDown />
             <CrudCategoryModal
               feature={feature}
               params={{
-                full: `?userType=CUSTOMER`,
-                limit: `?userType=CUSTOMER&limit=${10}&offset=${0}`,
-                type: `?userType=${"CUSTOMER"}`,
+                full: `?userType=${userType}`,
+                limit: `?userType=${userType}&limit=${10}&offset=${0}`,
+                type: `?userType=${userType}`,
               }}
               add={false}
               edit={false}
@@ -52,9 +56,9 @@ function UserScreen(props) {
           data={feature}
           table={feature.nameTable}
           params={{
-            full: `?userType=CUSTOMER`,
-            limit: `?userType=CUSTOMER&limit=${10}&offset=${0}`,
-            type: `userType=${"CUSTOMER"}`,
+            full: `?userType=${userType}`,
+            limit: `?userType=${userType}&limit=${10}&offset=${0}`,
+            type: `userType=${userType}`,
           }}
         />
         <Table
@@ -62,24 +66,24 @@ function UserScreen(props) {
           feature={feature}
           modal={true}
           params={{
-            full: `?userType=CUSTOMER`,
-            limit: `?userType=CUSTOMER&limit=${10}&offset=${0}`,
-            type: `userType=${"CUSTOMER"}`,
+            full: `?userType=${userType}`,
+            limit: `?userType=${userType}&limit=${10}&offset=${0}`,
+            type: `userType=${userType}`,
           }}
         >
           <TableMain feature={feature} category={category} numRow={13}>
             {category.list
               ? category.list.map((item, index) => {
-                  return (
-                    <RowUserTable
-                      item={item}
-                      key={index}
-                      category={category}
-                      index={index}
-                      feature={feature}
-                    />
-                  );
-                })
+                return (
+                  <RowUserTable
+                    item={item}
+                    key={index}
+                    category={category}
+                    index={index}
+                    feature={feature}
+                  />
+                );
+              })
               : ""}
           </TableMain>
         </Table>

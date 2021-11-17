@@ -16,7 +16,7 @@ function DateInfoSimple(props) {
           className="w-full rounded-lg p-2.5 text-xs border-2 border-solid mt-2"
           showError={errors["timeStartSale"]}
           name={"timeStartSale"}
-          label={"Ngày bắt đầu khuyến mãi"}
+          label={"Khuyến mãi từ"}
           type="datetime-local"
           onChange={(item) => {
             if (edit) dispatch(productsAction.updateInfoMainEdit(item, 3));
@@ -32,7 +32,7 @@ function DateInfoSimple(props) {
           className="w-full rounded-lg p-2.5 text-xs border-2 border-solid mt-2"
           showError={errors["timeEndSale"]}
           name={"timeEndSale"}
-          label={"Ngày kết thúc khuyến mãi"}
+          label={"Khuyến mãi đến"}
           type="datetime-local"
           onChange={(item) => {
             if (edit) dispatch(productsAction.updateInfoMainEdit(item, 4));

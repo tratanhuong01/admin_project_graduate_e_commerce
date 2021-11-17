@@ -5,6 +5,8 @@ export const REGEX_NUMBER_PHONE =
 
 export const USER = `${PAGE_ADMIN}/khach-hang`;
 
+export const EMPLOYEE = `${PAGE_ADMIN}/nhan-vien`;
+
 export const SUPPILER = `${PAGE_ADMIN}/nha-cung-cap`;
 
 export const DASHBOARD = `${PAGE_ADMIN}/tong-quan`;

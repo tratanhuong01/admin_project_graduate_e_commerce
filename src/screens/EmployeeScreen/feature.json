@@ -1,0 +1,205 @@
+{
+    "filter": [
+      {
+        "id": "USER_FILTER_3",
+        "name": "Trạng thái",
+        "data": [
+          {
+            "id": -1,
+            "idFilter": "USER_FILTER_3",
+            "nameFilter": "Trạng thái",
+            "name": "Tất cả",
+            "type": -1,
+            "query": "true=true"
+          },
+          {
+            "id": 0,
+            "idFilter": "USER_FILTER_3",
+            "nameFilter": "Trạng thái",
+            "name": "Khóa vĩnh viễn",
+            "type": 0,
+            "query": "status=2"
+          },
+          {
+            "id": 1,
+            "idFilter": "USER_FILTER_3",
+            "nameFilter": "Trạng thái",
+            "name": "Tạm khóa",
+            "type": 1,
+            "query": "status=1"
+          },
+          {
+            "id": 2,
+            "idFilter": "USER_FILTER_3",
+            "nameFilter": "Trạng thái",
+            "name": "Bình thường",
+            "type": 2,
+            "query": "status=0"
+          }
+        ]
+      },
+      {
+        "id": "USER_FILTER_4",
+        "name": "Giới tính",
+        "data": [
+          {
+            "id": -1,
+            "idFilter": "USER_FILTER_4",
+            "nameFilter": "Giới tính",
+            "name": "Tất cả",
+            "type": "Nam",
+            "query": "true=true"
+          },
+          {
+            "id": 0,
+            "idFilter": "USER_FILTER_4",
+            "nameFilter": "Giới tính",
+            "name": "Nam",
+            "type": "Nam",
+            "query": "sex=Nam"
+          },
+          {
+            "id": 1,
+            "idFilter": "USER_FILTER_4",
+            "nameFilter": "Giới tính",
+            "name": "Nữ",
+            "type": "Nữ",
+            "query": "sex=Nữ"
+          },
+          {
+            "id": 0,
+            "idFilter": "USER_FILTER_4",
+            "nameFilter": "Giới tính",
+            "name": "Khác",
+            "type": "Khác",
+            "query": "sex=Khác"
+          }
+        ]
+      }
+    ],
+    "sorter": [
+      {
+        "name": "Thời gian đăng kí",
+        "data": [
+          {
+            "id": -1,
+            "nameFilter": "Thời gian đăng kí",
+            "name": "Tất cả",
+            "query": "true=true"
+          },
+          {
+            "id": 0,
+            "nameFilter": "Thời gian đăng kí",
+            "name": "Tăng dần",
+            "query": "timeRegisterSorter=ASC"
+          },
+          {
+            "id": 1,
+            "nameFilter": "Thời gian đăng kí",
+            "name": "Giảm dần",
+            "query": "timeRegisterSorter=DESC"
+          }
+        ]
+      }
+    ],
+    "condition": {
+      "sex": [
+        {
+          "type": "Nam",
+          "bgColor": "bg-green-600",
+          "name": "Nam"
+        },
+        {
+          "type": "Nữ",
+          "bgColor": "bg-pink-500",
+          "name": "Nữ"
+        },
+        {
+          "type": "Khác",
+          "bgColor": "bg-organce",
+          "name": "Khác"
+        }
+      ],
+      "status": [
+        {
+          "type": 0,
+          "bgColor": "bg-green-600",
+          "name": "Bình thường"
+        },
+        {
+          "type": 1,
+          "bgColor": "bg-pink-600",
+          "name": "Tạm khóa"
+        },
+        {
+          "type": 2,
+          "bgColor": "bg-red-600",
+          "name": "Khóa vĩnh viễn"
+        }
+      ]
+    },
+    "nameTable": "user",
+    "table": [
+      {
+        "id": -1,
+        "name": "CBX"
+      },
+      {
+        "id": 1,
+        "name": "STT"
+      },
+      {
+        "id": 2,
+        "name": "Họ và tên"
+      },
+      {
+        "id": 7,
+        "name": "Giới tính"
+      },
+      {
+        "id": 4,
+        "name": "Email"
+      },
+      {
+        "id": 5,
+        "name": "Số điện thoại"
+      },
+      {
+        "id": 6,
+        "name": "Ngày sinh"
+      },
+      {
+        "id": 9,
+        "name": "Trạng thái"
+      },
+      {
+        "id": 12,
+        "name": "Thời gian đăng kí"
+      }
+    ],
+    "status": {
+      "title": "Trạng thái tài khoản",
+      "column": "status",
+      "list": [
+        {
+          "name": "Bình thường",
+          "icon": "fas fa-user-check",
+          "description": "Người dùng sử dụng được đầy đủ tính năng của website",
+          "data": 0
+        },
+        {
+          "name": "Tạm khóa",
+          "icon": "fas fa-unlock-alt",
+          "description": "Người dùng sẽ bị tạm khóa trong một số thời gian nhất định",
+          "data": 1
+        },
+        {
+          "name": "Khóa vĩnh viễn",
+          "icon": "bx bx-block",
+          "description": "Người dùng sẽ không được sử dụng tài khoản của mình vĩnh viễn",
+          "data": 2
+        }
+      ]
+    }
+  }
+  

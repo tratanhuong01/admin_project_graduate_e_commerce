@@ -30,7 +30,10 @@ function ContactScreen(props) {
             </p>
           </div>
           <div className="w-auto flex items-center justify-end">
-            <Date />
+            <Date query={{
+              full: `?`,
+              limit: `?limit=${10}&offset=${0}`,
+            }} table={feature.nameTable} />
             <FileDown />
             <CrudCategoryModal
               feature={feature}
@@ -49,16 +52,16 @@ function ContactScreen(props) {
           <TableMain feature={feature} category={category} numRow={13}>
             {category.list
               ? category.list.map((item, index) => {
-                  return (
-                    <RowContactTable
-                      item={item}
-                      key={index}
-                      category={category}
-                      index={index}
-                      feature={feature}
-                    />
-                  );
-                })
+                return (
+                  <RowContactTable
+                    item={item}
+                    key={index}
+                    category={category}
+                    index={index}
+                    feature={feature}
+                  />
+                );
+              })
               : ""}
           </TableMain>
         </Table>

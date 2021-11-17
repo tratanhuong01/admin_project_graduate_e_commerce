@@ -39,6 +39,7 @@ function ItemDataFilterOrder(props) {
                 table,
                 index: 0,
                 params,
+                mainFilters: filters
               },
               headers
             )

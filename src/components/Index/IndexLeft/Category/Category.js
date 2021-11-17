@@ -14,12 +14,20 @@ function Category(props) {
       permission: ["ADMINSTAFF", "LEADER"],
     },
     {
-      id: 2,
+      id: 1,
       name: "Khách hàng",
       icon: "bx bx-user",
       child: [],
       to: Config.USER,
       permission: ["ADMINSTAFF", "LEADER"],
+    },
+    {
+      id: 2,
+      name: "Nhân viên",
+      icon: "bx bx-user-pin",
+      child: [],
+      to: Config.EMPLOYEE,
+      permission: ["LEADER"],
     },
     {
       id: 3,

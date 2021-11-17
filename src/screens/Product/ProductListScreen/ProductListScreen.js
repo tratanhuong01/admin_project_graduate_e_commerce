@@ -31,13 +31,16 @@ function ProductListScreen(props) {
             </p>
           </div>
           <div className="w-auto flex items-center justify-end">
-            <Date />
+            <Date table={feature.nameTable} query={{
+              full: `?productType=0`,
+              limit: `?productType=0&limit=${10}&offset=${0}`,
+            }} />
             <FileDown />
             <CrudCategoryModal
               feature={feature}
               params={{
-                full: `?userType=0`,
-                limit: `?userType=0&limit=${10}&offset=${0}`,
+                full: `?productType=0`,
+                limit: `?productType=0&limit=${10}&offset=${0}`,
               }}
               add={true}
               edit={true}

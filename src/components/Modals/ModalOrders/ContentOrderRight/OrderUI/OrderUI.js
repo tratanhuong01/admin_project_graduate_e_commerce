@@ -3,6 +3,10 @@ import logo from "../../../../../assets/images/logo.png";
 function OrderUI(props) {
   //
   const { order } = props;
+  const dateObj = new Date();
+  const month = dateObj.getUTCMonth() + 1; //months from 1-12
+  const day = dateObj.getUTCDate();
+  const year = dateObj.getUTCFullYear();
   //
   return (
     <div
@@ -60,7 +64,7 @@ function OrderUI(props) {
                       <td>
                         <div
                           className="text-sm whitespace-normal"
-                          style={{ width: "270px", maxWidth: "270px" }}
+                          style={{ width: "250px", maxWidth: "250px" }}
                         >
                           {item.productFull.nameLineProduct}
                         </div>
@@ -96,8 +100,8 @@ function OrderUI(props) {
           <div className="w-full flex justify-between">
             <div className="w-7/12"></div>
             <div className="w-7/12 flex flex-col text-center justify-end font-normal py-3">
-              <p className="mb-1 text-sm">Ngày 27 tháng 09 năm 2021</p>
-              <p className="mb-1 texxt">NGƯỜI BÁN HÀNG</p>
+              <p className="mb-1 text-sm">Ngày {day < 10 ? `0${day}` : day} tháng {month < 10 ? `0${month}` : month} năm {year}</p>
+              <p className="mb-1 texxt">NGƯỜI MUA HÀNG</p>
               <p className="mb-1 text-sm">Kí và ghi rõ họ tên</p>
               <div className="py-16"></div>
             </div>

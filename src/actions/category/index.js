@@ -81,7 +81,7 @@ export const loadListCategoryConnectRequest = (
   headers
 ) => {
   return async (dispatch) => {
-    const { filters, sorter, search } = filterData;
+    const { filters, sorter, search, mainFilters } = filterData;
     let stringQuery = "";
     if (filters.length > 0)
       filters.forEach((element) => {
@@ -89,6 +89,7 @@ export const loadListCategoryConnectRequest = (
       });
     if (sorter) stringQuery += `&${sorter.query}`;
     if (search) stringQuery += `&keyword=${search}`;
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result1 = await api(
         `${data}${params ? params.limit : ""}${stringQuery}`,
@@ -139,7 +140,7 @@ export const loadPaginationRequest = (data, headers) => {
 
 export const loadPaginationModalRequest = (data, headers) => {
   return async (dispatch) => {
-    const { table, filters, sorter, index, search, params } = data;
+    const { table, filters, sorter, index, search, params, mainFilters } = data;
     let stringQuery = "";
     if (filters.length > 0)
       filters.forEach((element) => {
@@ -147,6 +148,7 @@ export const loadPaginationModalRequest = (data, headers) => {
       });
     if (sorter) stringQuery += `&${sorter.query}`;
     if (search) stringQuery += `&keyword=${search}`;
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result = await filterApi.filters(
         table,

@@ -1,5 +1,6 @@
 import React from "react";
 import ModalContact from "../components/Modals/ModalContact/ModalContact";
+import ModalEmployee from "../components/Modals/ModalEmployee/ModalEmployee";
 import ModalNews from "../components/Modals/ModalNews/ModalNews";
 import ModalOrders from "../components/Modals/ModalOrders/ModalOrders";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
@@ -33,6 +34,9 @@ const myReducer = (state = initialState, action) => {
         case "discountCode":
           state.data = <ModalVoucher data={null} />;
           break;
+        case "user":
+          state.data = <ModalEmployee data={null} />;
+          break;
         default:
           break;
       }
@@ -56,6 +60,9 @@ const myReducer = (state = initialState, action) => {
           break;
         case "contact":
           state.data = <ModalContact data={action.data} />;
+          break;
+        case "user":
+          state.data = <ModalEmployee data={action.data} />;
           break;
         default:
           break;

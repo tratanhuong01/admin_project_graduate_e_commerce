@@ -14,6 +14,8 @@ function InputField(props) {
     disabled,
     file,
     price,
+    errorsIsset,
+    attribute
   } = props;
 
   const Field = register(name, { required: true });
@@ -38,10 +40,12 @@ function InputField(props) {
             }`
           }
           onChange={(e) => {
-            if (file) {
-              if (e.target.files) onChange(e.target.files[0]);
-            } else {
-              onChange(e.target.value);
+            if (typeof onChange === "function") {
+              if (file) {
+                if (e.target.files) onChange(e.target.files[0]);
+              } else {
+                onChange(e.target.value);
+              }
             }
             if (typeof Field === "object") {
               if (price) Field.onChange(e);
@@ -54,7 +58,8 @@ function InputField(props) {
           autoComplete={"off"}
         />
         <p className="m-2 text-sm w-full text-red-500 font-semibold">
-          {showError && showError.message}
+          {showError ? showError.message : (
+            errorsIsset && attribute) ? (errorsIsset[attribute]) ? errorsIsset[attribute] : "" : ""}
         </p>
       </div>
     </>

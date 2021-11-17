@@ -40,6 +40,7 @@ function Filter(props) {
                 table,
                 index: 0,
                 params,
+                mainFilters: filters
               },
               headers
             )
@@ -75,14 +76,15 @@ function Filter(props) {
       </p>
       <div
         onClick={() => setShowLeft(!showLeft)}
-        className="w-48 p-3 mr-5 font-semibold flex bg-white cursor-pointer relative"
+        className="w-48 p-3 mr-5 font-semibold flex bg-white cursor-pointer relative border-2 border-solid 
+        border-gray-200 shadow-lg"
       >
         <p className="items-center">{data.name}</p>
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
         {showLeft && (
           <div
-            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 z-50 
-          font-semibold absolute top-full left-0 shadow-lg"
+            className="w-48 bg-white border-2 border-solid border-gray-200 py-1 z-50 
+          font-semibold absolute top-full -left-0.5 shadow-lg"
           >
             {showDataLeft}
           </div>
@@ -90,20 +92,21 @@ function Filter(props) {
       </div>
       <div
         onClick={() => setShowRight(!showRight)}
-        className="w-48 p-3 font-semibold flex bg-white cursor-pointer relative "
+        className="w-48 p-3 font-semibold flex bg-white cursor-pointer relative border-2 border-solid 
+        border-gray-200 shadow-lg"
       >
         <p className="items-center">{name}</p>
         <i className="fas fa-caret-down absolute right-3 top-4"></i>
         {showRight && (
           <div
-            className="w-48 bg-white border-2 border-solid border-gray-200 p-1 z-50 
-            font-semibold absolute top-full left-0 shadow-lg max-h-80 overflow-y-auto  scrollbar-css"
+            className="w-48 bg-white border-2 border-solid border-gray-200 py-1 z-50 
+            font-semibold absolute top-full -left-0.5 shadow-lg max-h-80 overflow-y-auto  scrollbar-css"
           >
             {showDataRight}
           </div>
         )}
       </div>
-      <p className="text-xm font-semibold py-3 ml-8 text-center flex items-center">
+      <p className="text-xm font-semibold py-3 ml-4 mr-2 text-center flex items-center">
         Sắp xếp
       </p>
     </div>

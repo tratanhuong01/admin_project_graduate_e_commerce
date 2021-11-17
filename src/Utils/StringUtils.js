@@ -71,6 +71,14 @@ export const formatDateTimeBack2 = (date) => {
   return `${year}/${month}/${day}`;
 };
 
+export const formatDateTimeBackInput = (date) => {
+  const arr = date.split(" ")[0].split("-");
+  const day = arr[1];
+  const month = arr[2];
+  const year = arr[0];
+  return `${year}-${month}-${day}`;
+};
+
 export const formatDateTimeMain = (date) => {
   const arr = date.split(" ");
   const day = arr[0].split("-")[2];

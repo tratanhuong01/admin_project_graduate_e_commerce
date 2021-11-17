@@ -27,6 +27,7 @@ function ItemPagination(props) {
                 index,
                 search: filters.search,
                 params,
+                mainFilters: filters
               },
               headers
             )
@@ -42,9 +43,8 @@ function ItemPagination(props) {
             )
           );
       }}
-      className={`h-10 w-10 rounded-full flex items-center justify-center text-white ${
-        index === indexCurrent ? "bg-green-500" : "bg-gray-500"
-      } flex justify-center items-center cursor-pointer font-bold mx-1`}
+      className={`h-10 w-10 rounded-full flex items-center justify-center text-white ${index === indexCurrent ? "bg-green-500" : "bg-gray-500"
+        } flex justify-center items-center cursor-pointer font-bold mx-1`}
     >
       {item}
     </li>

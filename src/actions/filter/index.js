@@ -4,7 +4,7 @@ import * as filterApi from "../../api/filterApi";
 
 export const addFilterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
-    const { filters, item, table, sorter, params } = data;
+    const { filters, item, table, sorter, params, mainFilters } = data;
     const index = filters.findIndex((dt) => dt.idFilter === item.idFilter);
     let clone = [];
     if (index === -1) clone = [...filters, item];
@@ -18,6 +18,7 @@ export const addFilterCategoryRequest = (data, headers) => {
         stringQuery += "&" + element.query;
       });
     if (sorter) stringQuery += `&${sorter.query}`;
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result_2 = await filterApi.filters(
         table,
@@ -48,7 +49,7 @@ export const updateFilterCategory = (data) => {
 
 export const removeFilterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
-    const { filters, item, table, sorter, index, params } = data;
+    const { filters, item, table, sorter, index, params, mainFilters } = data;
     const clone = filters.filter((dt) => dt.id !== item.id);
     let stringQuery = "";
     if (clone.length > 0)
@@ -56,6 +57,7 @@ export const removeFilterCategoryRequest = (data, headers) => {
         stringQuery += "&" + element.query;
       });
     if (sorter) stringQuery += `&${sorter.query}`;
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result_2 = await filterApi.filters(
         table,
@@ -104,17 +106,17 @@ export const resetFiltersAllRequest = (data, headers) => {
 
 export const addSorterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
-    const { filters, item, table, index, params } = data;
+    const { filters, item, table, index, params, mainFilters } = data;
     let stringQuery = "";
     if (filters.length > 0)
       filters.forEach((element) => {
         stringQuery += "&" + element.query;
       });
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result_1 = await filterApi.filters(
         table,
-        `?${params ? params.type : ""}${stringQuery}&${
-          item.query
+        `?${params ? params.type : ""}${stringQuery}&${item.query
         }&offset=${index}&limit=10`,
         false,
         headers
@@ -135,12 +137,13 @@ export const addSorterCategoryRequest = (data, headers) => {
 
 export const removeSorterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
-    const { filters, table, index, params } = data;
+    const { filters, table, index, params, mainFilters } = data;
     let stringQuery = "";
     if (filters.length > 0)
       filters.forEach((element) => {
         stringQuery += "&" + element.query;
       });
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result_1 = await filterApi.filters(
         table,
@@ -164,18 +167,18 @@ export const removeSorterCategoryRequest = (data, headers) => {
 
 export const searchCategoryRequest = (data, headers) => {
   return async (dispatch) => {
-    const { filters, sorter, table, keyword, index, params } = data;
+    const { filters, sorter, table, keyword, index, params, mainFilters } = data;
     let stringQuery = "";
     if (filters.length > 0)
       filters.forEach((element) => {
         stringQuery += "&" + element.query;
       });
     if (sorter) stringQuery += `&${sorter.query}`;
+    stringQuery += `&timeCreatedFrom=${mainFilters.dateFrom}&timeCreatedTo=${mainFilters.dateTo}`
     try {
       const result_1 = await filterApi.filters(
         table,
-        `?${
-          params ? params.type : ""
+        `?${params ? params.type : ""
         }${stringQuery}&keyword=${keyword}&offset=${index}&limit=10`,
         false,
         headers
@@ -214,3 +217,11 @@ export const removeAllFilterSorterSearch = () => {
     type: Types.REMOVE_ALL_FILTER_SORTER_SEARCH,
   };
 };
+
+export const updateDateCategory = (dateFrom, dateTo) => {
+  return {
+    type: Types.UPDATE_DATE_CATEGORY,
+    dateFrom,
+    dateTo
+  }
+}

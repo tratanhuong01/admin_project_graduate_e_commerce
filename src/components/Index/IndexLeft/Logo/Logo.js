@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../../../assets/images/logo.png";
+import { DASHBOARD } from "../../../../constants/Config";
 //
 function Logo({ show }) {
   return (
@@ -9,13 +11,15 @@ function Logo({ show }) {
         show ? " -ml-5  lg:h-auto" : ""
       }`}
     >
-      <img
-        src={logo}
-        className={` ${
-          show ? "w-52 h-20 object-contain" : "w-24 object-cover"
-        } cursor-pointer`}
-        alt=""
-      />
+      <Link to={DASHBOARD}>
+        <img
+          src={logo}
+          className={` ${
+            show ? "w-52 h-20 object-contain" : "w-24 object-cover"
+          } cursor-pointer`}
+          alt=""
+        />
+      </Link>
     </div>
   );
 }

@@ -4,20 +4,27 @@ import * as categorysAction from "../actions/category/index";
 
 export const useHaveModal = (table, query, status) => {
   //
-  const { category, headers } = useSelector((state) => {
+  const { category, headers, filters } = useSelector((state) => {
     return {
       category: state.category,
       headers: state.headers,
+      filters: state.filters
     };
   });
   const dispatch = useDispatch();
   useEffect(() => {
     //
     dispatch(
-      categorysAction.loadListCategoryRequest(
+      categorysAction.loadListCategoryConnectRequest(
         `${table}${status ? "" : "s"}`,
         query,
-        status,
+        true,
+        {
+          filters: filters.choose,
+          sorter: filters.sorter,
+          search: filters.keyword,
+          mainFilters: filters
+        },
         headers
       )
     );
