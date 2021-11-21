@@ -4,7 +4,6 @@ import RowTableMain from '../RowTableMain';
 import * as StringUtil from "../../../Utils/StringUtils";
 import * as modalsAction from "../../../actions/modals/index";
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 
 export default function RowEmployeeTable(props) {
   const socket = useSelector((state) => state.socket);
@@ -19,6 +18,9 @@ export default function RowEmployeeTable(props) {
         ) : (
           <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
         )}
+      </td>
+      <td className="p-2">
+        {item.userRole.nameRole}
       </td>
       <td className="p-2">
         {item.sex ? (
@@ -57,6 +59,7 @@ export default function RowEmployeeTable(props) {
                 itemCurrent: item.status,
                 table: feature.nameTable,
                 id: item.id,
+                dataType: "",
                 actionFunc: (id) => {
                   socket.emit("updateStatusUser", id);
                 },
@@ -67,14 +70,7 @@ export default function RowEmployeeTable(props) {
           typeData={item.status}
         />
       </td>
-      <td className="p-2">
-        {moment(
-          `${item.timeCreated.split(" ")[0].split("-")[2]}${
-            item.timeCreated.split(" ")[0].split("-")[0]
-          }${item.timeCreated.split(" ")[0].split("-")[1]}`,
-          "YYYYMMDD"
-        ).fromNow()}
-      </td>
+
     </RowTableMain>
   );
 }

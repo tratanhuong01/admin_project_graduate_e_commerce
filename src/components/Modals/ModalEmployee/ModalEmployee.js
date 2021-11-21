@@ -22,7 +22,7 @@ export default function ModalEmployee({ data }) {
         resolver: yupResolver(ValidForm),
         shouldUnregister: false,
     });
-    const { headers } = useSelector((state) => {
+    const { headers, filters } = useSelector((state) => {
         return {
             headers: state.headers,
             filters: state.filters
@@ -52,19 +52,22 @@ export default function ModalEmployee({ data }) {
             <form onSubmit={handleSubmit((datas) => updateEmployee.checkEmailAndPhone(
                 { data: datas, setErrorsIsset, errorsIsset }, {
                 filters: {
-                    filters: [],
-                    sorter: null,
-                    keyword: null
+                    filters: filters.choose,
+                    sorter: filters.sorter,
+                    search: filters.search,
+                    mainFilters: filters
                 },
                 query: {
                     full: `?userType=${""}`,
                     limit: `?userType=${""}&limit=${10}&offset=${0}`,
                     type: `?userType=${""}`,
                 },
+                headers,
                 table: 'user',
                 obj: datas,
                 id: data ? data.id : null,
-                user: data
+                user: data,
+                file: fileAvatar
             }, dispatch
             ))} className="w-full px-5 flex">
                 <div className="w-1/2 mr-5">
@@ -158,12 +161,11 @@ export default function ModalEmployee({ data }) {
                         className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
                         placeHolder="Tên"
                     />
-
                     <SelectCustom
                         label="Chức vụ"
                         list={roles}
                         attribute="nameRole"
-                        dataProps={data ? data.userRole : null}
+                        dataProps={data ? data.userRole.nameRole : null}
                         className="w-full rounded-lg p-2.5 border-2 border-solid mt-2"
                         setData={(data) =>
                             setValue("userRole", data)

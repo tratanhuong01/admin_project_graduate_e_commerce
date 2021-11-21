@@ -26,7 +26,7 @@ function GroupFilterProductForm(props) {
   const onSubmit = async (data) => {
     dispatch(
       categorysAction.addCategoryRequest(
-        data,
+        Object.assign(data, { timeCreated: (dataProps ? dataProps.timeCreated : null) }),
         table + "s",
         null,
         false,

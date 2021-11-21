@@ -71,6 +71,7 @@ function RowUserTable(props) {
                 itemCurrent: item.status,
                 table: feature.nameTable,
                 id: item.id,
+                dataType: "CUSTOMER",
                 actionFunc: (id) => {
                   socket.emit("updateStatusUser", id);
                 },
@@ -105,8 +106,7 @@ function RowUserTable(props) {
       </td>
       <td className="p-2">
         {moment(
-          `${item.timeCreated.split(" ")[0].split("-")[2]}${
-            item.timeCreated.split(" ")[0].split("-")[0]
+          `${item.timeCreated.split(" ")[0].split("-")[2]}${item.timeCreated.split(" ")[0].split("-")[0]
           }${item.timeCreated.split(" ")[0].split("-")[1]}`,
           "YYYYMMDD"
         ).fromNow()}

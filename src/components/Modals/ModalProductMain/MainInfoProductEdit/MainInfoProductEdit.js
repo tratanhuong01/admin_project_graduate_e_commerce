@@ -8,12 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import api from "../../../../Utils/api";
 import * as StringUtils from "../../../../Utils/StringUtils";
 import { CLOSE_MODAL } from "../../../../constants/ActionTypes";
+import * as categorysAction from "../../../../actions/category/index";
+
 function MainInfoProductEdit(props) {
   const schema = Yup.object().shape({});
-  const { products, headers } = useSelector((state) => {
+  const { products, headers, filters, category } = useSelector((state) => {
     return {
       products: state.products,
       headers: state.headers,
+      filters: state.filters,
+      category: state.category
     };
   });
   const dispatch = useDispatch();
@@ -38,13 +42,14 @@ function MainInfoProductEdit(props) {
           memoryProduct: products.infoMainEdit.rom
             ? products.infoMainEdit.rom.id
             : products.infoMainEdit.rom
-            ? null
-            : null,
+              ? null
+              : null,
           lineProduct: products.infoMainEdit.lineProduct,
           ramProduct: products.infoMainEdit.ram,
           imageProduct: products.infoMainEdit.image,
           isShow: products.infoMainEdit.data.product.isShow,
           slug: products.infoMainEdit.data.product.slug,
+          timeCreated: products.infoMainEdit.data.product.timeCreated
         },
         headers
       );
@@ -59,7 +64,7 @@ function MainInfoProductEdit(props) {
           sale: products.infoMainEdit.sale,
           itemCurrent: products.infoMainEdit.amountInputNew
             ? products.infoMainEdit.amountInput +
-              products.infoMainEdit.amountInputNew
+            products.infoMainEdit.amountInputNew
             : products.infoMainEdit.amountInput,
           itemSold: products.infoMainEdit.data.infoProduct.itemSold,
           typeInfoProduct:
@@ -70,7 +75,7 @@ function MainInfoProductEdit(props) {
             products.infoMainEdit.amountInput === 0
               ? products.infoMainEdit.data.infoProduct.amountInput
               : products.infoMainEdit.data.infoProduct.amountInput +
-                products.infoMainEdit.amountInput,
+              products.infoMainEdit.amountInput,
           saleDefault: products.infoMainEdit.saleDefault,
           timeStartSale: StringUtils.formatDateTimeCustom(
             products.infoMainEdit.timeStartSale
@@ -82,6 +87,15 @@ function MainInfoProductEdit(props) {
         headers
       );
     }
+    dispatch(categorysAction.loadListCategoryConnectRequest('productFilters', {
+      full: `?productType=0`,
+      limit: `?productType=0&limit=${10}&offset=${category.index}`,
+    }, true, {
+      filters: filters.choose,
+      sorter: filters.sorter,
+      search: filters.search,
+      mainFilters: filters
+    }, headers));
     dispatch({ type: CLOSE_MODAL });
   };
   return (

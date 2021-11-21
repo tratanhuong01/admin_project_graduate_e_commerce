@@ -75,7 +75,7 @@ function ModalVoucher(props) {
       setValue("max", data.max);
       setValue("timeCreated", data.timeCreated);
     } else {
-      setValue("id", -1);
+      setValue("id", null);
       setValue("percent", 0);
       setValue("amount", 1);
       setValue("min", 0);
@@ -99,6 +99,7 @@ function ModalVoucher(props) {
           filters: filters.choose,
           sorter: filters.sorter,
           search: filters.search,
+          mainFilters: filters
         },
         headers
       )

@@ -47,6 +47,7 @@ function ModalContact({ data }) {
           filters: filters.choose,
           sorter: filters.sorter,
           search: filters.search,
+          mainFilters: filters
         },
         headers
       )
@@ -86,9 +87,8 @@ function ModalContact({ data }) {
           <p className="my-3 font-semibold items-center flex">
             Tình trạng :
             <span
-              className={`px-3 py-1 rounded-full text-sm ${
-                data.status === 0 ? "bg-red-500 " : "bg-green-700 "
-              } text-white ml-4`}
+              className={`px-3 py-1 rounded-full text-sm ${data.status === 0 ? "bg-red-500 " : "bg-green-700 "
+                } text-white ml-4`}
             >
               {data.status === 0 ? "Chưa phản hồi" : "Đã phản hồi"}
             </span>

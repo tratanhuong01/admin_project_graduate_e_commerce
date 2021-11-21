@@ -213,6 +213,40 @@
           "query": "ageFrom=80&ageTo=100"
         }
       ]
+    },
+    {
+      "id": "USER_FILTER_6",
+      "name": "Loại đăng kí",
+      "data": [
+        {
+          "id": -1,
+          "idFilter": "USER_FILTER_6",
+          "nameFilter": "Loại đăng kí",
+          "name": "Tất cả",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "idFilter": "USER_FILTER_6",
+          "nameFilter": "Loại đăng kí",
+          "name": "Cơ bản",
+          "query": "typeRegister=Normal"
+        },
+        {
+          "id": 1,
+          "idFilter": "USER_FILTER_6",
+          "nameFilter": "Loại đăng kí",
+          "name": "Google",
+          "query": "typeRegister=Google"
+        },
+        {
+          "id": 2,
+          "idFilter": "USER_FILTER_6",
+          "nameFilter": "Loại đăng kí",
+          "name": "Facebook",
+          "query": "typeRegister=Facebook"
+        }
+      ]
     }
   ],
   "sorter": [
@@ -395,7 +429,6 @@
       "id": 11,
       "name": "Đăng kí"
     },
-
     {
       "id": 12,
       "name": "Thời gian đăng kí"

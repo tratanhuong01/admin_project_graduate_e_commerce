@@ -36,6 +36,7 @@ function Search(props) {
               table,
               index: 0,
               params,
+              mainFilters: filters
             },
             headers
           )
@@ -55,6 +56,7 @@ function Search(props) {
       placeholder="Tìm kiếm"
       value={keyword ? keyword : ""}
       onChange={(event) => setKeyword(event.target.value)}
+      spellCheck={false}
     />
   );
 }

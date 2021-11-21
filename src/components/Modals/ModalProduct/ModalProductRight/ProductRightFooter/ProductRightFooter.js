@@ -4,17 +4,31 @@ import * as modalsAction from "../../../../../actions/modals/index";
 import * as productsAction from "../../../../../actions/products/index";
 import * as add from "./add";
 import * as edit from "./edit";
+import * as categorysAction from "../../../../../actions/category/index";
 
 function ProductRightFooter(props) {
   //
   const dispatch = useDispatch();
-  const { products, headers } = useSelector((state) => {
+  const { products, headers, category, filters } = useSelector((state) => {
     return {
       products: state.products,
       headers: state.headers,
+      category: state.category,
+      filters: state.filters
     };
   });
-
+  const loadData = () => {
+    dispatch(categorysAction.loadListCategoryConnectRequest('lineProductFilters', {
+      full: `?lineProductType=0`,
+      limit: `?lineProductType=0&limit=${10}&offset=${category.index}`,
+    }, true, {
+      filters: filters.choose,
+      sorter: filters.sorter,
+      search: filters.search,
+      mainFilters: filters
+    },
+      headers))
+  }
   //
   return (
     <div
@@ -32,14 +46,17 @@ function ProductRightFooter(props) {
         {"Hủy"}
       </button>
       <button
-        onClick={() => {
-          if (products.index === 5)
-            if (!products.listData) add.addProduct(products, headers, dispatch);
-            else edit.updateProduct(products, headers, dispatch);
+        onClick={async () => {
+          if (products.index === 5) {
+            if (!products.listData) await add.addProduct(products, headers, dispatch);
+            else await edit.updateProduct(products, headers, dispatch);
+            loadData();
+          }
           else
             dispatch(
               productsAction.loadCategoryProductByIndex(products.index + 1)
             );
+
         }}
         type={"button"}
         className=" py-2.5 px-5 rounded-lg bg-organce font-semibold text-xm text-white"

@@ -111,6 +111,7 @@ function ModalNews(props) {
           filters: filters.choose,
           sorter: filters.sorter,
           search: filters.search,
+          mainFilters: filters
         },
         headers,
         dataForm.thumbnailFile.length > 0 ? funcOther : null

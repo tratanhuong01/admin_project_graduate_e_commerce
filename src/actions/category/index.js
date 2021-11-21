@@ -203,14 +203,19 @@ export const deleteCategoryRequest = (list, table, data, headers) => {
     for (let index = 0; index < list.length; index++) {
       const element = list[index];
       try {
-        await api(`${table}`, "DELETE", element, headers);
+        if (table === "products") {
+          await api(`deleteProductMain?id=${element.id}`, "DELETE", null, headers);
+        }
+        else {
+          await api(`${table}`, "DELETE", element, headers);
+        }
       } catch (error) {
         throw error;
       }
     }
     dispatch(removeItemChooseAll());
     if (data) {
-      const { filters, sorter, search, status, params } = data;
+      const { filters, sorter, search, status, params, mainFilters } = data;
       dispatch(
         loadListCategoryConnectRequest(
           table.slice(0, -1) + "Filters",
@@ -221,6 +226,7 @@ export const deleteCategoryRequest = (list, table, data, headers) => {
             sorter,
             search,
             params,
+            mainFilters: mainFilters
           },
           headers
         )
@@ -268,7 +274,6 @@ export const addCategoryRequest = (
             })
           )
         );
-      console.log(funcOther);
       if (funcOther) {
         funcOther(result.data.id, obj, headers);
       }

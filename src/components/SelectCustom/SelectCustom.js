@@ -51,9 +51,8 @@ function SelectCustom(props) {
             setShow(!show);
           }
         }}
-        className={`${className} cursor-pointer ${
-          disabled ? " opacity-50" : ""
-        }`}
+        className={`${className} cursor-pointer ${disabled ? " opacity-50" : ""
+          }`}
       >
         <i className="bx bx-chevron-down absolute top-1.5 right-3 text-3xl"></i>
         <span>{concat ? `${content[attribute]}` : content[attribute]}</span>
@@ -98,9 +97,8 @@ function SelectCustom(props) {
                     className={`w-full p-2 border-b-2 border-solid relative hover:bg-gray-200`}
                   >
                     {concat
-                      ? `${item[attribute]} / ${
-                          item[concat.data1][concat.data2]
-                        }`
+                      ? `${item[attribute]} / ${item[concat.data1][concat.data2]
+                      }`
                       : item[attribute]}
                   </div>
                 );

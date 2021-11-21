@@ -248,6 +248,29 @@
       ]
     },
     {
+      "name": "Thời gian tạo",
+      "data": [
+        {
+          "id": -1,
+          "name": "Tất cả",
+          "nameFilter": "Thời gian tạo",
+          "query": "true=true"
+        },
+        {
+          "id": 0,
+          "name": "Tăng dần",
+          "nameFilter": "Thời gian tạo",
+          "query": "timeCreatedSorter=ASC"
+        },
+        {
+          "id": 1,
+          "nameFilter": "Thời gian tạo",
+          "name": "Giảm dần",
+          "query": "timeCreatedSorter=DESC"
+        }
+      ]
+    },
+    {
       "name": "Giá bán ra",
       "data": [
         {
@@ -378,7 +401,6 @@
       "id": 13,
       "name": "Tình trạng"
     },
-
     {
       "id": 14,
       "name": "Đã bán"

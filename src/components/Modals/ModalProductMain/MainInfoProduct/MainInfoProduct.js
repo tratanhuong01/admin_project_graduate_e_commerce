@@ -4,9 +4,12 @@ import ColorMemoryRam from "./ColorMemoryRam/ColorMemoryRam";
 import ContentMainProduct from "./ContentMainProduct/ContentMainProduct";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../../../../Utils/api";
 import * as StringUtils from "../../../../Utils/StringUtils";
+import * as categorysAction from "../../../../actions/category/index";
+import * as modalsAction from "../../../../actions/modals/index";
+
 function MainInfoProduct(props) {
   const schema = Yup.object().shape({});
   const {
@@ -18,12 +21,15 @@ function MainInfoProduct(props) {
     resolver: yupResolver(schema),
     shouldUnregister: false,
   });
-  const { headers, products } = useSelector((state) => {
+  const { headers, products, filters, category } = useSelector((state) => {
     return {
       headers: state.headers,
       products: state.products,
+      filters: state.filters,
+      category: state.category
     };
   });
+  const dispatch = useDispatch();
   const onSubmit = async () => {
     const productNewBest = await api(`getIdBestNew`, "GET", null, headers);
     let id = 1000000000;
@@ -69,6 +75,23 @@ function MainInfoProduct(props) {
         headers
       );
     }
+    dispatch(categorysAction.deleteCategoryRequest(
+      category.choose,
+      "products",
+      {
+        status: true,
+        search: filters.search,
+        sorter: filters.sorter,
+        filters: filters.choose,
+        mainFilters: filters,
+        params: {
+          full: `?productType=0`,
+          limit: `?productType=0&limit=${10}&offset=${0}`,
+        },
+      },
+      headers
+    ));
+    dispatch(modalsAction.closeModal());
   };
   return (
     <div

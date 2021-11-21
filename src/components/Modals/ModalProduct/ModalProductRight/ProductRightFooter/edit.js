@@ -5,12 +5,18 @@ import * as productsAction from "../../../../../actions/products/index";
 import api from "../../../../../Utils/api";
 
 export const updateProduct = async (products, headers, dispatch) => {
-  let data = products;
   dispatch(modalsAction.setLoadingModal(true));
-  console.log(products);
-  const lineProduct = products.listData.lineProduct;
-  data.descriptions = draftToHtml(
-    convertToRaw(data.descriptions.getCurrentContent())
+  let lineProduct = products.listData.lineProduct;
+  lineProduct.nameLineProduct = products.infoSimple.nameProduct;
+  lineProduct.groupProduct = products.infoSimple.groupProduct;
+  lineProduct.width = products.infoSimple.width;
+  lineProduct.height = products.infoSimple.height;
+  lineProduct.weight = products.infoSimple.weight;
+  lineProduct.brandProduct = products.infoSimple.brand;
+  lineProduct = await api('lineProducts', 'PUT', lineProduct, headers);
+  lineProduct = lineProduct.data;
+  products.descriptions = draftToHtml(
+    convertToRaw(products.descriptions.getCurrentContent())
   );
   //await updateImageMain(lineProduct, products, headers);
   //await updateImageOther(lineProduct, products, headers);

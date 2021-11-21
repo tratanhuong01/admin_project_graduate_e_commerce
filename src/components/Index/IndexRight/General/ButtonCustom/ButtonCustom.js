@@ -28,6 +28,7 @@ function ButtonCustom(props) {
                 search: filters.search,
                 sorter: filters.sorter,
                 filters: filters.choose,
+                mainFilters: filters,
                 params,
               },
               headers

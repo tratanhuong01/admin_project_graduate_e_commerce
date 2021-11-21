@@ -25,6 +25,7 @@ function ModalUpdateStatusCategory(props) {
               key={index}
               id={id}
               table={table}
+              dataType={dataMain.dataType}
               column={data.column}
             />
           ))}

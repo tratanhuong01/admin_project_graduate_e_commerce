@@ -25,7 +25,7 @@ function RamForm(props) {
   const onSubmit = (data) => {
     dispatch(
       categorysAction.addCategoryRequest(
-        data,
+        Object.assign(data, { timeCreated: (dataProps ? dataProps.timeCreated : null) }),
         table + "s",
         null,
         false,

@@ -24,7 +24,7 @@ function CategoryProductForm(props) {
   const onSubmit = async (data) => {
     dispatch(
       categorysAction.addCategoryRequest(
-        data,
+        Object.assign(data, { timeCreated: (dataProps ? dataProps.timeCreated : null) }),
         "categoryProducts",
         null,
         false,

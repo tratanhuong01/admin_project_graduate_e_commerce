@@ -100,6 +100,7 @@ function FooterContentOrder({ order }) {
           filters: filters.choose,
           sorter: filters.sorter,
           search: filters.search,
+          mainFilters: filters
         },
         headers
       )
@@ -129,9 +130,8 @@ function FooterContentOrder({ order }) {
                   }
                 }}
                 key={index}
-                className={`py-3 px-5 rounded-full font-semibold text-sm ${
-                  item.bgColor
-                } m-1 border-solid border-4 border-white 
+                className={`py-3 px-5 rounded-full font-semibold text-sm ${item.bgColor
+                  } m-1 border-solid border-4 border-white 
                 ${choose && choose.id === item.id && "border-gray-800"}`}
               >
                 {item.text}
