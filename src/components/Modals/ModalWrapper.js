@@ -40,9 +40,8 @@ function ModalWrapper(props) {
           </div>
         )}
         <div
-          className={`w-full ${
-            notHeader ? "" : "pt-16"
-          } relative overflow-x-hidden overflow-y-auto scrollbar-css`}
+          className={`w-full ${notHeader ? "" : "pt-16"
+            } relative overflow-x-hidden overflow-y-auto scrollbar-css`}
           style={styleChildren}
         >
           {children}

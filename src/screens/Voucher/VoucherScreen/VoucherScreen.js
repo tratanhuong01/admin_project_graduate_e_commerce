@@ -9,6 +9,9 @@ import RowVoucherTable from "../../../components/Table/RowVoucherTable/RowVouche
 import { useHaveModal } from "../../../hooks/useHaveModal";
 import Screen from "../../Screen";
 import feature from "./feature";
+import { useDispatch } from "react-redux";
+import * as modalsAction from "../../../actions/modals/index";
+
 function VoucherScreen(props) {
   //
   const category = useHaveModal(
@@ -19,6 +22,7 @@ function VoucherScreen(props) {
     },
     true
   );
+  const dispatch = useDispatch();
   //
   return (
     <>
@@ -33,6 +37,7 @@ function VoucherScreen(props) {
             <Date />
             <FileDown />
             <CrudCategoryModal
+              other={(choose) => dispatch(modalsAction.openModalGiveVoucher(choose))}
               feature={feature}
               params={{
                 full: `?paramsData=0`,
@@ -49,16 +54,16 @@ function VoucherScreen(props) {
           <TableMain feature={feature} category={category} numRow={13}>
             {category.list
               ? category.list.map((item, index) => {
-                  return (
-                    <RowVoucherTable
-                      item={item}
-                      key={index}
-                      category={category}
-                      index={index}
-                      feature={feature}
-                    />
-                  );
-                })
+                return (
+                  <RowVoucherTable
+                    item={item}
+                    key={index}
+                    category={category}
+                    index={index}
+                    feature={feature}
+                  />
+                );
+              })
               : ""}
           </TableMain>
         </Table>

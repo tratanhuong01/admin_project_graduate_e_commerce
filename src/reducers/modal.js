@@ -1,6 +1,7 @@
 import React from "react";
 import ModalContact from "../components/Modals/ModalContact/ModalContact";
 import ModalEmployee from "../components/Modals/ModalEmployee/ModalEmployee";
+import ModalGiveVoucher from "../components/Modals/ModalGiveVoucher/ModalGiveVoucher";
 import ModalNews from "../components/Modals/ModalNews/ModalNews";
 import ModalOrders from "../components/Modals/ModalOrders/ModalOrders";
 import ModalProduct from "../components/Modals/ModalProduct/ModalProduct";
@@ -81,6 +82,9 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.SET_LOADING_MODAL:
       state.loading = action.loading;
+      return { ...state };
+    case Types.OPEN_MODAL_GIVE_VOUCHER:
+      state.data = <ModalGiveVoucher data={action.data} />
       return { ...state };
     default:
       return state;

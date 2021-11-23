@@ -41,3 +41,10 @@ export const setLoadingModal = (loading) => {
     loading,
   };
 };
+
+export const openModalGiveVoucher = (data) => {
+  return {
+    type: Types.OPEN_MODAL_GIVE_VOUCHER,
+    data
+  }
+}

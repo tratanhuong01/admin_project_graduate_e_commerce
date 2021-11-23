@@ -4,11 +4,19 @@ import ButtonCustom from "../Index/IndexRight/General/ButtonCustom/ButtonCustom"
 
 function CrudCategoryModal(props) {
   //
-  const { feature, params, add, edit, remove } = props;
+  const { feature, params, add, edit, remove, other } = props;
   const category = useSelector((state) => state.category);
   //
   return (
     <div className="absolute -right-2 flex">
+      {other && category.choose.length > 0 && <ButtonCustom
+        table={feature.nameTable}
+        bgColor="bg-green-600"
+        content={"Tặng Voucher"}
+        icon="bx bx-gift"
+        otherFunction={other}
+        params={params}
+      />}
       {edit && category.choose.length === 1 && (
         <ButtonCustom
           table={feature.nameTable}
