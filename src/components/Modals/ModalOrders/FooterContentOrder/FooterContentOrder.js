@@ -185,8 +185,10 @@ function FooterContentOrder({ order }) {
           order.bill.status !== 4 &&
           order.bill.status !== -3 && (
             <button
-              onClick={update}
-              className="px-5 py-3 rounded-sm bg-organce text-white font-semibold"
+              onClick={choose && update}
+              className={`px-5 py-3 rounded-sm ${choose ? 'bg-organce' : 'bg-gray-600 cursor-not-allowed'} 
+              text-white font-semibold`}
+              disabled={choose ? false : true}
             >
               Xử lí
             </button>

@@ -27,18 +27,28 @@ function RowOrderTable(props) {
         {new Intl.NumberFormat().format(item.total)} <u>đ</u>
       </td>
       <td className="p-2">
-        {item.timeCreated ? (
-          StringUtil.formatDateTimeMain(item.timeCreated)
-        ) : (
-          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
-        )}
-      </td>
-      <td className="p-2">
-        {item.timeCompleted ? (
-          StringUtil.formatDateTimeMain(item.timeCompleted)
-        ) : (
-          <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
-        )}
+        <ul className="font-bold">
+          <li>Đặt hàng : {item.timeCreated ? (
+            StringUtil.formatDateTimeMain(item.timeCreated)
+          ) : (
+            <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+          )} </li>
+          <li>Giao hàng dự kiến : {item.timeIntend ? (
+            item.timeIntend.split(" ")[0].replaceAll('-', '/')
+          ) : (
+            <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+          )} </li>
+          <li>Duyệt hàng : {item.timeApproval ? (
+            StringUtil.formatDateTimeMain(item.timeApproval)
+          ) : (
+            <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+          )} </li>
+          <li>Hoàn thành : {item.timeCompleted ? (
+            StringUtil.formatDateTimeMain(item.timeCompleted)
+          ) : (
+            <i className="fas fa-circle-notch fa-spin text-sm text-organce"></i>
+          )} </li>
+        </ul>
       </td>
       <td className="p-2">
         {new Intl.NumberFormat().format(item.fee)} <u>đ</u>

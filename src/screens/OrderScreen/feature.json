@@ -261,11 +261,7 @@
     },
     {
       "id": 7,
-      "name": "Thời gian tạo đơn"
-    },
-    {
-      "id": 8,
-      "name": "Thời gian hoàn thành"
+      "name": "Thời gian"
     },
     {
       "id": 9,
@@ -278,9 +274,6 @@
     {
       "id": 9,
       "name": "Ghi chú"
-    },
-    {
-      "id": 10
     }
   ],
   "status": {

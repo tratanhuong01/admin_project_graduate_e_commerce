@@ -34,7 +34,10 @@ function VoucherScreen(props) {
             </p>
           </div>
           <div className="w-auto flex items-center justify-end">
-            <Date />
+            <Date table={feature.nameTable} query={{
+              full: `?paramsData=0`,
+              limit: `?paramsData=0&limit=${10}&offset=${category.index}`,
+            }} />
             <FileDown />
             <CrudCategoryModal
               other={(choose) => dispatch(modalsAction.openModalGiveVoucher(choose))}

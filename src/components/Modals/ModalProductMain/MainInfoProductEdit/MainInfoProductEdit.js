@@ -41,9 +41,9 @@ function MainInfoProductEdit(props) {
           productUser: null,
           memoryProduct: products.infoMainEdit.rom
             ? products.infoMainEdit.rom.id
-            : products.infoMainEdit.rom
-              ? null
-              : null,
+              ? products.infoMainEdit.rom
+              : null
+            : null,
           lineProduct: products.infoMainEdit.lineProduct,
           ramProduct: products.infoMainEdit.ram,
           imageProduct: products.infoMainEdit.image,
