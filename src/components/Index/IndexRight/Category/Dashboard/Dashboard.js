@@ -50,10 +50,10 @@ function Dashboard(props) {
           )}
         />
         <NewBestDashboard
-          label={"Người dùng đăng kí gần đây"}
-          type={0}
-          attribute={(user) => user.avatar}
-          content={(user) => `${user.firstName} ${user.lastName}`}
+          label={"Người dùng liên hệ gần đây"}
+          type={2}
+          attribute={() => "https://res.cloudinary.com/huongdev2k1/image/upload/v1638405409/E-Commerce/Config/1024px-User-avatar.svg_pcpwlt.png"}
+          content={(contact) => contact.fullName + `(${contact.content.substring(0, 20)}...)`}
         />
       </div>
     </div>

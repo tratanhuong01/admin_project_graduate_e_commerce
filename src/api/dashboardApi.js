@@ -22,6 +22,10 @@ export const getBillNew = (limit, offset, headers) => {
   );
 };
 
+export const getContactNew = (limit, offset, headers) => {
+  return api(`contacts?offset=${offset}&limit=${limit}`, 'GET', null, headers);
+}
+
 // export const getBillNew = (limit, offset) => {
 //   return api(
 //     `getUserByTypeLimit/?limit=${limit}&offset=${offset}`,

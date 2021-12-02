@@ -21,7 +21,7 @@ function NewBestDashboard(props) {
           result = await dashboardApi.getBillNew(5, 0, headers);
           break;
         case 2:
-          result = await dashboardApi.getUserNew(0, 5, 0, headers);
+          result = await dashboardApi.getContactNew(5, 0, headers);
           break;
         default:
           break;
