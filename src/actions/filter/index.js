@@ -4,6 +4,7 @@ import * as filterApi from "../../api/filterApi";
 
 export const addFilterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
+    dispatch({ type: Types.LOADING_CATEGORY, loading: false });
     const { filters, item, table, sorter, params, mainFilters } = data;
     const index = filters.findIndex((dt) => dt.idFilter === item.idFilter);
     let clone = [];
@@ -34,6 +35,7 @@ export const addFilterCategoryRequest = (data, headers) => {
       );
       dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
       dispatch(updateFilterCategory(clone));
+      dispatch({ type: Types.LOADING_CATEGORY, loading: false });
     } catch (error) {
       throw error;
     }
@@ -49,6 +51,7 @@ export const updateFilterCategory = (data) => {
 
 export const removeFilterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
+    dispatch({ type: Types.LOADING_CATEGORY, loading: true });
     const { filters, item, table, sorter, index, params, mainFilters } = data;
     const clone = filters.filter((dt) => dt.id !== item.id);
     let stringQuery = "";
@@ -74,6 +77,7 @@ export const removeFilterCategoryRequest = (data, headers) => {
 
       dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
       dispatch(updateFilterCategory(clone));
+      dispatch({ type: Types.LOADING_CATEGORY, loading: false });
     } catch (error) {
       throw error;
     }
@@ -82,6 +86,7 @@ export const removeFilterCategoryRequest = (data, headers) => {
 
 export const resetFiltersAllRequest = (data, headers) => {
   return async (dispatch) => {
+    dispatch({ type: Types.LOADING_CATEGORY, loading: true });
     const { table, index, params } = data;
     try {
       const result_1 = await filterApi.filters(
@@ -98,6 +103,7 @@ export const resetFiltersAllRequest = (data, headers) => {
       );
       dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
       dispatch(updateFilterCategory([]));
+      dispatch({ type: Types.LOADING_CATEGORY, loading: false });
     } catch (error) {
       throw error;
     }
@@ -106,6 +112,7 @@ export const resetFiltersAllRequest = (data, headers) => {
 
 export const addSorterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
+    dispatch({ type: Types.LOADING_CATEGORY, loading: true });
     const { filters, item, table, index, params, mainFilters } = data;
     let stringQuery = "";
     if (filters.length > 0)
@@ -129,6 +136,7 @@ export const addSorterCategoryRequest = (data, headers) => {
       );
       dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
       dispatch(updateSorterCategory(item));
+      dispatch({ type: Types.LOADING_CATEGORY, loading: false });
     } catch (error) {
       throw error;
     }
@@ -137,6 +145,7 @@ export const addSorterCategoryRequest = (data, headers) => {
 
 export const removeSorterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
+    dispatch({ type: Types.LOADING_CATEGORY, loading: true });
     const { filters, table, index, params, mainFilters } = data;
     let stringQuery = "";
     if (filters.length > 0)
@@ -159,6 +168,7 @@ export const removeSorterCategoryRequest = (data, headers) => {
       );
       dispatch(categorysAction.loadListCategory(result_1.data, result_2.data));
       dispatch(updateSorterCategory(null));
+      dispatch({ type: Types.LOADING_CATEGORY, loading: false });
     } catch (error) {
       throw error;
     }
