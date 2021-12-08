@@ -1,13 +1,15 @@
 import api from "../Utils/api";
 
 export const addData = (item, table, headers) => {
+  console.log(headers);
   return api(
     `${table}`,
     item.id ? "PUT" : "POST",
     item,
-    Object.assign(headers, {
+    {
+      ...headers,
       "Content-Type": "application/json",
-    })
+    }
   );
 };
 
@@ -16,9 +18,10 @@ export const updateData = (item, table, headers) => {
     `${table}`,
     "PUT",
     item,
-    Object.assign(headers, {
+    {
+      headers,
       "Content-Type": "application/json",
-    })
+    }
   );
 };
 

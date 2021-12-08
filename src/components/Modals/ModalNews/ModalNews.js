@@ -65,7 +65,7 @@ function ModalNews(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const dispatch = useDispatch();
-  const addNews = (dataForm) => {
+  const addNews = async (dataForm) => {
     dispatch({ type: SET_LOADING_MODAL, loading: true });
     const news = {
       id: data ? data.id : null,
@@ -89,16 +89,14 @@ function ModalNews(props) {
         "updateImageSingle",
         "POST",
         formData,
-        Object.assign(headers, {
-          "Content-Type": "multipart/form-data",
-        })
+        headers
       );
       let clone = { ...news };
       clone.id = idNews;
       clone.thumbnail = result.data.url;
-      await api("news", "PUT", clone, headers);
+      await api("news", idNews ? "PUT" : "POST", clone, { ...headers, "Content-Type": "application/json" });
     };
-    dispatch(
+    await dispatch(
       categorysAction.addCategoryRequest(
         news,
         "new",
@@ -117,8 +115,8 @@ function ModalNews(props) {
         dataForm.thumbnailFile.length > 0 ? funcOther : null
       )
     );
-    dispatch({ type: SET_LOADING_MODAL, loading: false });
-    dispatch(modalsAction.closeModal());
+    await dispatch({ type: SET_LOADING_MODAL, loading: false });
+    await dispatch(modalsAction.closeModal());
   };
   //
   return (

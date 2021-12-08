@@ -47,6 +47,8 @@ export const CONFIG_SCREEN = `${PAGE_ADMIN}/thiet-lap`;
 
 export const CONTACT_SCREEN = `${PAGE_ADMIN}/lien-he`;
 
+export const SERVER_NODE = "http://localhost:4444";
+
 export const IMAGE_NOTIFY_APPOVED =
   "https://res.cloudinary.com/huongdev2k1/image/upload/v1635207312/E-Commerce/Config/approved_lwh9hb.png";
 
