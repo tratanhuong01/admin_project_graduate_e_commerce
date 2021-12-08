@@ -246,13 +246,17 @@ export const addCategoryRequest = (
 ) => {
   return async (dispatch) => {
     try {
-      const result = await crudApi.addData(
-        obj,
-        status ? `${table}s` : table,
-        headers
-      );
+      if (!funcOther)
+        await crudApi.addData(
+          obj,
+          status ? `${table}s` : table,
+          headers
+        );
+      if (funcOther) {
+        await funcOther(obj.id ? obj.id : null, obj, { ...headers, "Content-Type": "multipart/form-data" });
+      }
       if (status) {
-        dispatch(
+        await dispatch(
           loadListCategoryConnectRequest(
             `${table}Filters`,
             query,
@@ -264,7 +268,7 @@ export const addCategoryRequest = (
           )
         );
       } else
-        dispatch(
+        await dispatch(
           loadListCategoryRequest(
             table,
             query,
@@ -274,9 +278,6 @@ export const addCategoryRequest = (
             })
           )
         );
-      if (funcOther) {
-        funcOther(result.data.id, obj, headers);
-      }
     } catch (error) {
       throw error;
     }
