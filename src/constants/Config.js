@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:3333";
+export const API_URL = "https://api-hsmart.herokuapp.com";
 export const PAGE_ADMIN = "/admin";
 export const REGEX_NUMBER_PHONE =
   /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/;
@@ -20,6 +20,8 @@ export const LINE_PRODUCT = `${PAGE_ADMIN}/dong-san-pham`;
 export const GROUP_PRODUCT = `${PAGE_ADMIN}/nhom-san-pham`;
 
 export const CATEGORY_PRODUCT = `${PAGE_ADMIN}/danh-muc-san-pham`;
+
+export const SERVER_NODE = "https://server-hsmart.herokuapp.com";
 
 export const COLOR = `${PAGE_ADMIN}/mau-sac`;
 
