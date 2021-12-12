@@ -79,7 +79,7 @@ const addImageOther = async (lineProduct, products, headers) => {
     const image = products.images[index];
     const formData = new FormData();
     formData.append("multipartFile", image);
-    formData.append("id", index);
+    formData.append("id", `image_other__${new Date().getTime()}_${index}`);
     formData.append("publicId", "E-Commerce/Products/");
     const result = await api("updateImageSingle", "POST", formData, headers);
     await api(

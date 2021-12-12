@@ -23,16 +23,16 @@ export default function ContentGiveVoucher(props) {
         //
         let unmounted = false;
         let timeOut;
-        if (keyword !== "") {
+        if (keyword) {
             timeOut = setTimeout(async () => {
                 const result = await api(`userFilters?userType=CUSTOMER&isRegister=1&limit=20&offset=0&keyword=${keyword}`, 'GET', null, headers);
                 if (unmounted) return;
                 setUsers(result.data);
             }, 300);
         }
-        else {
-            setUsers([]);
-        }
+        // else {
+        //     setUsers([]);
+        // }
         return () => {
             unmounted = true;
             clearTimeout(timeOut);

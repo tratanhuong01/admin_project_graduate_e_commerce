@@ -42,9 +42,8 @@ function ModalProductLeft(props) {
             onClick={() => {
               dispatch(productsAction.loadCategoryProductByIndex(index));
             }}
-            className={`w-full p-2.5 my-1 flex items-center rounded-lg ${
-              products.index === index ? "bg-gray-200" : "hover:bg-gray-200"
-            } font-semibold cursor-pointer`}
+            className={`w-full p-2.5 my-1 flex items-center rounded-lg ${products.index === index ? "bg-gray-200" : "hover:bg-gray-200"
+              } font-semibold cursor-pointer`}
           >
             <i className={`${item.icon} mr-3 text-2xl`}></i>
             {item.name}

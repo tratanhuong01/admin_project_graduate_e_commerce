@@ -4,9 +4,12 @@ import ChartData from "./Chart/ChartData";
 import feature from "../../../../../screens/OrderScreen/feature";
 import ContentColor from "../../General/RowTable/ContentColor/ContentColor";
 import MainInfoTopDashboard from "./MainInfoTopDashboard/MainInfoTopDashboard";
+import { useHistory } from "react-router-dom";
+import * as Config from "../../../../../constants/Config";
+
 function Dashboard(props) {
   //
-
+  const history = useHistory();
   //
   return (
     <div
@@ -32,6 +35,9 @@ function Dashboard(props) {
           type={0}
           attribute={(user) => user.avatar}
           content={(user) => `${user.firstName} ${user.lastName}`}
+          handleClick={() => {
+            history.push(Config.USER)
+          }}
         />
         <NewBestDashboard
           label={"Đơn hàng gần đây"}
@@ -48,12 +54,18 @@ function Dashboard(props) {
               typeData={status}
             />
           )}
+          handleClick={() => {
+            history.push(Config.BILL)
+          }}
         />
         <NewBestDashboard
           label={"Người dùng liên hệ gần đây"}
           type={2}
           attribute={() => "https://res.cloudinary.com/huongdev2k1/image/upload/v1638405409/E-Commerce/Config/1024px-User-avatar.svg_pcpwlt.png"}
           content={(contact) => contact.fullName + `(${contact.content.substring(0, 20)}...)`}
+          handleClick={() => {
+            history.push(Config.CONTACT_SCREEN)
+          }}
         />
       </div>
     </div>

@@ -19,14 +19,34 @@ export const updateProduct = async (products, headers, dispatch) => {
     convertToRaw(products.descriptions.getCurrentContent())
   );
   //await updateImageMain(lineProduct, products, headers);
-  //await updateImageOther(lineProduct, products, headers);
+  await updateImageOther(lineProduct, products, headers);
   await updateProductAttribute(lineProduct, products, headers);
   await updateFunctionProduct(lineProduct, products, headers);
   dispatch(modalsAction.closeModal());
   dispatch(productsAction.resetDataProductState());
 };
 // const updateImageMain = async (lineProduct, products, headers) => {};
-// const updateImageOther = async (lineProduct, products, headers) => {};
+const updateImageOther = async (lineProduct, products, headers) => {
+  for (let index = 0; index < products.images.length; index++) {
+    const image = products.images[index];
+    const formData = new FormData();
+    formData.append("multipartFile", image);
+    formData.append("id", `image_other__${new Date().getTime()}_${index}`);
+    formData.append("publicId", "E-Commerce/Products/");
+    const result = await api("updateImageSingle", "POST", formData, headers);
+    await api(
+      "imageOthers",
+      "POST",
+      {
+        id: null,
+        lineProductImage: lineProduct,
+        src: result.data.url,
+        type: 1,
+      },
+      headers
+    );
+  }
+};
 const updateProductAttribute = async (lineProduct, products, headers) => {
   if (products.infoAttribute) {
     for (const property in products.infoAttribute) {

@@ -4,7 +4,7 @@ import * as filterApi from "../../api/filterApi";
 
 export const addFilterCategoryRequest = (data, headers) => {
   return async (dispatch) => {
-    dispatch({ type: Types.LOADING_CATEGORY, loading: false });
+    dispatch({ type: Types.LOADING_CATEGORY, loading: true });
     const { filters, item, table, sorter, params, mainFilters } = data;
     const index = filters.findIndex((dt) => dt.idFilter === item.idFilter);
     let clone = [];

@@ -47,6 +47,7 @@ function IntroduceWebsite(props) {
       data: draftToHtml(convertToRaw(editorState.getCurrentContent())),
     });
     await crudApi.addData(data, "configWebsites", headers);
+    alert("Cập nhật thành công")
   };
   //
   return (

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function NewBestDashboard(props) {
   //
-  const { label, type, content, attribute, specification, Component } = props;
+  const { label, type, content, attribute, specification, Component, handleClick } = props;
   const [data, setData] = useState([]);
   const headers = useSelector((state) => state.headers);
   useEffect(() => {
@@ -37,8 +37,12 @@ function NewBestDashboard(props) {
   }, []);
   //
   return (
-    <div className="item__new p-1 bg-white mx-1 w-full">
-      <p className=" text-xm font-bold my-2 pl-3">{label}</p>
+    <div className="item__new p-1 bg-white mx-1 w-full ">
+      <p className="w-full flex justify-between text-xm font-bold my-2 pl-3">
+        <span>{label}</span>
+        <span onClick={() => typeof handleClick === "function" && handleClick()}
+          className="text-organce text-sm cursor-pointer ">Xem chi tiết</span>
+      </p>
       <ul className="w-full flex flex-wrap">
         {data.map((item, index) => {
           return (
@@ -53,7 +57,7 @@ function NewBestDashboard(props) {
           );
         })}
       </ul>
-    </div>
+    </div >
   );
 }
 

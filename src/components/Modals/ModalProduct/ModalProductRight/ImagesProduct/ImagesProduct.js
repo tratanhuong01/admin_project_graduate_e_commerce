@@ -6,10 +6,10 @@ function ImagesProduct(props) {
   //
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  useEffect(() => {}, [products.images]);
+  useEffect(() => { }, [products.images]);
   //
   return (
-    <>
+    <div className="flex w-full flex-wrap">
       {products.images ? (
         <>
           {products.images.map((image, index) => {
@@ -63,7 +63,7 @@ function ImagesProduct(props) {
           </label>
         </>
       )}
-    </>
+    </div>
   );
 }
 
