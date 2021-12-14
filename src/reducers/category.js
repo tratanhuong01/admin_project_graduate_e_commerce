@@ -12,6 +12,7 @@ const initialState = {
   length: 0,
   index: 0,
   choose: [],
+  loadingNotModal: false,
 };
 
 const myReducer = (state = initialState, action) => {
@@ -81,6 +82,9 @@ const myReducer = (state = initialState, action) => {
       return { ...state };
     case Types.LOADING_CATEGORY:
       state.loading = action.loading;
+      return { ...state };
+    case Types.LOADING_NOT_MODAL:
+      state.loadingNotModal = action.loading;
       return { ...state };
     default:
       return state;

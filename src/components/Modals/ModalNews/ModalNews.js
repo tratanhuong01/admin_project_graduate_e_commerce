@@ -83,7 +83,7 @@ function ModalNews(props) {
     const funcOther = async (idNews, news, headers) => {
       const formData = new FormData();
       formData.append("multipartFile", dataForm.thumbnailFile[0]);
-      formData.append("id", `news__${idNews}`);
+      formData.append("id", `${new Date().getTime()}__news__${idNews}`);
       formData.append("publicId", "E-Commerce/News/");
       const result = await api(
         "updateImageSingle",

@@ -24,6 +24,7 @@ function ColorForm(props) {
   const headers = useSelector((state) => state.headers);
   const dispatch = useDispatch();
   const onSubmit = (data) => {
+    dispatch(categorysAction.loadingNotModal(true));
     dispatch(
       categorysAction.addCategoryRequest(
         Object.assign(data, { timeCreated: (dataProps ? dataProps.timeCreated : null) }),
@@ -38,6 +39,7 @@ function ColorForm(props) {
     setValue("id", "");
     setValue("code", "");
     setValue("description", "");
+    dispatch(categorysAction.loadingNotModal(false));
   };
   const [color, setColor] = useState("");
   const [show, setShow] = useState(false);

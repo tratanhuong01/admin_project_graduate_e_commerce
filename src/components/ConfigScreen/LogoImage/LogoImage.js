@@ -50,6 +50,7 @@ function LogoImage(props) {
       data,
       Object.assign(headers, { "Content-Type": "application/json" })
     );
+    setLoading(false);
     setFile(null);
   };
   //
@@ -86,13 +87,12 @@ function LogoImage(props) {
         <div className="flex justify-center items-center my-3">
           <button
             onClick={() => submit()}
-            className={`px-7 py-2.5 rounded-lg text-white font-semibold mx-auto ${
-              file
-                ? loading
-                  ? "bg-gray-600 cursor-not-allowed"
-                  : " bg-organce"
-                : "bg-gray-600 cursor-not-allowed"
-            }`}
+            className={`px-7 py-2.5 rounded-lg text-white font-semibold mx-auto ${file
+              ? loading
+                ? "bg-gray-600 cursor-not-allowed"
+                : " bg-organce"
+              : "bg-gray-600 cursor-not-allowed"
+              }`}
             disabled={file ? (loading ? true : false) : true}
           >
             Lưu

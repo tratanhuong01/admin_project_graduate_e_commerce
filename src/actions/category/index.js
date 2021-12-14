@@ -329,3 +329,10 @@ export const setIndexCategory = (index) => {
     index,
   };
 };
+
+export const loadingNotModal = (loading) => {
+  return {
+    type: Types.LOADING_NOT_MODAL,
+    loading
+  }
+}
