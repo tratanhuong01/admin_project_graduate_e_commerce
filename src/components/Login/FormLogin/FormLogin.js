@@ -50,8 +50,8 @@ function FormLogin(props) {
         name="password"
       />
       <p className="mb-1 font-bold text-center">Demo</p>
-      <p className="mb-1 text-sm">Email or phone : admin123456789@gmail.com</p>
-      <p className="mb-1 text-sm">Password : huongtra2001</p>
+      <p className="mb-1 text-sm text-center">Email or phone : admin123456789@gmail.com</p>
+      <p className="mb-1 text-sm text-center">Password : huongtra2001</p>
       <div className="w-full flex py-4 justify-between">
         <div>
           <input type="checkbox" className="mr-3 my-3" />
